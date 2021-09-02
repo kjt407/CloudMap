@@ -1,6 +1,6 @@
-package com.example.studyguide.repository;
+package com.jongtk.cloudmap.repository;
 
-import com.example.studyguide.entity.Member;
+import com.jongtk.cloudmap.entity.Member;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

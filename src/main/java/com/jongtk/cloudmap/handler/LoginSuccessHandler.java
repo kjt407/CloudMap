@@ -1,6 +1,6 @@
-package com.example.studyguide.handler;
+package com.jongtk.cloudmap.handler;
 
-import com.example.studyguide.dto.AuthMemberDTO;
+import com.jongtk.cloudmap.dto.AuthMemberDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,7 +38,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         boolean isEdited = passwordEncoder.matches("1111", authMember.getPassword());
 
         if(fromSocial && isEdited){
-            redirectStrategy.sendRedirect(request,response,"/member/modify?from=social");
+            redirectStrategy.sendRedirect(request,response,"/");
         }
     }
 }

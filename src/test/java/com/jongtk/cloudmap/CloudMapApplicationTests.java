@@ -1,4 +1,4 @@
-package com.example.cloudmap;
+package com.jongtk.cloudmap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

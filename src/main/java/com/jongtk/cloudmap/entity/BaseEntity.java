@@ -1,4 +1,4 @@
-package com.example.studyguide.entity;
+package com.jongtk.cloudmap.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

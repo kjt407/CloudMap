@@ -1,4 +1,4 @@
-package com.example.cloudmap;
+package com.jongtk.cloudmap;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

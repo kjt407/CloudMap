@@ -1,10 +1,9 @@
-package com.example.studyguide.dto;
+package com.jongtk.cloudmap.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.objenesis.ObjenesisException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.user.OAuth2User;

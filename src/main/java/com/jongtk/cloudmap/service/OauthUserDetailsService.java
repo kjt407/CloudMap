@@ -1,14 +1,12 @@
-package com.example.studyguide.service;
+package com.jongtk.cloudmap.service;
 
-import com.example.studyguide.dto.AuthMemberDTO;
-import com.example.studyguide.entity.Member;
-import com.example.studyguide.entity.MemberRole;
-import com.example.studyguide.repository.MemberRepository;
+import com.jongtk.cloudmap.dto.AuthMemberDTO;
+import com.jongtk.cloudmap.entity.Member;
+import com.jongtk.cloudmap.entity.MemberRole;
+import com.jongtk.cloudmap.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
