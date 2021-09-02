@@ -28,8 +28,10 @@ public class SampleController {
 //
 //    }
 
-    @GetMapping("/login")
-    public String exLogin(){
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String exLogin(){
+//        return "login";
+//    }
+
+
 }

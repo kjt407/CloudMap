@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>풀스크린이동인데 어케 처리하지</title>
+<style>
+	html,body {width:100%;height:100%;margin:0px;padding:0px;overflow:hidden;font-family:sans-serif;}
+	
+	#fullpage {position:relative;top:0px;z-index:9;width:100%;height:100%;}
+	.fullsection{width:100%;height:100%;position:relative;}
+	.full1{background:#212022;}
+	.full2{background:#212022;}
+	
+	ul, li{margin:0;padding:0;list-style:none}
+	
+</style>
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../../../../../../../../카카오톡%20받은%20파일/쫀득쫀득/css/register.css">
+<link rel="stylesheet" href="../../../../../../../../카카오톡%20받은%20파일/쫀득쫀득/css/snow.css">
+<script type="text/javascript">
+	alert("사용자 정보가 일치하지 않습니다.");
+	history.back();
+</script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+
+
+
+</head>
+<body>
+	<div id="fullpage">
+		<div class="fullsection full1" pageNum="1">
+			<div class="loading-background"></div>
+			<div class="loading"></div>
+			<div id="snow"></div>
+			<form action="/templates/login/sign" method="post" class="loginForm">
+				<h1>로그인 실패</h1>
+				<a th:href="@{/sign/login}">다시시도</a>
+			</form>
+		</div>
+		<div class="fullsection full2" pageNum="2"></div>
+		<div class="fullsection full2" pageNum="3">
+			<div class="register-background"></div>
+			<div class="register"></div>
+			<form action="" method="post" class="registerForm">
+				<h2>Register</h2>
+				<div class="register-id">
+					<input type="text" class="id" placeholder="ID">
+				</div>
+				<div class="register-pw">
+					<input type="password" class="pw" placeholder="PW">
+				</div>
+				<div class="register-pw">
+					<input type="password" class="pw" placeholder="PW">
+				</div>
+				<div class="register-pw">
+					<input type="password" class="pw" placeholder="NAME">
+				</div>
+				<div class="register-pw">
+					<input type="password" class="pw" placeholder="PHONE">
+				</div>
+			   
+				<button type="button" class="register-success-btn">
+					Register
+				</button>
+			</form>
+		</div>
+	
+	</div>
+</body>
+
+
+<script>
+var status;
+
+$(document).ready(function(){
+	
+	$("#snow").load("snow.html")    
+	fullset();
+	goRegister();
+	goLogin();
+	
+});
+
+window.addEventListener("resize", function() {
+	if(status==='0'){
+		var height = $('.fullsection').height() * 2;
+		$('#fullpage').css('top',-height+'px');
+	}
+}, true);
+	
+function fullset(){
+	var pageindex = $("#fullpage > .fullsection").size(); //fullpage 안에 섹션이(.fullsection) 몇개인지 확인하기
+	for(var i=1;i<=pageindex;i++){
+		$("#fullpage > .quick > ul").append("<li></li>");
+	}
+
+}
+
+function goRegister(){
+	$(".sign-btns").click(function(){
+		var length=0;
+		length=$(".full"+1).height()+$(".full"+2).height();
+		$("#fullpage").animate({"top": -length + "px"},500, "swing");
+		status = '0';
+		return false;
+	});
+}
+function goLogin(){
+	$(".register-success-btn").click(function(){
+		var length=0;
+		length=$(".full").height();
+		$("#fullpage").animate({"top": -length + "px"},500, "swing");
+		status = '1';
+		return false;
+	});
+}
+</script>
+
+</html>

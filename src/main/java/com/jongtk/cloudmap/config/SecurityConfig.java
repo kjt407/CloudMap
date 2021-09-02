@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/sample/main").hasRole("USER")
                 .antMatchers("/sample/admin").hasRole("ADMIN");
-        http.formLogin();
+        http.formLogin().loginPage("/sign").loginProcessingUrl("/login").failureUrl("/sign/fail");
         http.logout().logoutSuccessUrl("/sample/").invalidateHttpSession(true).deleteCookies();
         http.csrf().disable();
         http.oauth2Login().successHandler(successHandler());
