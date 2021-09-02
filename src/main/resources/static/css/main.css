@@ -48,7 +48,6 @@ menu .container .box { border-top: 3px solid; height: calc(100% - 33px); overflo
 menu .box ul:nth-child(1) { border-bottom: 3px solid; }
 menu .box ul { padding: 10px 0;  border-bottom: 3px solid; }
 menu ul li { border-bottom: 1px solid #EDEDED; display: block; font-size: 13px; font-weight: bold; height: 39px; letter-spacing: 0.12em; line-height: 39px; }
-menu ul li.profile-img { height: auto; }
 menu ul li:last-child { border: 0; }
 
 html.active menu { right: 0; z-index: 999; }

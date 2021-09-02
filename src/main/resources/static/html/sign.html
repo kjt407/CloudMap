@@ -2,250 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>풀스크린이동인데 어케 처리하지</title>
-<style>
-	html,body {width:100%;height:100%;margin:0px;padding:0px;overflow:hidden;font-family:sans-serif;}
-	
-	#fullpage {position:relative;top:0px;z-index:9;width:100%;height:100%;}
-	.fullsection{width:100%;height:100%;position:relative;}
-	.full1{background:#212022;}
-	.full2{background:#212022;}
-	
-	ul, li{margin:0;padding:0;list-style:none}
-	
-</style>
-<link rel="stylesheet" href="../../../../../../../Users/wnsgu/Desktop/쫀득쫀득/css/login.css">
-<link rel="stylesheet" href="../../../../../../../Users/wnsgu/Desktop/쫀득쫀득/css/register.css">
-<link rel="stylesheet" href="../../../../../../../Users/wnsgu/Desktop/쫀득쫀득/css/snow.css">
-
+<title>SIGN</title>
+<link rel="stylesheet" href="../css/sign.css">
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/register.css">
+<link rel="stylesheet" href="../css/snow.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-
-
-
 </head>
 <body>
+	<div id="snow"></div>
 	<div id="fullpage">
 		<div class="fullsection full1" pageNum="1">
 			<div class="loading-background"></div>
-			<div class="loading"></div>
-			<div id="snow"></div>
-			<form action="a" method="post" class="loginForm">
-				<h2>Login</h2>
-				<div class="login-id">
-					<input type="email" class="id" placeholder="ID">
-				</div>
-				<div class="login-pw">
-					<input type="password" class="pw" placeholder="PW">
-				</div>
-				
-				<button type="submit" class="login-btn">
-					LOG IN
-				</button>
-				<script>
-					let button = () => {
-						alert('login Button !')
-					}
-				</script>
-				<div class="bottomText">
-					Don't you have ID? <a href="#" class="sign-btns">sign up</a>
-				</div>
-				<div class="login-social-out">
-					<div class="login-social">
-						<a href="javascript:kakaoLogin();" class="btn-login-social kakao"></a>
+			<div class="login">
+				<form action="a" method="post" class="loginForm">
+					<h2>Login</h2>
+					<div class="login-id">
+						<input type="email" class="id" placeholder="ID">
 					</div>
-					<div class="login-social">
-						<a href="javascript:kakaoLogin();" class="btn-login-social google"></a>
+					<div class="login-pw">
+						<input type="password" class="pw" placeholder="PW">
 					</div>
-				</div>
-			</form>
+					
+					<button type="submit" class="login-btn">
+						LOG IN
+					</button>
+					<script>
+						let button = () => {
+							alert('login Button !')
+						}
+					</script>
+					<div class="bottomText">
+						Don't you have ID? <a href="#" class="sign-btns">sign up</a>
+					</div>
+					<div class="login-social-out">
+						<div class="login-social">
+							<a href="javascript:kakaoLogin();" class="btn-login-social kakao"></a>
+						</div>
+						<div class="login-social">
+							<a href="javascript:kakaoLogin();" class="btn-login-social google"></a>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 		<div class="fullsection full2" pageNum="2"></div>
-		<div class="fullsection full2" pageNum="3">
+		<div class="fullsection full3" pageNum="3">
 			<div class="register-background"></div>
-			<div class="register"></div>
-			<form action="" method="post" class="registerForm">
-				<h2>Register</h2>
-				<div class="register-email1">
-					<input type="text" class="input" placeholder="아이디" required>
-				</div>
-				<div class="register-email2">
-					<input type="text" class="input" disabled value="@">
-				</div>
-				<div class="register-email3">
-					<input type="text" class="input" id="str_email02"  disabled value="naver.com" required>
-				</div>
-				<select class="register-email4" id="selectEmail"> 
-					<option value="1">직접입력</option> <option value="naver.com" selected>naver.com</option> 
-					<option value="hanmail.net">hanmail.net</option> 
-					<option value="hotmail.com">hotmail.com</option> 
-					<option value="nate.com">nate.com</option> 
-					<option value="yahoo.co.kr">yahoo.co.kr</option> 
-					<option value="gmail.com">gmail.com</option> 
-				</select>
-				
-				<div class="register-pw">
-					<input type="password" class="pw" id="pwd1" placeholder="비밀번호" required>
-				</div>
-				<div class="register-pw-confirm">
-					<span id="pw-if1" style="display: none; color: #d92742; font-weight: bold; font-size: 10px;">8자리 ~ 20자리 이내로 입력해주세요.</span>
-					<span id="pw-if2" style="display: none; color: #d92742; font-weight: bold; font-size: 10px;">비밀번호는 공백 없이 입력해주세요.</span>
-					<span id="pw-if3" style="display: none; color: #d92742; font-weight: bold; font-size: 10px;">영문,숫자, 특수문자를 혼합하여 입력해주세요.</span>
-					<span id="pw-if4" style="display: none; color: #17632a; font-weight: bold; font-size: 10px; ">올바른 비밀번호입니다.</span>
-				</div>
-				<div class="register-pw-confirm2">
-				</div>
-				
-
-				<div class="register-pw2">
-					<input type="password" class="pw" id="pwd2" placeholder="비밀번호 확인" required>
-				</div>
-				<div class="register-pw2-confirm">
-					<span id="alert-success" style="display: none; color: #17632a; font-weight: bold; font-size: 10px;">비밀번호가 일치합니다.</span>
-					<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; font-size: 10px;">비밀번호가 일치하지 않습니다.</span>
-				</div>
-				<div class="register-pw2-confirm2">
-				</div>
-				
-
-				<div class="register-name">
-					<input type="password" class="pw" placeholder="이름" required>
-				</div>
-				<div class="register-phone">
-					<input type="password" class="pw" placeholder="전화번호" required>
-				</div>
-			   
-				<button type="submit" onclick="chkPW()" class="register-success-btn" disabled>
-					Register
-				</button>
-			</form>
+			<div class="register">
+				<form action="" method="post" class="registerForm">
+					<h2>Register</h2>
+					<div class="register-email1">
+						<input type="text" class="inputRegister" id="id" placeholder="아이디" required>
+					</div>
+					<div class="register-email2">
+						<input type="text" class="inputRegister"  disabled value="@">
+					</div>
+					<div class="register-email3">
+						<input type="text" class="inputRegister" id="email"  disabled value="naver.com" required>
+					</div>
+					<select class="register-email4" id="selectEmail"> 
+						<option value="1">직접입력</option> 
+						<option value="naver.com" selected>naver.com</option> 
+						<option value="hanmail.net">hanmail.net</option> 
+						<option value="hotmail.com">hotmail.com</option> 
+						<option value="nate.com">nate.com</option> 
+						<option value="yahoo.co.kr">yahoo.co.kr</option> 
+						<option value="gmail.com">gmail.com</option> 
+					</select>
+					<div class="register-pw">
+						<input type="password" class="inputRegister" id="pwd1" placeholder="비밀번호" required>
+					</div>
+					<label id="alert-danger1" class="pwMessageDanger1">8자리 ~ 20자리 이내로 입력해주세요.</label>
+					<label id="alert-danger2" class="pwMessageDanger1" >비밀번호는 공백 없이 입력해주세요.</label>
+					<label id="alert-danger3" class="pwMessageDanger1" >영문,숫자, 특수문자를 혼합하여 입력해주세요.</label>
+					<label id="alert-success1" class="pwMessageSuccess1">올바른 비밀번호입니다.</label>
+					<div class="register-pw-confirm">
+						<input type="password" class="inputRegister" id="pwd2" placeholder="비밀번호 확인" required>
+					</div>
+					<label id="alert-success2" class="pwMessageSuccess2">비밀번호가 일치합니다.</label>
+					<label id="alert-danger4" class="pwMessageDanger2" >비밀번호가 일치하지 않습니다.</label>
+					<div class="register-name">
+						<input type="text" class="inputRegister" id="name" placeholder="이름" required>
+					</div>
+					<div class="register-phone">
+						<input type="text" class="inputRegister" id="phone" maxlength="13" placeholder="전화번호" required>
+					</div>
+					<button type="submit" onclick="success();" class="register-success-btn" disabled>
+						Register
+					</button>
+				</form>
+			</div>
 		</div>
 	
 	</div>
+	<script src="../js/sign.js"></script>
 </body>
-
-
-<script>
-var status;
-
-$(document).ready(function(){
-	
-	$("#snow").load("snow.html")    
-	fullset();
-	goRegister();
-	goLogin();
-	
-});
-
-window.addEventListener("resize", function() {
-	if(status==='0'){
-		var height = $('.fullsection').height() * 2;
-		$('#fullpage').css('top',-height+'px');
-	}
-}, true);
-	
-function fullset(){
-	var pageindex = $("#fullpage > .fullsection").size(); //fullpage 안에 섹션이(.fullsection) 몇개인지 확인하기
-	for(var i=1;i<=pageindex;i++){
-		$("#fullpage > .quick > ul").append("<li></li>");
-	}
-
-}
-
-function goRegister(){
-	$(".sign-btns").click(function(){
-		var length=0;
-		length=$(".full"+1).height()+$(".full"+2).height();
-		$("#fullpage").animate({"top": -length + "px"},500, "swing");
-		status = '0';
-		return false;
-	});
-}
-function goLogin(){
-	$(".register-success-btn").click(function(){
-		var length=0;
-		length=$(".full").height();
-		$("#fullpage").animate({"top": -length + "px"},500, "swing");
-		status = '1';
-		return false;
-	});
-}
-
-$('#selectEmail').change(function(){
-	$("#selectEmail option:selected").each(function () {
-		if($(this).val()== '1'){
-			$("#str_email02").val('');
-			$("#str_email02").attr("disabled",false);
-		}else{ 
-			$("#str_email02").val($(this).text()); 
-			$("#str_email02").attr("disabled",true);
-		} 
-	}); 
-});
-$(function(){
-	$('.pw').focusout(function () {
-        var pwd1 = $("#pwd1").val();
-        var pwd2 = $("#pwd2").val();
-  
-        var num = pwd1.search(/[0-9]/g);
-		var eng = pwd1.search(/[a-z]/ig);
-		var spe = pwd1.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-		
-		if(pwd1.length < 8 || pwd1.length > 20){
-
-			$("#pw-if1").css('display', 'inline-block');
-			$("#pw-if2").css('display', 'none');
-			$("#pw-if3").css('display', 'none');
-			$("#pw-if4").css('display', 'none');
-		
-		return false;
-		}else if(pwd1.search(/\s/) != -1){
-			$("#pw-if1").css('display', 'none');
-			$("#pw-if2").css('display', 'inline-block');
-			$("#pw-if4").css('display', 'none');
-			$("#pw-if3").css('display', 'none');
-		return false;
-		}else if(num < 0 || eng < 0 || spe < 0 ){
-			$("#pw-if1").css('display', 'none');
-			$("#pw-if2").css('display', 'none');
-			$("#pw-if3").css('display', 'inline-block');
-			$("#pw-if4").css('display', 'none');
-		return false;
-		}else {
-		
-			$("#pw-if1").css('display', 'none');
-			$("#pw-if2").css('display', 'none');
-			$("#pw-if3").css('display', 'none');
-			$("#pw-if4").css('display', 'inline-block');
-			if ( pwd1 != '' && pwd2 == '' ) {
-           		null;
-				   return false;
-        	} else if (pwd1 != "" || pwd2 != "") {
-            	if (pwd1 == pwd2) {
-               		$("#alert-success").css('display', 'inline-block');
-               		$("#alert-danger").css('display', 'none');
-					   console.log("통과성공")
-					   $(".register-success-btn").attr("disabled",false);
-					   return true;
-					  
-            	} else {
-                	$("#alert-success").css('display', 'none');
-                	$("#alert-danger").css('display', 'inline-block');
-					console.log("통과실패")
-					return false;
-            	}
-        	}
-			return false;
-		}
-		
-		
-		
-		
-    });
-});
-
-</script>
-
 </html>
