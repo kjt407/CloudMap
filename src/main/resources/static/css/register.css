@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+*{ margin: 0px; padding: 0px; text-decoration: none; font-family:sans-serif; }
+  
+body { min-height: 100vh; background: #212022; }
+
+.registerForm { position:absolute; width:400px; height:600px; padding: 30px, 20px; background-color:#FFFFFF; text-align:center; top:50%; left:50%; transform: translate(-50%,-50%); border-radius: 15px; }
+.registerForm h2{ text-align: center; margin: 30px; }
+
+.register-id{ border-bottom: 2px solid #adadad; margin: 30px; padding: 10px 10px; }
+.register-pw{ border-bottom: 2px solid #adadad; margin: 30px; padding: 10px 10px; }
+.id { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none; }
+.pw { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none; }
+
+.register-success-btn { position:relative; left:40%; transform: translateX(-50%); margin-bottom: 30px; width:80%; height:40px; background: rgb(92, 32, 92); color:white; font-weight: bold; border:none; cursor:pointer; transition: 0.4s; display:inline; }
+.register-success-btn:hover {  background: rgb(49, 5, 49); }
+
+
