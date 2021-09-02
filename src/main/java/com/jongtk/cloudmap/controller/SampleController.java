@@ -1,6 +1,6 @@
-package com.example.studyguide.controller;
+package com.jongtk.cloudmap.controller;
 
-import com.example.studyguide.dto.AuthMemberDTO;
+import com.jongtk.cloudmap.dto.AuthMemberDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,25 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SampleController {
     @GetMapping({"/"})
     public String exHome(){
-        return "redirect:/sample/all";
+        return "redirect:/sample/main";
     }
 
-    @GetMapping({"/all"})
-    public String exAll(){
-        return "all";
-    }
-
-    @GetMapping("/member")
-    public String exMember(@AuthenticationPrincipal AuthMemberDTO authMemberDTO) {
+    @GetMapping("/main")
+    public void exMember(@AuthenticationPrincipal AuthMemberDTO authMemberDTO) {
         log.info(authMemberDTO);
-        return "member";
-
     }
 
-    @GetMapping("/admin")
-    public String exAdmin(){
-        return "admin";
-    }
+//    @GetMapping("/admin")
+//    public void exAdmin(){
+//
+//    }
 
     @GetMapping("/login")
     public String exLogin(){
