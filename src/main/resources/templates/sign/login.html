@@ -31,13 +31,13 @@
 	<div class="fullsection full1" pageNum="1">
 		<div class="loading-background"></div>
 		<div class="login">
-			<form action="a" method="post" class="loginForm">
+			<form th:action="@{/login}" method="post" class="loginForm">
 				<h2>Login</h2>
 				<div class="login-id">
-					<input type="email" class="id" placeholder="ID">
+					<input type="email" name="username" class="id" placeholder="ID">
 				</div>
 				<div class="login-pw">
-					<input type="password" class="pw" placeholder="PW">
+					<input type="password" name="password" class="pw" placeholder="PW">
 				</div>
 
 				<button type="submit" class="login-btn">
@@ -66,7 +66,7 @@
 	<div class="fullsection full3" pageNum="3">
 		<div class="register-background"></div>
 		<div class="register">
-			<form action="register" method="post" class="registerForm">
+			<form th:action="@{/sign/register}" method="post" class="registerForm">
 				<h2>Register</h2>
 				<div class="register-email1">
 					<input type="text" name="email1" class="inputRegister" id="id" placeholder="아이디" required>
