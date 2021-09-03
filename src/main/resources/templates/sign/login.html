@@ -26,19 +26,20 @@
 
 </head>
 <body>
-	<div id="fullpage">
-		<div class="fullsection full1" pageNum="1">
-			<div class="loading-background"></div>
-			<div class="loading"></div>
-			<div id="snow"></div>
-			<form action="/login" method="post" class="loginForm">
+<div id="snow"></div>
+<div id="fullpage">
+	<div class="fullsection full1" pageNum="1">
+		<div class="loading-background"></div>
+		<div class="login">
+			<form action="a" method="post" class="loginForm">
 				<h2>Login</h2>
 				<div class="login-id">
-					<input type="text" class="id" placeholder="ID">
+					<input type="email" class="id" placeholder="ID">
 				</div>
 				<div class="login-pw">
 					<input type="password" class="pw" placeholder="PW">
 				</div>
+
 				<button type="submit" class="login-btn">
 					LOG IN
 				</button>
@@ -60,83 +61,64 @@
 				</div>
 			</form>
 		</div>
-		<div class="fullsection full2" pageNum="2"></div>
-		<div class="fullsection full2" pageNum="3">
-			<div class="register-background"></div>
-			<div class="register"></div>
-			<form action="" method="post" class="registerForm">
+	</div>
+	<div class="fullsection full2" pageNum="2"></div>
+	<div class="fullsection full3" pageNum="3">
+		<div class="register-background"></div>
+		<div class="register">
+			<form action="register" method="post" class="registerForm">
 				<h2>Register</h2>
-				<div class="register-id">
-					<input type="text" class="id" placeholder="ID">
+				<div class="register-email1">
+					<input type="text" name="email1" class="inputRegister" id="id" placeholder="아이디" required>
 				</div>
+				<div class="register-email2">
+					<input type="text" class="inputRegister"  disabled value="@">
+				</div>
+				<div class="register-email3">
+					<input type="text" name="email2" class="inputRegister" id="email"  readonly value="naver.com" required>
+				</div>
+				<select class="register-email4" id="selectEmail">
+					<option value="1">직접입력</option>
+					<option value="naver.com" selected>naver.com</option>
+					<option value="hanmail.net">hanmail.net</option>
+					<option value="hotmail.com">hotmail.com</option>
+					<option value="nate.com">nate.com</option>
+					<option value="yahoo.co.kr">yahoo.co.kr</option>
+					<option value="gmail.com">gmail.com</option>
+				</select>
 				<div class="register-pw">
-					<input type="password" class="pw" placeholder="PW">
+					<input type="password" name="password" class="inputRegister" id="pwd1" placeholder="비밀번호" required>
 				</div>
-				<div class="register-pw">
-					<input type="password" class="pw" placeholder="PW">
+				<label id="alert-danger1" class="pwMessageDanger1">8자리 ~ 20자리 이내로 입력해주세요.</label>
+				<label id="alert-danger2" class="pwMessageDanger1" >비밀번호는 공백 없이 입력해주세요.</label>
+				<label id="alert-danger3" class="pwMessageDanger1" >영문,숫자, 특수문자를 혼합하여 입력해주세요.</label>
+				<label id="alert-success1" class="pwMessageSuccess1">올바른 비밀번호입니다.</label>
+				<div class="register-pw-confirm">
+					<input type="password" name="passwordCheck" class="inputRegister" id="pwd2" placeholder="비밀번호 확인" required>
 				</div>
-				<div class="register-pw">
-					<input type="password" class="pw" placeholder="NAME">
+				<label id="alert-success2" class="pwMessageSuccess2">비밀번호가 일치합니다.</label>
+				<label id="alert-danger4" class="pwMessageDanger2" >비밀번호가 일치하지 않습니다.</label>
+				<div class="register-name">
+					<input type="text" name="name" class="inputRegister" id="name" placeholder="이름" required>
 				</div>
-				<div class="register-pw">
-					<input type="password" class="pw" placeholder="PHONE">
+				<div class="register-phone">
+					<input type="text" name="phone" class="inputRegister" id="phone" maxlength="13" placeholder="전화번호" required>
 				</div>
-			   
-				<button type="button" class="register-success-btn">
+				<input type="submit" class="" >
 					Register
-				</button>
+				</input>
 			</form>
 		</div>
-	
 	</div>
-</body>
-
-
-<script>
-var status;
-
-$(document).ready(function(){
-	
-	$("#snow").load("snow.html")    
-	fullset();
-	goRegister();
-	goLogin();
-	
-});
-
-window.addEventListener("resize", function() {
-	if(status==='0'){
-		var height = $('.fullsection').height() * 2;
-		$('#fullpage').css('top',-height+'px');
-	}
-}, true);
-	
-function fullset(){
-	var pageindex = $("#fullpage > .fullsection").size(); //fullpage 안에 섹션이(.fullsection) 몇개인지 확인하기
-	for(var i=1;i<=pageindex;i++){
-		$("#fullpage > .quick > ul").append("<li></li>");
+</div>
+<script th:inline="javascript">
+	var result = [[${result}]];
+	if(result){
+		alert(result);
 	}
 
-}
-
-function goRegister(){
-	$(".sign-btns").click(function(){
-		var length=0;
-		length=$(".full"+1).height()+$(".full"+2).height();
-		$("#fullpage").animate({"top": -length + "px"},500, "swing");
-		status = '0';
-		return false;
-	});
-}
-function goLogin(){
-	$(".register-success-btn").click(function(){
-		var length=0;
-		length=$(".full").height();
-		$("#fullpage").animate({"top": -length + "px"},500, "swing");
-		status = '1';
-		return false;
-	});
-}
 </script>
+<script th:src="@{/js/sign.js}"></script>
+</body>
 
 </html>
