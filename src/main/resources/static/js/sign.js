@@ -47,10 +47,10 @@ $('#selectEmail').change(function(){
 	$("#selectEmail option:selected").each(function () {
 		if($(this).val()== '1'){
 			$("#email").val('');
-			$("#email").attr("disabled",false);
+			$("#email").attr("readonly",false);
 		}else{ 
 			$("#email").val($(this).text()); 
-			$("#email").attr("disabled",true);
+			$("#email").attr("readonly",true);
 		} 
 	}); 
 });

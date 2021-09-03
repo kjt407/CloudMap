@@ -1,6 +1,7 @@
 package com.jongtk.cloudmap.controller;
 
 import com.jongtk.cloudmap.dto.SignupDTO;
+import com.jongtk.cloudmap.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/sign")
 @RequiredArgsConstructor
 public class LoginController {
+
+    private final LoginService loginService;
+
     @GetMapping({"","/"})
     public String home(){
         return "redirect:/sign/login";
@@ -33,7 +37,10 @@ public class LoginController {
     public String register(SignupDTO signupDTO, RedirectAttributes rattr){
 
         log.warn(signupDTO);
-        rattr.addFlashAttribute("result", "반환된 내용입니다.");
+        boolean result = loginService.signUp(signupDTO);
+
+
+        rattr.addFlashAttribute("result", "반환된 내용입니다."+result);
         return "redirect:/sign/login";
     }
 
