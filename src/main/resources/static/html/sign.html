@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SIGN</title>
+<link rel="stylesheet" href="../css/sign.css">
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/register.css">
+<link rel="stylesheet" href="../css/snow.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+</head>
+<body>
+	<div id="snow"></div>
+	<div id="fullpage">
+		<div class="fullsection full1" pageNum="1">
+			<div class="loading-background"></div>
+			<div class="login">
+				<form action="a" method="post" class="loginForm">
+					<h2>Login</h2>
+					<div class="login-id">
+						<input type="email" class="id" placeholder="ID">
+					</div>
+					<div class="login-pw">
+						<input type="password" class="pw" placeholder="PW">
+					</div>
+					
+					<button type="submit" class="login-btn">
+						LOG IN
+					</button>
+					<script>
+						let button = () => {
+							alert('login Button !')
+						}
+					</script>
+					<div class="bottomText">
+						Don't you have ID? <a href="#" class="sign-btns">sign up</a>
+					</div>
+					<div class="login-social-out">
+						<div class="login-social">
+							<a href="javascript:kakaoLogin();" class="btn-login-social kakao"></a>
+						</div>
+						<div class="login-social">
+							<a href="javascript:kakaoLogin();" class="btn-login-social google"></a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="fullsection full2" pageNum="2"></div>
+		<div class="fullsection full3" pageNum="3">
+			<div class="register-background"></div>
+			<div class="register">
+				<form action="" method="post" class="registerForm">
+					<h2>Register</h2>
+					<div class="register-email1">
+						<input type="text" class="inputRegister" id="id" placeholder="아이디" required>
+					</div>
+					<div class="register-email2">
+						<input type="text" class="inputRegister"  disabled value="@">
+					</div>
+					<div class="register-email3">
+						<input type="text" class="inputRegister" id="email"  disabled value="naver.com" required>
+					</div>
+					<select class="register-email4" id="selectEmail"> 
+						<option value="1">직접입력</option> 
+						<option value="naver.com" selected>naver.com</option> 
+						<option value="hanmail.net">hanmail.net</option> 
+						<option value="hotmail.com">hotmail.com</option> 
+						<option value="nate.com">nate.com</option> 
+						<option value="yahoo.co.kr">yahoo.co.kr</option> 
+						<option value="gmail.com">gmail.com</option> 
+					</select>
+					<div class="register-pw">
+						<input type="password" class="inputRegister" id="pwd1" placeholder="비밀번호" required>
+					</div>
+					<label id="alert-danger1" class="pwMessageDanger1">8자리 ~ 20자리 이내로 입력해주세요.</label>
+					<label id="alert-danger2" class="pwMessageDanger1" >비밀번호는 공백 없이 입력해주세요.</label>
+					<label id="alert-danger3" class="pwMessageDanger1" >영문,숫자, 특수문자를 혼합하여 입력해주세요.</label>
+					<label id="alert-success1" class="pwMessageSuccess1">올바른 비밀번호입니다.</label>
+					<div class="register-pw-confirm">
+						<input type="password" class="inputRegister" id="pwd2" placeholder="비밀번호 확인" required>
+					</div>
+					<label id="alert-success2" class="pwMessageSuccess2">비밀번호가 일치합니다.</label>
+					<label id="alert-danger4" class="pwMessageDanger2" >비밀번호가 일치하지 않습니다.</label>
+					<div class="register-name">
+						<input type="text" class="inputRegister" id="name" placeholder="이름" required>
+					</div>
+					<div class="register-phone">
+						<input type="text" class="inputRegister" id="phone" maxlength="13" placeholder="전화번호" required>
+					</div>
+					<button type="submit" onclick="success();" class="register-success-btn" disabled>
+						Register
+					</button>
+				</form>
+			</div>
+		</div>
+	
+	</div>
+	<script src="../js/sign.js"></script>
+</body>
+</html>
