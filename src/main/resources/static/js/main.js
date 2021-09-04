@@ -1,21 +1,8 @@
-$(function() {
 
-  var w = $(window).width(),
-    h = $(window).height();
-  //$('section').width(w);
-  $('section').height(h);
-  $('menu .container').height(h - 60);
-  $('body').prepend('<div id="overlay">');
+window.addEventListener("resize", function() {
+	
+    var height = $('.sidebar').height();
+    $('.box').css('height',(height-388)+'px');
 
-  $('#menu').click(function() {$('html').addClass('active');});
-  $('#close-menu').click(function() {$('html').removeClass('active');});
-  $('#overlay').click(function() {$('html').removeClass('active');});
-  $(window).resize(function() {
-    var w = $(window).width(),
-      h = $(window).height();
-    //$('section').width(w);
-    $('section').height(h);
-    $('menu .container').height(h - 60);
-  });
+}, true);
 
-});
