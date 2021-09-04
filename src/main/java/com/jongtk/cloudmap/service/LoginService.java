@@ -21,12 +21,12 @@ public class LoginService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public boolean signUp(SignupDTO dto){
+    public String signUp(SignupDTO dto){
 
         Optional<Member> already =  memberRepository.findById(dto.getEmail());
 
         if(already.isPresent()) {
-            return false;
+            return null;
         }
 
         Member member = Member.builder()
@@ -39,6 +39,6 @@ public class LoginService {
 
         memberRepository.save(member);
 
-        return true;
+        return member.getEmail();
     }
 }

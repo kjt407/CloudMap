@@ -8,9 +8,12 @@
 <link rel="stylesheet" th:href="@{/css/login.css}">
 <link rel="stylesheet" th:href="@{/css/register.css}">
 <link rel="stylesheet" th:href="@{/css/snow.css}">
+<link rel="stylesheet" type="text/css" th:href="@{//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css}" />
+
 
 <script th:src="@{//code.jquery.com/jquery-1.12.4.js}"></script>
 <script type="text/javascript" th:src="@{//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js}"></script>
+<script type="text/javascript" th:src="@{//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
 
 
 
@@ -57,7 +60,7 @@
 	<div class="fullsection full3" pageNum="3">
 		<div class="register-background"></div>
 		<div class="register">
-			<form th:action="@{/sign/register}" method="post" class="registerForm">
+			<form id="form-register" class="registerForm">
 				<h2>Register</h2>
 				<div class="register-email1">
 					<input type="text" name="email1" class="inputRegister" id="id" placeholder="아이디" required>
@@ -95,7 +98,7 @@
 				<div class="register-phone">
 					<input type="text" name="phone" class="inputRegister" id="phone" maxlength="13" placeholder="전화번호" required>
 				</div>
-				<input type="submit"  value="REGISTER" disabled></input>
+				<input type="submit"  class="register-success-btn" value="REGISTER" disabled></input>
 
 			</form>
 		</div>

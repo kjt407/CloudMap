@@ -15,7 +15,6 @@ import java.util.Map;
 
 @Log4j2
 @Getter
-@Setter
 @ToString
 public class SignupDTO {
 
@@ -31,6 +30,7 @@ public class SignupDTO {
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,20}$", message = "비밀번호는 문자,숫자,특수문자를 포함해야합니다.")
     @NotBlank(message = "비밀번호는 공백을 포함할 수 없습니다.")
     private String password;
+    @NotBlank(message = "비밀번호가 일치하지 않습니다.")
     private String passwordCheck;
 
 
@@ -41,14 +41,16 @@ public class SignupDTO {
     @NotBlank(message = "전화번호는 공백을 포함할 수 없습니다.")
     private String phone;
 
-//    private final boolean fromSocial = false;
 
     public SignupDTO(String email1, String email2, String password, String passwordCheck, String name, String phone) {
+        log.warn(email1+email2+password+passwordCheck+name+phone);
         this.email = email1+"@"+email2;
         this.email1 = email1;
         this.email2 = email2;
         this.password = password;
-        this.passwordCheck = passwordCheck;
+        if(password.equals(passwordCheck)) {
+            this.passwordCheck = passwordCheck;
+        }
         this.name = name;
         this.phone = phone;
     }

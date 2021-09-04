@@ -5,8 +5,8 @@ $(document).ready(function(){
 	$("#snow").load("snow.html")    
 	fullset();
 	goRegister();
-	// goLogin();
-	singUp();
+	goLogin();
+	
 });
 
 window.addEventListener("resize", function() {
@@ -33,12 +33,15 @@ function goRegister(){
 		return false;
 	});
 }
-function goLogin(){
-		var length=0;
-		length=$(".full").height();
-		$("#fullpage").animate({"top": -length + "px"},500, "swing");
-		status = '1';
-}
+// function goLogin(){
+// 	$(".register-success-btn").click(function(){
+// 		var length=0;
+// 		length=$(".full").height();
+// 		$("#fullpage").animate({"top": -length + "px"},500, "swing");
+// 		status = '1';
+// 		return false;
+// 	});
+// }
 
 $('#selectEmail').change(function(){
 	$("#selectEmail option:selected").each(function () {
@@ -177,60 +180,5 @@ function success(){
 	$("#alert-success1").css('display', 'none');
 	$("#alert-success2").css('display', 'none');
 	$(".register-success-btn").attr("disabled",true);
+	alert("회원가입 완료! 로그인을 해주세요.");
 }
-
-function singUp(){
-	$("#form-register").on("submit",function(event){
-		event.preventDefault();
-		var data = {
-			"email1" : $(this).find('input[name="email1"]').val(),
-			"email2" : $(this).find('input[name="email2"]').val(),
-			"password" : $(this).find('input[name="password"]').val(),
-			"passwordCheck" : $(this).find('input[name="passwordCheck"]').val(),
-			"name" : $(this).find('input[name="name"]').val(),
-			"phone" : $(this).find('input[name="phone"]').val()
-		};
-		register(data);
-	})
-}
-
-function register(param){
-	registerBtnSwitch(true);
-	$.ajax({
-		type : "POST",
-		url : getContextPath()+"/sign/register",
-		dataType : 'json',
-		contentType : 'application/json',
-		data : JSON.stringify(param),
-		success : function (data){
-			if(data.result){
-				toastr.success(data.email+'님<br/>가입을 축하드립니다', {timeOut: 5000});
-				goLogin();
-				success();
-			} else{
-				data.errors.forEach(function(error){
-					toastr.error('회원가입 실패',error, {timeOut: 5000});
-				})
-			}
-			registerBtnSwitch(false);
-		},
-		error : function(){
-			toastr.error('회원가입 실패',"서버와 통신할 수 없습니다", {timeOut: 5000});
-			registerBtnSwitch(false);
-		}
-	});
-}
-
-function registerBtnSwitch(action){
-	$(".register-success-btn").attr("disabled",action);
-}
-
-function getContextPath() {
-	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
-	var context = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
-	if(context != '/cloudmap'){
-		console.log("컨텍스트가 /cloudmap 이 아님");
-		context = '';
-	}
-	return context;
-};
