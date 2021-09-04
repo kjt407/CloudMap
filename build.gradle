@@ -32,7 +32,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.1.Final'
+//    implementation group: 'org.hibernate.validator', name: 'hibernate-validator'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+
 
 }
 
