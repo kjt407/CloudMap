@@ -162,7 +162,7 @@ console.log(this.value);
 this.value = autoHypenPhone( this.value ) ;  
 }
 
-function success(){
+function success(email){
 	$("#id").val('');
 	$("#email").val('naver.com');
 	$("#name").val('');
@@ -177,6 +177,7 @@ function success(){
 	$("#alert-success1").css('display', 'none');
 	$("#alert-success2").css('display', 'none');
 	$(".register-success-btn").attr("disabled",true);
+	$("#form-login").find('input[name="username"]').val(email);
 }
 
 function singUp(){
@@ -206,7 +207,7 @@ function register(param){
 			if(data.result){
 				toastr.success(data.email+'님<br/>가입을 축하드립니다', {timeOut: 5000});
 				goLogin();
-				success();
+				success(data.email);
 			} else{
 				data.errors.forEach(function(error){
 					toastr.error('회원가입 실패',error, {timeOut: 5000});
