@@ -39,6 +39,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         if(fromSocial && isEdited){
             redirectStrategy.sendRedirect(request,response,"/");
+        } else {
+            redirectStrategy.sendRedirect(request,response,"/");
         }
     }
 }

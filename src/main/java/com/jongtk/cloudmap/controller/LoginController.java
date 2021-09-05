@@ -36,6 +36,17 @@ public class LoginController {
     public void fail(){
     }
 
+    @GetMapping("oauthfail")
+    public String oauthFail(String result, RedirectAttributes rattr){
+        if(result != null && result.equals("isLocal")) {
+            rattr.addFlashAttribute("error", "로컬계정에 가입된 Email 입니다");
+        } else {
+            rattr.addFlashAttribute("error", "사용할 수 없는 계정입니다");
+        }
+        return "redirect:/sign/login";
+    }
+
+
 //    @PostMapping("register")
 //    public String register(@Valid SignupDTO signupDTO, BindingResult bindingResult, RedirectAttributes rattr){
 //

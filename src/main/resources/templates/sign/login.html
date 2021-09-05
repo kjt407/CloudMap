@@ -47,7 +47,7 @@
 				</div>
 				<div class="login-social-out">
 					<div class="login-social">
-						<a href="javascript:kakaoLogin();" class="btn-login-social kakao"></a>
+						<a th:href="@{/oauth2/authorization/kakao}" class="btn-login-social kakao"></a>
 					</div>
 					<div class="login-social">
 						<a th:href="@{/oauth2/authorization/google}" class="btn-login-social google"></a>
@@ -105,9 +105,9 @@
 	</div>
 </div>
 <script th:inline="javascript">
-	var result = [[${result}]];
+	var result = [[${error}]];
 	if(result){
-		alert(result);
+		toastr.warning('인증실패',result, {timeOut: 5000});
 	}
 
 </script>

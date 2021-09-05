@@ -1,6 +1,7 @@
 package com.jongtk.cloudmap.config;
 
 
+import com.jongtk.cloudmap.handler.LoginFailureHandler;
 import com.jongtk.cloudmap.handler.LoginSuccessHandler;
 import com.jongtk.cloudmap.service.UserDetailsService;
 import lombok.extern.log4j.Log4j2;
@@ -27,12 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/sample/main").hasRole("USER")
-                .antMatchers("/sample/admin").hasRole("ADMIN");
+                .antMatchers("/sample/main").hasRole("USER");
         http.formLogin().loginPage("/sign").loginProcessingUrl("/login").failureUrl("/sign/fail");
         http.logout().logoutSuccessUrl("/sample/").invalidateHttpSession(true).deleteCookies();
         http.csrf().disable();
-        http.oauth2Login().successHandler(successHandler());
+        http.oauth2Login().successHandler(successHandler()).failureHandler(new LoginFailureHandler());
         http.rememberMe().tokenValiditySeconds(60*60*24*7).userDetailsService(userDetailsService);
     }
 
