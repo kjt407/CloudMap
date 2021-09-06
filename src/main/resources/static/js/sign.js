@@ -7,6 +7,7 @@ $(document).ready(function(){
 	goRegister();
 	// goLogin();
 	singUp();
+    goLoginUpArrow()
 });
 
 window.addEventListener("resize", function() {
@@ -38,6 +39,15 @@ function goLogin(){
 		length=$(".full").height();
 		$("#fullpage").animate({"top": -length + "px"},500, "swing");
 		status = '1';
+}
+function goLoginUpArrow(){
+	$(".arrow").click(function(){
+		var length=0;
+		length=$(".full").height();
+		$("#fullpage").animate({"top": -length + "px"},500, "swing");
+		status = '1';
+		return false;
+	});
 }
 
 $('#selectEmail').change(function(){

@@ -1,227 +1,76 @@
-body{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
-  -ms-overflow-style: none;
-}
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
-}
+body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", sans-serif; overflow: hidden; }
+
 /*헤더부분*/
 header{ z-index: 10; position: fixed; background: rgb(23, 24, 29); padding: 20px; width: calc(100% - 0%); top: 0; height: 30px; }
 .left_area h3{ color: #fff; margin: 0; text-transform: uppercase; font-size: 22px; font-weight: 900; }
 .left_area span{ color: #1DC4E7; }
 
+/*사이드바*/
+.sidebar{ z-index: 1; top: 0; background: #212022; margin-top: 70px; padding-top: 30px; position: fixed; right: 0; width: 300px; height: calc(100vh ); transition: 0.5s; transition-property: right; -ms-overflow-style: none; }
+.sidebar a{ color: #fff; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box; transition: 0.5s; transition-property: background; }
 
-/*사이드바부분*/
-.sidebar{
-  z-index: 1;
-  top: 0;
-  background: #212022;
-  margin-top: 70px;
-  padding-top: 30px;
-  position: fixed;
-  right: 0;
-  width: 300px;
-  height: calc(100% - 9%);
-  transition: 0.5s;
-  transition-property: right;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-}
+/* 사이드바 프로필 시작 */
+.profile_info{ display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.sidebar .profile_info .profile_image{ width: 150px; height: 150px; border-radius: 100px; margin-top: 30px; margin-bottom: 10px; }
+.sidebar .profile_info h4{ color: #ccc; margin-top: 0; margin-bottom: 20px; font-size: 20px }
+.sidebar .profile_info h3{ color: #ccc; margin-top: -10px; margin-bottom: 20px; font-size: 15px }
 
-.sidebar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
-}
+/* 사이드바 친구목록 */
+.sidebar .box { overflow:scroll;  height:calc(100vh - 450px); -ms-overflow-style: none; }
+.box::-webkit-scrollbar { display: none; }
+.sidebar .box .friend-list-title { margin-left: -40px; margin-right: 0px; list-style: none; text-align: center; height: 20px;}
+.sidebar .box .friend-list-title li label { font-size: 20px; color: white; font-weight: bold; }
+.sidebar .box .friend-list { margin-left: -40px; margin-right: 0px; list-style: none; }
+.sidebar .box .friend-list li { text-align: center; }
+.sidebar a:hover{ color: #212022; background: #fff; }
 
-.profile_info{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.sidebar .profile_info .profile_image{
-  width: 150px;
-  height: 150px;
-  border-radius: 100px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
+/* 사이드바 로그아웃 */
+.sidebar .logout{ font-size: 30px; width: 300px; text-align: center; bottom: 0; position: fixed; background-color: #212022; }
+.sidebar .logout a:hover{ color: white; background: rgb(252, 94, 94); }
 
-.sidebar .profile_info h4{
-  color: #ccc;
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 20px
-}
-.sidebar .profile_info h3{
-  color: #ccc;
-  margin-top: -10px;
-  margin-bottom: 20px;
-  font-size: 15px
-}
+/*사이드바 버튼 디자인 및 기능 */
+label #sidebar_btn{ z-index: 1; color: #fff; position: fixed; cursor: pointer; right: 30px; font-size: 40px; margin-top: -3px; transition: 0.5s; transition-property: color; }
+label #sidebar_btn:hover{ color:#19B3D3 }
+#check:checked ~ .sidebar{ right: -295px; }
+#check:checked ~ .content{ margin-right: 0; }
+#check{ display: none; }
 
+/*콘텐츠*/
+.content{ position: relative; z-index: 0; width: (100% - 300px); margin-right: 300px; background: white; background-position: center; background-size: cover; height: 100vh; transition: 0.5s; }
+.content #map{width: 100%; height: 100vh; top: 70px;}
 
-.sidebar a{
-  color: #fff;
-  display: block;
-  width: 100%;
-  line-height: 60px;
-  text-decoration: none;
-  box-sizing: border-box;
-  transition: 0.5s;
-  transition-property: background;
-}
-.sidebar .box {
-  overflow:scroll; 
-  height:590px;
-  -ms-overflow-style: none;
-}
-.box::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
-}
+.mobile_nav{ display: none; }
 
-.sidebar .box ul {
-  margin-left: -40px;
-  margin-right: 0px;
-  list-style-type: none;
-}
-.sidebar .box ul li {
-  text-align: center;
-}
-.sidebar .box ul li label {
-  font-size: 15px;
-  color: white;
-  font-weight: bold;
-}
-
-
-.sidebar a:hover{
-  color: #212022;
-  background: #fff;
-}
-
-.sidebar i{
-  padding-right: 10px;
-}
-.sidebar .logout{
-  font-size: 30px;
-  width: 300px;
-  text-align: center;
-  bottom: 0;
-  position: fixed;
-}
-.sidebar .logout a:hover{
-  color: white;
-  background: rgb(252, 94, 94);
-}
-
-label #sidebar_btn{
-  z-index: 1;
-  color: #fff;
-  position: fixed;
-  cursor: pointer;
-  right: 30px;
-  font-size: 40px;
-  margin-top: -3px;
-  transition: 0.5s;
-  transition-property: color;
-}
-
-label #sidebar_btn:hover{
-  color:#19B3D3
-}
-
-#check:checked ~ .sidebar{
-  right: -295px;
-}
-
-.content{
-  z-index: 0;
-  width: (100% - 300px);
-  margin-right: 300px;
-  background: white;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  transition: 0.5s;
-}
-
-#check:checked ~ .content{
-  margin-right: 0;
-}
-
-
-
-#check{
-  display: none;
-}
-
-.mobile_nav{
-  display: none;
-}
-
-@media screen and (max-height: 405px){
-  .sidebar .logout{
-    display: none;
-  }
-}
 /*반응형 작업*/
 @media screen and (max-width: 780px){
-  .sidebar{
-    display: none;
-  }
-  #sidebar_btn{
-    display: none;
-  }
+  .sidebar{ display: none; }
+  #sidebar_btn{ display: none; }
+  .mobile_nav{ display: block; }
 
-  .content{
-    margin-right: 0;
-    margin-top: 0;
-   
-    transition: 0s;
-  }
+  /*상단바*/
+  .nav_bar{ z-index: 2; position: fixed; background-color: #222; width: 100%; margin-top: 0px; display: flex; padding: 10px 20px; }
+  .nav_bar .mobile_profile_image{ width: 50px; height: 50px; border-radius: 50%; }
+  .nav_bar .nav_btn{ z-index: 2; position: absolute; right: 60px; line-height: 50px; color: #fff; font-size: 35px; cursor: pointer; transition: 0.5s; transition-property: color; }
+  .nav_bar .nav_btn:hover{ color: #19B3D3; }
 
-  .mobile_nav{
-    display: block;
-    width: calc(100% - 0%);
-  }
 
-  .nav_bar{
-    background-color: #222;
-    width: (100% - 0px);
-    margin-top: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
+  /*친구목록*/
+  .slide-box { top: -1000px; position: absolute; z-index: 1; background: #2f323A; height: 100vh; width: 100%; transition: 0.5s; }
+  .slide-box .friend { margin-top: 140px; height: calc(100% - 200px); overflow-y: scroll; }
+  .slide-box .friend::-webkit-scrollbar { display: none; }
+  .slide-box .friend .friend-list{ margin-left: -40px; margin-right: 0px; }
+  .slide-box .friend .friend-list li{ text-align: center; }
+  .slide-box .friend .friend-list li a{ color: #fff; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box; transition: 0.5s; transition-property: background; }
+  .slide-box .friend  .friend-list li a:hover{ color: #212022; background: #fff; }
+  
+  /*로그아웃*/
+  .slide-box .logout{ font-size: 30px; width: 100%; height: 70px; bottom: 0px; position: absolute; text-align: center; background-color: #212022; text-decoration: none; transition: 0.5s; }
+  .slide-box .logout a{ line-height: 70px; color: white; text-decoration: none; }
+  .slide-box .logout:hover{ color: white;  background: rgb(252, 94, 94); }
+  
+  /*콘텐츠*/
+  .content{ margin-right: 0; margin-top: 70px; }
 
-  .nav_bar .mobile_profile_image{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-
-  .nav_bar .nav_btn{
-    color: #fff;
-    font-size: 22px;
-    cursor: pointer;
-    transition: 0.5s;
-    transition-property: color;
-  }
-  .nav_bar .nav_btn:hover{
-   color: #19B3D3;
-  }
-
-  .mobile_nav_item{
-    background: #2f323A;
-    display: none;
-  }
-
-  .active{
-    display: block;
-  }
+  .active{ top: 0px; transition: 0.5s; }
+  
 }
