@@ -2,7 +2,7 @@ var status;
 
 $(document).ready(function(){
 	
-	$("#snow").load("snow.html")    
+	$("#snow").load("../html/snow.html")
 	fullset();
 	goRegister();
 	// goLogin();

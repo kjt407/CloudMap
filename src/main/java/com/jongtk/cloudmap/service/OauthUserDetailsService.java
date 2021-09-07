@@ -55,7 +55,7 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
 
         if(clientName.equals("Google")){
             email = oAuth2User.getAttribute("email");
-
+            attr.put("picture",oAuth2User.getAttribute("picture"));
         }else if(clientName.equals("kakao")){
             Map<String, Object> kakaoAccount = (Map<String, Object>) oAuth2User.getAttribute("kakao_account");
             Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
@@ -63,6 +63,7 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
             email = (String) kakaoAccount.get("email");
             name = (String) profile.get("nickname");
         }
+        attr.put("clientName",clientName);
 
         if(isLocalMember(email)){
             OAuth2Error oauth2Error = new OAuth2Error("ALREADY_REGISTERED_EMAIL");
@@ -77,18 +78,18 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
 
 
         AuthMemberDTO authMember = new AuthMemberDTO(
-                member.getEmail(),
-                member.getPassword(),
-                true,
-                member.getRoleSet().stream().map(
-                        role -> new SimpleGrantedAuthority("ROLE_"+role.name())
-                ).collect(Collectors.toList()),
-                oAuth2User.getAttributes()
+            member.getEmail(),
+            member.getPassword(),
+            true,
+            member.getRoleSet().stream().map(
+                    role -> new SimpleGrantedAuthority("ROLE_"+role.name())
+            ).collect(Collectors.toList()),
+            attr
         );
         authMember.setName(member.getName());
-        if(!attr.isEmpty()){
-            authMember.setAttr(attr);
-        }
+//        if(!attr.isEmpty()){
+//            authMember.setAttr(attr);
+//        }
 
         return authMember;
     }
