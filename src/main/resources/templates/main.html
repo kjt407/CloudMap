@@ -3,6 +3,24 @@
 <th:block th:replace="~{/layout/layout_basic:: setContent(~{this:: content})}">
     <th:block th:fragment="content">
         <div id="map"></div>
+        <div class="wrap" id="write">
+            <div class="info" >
+                <div class="title">
+                    알림
+                    <div class="close" onclick="closeOverlay()" title="닫기"></div>
+                </div>
+                <div class="body" >
+                    <div class="desc">
+                        <div class="ellipsis" id="jibun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
+                        <div class="write"><button class="write-btn" id="write-btn">일지 작성하기</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="dialog">
+            <p>일지 작성하는 곳</p>
+        </div>
     </th:block>
 </th:block>
 </html>

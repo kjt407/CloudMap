@@ -33,8 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/sample/main").hasRole("USER");
-        http.formLogin().loginPage("/sign").loginProcessingUrl("/login").failureUrl("/sign/fail");
+                .antMatchers("/main").hasRole("USER");
+        http.formLogin().loginPage("/sign").loginProcessingUrl("/login").failureUrl("/sign/fail").defaultSuccessUrl("/main");
         http.logout().invalidateHttpSession(true).deleteCookies();
         http.csrf().disable();
         http.oauth2Login().successHandler(successHandler()).failureHandler(new LoginFailureHandler());

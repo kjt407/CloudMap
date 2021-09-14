@@ -26,6 +26,8 @@ public class Member extends BaseEntity{
 
     private String name;
 
+    private String profileImg;
+
     private boolean fromSocial;
 
     @ElementCollection(fetch = FetchType.LAZY)
