@@ -9,9 +9,16 @@
   <link rel="stylesheet" href="../css/main.css">
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef"></script>
-  <script src="../js/main.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script src="../js/main.js"></script>
+  <style>
+    
+  </style>
 </head>
 <body>
 
@@ -41,36 +48,12 @@
       <div class="slide-box">
             <div class="friend" id="scroll">
               <ul class="friend-list">
-                  <li><a href="#">친구1</a></li>
-                  <li><a href="#">친구2</a></li>
-                  <li><a href="#">친구3</a></li>
-                  <li><a href="#">친구4</a></li>
-                
-                  <li><a href="#">친구5</a></li>
-                  <li><a href="#">친구1</a></li>
-                  <li><a href="#">친구2</a></li>
-                  <li><a href="#">친구3</a></li>
-                  <li><a href="#">친구4</a></li>
-                
-                  <li><a href="#">친구5</a></li>
-                  <li><a href="#">친구1</a></li>
-                  <li><a href="#">친구2</a></li>
-                  <li><a href="#">친구3</a></li>
-                  <li><a href="#">친구4</a></li>
-                
-                  <li><a href="#">친구5</a></li>
-                  <li><a href="#">친구1</a></li>
-                  <li><a href="#">친구2</a></li>
-                  <li><a href="#">친구3</a></li>
-                  <li><a href="#">친구4</a></li>
-                
-                  <li><a href="#">친구5</a></li>
-                  <li><a href="#">친구1</a></li>
-                  <li><a href="#">친구2</a></li>
-                  <li><a href="#">친구3</a></li>
-                  <li><a href="#">친구4</a></li>
-                
-                  <li><a href="#">친구5</a></li>
+                <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>
+                <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>
+                <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img src="../images/map.png" class="friend_profile_home"></li>
+                <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img src="../images/map.png" class="friend_profile_home"></li>
+                <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img src="../images/map.png" class="friend_profile_home"></li>
+                <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>
               </ul>
             </div>
             <div class="logout">
@@ -85,7 +68,7 @@
       <div class="profile_info">
         <img src="../images/1.jpg" class="profile_image">
         <h4>최준형</h4>
-        <h3>상태메시지 입니다.</h3>
+        <!--<h3>상태메시지 입니다.</h3>-->
       </div>
       <!-- <div>
         <p>내용</p>
@@ -98,16 +81,12 @@
           <li><label>친구목록</label></li>
         </ul>
         <ul class="friend-list">
-            <li><a href="#">친구1</a></li>
-            <li><a href="#">친구2</a></li>
-            <li><a href="#">친구3</a></li>
-            <li><a href="#">친구4</a></li>
-            <li><a href="#">친구5</a></li>
-            <li><a href="#">친구6</a></li>
-            <li><a href="#">친구7</a></li>
-            <li><a href="#">친구8</a></li>
-            <li><a href="#">친구9</a></li>
-            
+          <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>
+          <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>
+          <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img src="../images/map.png" class="friend_profile_home"></li>
+          <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img src="../images/map.png" class="friend_profile_home"></li>
+          <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img src="../images/map.png" class="friend_profile_home"></li>
+          <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>
         </ul>
       </div>
     <div class="logout">
@@ -118,8 +97,26 @@
     <!-- 컨텐츠-->
     <div class="content">
       <div id="map"></div>
+      <div class="wrap" id="write">
+        <div class="info" >
+          <div class="title">
+            알림
+            <div class="close" onclick="closeOverlay()" title="닫기"></div>
+          </div>
+          <div class="body" >
+            <div class="desc">
+                <div class="ellipsis" id="jibun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
+                <div class="write"><button class="write-btn" id="write-btn">일지 작성하기</button></div>
+            </div>
+          </div>
+        </div>   
+      </div>
     </div>
-   
+    <div id="dialog">
+      <p>일지 작성하는 곳</p>
+   </div>
 </body>
+
 <script src="../js/kakaomap.js"></script>
 </html>
+

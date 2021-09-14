@@ -21,8 +21,12 @@ header{ z-index: 10; position: fixed; background: rgb(23, 24, 29); padding: 20px
 .sidebar .box .friend-list-title { margin-left: -40px; margin-right: 0px; list-style: none; text-align: center; height: 20px;}
 .sidebar .box .friend-list-title li label { font-size: 20px; color: white; font-weight: bold; }
 .sidebar .box .friend-list { margin-left: -40px; margin-right: 0px; list-style: none; }
-.sidebar .box .friend-list li { text-align: center; }
-.sidebar a:hover{ color: #212022; background: #fff; }
+.sidebar .box .friend-list li { display: flex; text-align: center; padding: 0px 20px;}
+.sidebar .box .friend-list li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px; padding: 12.5px; }
+.sidebar .box .friend-list li .friend_profile_name{ color: #fff; font-size: 18px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box; transition: 0.5s; transition-property: background; }
+.sidebar .box .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px; padding: 12.5px; }
+.sidebar .friend-list li:hover{ background: #fff;}
+.sidebar .friend-list li:hover .friend_profile_name{ color: #212022;}
 
 /* 사이드바 로그아웃 */
 .sidebar .logout{ font-size: 30px; width: 300px; text-align: center; bottom: 0; position: fixed; background-color: #212022; }
@@ -58,10 +62,13 @@ label #sidebar_btn:hover{ color:#19B3D3 }
   .slide-box { top: -1000px; position: absolute; z-index: 1; background: #2f323A; height: 100vh; width: 100%; transition: 0.5s; }
   .slide-box .friend { margin-top: 140px; height: calc(100% - 200px); overflow-y: scroll; }
   .slide-box .friend::-webkit-scrollbar { display: none; }
-  .slide-box .friend .friend-list{ margin-left: -40px; margin-right: 0px; }
-  .slide-box .friend .friend-list li{ text-align: center; }
-  .slide-box .friend .friend-list li a{ color: #fff; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box; transition: 0.5s; transition-property: background; }
-  .slide-box .friend  .friend-list li a:hover{ color: #212022; background: #fff; }
+  .slide-box .friend .friend-list{ margin-left: -40px; margin-right: 0px;}
+  .slide-box .friend .friend-list li{ display: flex; text-align: center; }
+  .slide-box .friend .friend-list li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px; padding: 12.5px; }
+  .slide-box .friend .friend-list li .friend_profile_name{ color: #fff; font-size: 18px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box; transition: 0.5s; transition-property: background; }
+  .slide-box .friend .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px; padding: 12.5px; }
+  .slide-box .friend .friend-list li:hover{ color: #212022; background: #fff; }
+  .slide-box .friend .friend-list li:hover .friend_profile_name{ color: #212022;}
   
   /*로그아웃*/
   .slide-box .logout{ font-size: 30px; width: 100%; height: 70px; bottom: 0px; position: absolute; text-align: center; background-color: #212022; text-decoration: none; transition: 0.5s; }
@@ -73,4 +80,34 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 
   .active{ top: 0px; transition: 0.5s; }
   
+}
+
+.wrap {z-index: -10; position: absolute;left: 0;bottom: 40px;width: 288px;height: 100px; text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+.wrap * {padding: 0;margin: 0;}
+.wrap .info { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;}
+.info .title {padding: 5px 0 0 10px;height: 30px;background: #222;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
+.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.info .close:hover {cursor: pointer;}
+.info .body { background: #2f323A; padding: 5px 10px; position: relative; color: white;}
+.info .desc {position: relative;height: 60px;}
+.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.desc .jibun {font-size: 11px;color: #888;margin-top: -2px; color: white;}
+.desc .write {margin-top: 10px;}
+.desc .write .write-btn {width: 100%; background: #222; border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
+.desc .write .write-btn:hover {background: rgb(81, 78, 83); cursor: pointer;}
+
+
+
+.modal{ 
+  position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
+}
+
+.modal_content{
+  width:400px; height:200px;
+  background:#fff; border-radius:10px;
+  position:relative; top:50%; left:50%;
+  margin-top:-100px; margin-left:-200px;
+  text-align:center;
+  box-sizing:border-box; padding:74px 0;
+  line-height:23px; cursor:pointer;
 }

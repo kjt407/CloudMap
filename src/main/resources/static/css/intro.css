@@ -89,12 +89,10 @@ animation01
 /*===================
 animation02
 ====================*/
-.animation02{ position: absolute; width: 100%; height: 100%; }
-.rhombus_box{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; width: 40vw; height: 40vw; animation: rhombus_box 0.4s linear 3.55s forwards; }
 .rhombus_item_wrapper{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; width: 2.1vw; height: 2.1vw; opacity: 0; }
 .rhombus_item{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; width: 2.1vw; height: 2.1vw; background-color: #fff; transform: rotate(45deg) }
-.rhombus_item01_wrapper{ animation: rhombus_item01 0.5s linear 2.95s forwards; }
-.rhombus_item02_wrapper{ animation: rhombus_item02 0.5s linear 2.95s forwards; }
+.rhombus_item01_wrapper{ animation: rhombus_item01 0.2s linear 2.95s forwards; }
+.rhombus_item02_wrapper{ animation: rhombus_item02 0.2s linear 2.95s forwards; }
 @keyframes rhombus_item01{
     0%{ transform: translateX(0); opacity: 1; }
     100%{ transform: translateX(-18.5vw); opacity: 1; }
@@ -176,8 +174,6 @@ orange circle
     50%  { transform: rotate(0deg); }
     100% { transform: rotate(-180deg); }
 }
-.name{ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30vw; height: 30vw; animation: name 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) 4.5s forwards; opacity: 0; }
-.name p{ position: absolute; top: 50%; left: 50%; font-weight: bold; transform: translate(-50%, -50%); color: #fff; font-size: 3.0vw; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; letter-spacing: 0.1em; }
 
 @keyframes name {
     0%{ opacity: 0; }
@@ -187,6 +183,8 @@ orange circle
 .thin { font-weight: 300; }
 .thick { font-weight: 900; }
 a { text-transform: uppercase; font-size: 36px; color: white; text-decoration: none; position: relative; display: block; }
+.name{ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30vw; height: 30vw; animation: name 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) 3.2s forwards; opacity: 0; }
+.name p{ position: absolute; top: 50%; left: 50%; font-weight: bold; transform: translate(-50%, -50%); color: #fff; font-size: 3.0vw; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; letter-spacing: 0.1em; }
 
 /* linkseven */
 .hover a:before { content: ''; border-bottom: solid 10px #d9534f; position: absolute; bottom: 0; left: 30%; width: 0; -webkit-transform: scale(0); -moz-transform: scale(0); -ms-transform: scale(0); -o-transform: scale(0); transform: scale(0);  }
