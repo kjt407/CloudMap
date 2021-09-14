@@ -1,9 +1,13 @@
 package com.jongtk.cloudmap.controller;
 
+import com.jongtk.cloudmap.dto.AuthMemberDTO;
 import com.jongtk.cloudmap.dto.SignupDTO;
 import com.jongtk.cloudmap.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -29,11 +33,40 @@ public class LoginController {
     }
 
     @GetMapping("login")
-    public void sign(){
+    public String sign(@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+        if(authMemberDTO != null){
+            log.warn("로그인된 상태임");
+            return "redirect:/main";
+        }
+        return "/sign/login";
     }
 
     @GetMapping("fail")
     public void fail(){
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("setName")
+    public String setName(@AuthenticationPrincipal AuthMemberDTO authMember){
+        if(authMember.getName() == null || authMember.getName().trim().equals("")){
+            return "/sign/setName";
+        }else {
+            return "redirect:/main";
+        }
+    }
+
+    @PostMapping("setName")
+    public String setName(@AuthenticationPrincipal AuthMemberDTO authMember, String name){
+        if (name == null || name.trim().equals("")){
+            return "redirect:/sign/setName";
+        }
+
+        if(loginService.setName(authMember.getEmail(), name)){
+            authMember.setName(name);
+            return "redirect:/main";
+        }else {
+            return "redirect:/sign/setName";
+        }
     }
 
     @GetMapping("oauthfail")
@@ -45,24 +78,5 @@ public class LoginController {
         }
         return "redirect:/sign/login";
     }
-
-
-//    @PostMapping("register")
-//    public String register(@Valid SignupDTO signupDTO, BindingResult bindingResult, RedirectAttributes rattr){
-//
-//        log.warn(signupDTO);
-//
-////        boolean result = loginService.signUp(signupDTO);
-//        if(bindingResult.hasErrors()){
-//            log.warn("--- 에러 검출됨 ---");
-//            List<ObjectError> errorList = bindingResult.getAllErrors();
-//            errorList.stream().forEach(error -> {
-//                log.warn(error.getDefaultMessage());
-//            });
-//        }
-//
-//        rattr.addFlashAttribute("result", "반환된 내용입니다.");
-//        return "redirect:/sign/login";
-//    }
 
 }

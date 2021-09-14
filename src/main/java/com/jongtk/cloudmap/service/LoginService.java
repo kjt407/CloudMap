@@ -41,4 +41,17 @@ public class LoginService {
 
         return member.getEmail();
     }
+
+    public Boolean setName(String email,String name){
+        Optional<Member> member = memberRepository.findById(email);
+
+        if(member.isPresent()){
+            Member resultMember = member.get();
+            resultMember.setName(name);
+            resultMember.setPassword(passwordEncoder.encode("completed"));
+            memberRepository.save(resultMember);
+            return true;
+        }
+        return false;
+    }
 }

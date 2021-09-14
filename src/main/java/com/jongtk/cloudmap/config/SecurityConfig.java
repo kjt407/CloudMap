@@ -3,19 +3,22 @@ package com.jongtk.cloudmap.config;
 
 import com.jongtk.cloudmap.handler.LoginFailureHandler;
 import com.jongtk.cloudmap.handler.LoginSuccessHandler;
-import com.jongtk.cloudmap.handler.LogoutSuccessHandler;
 import com.jongtk.cloudmap.service.UserDetailsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Log4j2
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -42,10 +45,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public LoginSuccessHandler successHandler(){
         return new LoginSuccessHandler(passwordEncoder());
     }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication().withUser("user1").password("$2a$10$g2KYQlYxYFP3vHr5jmrFpeWNkWIZ1HwCIE9ugneaN7vQ1UdMT8T8K").roles("USER");
-//    }
 
 }

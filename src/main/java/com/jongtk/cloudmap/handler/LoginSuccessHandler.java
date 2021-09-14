@@ -38,9 +38,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         boolean isEdited = passwordEncoder.matches("1111", authMember.getPassword());
 
         if(fromSocial && isEdited){
-            redirectStrategy.sendRedirect(request,response,"/");
+            log.warn("noName 리다이렉트");
+            redirectStrategy.sendRedirect(request,response,"/sign/setName");
         } else {
-            redirectStrategy.sendRedirect(request,response,"/");
+            redirectStrategy.sendRedirect(request,response,"/main");
         }
     }
 }

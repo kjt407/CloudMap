@@ -35,7 +35,7 @@ label.pwMessageSuccess2{position: absolute; top: 275px; left: 32px; text-align: 
 .up-arrow {position:absolute; left: -190px; top: -266px;}
 
 
-a.arrow {display: block; padding: 13px 0px;  border-radius: 100%;  transition: 0.4s; width: 30px; background: url(../images/BackArrow3.png) #fff center no-repeat; background-size: contain;}
+a.arrow {display: block; padding: 13px 0px;  border-radius: 100%;  transition: 0.4s; width: 30px; background: url(../images/BackArrow.png) #fff center no-repeat; background-size: contain;}
 a.arrow:hover{  filter: brightness(80%); }
 
 select { border:none; }
