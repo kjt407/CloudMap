@@ -1,33 +1,32 @@
-package com.jongtk.cloudmap.entity;
+package com.jongtk.cloudmap.dto;
 
+import com.jongtk.cloudmap.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 
-@Entity
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class MapLog extends BaseEntity{
+public class MapLogDTO{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lno;
 
     private String title;
 
     private String content;
 
-    private float lat;
+    private double lat;
 
-    private float lng;
+    private double lng;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member writer;
+    private String writer;
+
+    private Date writeDate;
+    private Date ModDate;
 
 }

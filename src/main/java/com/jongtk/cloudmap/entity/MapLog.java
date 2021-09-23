@@ -2,10 +2,7 @@ package com.jongtk.cloudmap.entity;
 
 import lombok.*;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,29 +10,29 @@ import java.util.Set;
 @Entity
 @Builder
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Member extends BaseEntity{
+public class MapLog extends BaseEntity{
 
     @Id
-    private String email;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long lno;
 
-    private String password;
+    private String title;
 
-    private String name;
+    private String content;
 
-    private String profileImg;
+    private double lat;
 
-    private boolean fromSocial;
+    private double lng;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member writer;
+
     @Builder.Default
-    private Set<MemberRole> roleSet = new HashSet<>();
+    @OneToMany(mappedBy = "mapLog", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Likes> likes = new HashSet<>();
 
-    public void addMemeberRole(MemberRole memberRole) {
-        roleSet.add(memberRole);
-    }
 
 }
