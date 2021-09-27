@@ -1,5 +1,198 @@
-<div>
-    <p>여기에 일지를 작성할거야</p>
-    <div>⬇⬇⬇⬇⬇⬇⬇주소⬇⬇⬇⬇⬇⬇⬇</div>
-    <div id="jibun-data"></div>
- </div>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="../css/write.css">
+
+	<style>
+		.container-fluid {
+			padding: 0px 40px;
+		}
+		.container-fluid ul {
+			width: 100%;
+			height: 200px;
+			white-space: nowrap;
+			overflow-x: auto;
+			line-height: 150px;
+			padding: 20px;
+			-ms-overflow-style: none;
+			display: none;
+		}
+		.container-fluid ul::-webkit-scrollbar {
+			display: none;
+			/* Chrome, Safari, Opera */
+		}
+		.form-group {
+			margin-bottom: 5px;
+		}
+		ul.cvf_uploaded_files {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			background: rgb(255, 255, 255);
+		}
+		ul.cvf_uploaded_files li {
+			margin: 20px 20px 0 0;
+			width: 150px;
+			height: 150px;
+			line-height: 150px;
+			position: relative;
+			display: inline-block;
+		}
+		ul.cvf_uploaded_files li img.img-thumb {
+			width: 150px;
+			height: 150px;
+		}
+		ul.cvf_uploaded_files .delete-btn {
+			width: 24px;
+			border: 0;
+			position: absolute;
+			top: -12px;
+			right: -14px;
+		}
+		.bg-success {
+			padding: 7px;
+		}
+	</style>
+</head>
+<body>
+	<button type="button" id="close" class="btn-close" data-dismiss="modal"><img src="../images/close.png"></button>
+	<form id="write" action="" method="get" >
+		<div class="write">
+			<div class="title">
+				<input class="input-title" name="title" placeholder="제목">
+			</div>
+			<div class="container-fluid">
+				<div class="form-group">
+					<label for="input-file">
+						<img src="../images/upload-image.png" alt="">
+					</label>
+					<input type="file" id="input-file" name="image" multiple="multiple" class="form-control user_picked_files" style="display: none;" />
+				</div>
+				<div class="image-box">
+					<ul id="width-scroll" class="cvf_uploaded_files"></ul>
+				</div>
+			</div>
+			<div class="content">
+				<textarea id="content" name="content" placeholder="내용을 입력 해주세요."></textarea>
+			</div>
+			<div class="footer">
+				<button type="button" class="btn-save">저장</button>
+			</div>
+		</div>
+	</form>
+</body>
+
+<script>
+	jQuery(document).ready(function () {
+		var storedFiles = [];
+		$('body').on('change', '.user_picked_files', function () {
+			var files = this.files;
+			var i = 0;
+
+			for (i = 0; i < files.length; i++) {
+				var readImg = new FileReader();
+				var file = files[i];
+				if (file.type.match('image.*')) {
+					storedFiles.push(file);
+					readImg.onload = (function (file) {
+						return function (e) {
+							$('.cvf_uploaded_files').append(
+								"<li class='all-image' file = '" + file.name + "'>" +
+								"<img class = 'img-thumb' src = '" + e.target.result + "' />" +
+								"<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
+								"</li>"
+							);
+						};
+					})(file);
+					readImg.readAsDataURL(file);
+				} else {
+					alert('the file ' + file.name + ' is not an image<br/>');
+				}
+			}
+			if (storedFiles.length === 0) {
+				$("#width-scroll").css("display", "none");
+				$("#content").css("height", "580px");
+			} else {
+				$("#width-scroll").css("display", "inline-block");
+				$("#content").css("height", "374px");
+			}
+		});
+
+		// 하나씩 제거하기
+		$('body').on('click', 'a.cvf_delete_image', function (e) {
+			$(this).parent().remove('');
+			var file = $(this).parent().attr('file');
+			console.log(file)
+			for (var i = 0; i < storedFiles.length; i++) {
+				if (storedFiles[i].name == file) {
+					storedFiles.splice(i, 1);
+					break;
+				}
+			}
+			if (storedFiles.length === 0) {
+				$("#width-scroll").css("display", "none");
+				$("#content").css("height", "580px");
+			} else {
+				$("#width-scroll").css("display", "inline-block");
+				$("#content").css("height", "374px");
+			}
+			console.log(storedFiles)
+		});
+		$('body').on('click', '.btn-save', function (e) {
+			console.log("클릭?")
+			var form = $('#write')[0];  	    
+			// Create an FormData object          
+			var data = new FormData();
+
+			console.log(storedFiles)
+			//var inputFiles = $('#input-file').files;
+
+			// for(var i = 0; i <storedFiles.length; i++){
+			// 	console.log(storedFiles[i]);
+			// 	data.append("files",storedFiles[i]);
+			// }
+
+			data.append("totle",storedFiles[i]);
+
+			console.log(data)
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "/upload",
+				data: data,
+				processData: false,
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+					$('#btnUpload').prop('disabled', false);
+					alert('success')
+				},
+				error: function (e) {
+					$('#btnUpload').prop('disabled', false);
+					alert('fail');
+       		 }
+    		});
+
+		});
+
+	});
+	$("#width-scroll").on('mousewheel', function (e) {
+		var wheelDelta = e.originalEvent.wheelDelta;
+		if (wheelDelta > 0) {
+			$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+		} else {
+			$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+		}
+	});
+
+
+
+</script>
+
+</html>

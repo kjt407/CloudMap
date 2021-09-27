@@ -1,0 +1,77 @@
+body { overflow: hidden; }
+
+.write .title{
+    width: auto;
+    margin: 40px 40px 0px 40px;
+}
+
+.write .title .input-title{
+    width: 100%;
+    height: 80px;
+    font-size: 40px;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1;
+    border-bottom-color: rgb(218, 218, 218);
+}
+
+.write .title .input-title:focus{
+  outline: none;
+}
+.write .content{
+   height: auto;
+    width: auto;
+    margin: -10px 40px 0px 40px;
+}
+.write .content textarea{
+    resize: none;
+    height: 580px;
+    width: 100%;
+    padding: 20px;
+    border-top-width: 1;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1;
+    border-top-color: rgb(218, 218, 218);
+    border-bottom-color: rgb(218, 218, 218);
+    font-size: 20px;
+}
+
+.write .content textarea:focus{
+    outline: none;
+}
+
+.footer{
+    width: auto;
+    margin: 15px 40px 0px 40px;
+}
+
+.footer .btn-save{
+    margin: auto;
+    display: block;
+    height: 50px;
+    width: 100px;
+    background: rgb(92, 32, 92);
+    color: white;
+    font-size: 16px;
+    border: none;
+    font-weight: bold;
+    cursor:pointer; 
+    transition: 0.4s;
+}
+.footer .btn-save:hover{
+    background: rgb(49, 5, 49);
+}
+
+.btn-close{
+    position: fixed;
+    right: 0px;
+    margin: 20px;
+    background: white;
+    border: none;
+    height: 10px;
+}
+.btn-close img{
+    width: 15px;
+}

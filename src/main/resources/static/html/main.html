@@ -6,34 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="../css/main.css">
-
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  
-  
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services"></script>
-
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services,clusterer,drawing"></script>
   <script src="../js/main.js"></script>
-  
-  <style>
-    
-  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-    <input type="checkbox" id="check">
+    <input type="checkbox" id="sidebar-check">
+    <input type="checkbox" id="search-check">
     <!--헤더 시작-->
-    <header id="mainheader">
-      <label for="check">
+    <header class="header-class" id="mainheader">
+      <label for="search-check">
+        <i class="fas fa-search" id="search_btn"></i>
+      </label>
+      <label for="sidebar-check">
         <i class="fas fa-bars" id="sidebar_btn"></i>
       </label>
+     
       <div class="left_area">
-        <h3>CLOUD <span>MAP</span></h3>
+       
+
+      </div>
+      <div class="center_area">
+        <h3 class="h3-class">CLOUD <span>MAP &nbsp;&nbsp;&nbsp;</span></h3>
 
       </div>
       <div class="right_area">
@@ -68,10 +70,25 @@
     </div>
     <!--모바일 메뉴 끝-->
     <!--사이드바 시작-->
+    <div class="search">
+      <div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+      </div>
+    </div>
     <div class="sidebar">
       <div class="profile_info">
         <img src="../images/1.jpg" class="profile_image">
-        <h4>최준형</h4>
+        <h4 class="my-name">최준형</h4>
         <!--<h3>상태메시지 입니다.</h3>-->
       </div>
       <!-- <div>
@@ -101,31 +118,70 @@
     <!-- 컨텐츠-->
     <div class="content">
       <div id="map"></div>
+      
+      
       <div class="wrap" id="write">
-        <div class="info" >
+        <div class="info"  >
           <div class="title">
             알림
-            <div class="close" onclick="closeOverlay()" title="닫기"></div>
+            <div class="close" onclick="closeWriteOverlay()" title="닫기"></div>
           </div>
           <div class="body" >
             <div class="desc">
                 <div class="ellipsis" id="jibun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
-                <div class="write"><button class="write-btn" id="write-btn">일지 작성하기</button></div>
+                <div class="write"><button class="write-btn" id="popbutton" >일지 작성하기</button></div>
+            </div>
+          </div>
+        </div>   
+      </div>
+      <div class="wrap" id="read">
+        <div class="info"  >
+          <div class="title">
+            알림
+            <div class="close" onclick="closeReadInfoWindow()" title="닫기"></div>
+          </div>
+          <div class="body" >
+            <div class="desc">
+                <div class="write"><button class="write-btn" id="popbutton" >일지확인 일지확인</button></div>
             </div>
           </div>
         </div>   
       </div>
     </div>
-    <div id="dialog">
+    <!-- <div id="dialog">
       
-   </div>
+   </div> -->
+   <div class="modal fade"  data-backdrop="static" data-keyboard="true"  >
+    <div class="modal-dialog modal-fullsize" >
+      <div class="modal-content modal-fullsize"  style="box-shadow:10px 10px 10px;">
+          <!-- remote ajax call이 되는영역 -->
+          
+      </div>
+    </div>
+  </div>
 </body>
 
 <script src="../js/kakaomap.js"></script>
+
 <script>
-  $(document).ready(function(){
-    $('#dialog').load("write.html");
+ 
+$(document).on('click','#popbutton',function(){
+  console.log("asd")
+  $('div.modal').modal({
+    open: function(){
+      document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
+      },
+    remote : 'write.html'
+  });
 });
+$(document).on("click", "#close",function(){
+  $(".all-image").remove('');
+  $("#width-scroll").css("display", "none");
+	$("#content").css("height", "600px");
+  $(document).find('form')[0].reset()
+    });
+
 </script>
+
 </html>
 
