@@ -25,17 +25,14 @@
 	<div class="fullsection full1" pageNum="1">
 		<div class="loading-background"></div>
 		<div class="login">
-			<form id="form-login" th:action="@{/sign/setName}" method="post" class="loginForm">
-				<h2>Login</h2>
-				<div class="bottomText">
-					Google 계정 회원가입을 축하합니다<br/>필수 정보 입력을 완료해 주세요
-				</div>
-				<div class="login-id">
-					<input type="text" name="name" class="id" placeholder="이름" min="1" max="10" autofocus required>
-				</div>
-				<button type="submit" class="login-btn">
-					LOG IN
-				</button>
+			<form name="form" method="post" th:action="@{/test/file}" enctype="multipart/form-data">
+				<input name="title" value="제목입네다"/>
+				<input name="content" value="내용입네다"/>
+				<input name="lat" value="39.125"/>
+				<input name="lng" value="128.349"/>
+				<input name="writer" value="kjt40700@gmail.com"/>
+				<input type="file" name="files" multiple="multiple"/>
+				<input type="submit" id="submit" value="전송"/>
 			</form>
 		</div>
 	</div>

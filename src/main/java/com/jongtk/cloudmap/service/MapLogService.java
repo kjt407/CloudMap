@@ -1,24 +1,48 @@
 package com.jongtk.cloudmap.service;
 
-import com.jongtk.cloudmap.dto.SignupDTO;
+import com.jongtk.cloudmap.dto.MapLogDTO;
+import com.jongtk.cloudmap.entity.MapLog;
+import com.jongtk.cloudmap.entity.MapLogImage;
 import com.jongtk.cloudmap.entity.Member;
-import com.jongtk.cloudmap.entity.MemberRole;
-import com.jongtk.cloudmap.repository.MapLogRepository;
 import com.jongtk.cloudmap.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
-public class MapLogService {
+public interface MapLogService {
 
-    private final MapLogRepository mapLogRepository;
+    Long register(MapLogDTO mapLogDTO);
 
-    public void addMapLog(){
+    default Map<String,Object> dtoToEntity(MapLogDTO mapLogDTO, Member writer){
+        Map<String,Object> entityMap = new HashMap<>();
 
+        MapLog mapLog = MapLog.builder()
+                .title(mapLogDTO.getTitle())
+                .content(mapLogDTO.getContent())
+                .lat(mapLogDTO.getLat())
+                .lng(mapLogDTO.getLng())
+                .writer(writer)
+                .build();
+
+        entityMap.put("mapLog",mapLog);
+
+        List<MapLogImage> images = mapLogDTO.getImageDTOList().stream().map(
+                image -> {
+                    MapLogImage mapLogImage = MapLogImage.builder()
+                            .uuid(image.getUuid())
+                            .path(image.getPath())
+                            .imgName(image.getImgName())
+                            .mapLog(mapLog)
+                            .build();
+                    return mapLogImage;
+                }).collect(Collectors.toList());
+
+        entityMap.put("images",images);
+
+        return entityMap;
     }
-
 }
