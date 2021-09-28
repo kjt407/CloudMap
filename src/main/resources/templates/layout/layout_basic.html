@@ -16,17 +16,27 @@
 
         <script th:src="@{//code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
         <script th:src="@{/js/main.js}"></script>
+        <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css}">
+        <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
     </head>
     <body>
 
-    <input type="checkbox" id="check">
+    <input type="checkbox" id="sidebar-check">
+    <input type="checkbox" id="search-check">
     <!--헤더 시작-->
-    <header id="mainheader">
-        <label for="check">
+    <header class="header-class" id="mainheader">
+        <label for="search-check">
+            <i class="fas fa-search" id="search_btn"></i>
+        </label>
+        <label for="sidebar-check">
             <i class="fas fa-bars" id="sidebar_btn"></i>
         </label>
         <div class="left_area">
-            <h3>CLOUD <span>MAP</span></h3>
+
+        </div>
+        <div class="center_area">
+            <h3 class="h3-class">CLOUD <span>MAP &nbsp;&nbsp;&nbsp;</span></h3>
 
         </div>
         <div class="right_area">
@@ -76,6 +86,22 @@
 
     <!--모바일 메뉴 끝-->
     <!--사이드바 시작-->
+    <div class="search">
+        <div id="menu_wrap" class="bg_white">
+            <div class="option">
+                <div>
+                    <form onsubmit="searchPlaces(); return false;">
+                        키워드 : <input type="text" id="keyword" size="15">
+                        <button type="submit">검색하기</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <ul id="placesList"></ul>
+            <div id="pagination"></div>
+        </div>
+    </div>
+
     <div class="sidebar">
         <div class="profile_info">
             <th:block th:if="${!#authentication.getPrincipal().fromSocial}">
@@ -119,7 +145,35 @@
     <div class="content">
         <th:block th:replace="${content}"></th:block>
     </div>
+    <div class="modal fade"  data-backdrop="static" data-keyboard="true"  >
+        <div class="modal-dialog modal-fullsize" >
+            <div class="modal-content modal-fullsize"  style="box-shadow:10px 10px 10px;">
+                <!-- remote ajax call이 되는영역 -->
+
+            </div>
+        </div>
+    </div>
+
     </body>
     <script th:src="@{/js/kakaomap.js}"></script>
+    <script>
+
+        $(document).on('click','#popbutton',function(){
+            console.log("asd")
+            $('div.modal').modal({
+                open: function(){
+                   // document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
+                },
+                remote : '/server/write.html'
+            });
+        });
+        $(document).on("click", "#close",function(){
+            $(".all-image").remove('');
+            $("#width-scroll").css("display", "none");
+            $("#content").css("height", "600px");
+            $(document).find('form')[0].reset()
+        });
+
+    </script>
 </th:block>
 </html>

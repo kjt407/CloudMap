@@ -54,7 +54,7 @@ public class TestController {
 
         List<ImageDTO> imageDTOList = new ArrayList<>();
 
-        if(files.length == 1 && !files[0].isEmpty()) {
+        if(!files[0].isEmpty()) {
             for (MultipartFile file : files) {
                 if (!file.getContentType().startsWith("image")) {
                     log.warn("업로드된 파일이 이미지 형식이 아님");
