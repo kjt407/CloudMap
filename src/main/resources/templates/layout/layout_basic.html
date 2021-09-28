@@ -11,10 +11,6 @@
 
         <script th:src='@{//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js}'></script>
         <script type="text/javascript" th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services}"></script>
-<<<<<<< HEAD
-        <!--        <link rel="stylesheet" th:href="@{//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css}">-->
-=======
->>>>>>> 7658ac9c9bdb98517f45f8e5084b90923a43bcdb
         <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
 
         <script th:src="@{//code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
@@ -24,7 +20,7 @@
         <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
     </head>
     <body>
-
+    <input type="hidden" id="username-check" th:value="${#authentication.principal.email}">
     <input type="checkbox" id="sidebar-check">
     <input type="checkbox" id="search-check">
     <!--헤더 시작-->
@@ -117,8 +113,8 @@
                     <img th:if="${entry.key == 'picture'}" th:src="${entry.value}" class="profile_image"></img>
                 </th:block>
             </th:block>
-            <h4>[[${#authentication.principal.name}]]</h4>
-            <h3>[[${#authentication.principal.email}]]</h3>
+            <h4 class="my-name">[[${#authentication.principal.name}]]</h4>
+<!--            <h3>[[${#authentication.principal.email}]]</h3>-->
         </div>
         <div class="box">
             <ul class="friend-list-title">
