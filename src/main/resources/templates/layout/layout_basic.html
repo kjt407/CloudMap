@@ -11,6 +11,10 @@
 
         <script th:src='@{//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js}'></script>
         <script type="text/javascript" th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services}"></script>
+<<<<<<< HEAD
+=======
+        <!--        <link rel="stylesheet" th:href="@{//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css}">-->
+>>>>>>> e212597f7dd32d4a511df0405857acce4513cc09
         <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
 
         <script th:src="@{//code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
@@ -144,8 +148,13 @@
     <div class="content">
         <th:block th:replace="${content}"></th:block>
     </div>
+<<<<<<< HEAD
     <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="true"  >
         <div class="modal-dialog modal-fullsize" >
+=======
+    <div class="modal fade"  data-backdrop="static" data-keyboard="true"  >
+        <div class="modal-dialogs modal-fullsize" >
+>>>>>>> e212597f7dd32d4a511df0405857acce4513cc09
             <div class="modal-content modal-fullsize"  style="box-shadow:10px 10px 10px;">
                 <!-- remote ajax call이 되는영역 -->
 
@@ -161,7 +170,7 @@
             console.log("asd")
             $('div.modal').modal({
                 open: function(){
-                   // document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
+                    // document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
                 },
                 remote : '/server/write.html'
             });
