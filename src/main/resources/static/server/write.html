@@ -149,26 +149,32 @@
 			// Create an FormData object          
 			var data = new FormData();
 
-			console.log(storedFiles)
-			//var inputFiles = $('#input-file').files;
+			var title = $("input[name='title']").val();
+			var content = $("#content").val();
+			var writer = $("#username-check").val();
 
-			// for(var i = 0; i <storedFiles.length; i++){
-			// 	console.log(storedFiles[i]);
-			// 	data.append("files",storedFiles[i]);
-			// }
+			var inputFile = $("input[type='file']");
+			var files = inputFile[0].files;
 
-			data.append("totle",storedFiles[i]);
+			for(var i = 0; i < files.length; i++){
+				console.log(files[i]);
+				data.append("files",files[i]);
+			}
+
+			data.append("title", title);
+			data.append("content", content);
+			data.append("writer", writer);
+			data.append("lat", 37.123);
+			data.append("lng", 127.123);
 
 			console.log(data)
 			$.ajax({
 				type: "POST",
-				enctype: 'multipart/form-data',
-				url: "/upload",
+				url: "/register",
 				data: data,
 				processData: false,
 				contentType: false,
-				cache: false,
-				timeout: 600000,
+				dataType: 'json',
 				success: function (data) {
 					$('#btnUpload').prop('disabled', false);
 					alert('success')

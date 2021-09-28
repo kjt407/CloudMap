@@ -40,13 +40,13 @@ public class MapLogController {
     @PostMapping("/register")
     public ResponseEntity<Boolean> register(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, MapLogDTO mapLogDTO, MultipartFile[] files) {
 
-        log.info("업로드 된 파일---------------------------------");
-        log.info(files);
-        log.info(files.length);
+//        log.info("업로드 된 파일---------------------------------");
+//        log.info(files);
+//        log.info(files.length);
 
         List<ImageDTO> imageDTOList = new ArrayList<>();
 
-        if(!files[0].isEmpty()) {
+        if(files != null && !files[0].isEmpty()) {
             for (MultipartFile file : files) {
                 if (!file.getContentType().startsWith("image")) {
                     log.warn("업로드된 파일이 이미지 형식이 아님");
