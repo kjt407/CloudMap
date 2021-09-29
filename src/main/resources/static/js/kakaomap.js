@@ -37,7 +37,11 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
             var jibun = result[0].address.address_name
             console.log(jibun)
             document.getElementById("jibun").innerHTML = jibun;
-            // 클릭한 위도, 경도 정보를 가져옵니다 
+            var latlng = mouseEvent.latLng;
+            document.getElementById("lat").innerHTML = latlng.getLat();
+            document.getElementById("lng").innerHTML = latlng.getLng();
+
+            // 클릭한 위도, 경도 정보를 가져옵니다
             console.log(writeMarker.getPosition())
             if (!writeMarker) {
                 console.log("마커없음")
@@ -50,16 +54,15 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
 
 
 
-            var latlng = mouseEvent.latLng;
+
             // 마커 위치를 클릭한 위치로 옮깁니다
             writeMarker.setMap(map);
             writeMarker.setPosition(latlng);
 
             var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
             message += '경도는 ' + latlng.getLng() + ' 입니다';
-
             console.log(message);
-            // infowindow.open(map, marker);  
+            // infowindow.open(map, marker);
             if (clickWriteInfoWindow) {
                 console.log("없에기")
                 clickWriteInfoWindow.close();
@@ -134,7 +137,7 @@ for (var i = 0; i < positions.length; i++) {
     // 마커 이미지의 이미지 크기 입니다
     var imageSize = new kakao.maps.Size(30, 43);
 
-    // 마커 이미지를 생성합니다    
+    // 마커 이미지를 생성합니다
     var markerImage = new kakao.maps.MarkerImage(imageListSrc, imageSize);
 
     var position = positions[i].latlng;
@@ -143,7 +146,7 @@ for (var i = 0; i < positions.length; i++) {
         map: map, // 마커를 표시할 지도
         position: position, // 마커를 표시할 위치
         title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image: markerImage // 마커 이미지 
+        image: markerImage // 마커 이미지
     });
 
     var readInfowindow = new kakao.maps.InfoWindow({
@@ -156,7 +159,7 @@ for (var i = 0; i < positions.length; i++) {
 }
 
 
-// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+// 인포윈도우를 표시하는 클로저를 만드는 함수입니다
 function makeOverListener(map, markers, readInfowindow) {
 
     return function () {
@@ -182,7 +185,7 @@ var markers = [];
 
 
 // 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places();  
+var ps = new kakao.maps.services.Places();
 
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
@@ -201,7 +204,7 @@ function searchPlaces() {
     }
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( keyword, placesSearchCB); 
+    ps.keywordSearch( keyword, placesSearchCB);
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -231,23 +234,23 @@ function placesSearchCB(data, status, pagination) {
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
-    var listEl = document.getElementById('placesList'), 
-    menuEl = document.getElementById('menu_wrap'),
-    fragment = document.createDocumentFragment(), 
-    bounds = new kakao.maps.LatLngBounds(), 
-    listStr = '';
-    
+    var listEl = document.getElementById('placesList'),
+        menuEl = document.getElementById('menu_wrap'),
+        fragment = document.createDocumentFragment(),
+        bounds = new kakao.maps.LatLngBounds(),
+        listStr = '';
+
     // 검색 결과 목록에 추가된 항목들을 제거합니다
     removeAllChildNods(listEl);
 
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-    
+
     for ( var i=0; i<places.length; i++ ) {
 
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-            marker = addMarker(placePosition, i), 
+            marker = addMarker(placePosition, i),
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -268,7 +271,7 @@ function displayPlaces(places) {
 
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
-               
+
                 map.setCenter(marker.getPosition())
             };
 
@@ -292,19 +295,19 @@ function displayPlaces(places) {
 function getListItem(index, places) {
 
     var el = document.createElement('li'),
-    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-                '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+        itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
+            '<div class="info">' +
+            '   <h5>' + places.place_name + '</h5>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
-                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+            '   <span class="jibun gray">' +  places.address_name  + '</span>';
     } else {
-        itemStr += '    <span>' +  places.address_name  + '</span>'; 
+        itemStr += '    <span>' +  places.address_name  + '</span>';
     }
-                 
-      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-                '</div>';           
+
+    itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+        '</div>';
 
     el.innerHTML = itemStr;
     el.className = 'item';
@@ -322,9 +325,9 @@ function addMarker(position, idx, title) {
             offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
         },
         markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-            marker = new kakao.maps.Marker({
+        marker = new kakao.maps.Marker({
             position: position, // 마커의 위치
-            image: markerImage 
+            image: markerImage
         });
 
     marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -337,7 +340,7 @@ function addMarker(position, idx, title) {
 function removeMarker() {
     for ( var i = 0; i < markers.length; i++ ) {
         markers[i].setMap(null);
-    }   
+    }
     markers = [];
 }
 
@@ -345,7 +348,7 @@ function removeMarker() {
 function displayPagination(pagination) {
     var paginationEl = document.getElementById('pagination'),
         fragment = document.createDocumentFragment(),
-        i; 
+        i;
 
     // 기존에 추가된 페이지번호를 삭제합니다
     while (paginationEl.hasChildNodes()) {
@@ -381,8 +384,8 @@ function displayInfowindow(marker, title) {
     infowindow.open(map, marker);
 }
 
- // 검색결과 목록의 자식 Element를 제거하는 함수입니다
-function removeAllChildNods(el) {   
+// 검색결과 목록의 자식 Element를 제거하는 함수입니다
+function removeAllChildNods(el) {
     while (el.hasChildNodes()) {
         el.removeChild (el.lastChild);
     }
@@ -407,7 +410,5 @@ $(document).ready(function(){
             }
         }
     });
-  
+
 });
-
-

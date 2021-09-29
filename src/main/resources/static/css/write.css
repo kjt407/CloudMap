@@ -17,10 +17,10 @@ body { overflow: hidden; }
 }
 
 .write .title .input-title:focus{
-  outline: none;
+    outline: none;
 }
 .write .content{
-   height: auto;
+    height: auto;
     width: auto;
     margin: -10px 40px 0px 40px;
 }
@@ -57,7 +57,7 @@ body { overflow: hidden; }
     font-size: 16px;
     border: none;
     font-weight: bold;
-    cursor:pointer; 
+    cursor:pointer;
     transition: 0.4s;
 }
 .footer .btn-save:hover{
@@ -74,4 +74,53 @@ body { overflow: hidden; }
 }
 .btn-close img{
     width: 15px;
+}
+/**/
+.container-fluid {
+    padding: 0px 40px;
+}
+.container-fluid ul {
+    width: 100%;
+    height: 200px;
+    white-space: nowrap;
+    overflow-x: auto;
+    line-height: 150px;
+    padding: 20px;
+    -ms-overflow-style: none;
+    display: none;
+}
+.container-fluid ul::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+.form-group {
+    margin-bottom: 5px;
+}
+ul.cvf_uploaded_files {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background: rgb(255, 255, 255);
+}
+ul.cvf_uploaded_files li {
+    margin: 20px 20px 0 0;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    position: relative;
+    display: inline-block;
+}
+ul.cvf_uploaded_files li img.img-thumb {
+    width: 150px;
+    height: 150px;
+}
+ul.cvf_uploaded_files .delete-btn {
+    width: 24px;
+    border: 0;
+    position: absolute;
+    top: -12px;
+    right: -14px;
+}
+.bg-success {
+    padding: 7px;
 }
