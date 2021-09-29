@@ -1,12 +1,16 @@
 package com.jongtk.cloudmap.service;
 
+import com.jongtk.cloudmap.dto.ImageDTO;
 import com.jongtk.cloudmap.dto.MapLogDTO;
+import com.jongtk.cloudmap.dto.MapLogListDTO;
 import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.entity.MapLogImage;
 import com.jongtk.cloudmap.entity.Member;
 import com.jongtk.cloudmap.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +20,8 @@ import java.util.stream.Collectors;
 public interface MapLogService {
 
     Long register(MapLogDTO mapLogDTO);
+
+    List<MapLogListDTO> getMyList(String username);
 
     default Map<String,Object> dtoToEntity(MapLogDTO mapLogDTO, Member writer){
         Map<String,Object> entityMap = new HashMap<>();
@@ -45,4 +51,63 @@ public interface MapLogService {
 
         return entityMap;
     }
+
+    default List<MapLogListDTO> entityToDTO(List<MapLog> mapLogList){
+        List<MapLogListDTO> result = new ArrayList<>();
+
+       result = mapLogList.stream().map(mapLog->{
+           ImageDTO imageDTO = null;
+           if(!mapLog.getImages().isEmpty()) {
+               MapLogImage mapLogImage = mapLog.getImages().get(0);
+               imageDTO = ImageDTO.builder()
+                       .uuid(mapLogImage.getUuid())
+                       .path(mapLogImage.getPath())
+                       .imgName(mapLogImage.getImgName())
+                       .build();
+           }
+           MapLogListDTO dto = MapLogListDTO.builder()
+                   .lno(mapLog.getLno())
+                   .title(mapLog.getTitle())
+                   .lat(mapLog.getLat())
+                   .lng(mapLog.getLng())
+                   .writeDate(mapLog.getRegDate())
+                   .modDate(mapLog.getModDate())
+                   .imageDTOList(imageDTO)
+                   .build();
+           return dto;
+       }).collect(Collectors.toList());
+
+        return result;
+    }
+//
+//    default List<MapLogDTO> entityToDTO(List<MapLog> mapLogList){
+//        List<MapLogDTO> result = new ArrayList<>();
+//
+//        result = mapLogList.stream().map(mapLog->{
+//            MapLogDTO dto = MapLogDTO.builder()
+//                    .lno(mapLog.getLno())
+//                    .title(mapLog.getTitle())
+//                    .content(mapLog.getContent())
+//                    .writer(mapLog.getWriter().getEmail())
+//                    .writerName(mapLog.getWriter().getName())
+//                    .writerImg(mapLog.getWriter().getProfileImg())
+//                    .lat(mapLog.getLat())
+//                    .lng(mapLog.getLng())
+//                    .writeDate(mapLog.getRegDate())
+//                    .modDate(mapLog.getModDate())
+//                    .imageDTOList(
+//                            mapLog.getImages().stream().map(mapLogImage -> {
+//                                ImageDTO imageDTO = ImageDTO.builder()
+//                                        .uuid(mapLogImage.getUuid())
+//                                        .path(mapLogImage.getPath())
+//                                        .imgName(mapLogImage.getImgName())
+//                                        .build();
+//                                return imageDTO;
+//                            }).collect(Collectors.toList()))
+//                    .build();
+//            return dto;
+//        }).collect(Collectors.toList());
+//
+//        return result;
+//    }
 }

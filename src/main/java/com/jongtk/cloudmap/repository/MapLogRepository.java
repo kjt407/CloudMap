@@ -1,8 +1,16 @@
 package com.jongtk.cloudmap.repository;
 
 import com.jongtk.cloudmap.entity.MapLog;
+import com.jongtk.cloudmap.entity.MapLogImage;
+import com.jongtk.cloudmap.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
 
 public interface MapLogRepository extends JpaRepository<MapLog, Long> {
-
+    @Query("select ml from MapLog ml where ml.writer = :username")
+    List<MapLog> getMyList(Member username);
 }

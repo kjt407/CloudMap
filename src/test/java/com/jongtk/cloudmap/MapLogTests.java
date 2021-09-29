@@ -66,5 +66,14 @@ public class MapLogTests {
         }
     }
 
+    @Test
+    @Transactional
+    public void getMyListTests(){
+        Member member = Member.builder().email("kjt40700@gmail.com").build();
+
+        System.out.println(mapLogRepository.getMyList(member));
+
+        return;
+    }
 
 }
