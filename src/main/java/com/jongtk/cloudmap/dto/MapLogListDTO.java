@@ -12,24 +12,17 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MapLogDTO{
+public class MapLogListDTO {
 
     private Long lno;
 
     private String title;
 
-    private String content;
-
     private double lat;
 
     private double lng;
 
-    private String writer;
-    private String writerName;
-    private String writerImg;
-
-    @Builder.Default
-    private List<ImageDTO> imageDTOList = new ArrayList<>();
+    private ImageDTO imageDTOList;
 
     private LocalDateTime writeDate;
     private LocalDateTime modDate;

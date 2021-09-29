@@ -3,6 +3,8 @@ package com.jongtk.cloudmap.controller;
 import com.jongtk.cloudmap.dto.AuthMemberDTO;
 import com.jongtk.cloudmap.dto.ImageDTO;
 import com.jongtk.cloudmap.dto.MapLogDTO;
+import com.jongtk.cloudmap.dto.MapLogListDTO;
+import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.service.MapLogService;
 import com.nimbusds.oauth2.sdk.util.StringUtils;
 import lombok.RequiredArgsConstructor;
@@ -93,9 +95,18 @@ public class MapLogController {
         return folderPath;
     }
 
-    @GetMapping("/getLog/{lno}")
+    @GetMapping("/getList/{username}")
     public String getLog(@PathVariable("lno") long lno, @AuthenticationPrincipal AuthMemberDTO authMemberDTO){
         return "요청받은 번호는"+lno+" 요청한 사람은 "+authMemberDTO.getName();
+    }
+
+    @GetMapping("/getMyList")
+    public List<MapLogListDTO> getMyLog(@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+        List<MapLogListDTO> result = mapLogService.getMyList(authMemberDTO.getEmail());
+
+        log.warn(result);
+
+        return result;
     }
 
 

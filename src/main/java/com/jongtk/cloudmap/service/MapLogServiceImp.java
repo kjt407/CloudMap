@@ -1,6 +1,7 @@
 package com.jongtk.cloudmap.service;
 
 import com.jongtk.cloudmap.dto.MapLogDTO;
+import com.jongtk.cloudmap.dto.MapLogListDTO;
 import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.entity.MapLogImage;
 import com.jongtk.cloudmap.entity.Member;
@@ -9,7 +10,10 @@ import com.jongtk.cloudmap.repository.MapLogRepository;
 import com.jongtk.cloudmap.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -41,5 +45,21 @@ public class MapLogServiceImp implements MapLogService{
 
         return mapLog.getLno();
     }
+
+    @Override
+    @Transactional
+    public List<MapLogListDTO> getMyList(String username) {
+        List<MapLogListDTO> result = new ArrayList<>();
+
+        Optional<Member> member = memberRepository.findById(username);
+
+        if(member.isPresent()) {
+            List<MapLog> mapLogList = mapLogRepository.getMyList(member.get());
+            result = entityToDTO(mapLogList);
+        }
+
+        return result;
+    }
+
 }
 
