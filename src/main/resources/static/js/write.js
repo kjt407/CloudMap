@@ -1,4 +1,5 @@
 jQuery(document).ready(function () {
+
     var storedFiles = [];
     $('body').on('change', '.user_picked_files', function () {
         var files = this.files;
@@ -14,7 +15,7 @@ jQuery(document).ready(function () {
                         $('.cvf_uploaded_files').append(
                             "<li class='all-image' file = '" + file.name + "'>" +
                             "<img class = 'img-thumb' src = '" + e.target.result + "' />" +
-                            "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
+                            "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='images/close.png' /></a>" +
                             "</li>"
                         );
                     };
@@ -85,7 +86,7 @@ jQuery(document).ready(function () {
         console.log(data)
         $.ajax({
             type: "POST",
-            url: "/register",
+            url: getContextPath()+"/register",
             data: data,
             processData: false,
             contentType: false,
@@ -111,3 +112,13 @@ $("#width-scroll").on('mousewheel', function (e) {
         $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
     }
 });
+
+function getContextPath() {
+    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+    var context = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+    if(context != '/cloudmap'){
+        console.log("컨텍스트가 /cloudmap 이 아님");
+        context = '';
+    }
+    return context;
+}
