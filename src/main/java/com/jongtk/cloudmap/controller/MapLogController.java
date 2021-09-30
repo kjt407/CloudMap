@@ -109,5 +109,13 @@ public class MapLogController {
         return result;
     }
 
+    @GetMapping("/getMyLog/{lno}")
+    public List<MapLogListDTO> getMyLog(@PathVariable Long lno,@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+        List<MapLogListDTO> result = mapLogService.getMyList(authMemberDTO.getEmail());
+
+        log.warn(result);
+
+        return result;
+    }
 
 }

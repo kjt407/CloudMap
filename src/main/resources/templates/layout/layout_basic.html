@@ -156,7 +156,8 @@
 
     </body>
     <script th:src="@{/js/kakaomap.js}"></script>
-    <script>
+    <script th:inline="javascript">
+        const contextpath= /*[[@{/}]]*/"/";
 
         $(document).on('click','#popbutton',function(){
             console.log("asd")
@@ -164,7 +165,7 @@
                 open: function(){
                     // document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
                 },
-                remote : '/server/write.html'
+                remote : contextpath+'server/write.html'
             });
         });
         $(document).on("click", "#close",function(){
