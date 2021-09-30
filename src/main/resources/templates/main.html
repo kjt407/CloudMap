@@ -22,14 +22,19 @@
             </div>
         </div>
         <div class="wrap" id="read">
-            <div class="info"  >
+            <div class="read"  >
                 <div class="title">
-                    알림
-                    <div class="close" onclick="closeReadInfoWindow()" title="닫기"></div>
+
+                    <div>알림</div>
+                    <div class="closes" onclick="closeReadInfoWindow()" title="닫기"></div>
                 </div>
                 <div class="body" >
                     <div class="desc">
-                        <div class="write"><button class="write-btn" id="popbutton" >일지확인 일지확인</button></div>
+                        <div class="title" id="titles"></div>
+                        <div class="read">
+                            <div class="heart" onclick="closeReadInfoWindow()" title="닫기"></div>
+                            <button class="read-btn" id="popbutton" >일지확인</button>
+                        </div>
                     </div>
                 </div>
             </div>

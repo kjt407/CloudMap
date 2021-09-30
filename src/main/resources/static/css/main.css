@@ -50,7 +50,7 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 
 
 /*콘텐츠*/
-.content{ position: relative; z-index: 0; width: (100%);  background: white; background-position: center; background-size: cover; height: 100vh;  }
+.content{ position: relative; z-index: 0; width: 100%;  background: white; background-position: center; background-size: cover; height: 100vh;  }
 .content #map{width: 100%; height: 100vh; top: 70px;}
 
 .mobile_nav{ display: none; }
@@ -92,19 +92,30 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 
 }
 
-.wrap {z-index: -10; position: absolute;left: 0;bottom: 40px;width: 288px;height: 100px; text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-.wrap * {padding: 0;margin: 0;}
 .wrap .info { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;}
 .info .title {padding: 5px 0 0 10px;height: 30px;background: #222;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
 .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
 .info .close:hover {cursor: pointer;}
 .info .body { background: #2f323A; padding: 5px 10px; position: relative; color: white;}
 .info .desc {position: relative;height: 60px;}
-.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.desc .jibun {font-size: 11px;color: #888;margin-top: -2px; color: white;}
-.desc .write {margin-top: 10px;}
-.desc .write .write-btn {width: 100%; background: #222; border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
-.desc .write .write-btn:hover {background: rgb(81, 78, 83); cursor: pointer;}
+.info .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.info .desc .jibun {font-size: 11px;color: #888;margin-top: -2px; color: white;}
+.info .desc .write {margin-top: 10px;}
+.info .desc .write .write-btn {width: 100%; background: #222; border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
+.info .desc .write .write-btn:hover {background: rgb(81, 78, 83); cursor: pointer;}
+
+
+.wrap .read { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;overflow: hidden;}
+.read .title {padding: 5px 0 0 10px;height: 30px;background: rgb(255, 194, 0);font-size: 18px;font-weight: bold; color: black; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
+.read .closes {position: absolute; top: 6px;right: 6px;  width: 17px;height: 17px; filter: opacity(1) drop-shadow(0 0 0 black); background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.read .closes:hover {cursor: pointer; filter: opacity(0.5) drop-shadow(0 0 0 red);}
+.read .body { background: rgb(255, 245, 210); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid rgb(255, 194, 0);}
+.read .body .title{ background: rgb(255, 245, 210);  }
+.read .desc {position: relative; height: 60px; width: 150px;}
+.read .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.read .desc .read {margin-top: 10px;}
+.read .desc .read .read-btn {width: 100%; background: rgb(255, 245, 210); border: none; height: 25px; text-align: center; color: black; display: inline-block; text-decoration: none; line-height: 20px; font-weight: bold;}
+.read .desc .read .read-btn:hover {background: rgb(255, 230, 140); cursor: pointer;}
 
 
 
@@ -121,9 +132,6 @@ label #sidebar_btn:hover{ color:#19B3D3 }
   box-sizing:border-box; padding:74px 0;
   line-height:23px; cursor:pointer;
 } */
-#modal{
-  display: none;
-}
 .modal-dialog.modal-fullsize {
   width: 800px;
   height: 850px;
