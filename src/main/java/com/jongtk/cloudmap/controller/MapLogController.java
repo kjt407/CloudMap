@@ -10,15 +10,19 @@ import com.nimbusds.oauth2.sdk.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -110,11 +114,25 @@ public class MapLogController {
     }
 
     @GetMapping("/getMyLog/{lno}")
-    public List<MapLogListDTO> getMyLog(@PathVariable Long lno,@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
-        List<MapLogListDTO> result = mapLogService.getMyList(authMemberDTO.getEmail());
+    public MapLogDTO getMyLog(@PathVariable("lno") long lno, @AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+        MapLogDTO result = mapLogService.getMyLog(lno, authMemberDTO.getEmail());
 
-        log.warn(result);
+        return result;
+    }
 
+    @GetMapping("/display")
+    public ResponseEntity<byte[]> getMyLog(String imgUrl){
+        ResponseEntity<byte[]> result = null;
+        try {
+            String srcFileName = URLDecoder.decode(imgUrl, "UTF-8");
+            File file = new File(uploadPath + File.separator + srcFileName);
+            HttpHeaders header = new HttpHeaders();
+            header.add("Content-Type", Files.probeContentType(file.toPath()));
+
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return result;
     }
 

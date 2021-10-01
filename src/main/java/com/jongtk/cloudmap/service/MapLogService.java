@@ -23,6 +23,8 @@ public interface MapLogService {
 
     List<MapLogListDTO> getMyList(String username);
 
+    MapLogDTO getMyLog(long lno, String email);
+
     default Map<String,Object> dtoToEntity(MapLogDTO mapLogDTO, Member writer){
         Map<String,Object> entityMap = new HashMap<>();
 
@@ -76,6 +78,37 @@ public interface MapLogService {
                    .build();
            return dto;
        }).collect(Collectors.toList());
+
+        return result;
+    }
+
+    default MapLogDTO entityToDTO(MapLog mapLog){
+        MapLogDTO result;
+
+        List<ImageDTO> imgList = new ArrayList<>();
+
+        imgList = mapLog.getImages().stream().map(mapLogImage -> {
+            ImageDTO imgDTO = ImageDTO.builder()
+                    .uuid(mapLogImage.getUuid())
+                    .imgName(mapLogImage.getImgName())
+                    .path(mapLogImage.getPath())
+                    .build();
+            return imgDTO;
+        }).collect(Collectors.toList());
+
+        result = MapLogDTO.builder()
+                .lno(mapLog.getLno())
+                .title(mapLog.getTitle())
+                .content(mapLog.getContent())
+                .lat(mapLog.getLat())
+                .lng(mapLog.getLng())
+                .writer(mapLog.getWriter().getEmail())
+                .writerName(mapLog.getWriter().getName())
+                .writerImg(mapLog.getWriter().getProfileImg())
+                .imageDTOList(imgList)
+                .writeDate(mapLog.getRegDate())
+                .modDate(mapLog.getModDate())
+                .build();
 
         return result;
     }

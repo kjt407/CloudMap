@@ -13,4 +13,7 @@ import java.util.Optional;
 public interface MapLogRepository extends JpaRepository<MapLog, Long> {
     @Query("select ml from MapLog ml where ml.writer = :username")
     List<MapLog> getMyList(Member username);
+
+    @Query("select ml from MapLog ml where ml.lno = :lno and ml.writer = :username")
+    Optional<MapLog> getMyLog(long lno, Member username);
 }
