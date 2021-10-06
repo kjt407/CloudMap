@@ -147,7 +147,7 @@ public class MapLogController {
     }
 
 
-    @PostMapping("/deleteLikes")
+    @DeleteMapping("/deleteLikes")
     public boolean deleteLike(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, long lno){
         return likesService.deleteLike(lno, authMemberDTO.getUsername());
     }
