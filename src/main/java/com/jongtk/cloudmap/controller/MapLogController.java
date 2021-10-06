@@ -1,10 +1,8 @@
 package com.jongtk.cloudmap.controller;
 
-import com.jongtk.cloudmap.dto.AuthMemberDTO;
-import com.jongtk.cloudmap.dto.ImageDTO;
-import com.jongtk.cloudmap.dto.MapLogDTO;
-import com.jongtk.cloudmap.dto.MapLogListDTO;
+import com.jongtk.cloudmap.dto.*;
 import com.jongtk.cloudmap.entity.MapLog;
+import com.jongtk.cloudmap.service.LikesService;
 import com.jongtk.cloudmap.service.MapLogService;
 import com.nimbusds.oauth2.sdk.util.StringUtils;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +36,7 @@ import java.util.UUID;
 public class MapLogController {
 
     private final MapLogService mapLogService;
+    private final LikesService likesService;
 
     @Value("${com.jongtk.cloudmap.upload.path}")
     private String uploadPath;
@@ -134,6 +133,23 @@ public class MapLogController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return result;
+    }
+
+    @GetMapping("/getLikes")
+    public LikesResultDTO getLikes(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, long lno){
+
+        return likesService.getLikes(lno, authMemberDTO.getUsername());
+    }
+
+    @PostMapping("/addLikes")
+    public boolean addLike(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, long lno){
+        return likesService.addLike(lno, authMemberDTO.getUsername());
+    }
+
+
+    @PostMapping("/deleteLikes")
+    public boolean deleteLike(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, long lno){
+        return likesService.deleteLike(lno, authMemberDTO.getUsername());
     }
 
 }

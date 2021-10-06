@@ -44,6 +44,12 @@ public class TestController {
         return "/test/file";
     }
 
+    @GetMapping("/likes")
+    public String likes() {
+
+        return "/test/likes";
+    }
+
 
     @PostMapping("/file")
     public String file(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, MapLogDTO mapLogDTO, MultipartFile[] files) {
