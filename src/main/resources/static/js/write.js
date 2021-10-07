@@ -1,5 +1,4 @@
 jQuery(document).ready(function () {
-
     var storedFiles = [];
     $('body').on('change', '.user_picked_files', function () {
         var files = this.files;
@@ -15,7 +14,7 @@ jQuery(document).ready(function () {
                         $('.cvf_uploaded_files').append(
                             "<li class='all-image' file = '" + file.name + "'>" +
                             "<img class = 'img-thumb' src = '" + e.target.result + "' />" +
-                            "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='images/close.png' /></a>" +
+                            "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
                             "</li>"
                         );
                     };
@@ -56,8 +55,8 @@ jQuery(document).ready(function () {
     });
     $('body').on('click', '.btn-save', function (e) {
         console.log("클릭?")
-        var form = $('#write')[0];
-        // Create an FormData object
+        var form = $('#write')[0];  	    
+        // Create an FormData object          
         var data = new FormData();
 
         var title = $("input[name='title']").val();
@@ -68,13 +67,13 @@ jQuery(document).ready(function () {
 
         console.log(lat)
         console.log(lng)
-
+        
         var inputFile = $("input[type='file']");
         var files = inputFile[0].files;
 
         for(var i = 0; i < files.length; i++){
-            console.log(files[i]);
-            data.append("files",files[i]);
+        	console.log(files[i]);
+        	data.append("files",files[i]);
         }
 
         data.append("title", title);
@@ -85,19 +84,19 @@ jQuery(document).ready(function () {
 
         console.log(data)
         $.ajax({
-            type: "POST",
-            url: getContextPath()+"/register",
-            data: data,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function (data) {
-                $('#btnUpload').prop('disabled', false);
-                alert('success')
-            },
-            error: function (e) {
-                $('#btnUpload').prop('disabled', false);
-                alert('fail');
+        	type: "POST",
+        	url: "/register",
+        	data: data,
+        	processData: false,
+        	contentType: false,
+        	dataType: 'json',
+        	success: function (data) {
+        		$('#btnUpload').prop('disabled', false);
+        		alert('success')
+        	},
+        	error: function (e) {
+        		$('#btnUpload').prop('disabled', false);
+        		alert('fail');
             }
         });
 
@@ -112,13 +111,3 @@ $("#width-scroll").on('mousewheel', function (e) {
         $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
     }
 });
-
-function getContextPath() {
-    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
-    var context = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
-    if(context != '/cloudmap'){
-        console.log("컨텍스트가 /cloudmap 이 아님");
-        context = '';
-    }
-    return context;
-}

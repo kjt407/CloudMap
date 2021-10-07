@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,96 +12,41 @@
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services,clusterer,drawing"></script>
+  <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services,clusterer,drawing"></script>
   <script src="../js/main.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-    <input type="checkbox" id="sidebar-check">
-    <input type="checkbox" id="search-check">
-    <!--헤더 시작-->
-    <header class="header-class" id="mainheader">
-      <label for="search-check">
-        <i class="fas fa-search" id="search_btn"></i>
-      </label>
-      <label for="sidebar-check">
-        <i class="fas fa-bars" id="sidebar_btn"></i>
-      </label>
-     
-      <div class="left_area">
-       
-
-      </div>
-      <div class="center_area">
-        <h3 class="h3-class">CLOUD <span>MAP &nbsp;&nbsp;&nbsp;</span></h3>
-
-      </div>
-      <div class="right_area">
-        
-      </div>
-     
-    </header>
-    <!--헤더 끝-->
-    <!--모바일 메뉴 시작-->
-    <div class="mobile_nav">
-      
-      <div class="nav_bar">
-        <img src="../images/1.jpg" class="mobile_profile_image">
-        <i class="fa fa-bars nav_btn"></i>
-      </div>
-      <div class="slide-box">
-            <div class="friend" id="scroll">
-              <ul class="friend-list">
-                <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>
-                <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>
-                <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img src="../images/map.png" class="friend_profile_home"></li>
-                <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img src="../images/map.png" class="friend_profile_home"></li>
-                <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img src="../images/map.png" class="friend_profile_home"></li>
-                <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>
-              </ul>
-            </div>
-            <div class="logout">
-              <a href="#">LOGOUT</a>
-            </div>
-      </div>
-      
+  <input type="checkbox" id="sidebar-check">
+  <input type="checkbox" id="search-check">
+  <!--헤더 시작-->
+  <header class="header-class" id="mainheader">
+    <label for="search-check">
+      <i class="fas fa-search" id="search_btn"></i>
+    </label>
+    <label for="sidebar-check">
+      <i class="fas fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
     </div>
-    <!--모바일 메뉴 끝-->
-    <!--사이드바 시작-->
-    <div class="search">
-      <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                </form>
-            </div>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-      </div>
+    <div class="center_area">
+      <h3 class="h3-class">CLOUD <span>MAP &nbsp;&nbsp;&nbsp;</span></h3>
     </div>
-    <div class="sidebar">
-      <div class="profile_info">
-        <img src="../images/1.jpg" class="profile_image">
-        <h4 class="my-name">최준형</h4>
-        <!--<h3>상태메시지 입니다.</h3>-->
-      </div>
-      <!-- <div>
-        <p>내용</p>
-        <p>내용</p>
-        <p>내용</p>
-        <p>내용</p>
-      </div> -->
-      <div class="box">
-        <ul class="friend-list-title">
-          <li><label>친구목록</label></li>
-        </ul>
+    <div class="right_area">
+    </div>
+  </header>
+  <!--헤더 끝-->
+  <!--모바일 메뉴 시작-->
+  <div class="mobile_nav">
+    <div class="nav_bar">
+      <img src="../images/1.jpg" class="mobile_profile_image">
+      <i class="fa fa-bars nav_btn"></i>
+    </div>
+    <div class="slide-box">
+      <div class="friend" id="scroll">
         <ul class="friend-list">
           <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>
           <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>
@@ -110,78 +56,140 @@
           <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>
         </ul>
       </div>
+      <div class="logout">
+        <a href="#">LOGOUT</a>
+      </div>
+    </div>
+  </div>
+  <!--모바일 메뉴 끝-->
+  <!--사이드바 시작-->
+  <div class="search">
+    <div id="menu_wrap" class="bg_white">
+      <div class="option">
+        <div>
+          <form onsubmit="searchPlaces(); return false;">
+            키워드 : <input type="text" id="keyword" size="15">
+            <button type="submit">검색하기</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+      <ul id="placesList"></ul>
+      <div id="pagination"></div>
+    </div>
+  </div>
+  <div class="explanation">
+    <div class="ex1"><img src="https://img.icons8.com/material/96/000000/marker--v1.png" alt=""><span>클릭한 곳의 마커</span>
+    </div>
+    <div class="ex2"><img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
+        alt=""><span>여행일지 목록</span></div>
+    <div class="ex3"><img src="../images/marker.png" alt=""><span>검색 목록</span></div>
+  </div>
+  <div class="sidebar">
+    <div class="profile_info">
+      <img src="../images/1.jpg" class="profile_image">
+      <h4 class="my-name">최준형</h4>
+      <!--<h3>상태메시지 입니다.</h3>-->
+    </div>
+    <!-- <div>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+        <p>내용</p>
+      </div> -->
+    <div class="box">
+      <ul class="friend-list-title">
+        <li><label>친구목록</label></li>
+      </ul>
+      <ul class="friend-list">
+        <li><img src="../images/shiba.png" class="friend_profile_image"><label
+            class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>
+        <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>
+        <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img src="../images/map.png" class="friend_profile_home"></li>
+        <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img src="../images/map.png" class="friend_profile_home"></li>
+        <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img src="../images/map.png" class="friend_profile_home"></li>
+        <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>
+      </ul>
+    </div>
     <div class="logout">
       <a href="#">LOGOUT</a>
     </div>
-    </div>
-    <!--사이드바 끝-->
-    <!-- 컨텐츠-->
-    <div class="content">
-      <div id="map"></div>
-      
-      
-      <div class="wrap" id="write">
-        <div class="info"  >
-          <div class="title">
-            알림
-            <div class="close" onclick="closeWriteOverlay()" title="닫기"></div>
+  </div>
+  <!--사이드바 끝-->
+  <!-- 컨텐츠-->
+  <div class="content">
+    <div id="map"></div>
+    <div class="wrap" id="write">
+      <div class="info" id="info">
+        <div class="title">
+          알림
+          <div class="close" onclick="closeWriteOverlay()" title="닫기"></div>
+        </div>
+        <div class="body">
+          <div class="desc">
+            <div class="ellipsis" id="jibun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
+            <div class="ellipsis" id="lat" hidden></div>
+            <div class="ellipsis" id="lng" hidden></div>
+            <div class="write"><button class="write-btn" id="write">일지 작성하기</button></div>
           </div>
-          <div class="body" >
-            <div class="desc">
-                <div class="ellipsis" id="jibun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
-                <div class="write"><button class="write-btn" id="popbutton" >일지 작성하기</button></div>
-            </div>
-          </div>
-        </div>   
-      </div>
-      <div class="wrap" id="read">
-        <div class="info"  >
-          <div class="title">
-            알림
-            <div class="close" onclick="closeReadInfoWindow()" title="닫기"></div>
-          </div>
-          <div class="body" >
-            <div class="desc">
-                <div class="write"><button class="write-btn" id="popbutton" >일지확인 일지확인</button></div>
-            </div>
-          </div>
-        </div>   
+        </div>
       </div>
     </div>
-    <!-- <div id="dialog">
-      
+    <div class="wrap" id="read">
+      <div class="read">
+        <div class="title">
+
+          <div>알림</div>
+          <div class="closes" onclick="closeReadInfoWindow()" title="닫기"></div>
+        </div>
+        <div class="body">
+          <div class="desc">
+            <div class="title" id="titles"></div>
+            <div class="read">
+              <div class="heart" onclick="closeReadInfoWindow()" title="닫기"></div>
+              <button class="read-btn" id="detail">일지확인</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="dialog"> 
    </div> -->
-   <div class="modal fade"  data-backdrop="static" data-keyboard="true"  >
-    <div class="modal-dialog modal-fullsize" >
-      <div class="modal-content modal-fullsize"  style="box-shadow:10px 10px 10px;">
-          <!-- remote ajax call이 되는영역 -->
-          
+  <div class="write modal fade" data-backdrop="static" data-keyboard="true">
+    <div class="modal-dialog modal-fullsize">
+      <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
+        <!-- remote ajax call이 되는영역 -->
+      </div>
+    </div>
+  </div>
+  <div class="detail modal fade" data-backdrop="static" data-keyboard="true">
+    <div class="modal-dialog modal-fullsize">
+      <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
+        <!-- remote ajax call이 되는영역 -->
       </div>
     </div>
   </div>
 </body>
-
 <script src="../js/kakaomap.js"></script>
-
 <script>
- 
-$(document).on('click','#popbutton',function(){
-  console.log("asd")
-  $('div.modal').modal({
-    open: function(){
-      document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
-      },
-    remote : 'write.html'
-  });
-});
-$(document).on("click", "#close",function(){
-  $(".all-image").remove('');
-  $("#width-scroll").css("display", "none");
-	$("#content").css("height", "600px");
-  $(document).find('form')[0].reset()
+  $(document).on('click', '#detail', function () {
+    $('.detail.modal').modal({
+      remote: 'detail.html'
     });
-
+  });
+  $(document).on('click', '#write', function () {
+    $('.write.modal').modal({
+      remote: 'write.html'
+    });
+  });
+  $(document).on("click", "#write-close", function () {
+    $(".all-image").remove('');
+    $("#width-scroll").css("display", "none");
+    $("#content").css("height", "580px");
+    $(document).find('form')[0].reset()
+  });
+  $(document).on("click", "#detail-close", function () {
+  });
 </script>
-
 </html>
-

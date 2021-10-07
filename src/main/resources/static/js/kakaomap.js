@@ -130,8 +130,10 @@ $.get("./getMyList", function(data) {
         }else{
             titleInfo = data[i].title;
         }
+        var lno = data[i].lno;
 
         document.getElementById("titles").innerHTML = titleInfo;
+        document.getElementById("lno").innerHTML = lno;
 
         var readInfowindow = new kakao.maps.InfoWindow({
             content: document.getElementById('read').innerHTML // 인포윈도우에 표시할 내용
@@ -249,8 +251,46 @@ function displayPlaces(places) {
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function(marker, title) {
-            kakao.maps.event.addListener(marker, 'mouseover', function() {
-                displayInfowindow(marker, title);
+            kakao.maps.event.addListener(marker, 'click', function() {
+
+                searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
+
+                    if (status === kakao.maps.services.Status.OK) {
+                        writeMarker.setMap(null);
+                        closeReadInfoWindow();
+                        $("#info").attr("class", "info2");
+                        var jibun = result[0].address.address_name
+                        console.log(jibun)
+                        document.getElementById("jibun").innerHTML = jibun;
+                        var latlng = marker.getPosition();
+                        document.getElementById("lat").innerHTML = latlng.getLat();
+                        document.getElementById("lng").innerHTML = latlng.getLng();
+
+                        // 클릭한 위도, 경도 정보를 가져옵니다
+                        console.log(writeMarker.getPosition())
+                        if (!writeMarker) {
+                            console.log("마커없음")
+                        }
+
+                        if (start) {
+                            writeInfoWindow.setContent(document.getElementById('write').innerHTML);
+                            start = false;
+                        }
+
+
+
+
+                        if (clickWriteInfoWindow) {
+                            console.log("없에기")
+                            clickWriteInfoWindow.close();
+                        }
+                        writeInfoWindow.setPosition(latlng);
+                        writeInfoWindow.open(map, marker);
+
+                        clickWriteInfoWindow = writeInfoWindow;
+
+                    }
+                });
             });
 
             kakao.maps.event.addListener(marker, 'mouseout', function() {
@@ -383,8 +423,13 @@ $(document).ready(function(){
     $("#search-check").change(function(){
         if($("#search-check").is(":checked")){
             //체크했음
+            $("#search_btn").attr("class", "fas fa-reply");
         }else{
             //체크 풀음 여기서 검색 초기화 이벤트 해주면 됨
+
+            $("#info").attr("class", "info");
+            $("#search_btn").attr("class", "fas fa-search");
+            console.log("체크해제")
             $('#keyword').val('');
             var listEl = document.getElementById('placesList')
             // 검색 결과 목록에 추가된 항목들을 제거합니다
@@ -392,6 +437,11 @@ $(document).ready(function(){
             // 지도에 표시되고 있는 마커를 제거합니다
             removeMarker();
             var paginationEl = document.getElementById('pagination')
+            for (var idx = 0; idx < readMarkerArray.length; idx++) {
+                readMarkerArray[idx].close();
+            }
+            writeInfoWindow.close();
+            writeMarker.setMap(null);
             // 기존에 추가된 페이지번호를 삭제합니다
             while (paginationEl.hasChildNodes()) {
                 paginationEl.removeChild (paginationEl.lastChild);
@@ -411,13 +461,14 @@ var clusterer = new kakao.maps.MarkerClusterer({
 
 // 데이터를 가져오기 위해 jQuery를 사용합니다
 // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-$.get("http://localhost:8080/getMyList", function(data) {
+$.get("./getMyLisst", function(data) {
     // 데이터에서 좌표 값을 가지고 마커를 표시합니다
     // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-    console.log("112233")
-    var markers = $(data.positions).map(function(i, position) {
+    console.log(data)
+    console.log("DATA")
+    var markers = $(data).map(function(i, position) {
         return new kakao.maps.Marker({
-            position : new kakao.maps.LatLng(position.lat, position.lng)
+            position : new kakao.maps.LatLng(position.lat, data.lng)
         });
     });
 

@@ -10,7 +10,7 @@
         <link rel="stylesheet" th:href="@{/css/main.css}">
 
         <script th:src='@{//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js}'></script>
-        <script type="text/javascript" th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services}"></script>
+        <script type="text/javascript" th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services,clusterer}"></script>
         <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
 
         <script th:src="@{//code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
@@ -145,33 +145,40 @@
         <th:block th:replace="${content}"></th:block>
     </div>
 
-    <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="true"  >
-        <div class="modal-dialog modal-fullsize" >
-            <div class="modal-content modal-fullsize"  style="box-shadow:10px 10px 10px;">
+    <div class="write modal fade" data-backdrop="static" data-keyboard="true">
+        <div class="modal-dialog modal-fullsize">
+            <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
                 <!-- remote ajax call이 되는영역 -->
-
+            </div>
+        </div>
+    </div>
+    <div class="detail modal fade" data-backdrop="static" data-keyboard="true">
+        <div class="modal-dialog modal-fullsize">
+            <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
+                <!-- remote ajax call이 되는영역 -->
             </div>
         </div>
     </div>
 
     </body>
     <script th:src="@{/js/kakaomap.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
     <script th:inline="javascript">
         const contextpath= /*[[@{/}]]*/"/";
 
-        $(document).on('click','#popbutton',function(){
-            console.log("asd")
-            $('div.modal').modal({
-                open: function(){
-                    // document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
-                },
+
+        $(document).on('click', '#write', function () {
+
+
+            $('.write.modal').modal({
                 remote : contextpath+'server/write.html'
             });
         });
-        $(document).on("click", "#close",function(){
+
+        $(document).on("click", "#write-close", function () {
             $(".all-image").remove('');
             $("#width-scroll").css("display", "none");
-            $("#content").css("height", "600px");
+            $("#content").css("height", "580px");
             $(document).find('form')[0].reset()
         });
 

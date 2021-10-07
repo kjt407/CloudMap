@@ -41,16 +41,47 @@ label #search_btn:hover{ color:#5dd319 }
 #search-check:checked ~ .search{ left: 0px }
 #search-check{ display: none; }
 
+.explanation{
+  z-index: 1;
+  position: fixed;
+  width: 210px;
+  height: 150px;
+  top: 80px;
+  right: 300px;
+  transition: 0.5s; transition-property: right;
+  background: rgba(255, 255, 255, 0.5);
+
+}
+
+
+.explanation .ex1 img{
+  width: 45px;
+  margin: 6px 12px 3px 12px;
+}
+
+.explanation .ex2 img{
+  width: 28px;
+  margin: 3px 20px;
+}
+.explanation .ex3 img{
+  width: 28px;
+  margin: 3px 20px;
+}
+.explanation span{
+  font-size: 16px;
+  font-weight: bold;
+}
 /*사이드바 버튼 디자인 및 기능 */
 label #sidebar_btn{ z-index: 1; color: #fff; position: fixed; cursor: pointer; right: 30px; font-size: 40px; margin-top: -15px; transition: 0.5s; transition-property: color; }
 label #sidebar_btn:hover{ color:#19B3D3 }
 #sidebar-check:checked ~ .sidebar{ right: -295px; }
+#sidebar-check:checked ~ .explanation{ right: 10px;}
 #sidebar-check{ display: none; }
 
 
 
 /*콘텐츠*/
-.content{ position: relative; z-index: 0; width: 100%;  background: white; background-position: center; background-size: cover; height: 100vh;  }
+.content{ position: relative; z-index: 0; width: (100%);  background: white; background-position: center; background-size: cover; height: 100vh;  }
 .content #map{width: 100%; height: 100vh; top: 70px;}
 
 .mobile_nav{ display: none; }
@@ -79,17 +110,17 @@ label #sidebar_btn:hover{ color:#19B3D3 }
   .slide-box .friend .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px; margin-right: 30px;}
   .slide-box .friend .friend-list li:hover{ color: #212022; background: #fff; }
   .slide-box .friend .friend-list li:hover .friend_profile_name{ color: #212022;}
-
+  
   /*로그아웃*/
   .slide-box .logout{ font-size: 30px; width: 100%; height: 70px; bottom: 0px; position: absolute; text-align: center; background-color: #212022; text-decoration: none; transition: 0.5s; }
   .slide-box .logout a{ line-height: 70px; color: white; text-decoration: none; }
   .slide-box .logout:hover{ color: white;  background: rgb(252, 94, 94); }
-
+  
   /*콘텐츠*/
   .content{ margin-right: 0; margin-top: 70px; }
 
   .active{ top: 0px; transition: 0.5s; }
-
+  
 }
 
 .wrap .info { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;}
@@ -104,9 +135,21 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 .info .desc .write .write-btn {width: 100%; background: #222; border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
 .info .desc .write .write-btn:hover {background: rgb(81, 78, 83); cursor: pointer;}
 
+.wrap .info2 { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;}
+.info2 .title {padding: 5px 0 0 10px;height: 30px;background: rgb(0, 2, 145);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
+.info2 .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.info2 .close:hover {cursor: pointer;}
+.info2 .body { background: rgb(106, 151, 209); padding: 5px 10px; position: relative; color: white;}
+.info2 .desc {position: relative;height: 60px;}
+.info2 .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.info2 .desc .jibun {font-size: 11px;color: #888;margin-top: -2px; color: white;}
+.info2 .desc .write {margin-top: 10px;}
+.info2 .desc .write .write-btn {width: 100%; background: rgb(0, 2, 145); border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
+.info2 .desc .write .write-btn:hover {background: rgb(0, 2, 99); cursor: pointer;}
+
 
 .wrap .read { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;overflow: hidden;}
-.read .title {padding: 5px 0 0 10px;height: 30px;background: rgb(255, 194, 0);font-size: 18px;font-weight: bold; color: black; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
+.read .title {padding: 5px 0 0 10px;height: 30px;background: rgb(255, 194, 0);font-size: 18px;font-weight: bold; color: black; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;} 
 .read .closes {position: absolute; top: 6px;right: 6px;  width: 17px;height: 17px; filter: opacity(1) drop-shadow(0 0 0 black); background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
 .read .closes:hover {cursor: pointer; filter: opacity(0.5) drop-shadow(0 0 0 red);}
 .read .body { background: rgb(255, 245, 210); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid rgb(255, 194, 0);}
@@ -119,7 +162,7 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 
 
 
-/* .modal{
+/* .modal{ 
   position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
 }
 
@@ -136,12 +179,12 @@ label #sidebar_btn:hover{ color:#19B3D3 }
   width: 800px;
   height: 850px;
   top: 50px;
-
+ 
 }
 .modal-content.modal-fullsize {
   height: 850px;
   min-height: 850px;
-  border-radius: 0;
+  border-radius: 0; 
 }
 
 .search{ z-index: 1; top: 0; position: fixed; left: -450px; width: 290px; height: calc(100vh ); transition: 0.5s; transition-property: left; -ms-overflow-style: none; }
@@ -152,7 +195,7 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
-#menu_wrap .option p {margin:10px 0;}
+#menu_wrap .option p {margin:10px 0;}  
 #menu_wrap .option button {margin-left:5px;}
 #placesList li {list-style: none;}
 #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
@@ -181,3 +224,4 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+

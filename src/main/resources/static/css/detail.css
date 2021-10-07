@@ -1,0 +1,159 @@
+body { overflow: hidden; }
+
+.detail .title{
+    width: auto;
+    margin: 40px 40px 0px 40px;
+}
+
+.detail .title .input-title{
+    width: 100%;
+    height: 80px;
+    font-size: 40px;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1;
+    border-bottom-color: rgb(218, 218, 218);
+}
+
+.detail .title .input-title:focus{
+  outline: none;
+}
+.detail .content{
+   height: auto;
+    width: auto;
+    margin: -10px 40px 0px 40px;
+}
+.detail .content textarea{
+    resize: none;
+    height: 380px;
+    width: 100%;
+    padding: 20px;
+    border-top-width: 1;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1;
+    border-top-color: rgb(218, 218, 218);
+    border-bottom-color: rgb(218, 218, 218);
+    font-size: 20px;
+}
+
+.detail .content textarea:focus{
+    outline: none;
+}
+
+.detail{
+    width: auto;
+    margin: 15px 40px 0px 40px;
+    
+}
+.detail .footer{
+    width: 90%;
+    margin: 5px 40px;
+   
+    
+}
+.detail .footer .like{
+    position: absolute;
+    right: calc(50% - 30px);
+    bottom: 13px;
+    
+  
+}
+.detail .footer .like img{
+   width: 50px;
+   cursor:pointer; 
+  
+}
+.detail .footer .btsn{
+  position: absolute;
+  right: 80px;
+  bottom: 15px;
+}
+.detail .footer  .btn-modify{
+   
+    height: 35px;
+    width: 100px;
+    background: rgb(255, 224, 219);
+    color: black;
+    font-size: 16px;
+    border: 3px solid tomato;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor:pointer; 
+    transition: 0.4s;
+}
+.detail .btn-modify:hover{
+    background: tomato;
+    color: white;
+}
+
+.btn-close{
+    position: fixed;
+    right: 0px;
+    margin: 20px;
+    background: white;
+    border: none;
+    height: 10px;
+}
+.btn-close img{
+    width: 15px;
+}
+/**/
+.images{
+    height: 250px;
+    margin: 10px 0px 20px 0px;
+    display: block;
+}
+.images ul {
+  width: 90%;
+  white-space: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  margin: 0px 40px;
+  padding: 0px;
+}
+.images ul::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+.images ul li {
+    list-style: none;
+   display: inline-block;
+}
+.images ul li img{
+    width: 250px;
+    height: 250px;
+    margin-right: 10px;
+}
+.bg-success {
+    padding: 7px;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+input[type=checkbox] + label {
+
+    display: inline-block;
+
+    cursor: pointer;
+
+    line-height: 40px;
+
+    padding-left: 40px;
+
+    background: url('../images/like-off.png') left/40px no-repeat;
+
+
+}input[type=checkbox]:checked + label {
+     background-image: url('../images/like-on.png');
+ }
+input[type=checkbox]:disabled + label {
+    background-image: url('../images/like-off.png');
+}
+#like-count{
+    font-size: 25px;
+}
+
+
