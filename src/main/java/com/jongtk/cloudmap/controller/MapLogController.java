@@ -1,10 +1,8 @@
 package com.jongtk.cloudmap.controller;
 
 import com.jongtk.cloudmap.dto.*;
-import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.service.LikesService;
 import com.jongtk.cloudmap.service.MapLogService;
-import com.nimbusds.oauth2.sdk.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
