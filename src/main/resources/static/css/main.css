@@ -225,3 +225,6 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
+#titles{
+  font-size: 15px;
+}
