@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="../css/detail.css">
+</head>
+<body>
+	<button type="button" id="detail-close" class="btn-close" data-dismiss="modal"><img src="../images/close.png"></button>
+		<div class="detail">
+			<div class="title">
+				<input class="input-title" name="title" id="title" placeholder="제목">
+			</div>
+			<div class="images">
+				<ul id="width-scroll">
+				</ul>
+			</div>
+			<div class="content">
+				<textarea id="content" name="content" placeholder="내용을 입력 해주세요."></textarea>
+			</div>
+			<div class="footer">
+				
+				<div class="like">
+					<input type="checkbox" id="like" name="like">
+					<label for="like" id="like-count"></label>
+
+				</div>
+				<div class="btsn">
+					<button type="button" class="btn-modify">수정하기</button>
+					<button type="button" class="btn-modify">삭제하기</button>
+				</div>
+				
+			</div>
+		</div>
+</body>
+<script src="../js/like.js"></script>
+</html>

@@ -3,37 +3,37 @@
 <th:block th:replace="~{/layout/layout_basic:: setContent(~{this:: content})}">
     <th:block th:fragment="content">
         <div id="map"></div>
-
-
         <div class="wrap" id="write">
-            <div class="info"  >
+            <div class="info" id="info">
                 <div class="title">
                     알림
                     <div class="close" onclick="closeWriteOverlay()" title="닫기"></div>
                 </div>
-                <div class="body" >
+                <div class="body">
                     <div class="desc">
                         <div class="ellipsis" id="jibun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
                         <div class="ellipsis" id="lat" hidden></div>
                         <div class="ellipsis" id="lng" hidden></div>
-                        <div class="write"><button class="write-btn" id="popbutton" >일지 작성하기</button></div>
+                        <div class="write"><button class="write-btn" id="write">일지 작성하기</button></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="wrap" id="read">
-            <div class="read"  >
+            <div class="read">
                 <div class="title">
 
                     <div>알림</div>
                     <div class="closes" onclick="closeReadInfoWindow()" title="닫기"></div>
                 </div>
-                <div class="body" >
+                <div class="body">
                     <div class="desc">
                         <div class="title" id="titles"></div>
+                        <div class="title" id="lno" hidden></div>
+
                         <div class="read">
                             <div class="heart" onclick="closeReadInfoWindow()" title="닫기"></div>
-                            <button class="read-btn" id="popbutton" >일지확인</button>
+                            <button class="read-btn" id="detail">일지확인</button>
                         </div>
                     </div>
                 </div>

@@ -17,10 +17,10 @@ body { overflow: hidden; }
 }
 
 .write .title .input-title:focus{
-    outline: none;
+  outline: none;
 }
 .write .content{
-    height: auto;
+   height: auto;
     width: auto;
     margin: -10px 40px 0px 40px;
 }
@@ -52,16 +52,19 @@ body { overflow: hidden; }
     display: block;
     height: 50px;
     width: 100px;
-    background: rgb(92, 32, 92);
-    color: white;
+    background: rgb(255, 238, 238);
+
+    color: black;
     font-size: 16px;
-    border: none;
+    border: 3px solid tomato;
     font-weight: bold;
-    cursor:pointer;
+    border-radius: 15px;
+    cursor:pointer; 
     transition: 0.4s;
 }
 .footer .btn-save:hover{
-    background: rgb(49, 5, 49);
+    background: tomato;
+    color: white;
 }
 
 .btn-close{
