@@ -111,9 +111,18 @@
     </div>
     <div class="sidebar">
         <div class="profile_info">
-            <img src="../images/1.jpg" class="profile_image">
-            <h4 class="my-name">최준형</h4>
-            <!--<h3>상태메시지 입니다.</h3>-->
+            <th:block th:if="${!#authentication.getPrincipal().fromSocial}">
+                <img th:if="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{/images/cat.png}" class="profile_image"></img>
+                <img th:unless="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}" class="profile_image"></img>
+            </th:block>
+            <th:block th:unless="${!#authentication.getPrincipal().fromSocial}">
+                <img th:if="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}"  class="profile_image"></img>
+                <th:block th:unless="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:each="entry : ${#authentication.principal.attr}" >
+                    <img th:if="${entry.key == 'picture'}" th:src="${entry.value}" class="profile_image"></img>
+                </th:block>
+            </th:block>
+            <h4>[[${#authentication.principal.name}]]</h4>
+            <h3>[[${#authentication.principal.email}]]</h3>
         </div>
         <!-- <div>
             <p>내용</p>
@@ -189,7 +198,13 @@
 
         </div>
         <div class="logout">
-            <a href="#">LOGOUT</a>
+            <th:block th:if="${#authentication.isAuthenticated()}">
+                <th:block th:if="${#authentication.principal.attr != null}">
+                    <a th:if="${#authentication.principal.attr.clientName == 'kakao'}" th:href="@{https://kauth.kakao.com/oauth/logout(client_id=0c90a244b5317711f920544975d0409c,logout_redirect_uri=${url})}" th:with="url=${#strings.replace(#httpServletRequest.getRequestURL(),#httpServletRequest.getRequestURI(),#httpServletRequest.getContextPath()+'/logout')}">LOGOUT</a>
+                    <a th:unless="${#authentication.principal.attr.clientName == 'kakao'}" th:href="@{/logout}">LOGOUT</a>
+                </th:block>
+                <a th:unless="${#authentication.principal.attr != null}" th:href="@{/logout}">LOGOUT</a>
+            </th:block>
         </div>
     </div>
     <!--사이드바 끝-->
