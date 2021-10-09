@@ -94,6 +94,13 @@ public class TestController {
         return "/test/file";
     }
 
+
+    @GetMapping("/friend")
+    public String freidns(@AuthenticationPrincipal AuthMemberDTO authMemberDTO) {
+
+        return "/test/friend";
+    }
+
     private String makeFolder() {
 
         String str = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
