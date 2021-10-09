@@ -121,8 +121,8 @@
                     <img th:if="${entry.key == 'picture'}" th:src="${entry.value}" class="profile_image"></img>
                 </th:block>
             </th:block>
-            <h4>[[${#authentication.principal.name}]]</h4>
-            <h3>[[${#authentication.principal.email}]]</h3>
+            <h4 class="my-name">[[${#authentication.principal.name}]]</h4>
+            <!--            <h3>[[${#authentication.principal.email}]]</h3>-->
         </div>
         <!-- <div>
             <p>내용</p>
