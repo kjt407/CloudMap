@@ -27,7 +27,7 @@ public class LikesServiceImp implements LikesService{
     private final MapLogRepository mapLogRepository;
 
     @Override
-    public LikesResultDTO getLikes(long lno, String username) {
+    public com.jongtk.cloudmap.dto.LikesResultDTO getLikes(long lno, String username) {
 
         Optional<Member> memberOp = memberRepository.findById(username);
         Optional<MapLog> mapLogOp = mapLogRepository.findById(lno);
