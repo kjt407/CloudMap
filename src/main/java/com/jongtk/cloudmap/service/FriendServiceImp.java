@@ -8,6 +8,7 @@ import com.jongtk.cloudmap.repository.FriendPostRepository;
 import com.jongtk.cloudmap.repository.FriendRepository;
 import com.jongtk.cloudmap.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class FriendServiceImp implements FriendService {
 
     private final MemberRepository memberRepository;
@@ -86,11 +88,13 @@ public class FriendServiceImp implements FriendService {
         Optional<Member> targetOp = memberRepository.findById(targetEmail);
 
         if(memberOp.isPresent() && targetOp.isPresent()) {
+            log.warn("타겟 멤버 둘다 존재함");
             boolean isFriend = friendRepository.existsByMemberAndFriend(memberOp.get(), targetOp.get());
             boolean posted = friendPostRepository.existsBySenderAndReceiver(memberOp.get(), targetOp.get());
             boolean postedr = friendPostRepository.existsBySenderAndReceiver(targetOp.get(), memberOp.get());
 
             if(isFriend || posted || postedr){
+                log.warn("이미 신청이 되었거나 친구상태임");
                 return false;
             }
 
@@ -100,6 +104,7 @@ public class FriendServiceImp implements FriendService {
                     .build();
 
             friendPostRepository.save(friendPost);
+            return true;
         }
 
         return false;
