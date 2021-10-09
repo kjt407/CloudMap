@@ -104,6 +104,7 @@ public class FriendServiceImp implements FriendService {
                     .build();
 
             friendPostRepository.save(friendPost);
+
             return true;
         }
 
