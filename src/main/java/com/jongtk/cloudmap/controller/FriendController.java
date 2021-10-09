@@ -56,7 +56,7 @@ public class FriendController {
         return friendService.refuseFreind(authMemberDTO.getUsername(), targetEmail);
     }
 
-    @PostMapping("/deleteFriend")
+    @DeleteMapping("/deleteFriend")
     public boolean deleteFriend(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String targetEmail) {
         return friendService.deleteFreind(authMemberDTO.getUsername(), targetEmail);
     }

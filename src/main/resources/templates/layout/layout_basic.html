@@ -136,20 +136,20 @@
                 <li><label>친구목록</label></li>
             </ul>
             <label for="friend-alert-check">
-                <i class="fas fa-bell" id="friend_alert_btn"></i>
+                <i class="fas fa-bell" id="friend_alert_btn" onclick="getReceiveList()"></i>
             </label>
             <label for="friend-search-check">
                 <i class="fas fa-search" id="friend_search_btn"></i>
             </label>
             <div class="friend-list-scroll">
-                <ul class="friend-list">
-                    <li><img src="../images/shiba.png" class="friend_profile_image"><label
-                            class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>
-                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>
-                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img src="../images/map.png" class="friend_profile_home"></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img src="../images/map.png" class="friend_profile_home"></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img src="../images/map.png" class="friend_profile_home"></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>
+                <ul class="friend-list" id="main-friend-list">
+<!--                    <li><img src="../images/shiba.png" class="friend_profile_image"><label-->
+<!--                            class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>-->
+<!--                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>-->
+<!--                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img src="../images/map.png" class="friend_profile_home"></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img src="../images/map.png" class="friend_profile_home"></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img src="../images/map.png" class="friend_profile_home"></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>-->
                 </ul>
             </div>
 
@@ -165,15 +165,15 @@
             </ul>
             <div class="search-friend-list-scroll">
                 <ul class="friend-list">
-                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><i id="add-friend" class="fas fa-user-plus"></i></li>
-                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+<!--                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
+<!--                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><i id="add-friend" class="fas fa-user-plus"></i></li>-->
                 </ul>
             </div>
 
@@ -248,6 +248,152 @@
             $("#width-scroll").css("display", "none");
             $("#content").css("height", "580px");
             $(document).find('form')[0].reset()
+        });
+
+    </script>
+
+<!--    친구기능 스크립트 부분   -->
+    <script th:inline="javascript">
+
+        function btnOnClick(ele){
+            console.log('넘겨받은 이메일값'+$(ele).data("email"));
+            postFriend($(ele).data("email"), ele);
+        }
+        function friendReceiveAction(ele){
+            receiveFriendAction($(ele).data("option"),$(ele).data("email"),ele);
+        }
+
+        function getFriendList(){
+            $.ajax({
+                type: "GET",
+                url: "/getFriendList",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    var friendLi = "";
+                    data.forEach(friend => {
+                        friendLi += '<li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img src="../images/map.png" class="friend_profile_home"></li>'
+                    })
+                    $('#main-friend-list').html(friendLi)
+                },
+                error: function (e) {
+                    alert('fail');
+                }
+            });
+        }
+        function getReceiveList(){
+            $.ajax({
+                type: "GET",
+                url: "/getReceiveList",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    var friendLi = "";
+                    data.forEach(friend => {
+                        friendLi += '<li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i class="fas fa-user-plus accept-friend receive-btn" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i class="fas fa-user-minus delete-friend receive-btn" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
+                    })
+                    $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
+                },
+                error: function (e) {
+                    alert('fail');
+                }
+            });
+        }
+        function receiveFriendAction(option, targetEmail, ele){
+            var data = {"targetEmail":targetEmail};
+            var url = '';
+            if(option == 'accept'){
+                url = '/acceptFriend'
+            } else if(option == 'refuse'){
+                url = '/refuseFriend'
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    if(data){
+                        if($(ele).hasClass('receive-btn')){
+                            $(ele).parent('li').remove();
+                        }
+                        getReceiveList();
+                        getFriendList();
+                        searchRefresh(ele);
+                    }
+                },
+                error: function (e) {
+                    alert('fail');
+                }
+            });
+        }
+        function searchFriend(str){
+            var data = {"str":str};
+            $.ajax({
+                type: "GET",
+                url: "/searchFriend",
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    var html = "";
+                    data.forEach(friend => {
+                        html += '<li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label>';
+                        if(friend.state == 'no'){
+                            html += '<a style="cursor: pointer" onclick="btnOnClick(this)" data-search="post" data-email="'+friend.email+'">'+'친구신청'+'</a>';
+                        }else if(friend.state == 'friend'){
+                            html += '<a >'+'친구임'+'</a>';
+                        }else if(friend.state == 'sent'){
+                            html += '<a >'+'요청중'+'</a>';
+                        }else if(friend.state == 'received'){
+                            html += '<a style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-email="'+friend.email+'">'+'요청수락'+'</a>';
+                        }
+                        html += '</li>'
+                    })
+                    $(".search-friend-list-scroll > ul.friend-list").html(html);
+                },
+                error: function (e) {
+                    alert('fail');
+                }
+            });
+        }
+        function postFriend(targetEmail,ele){
+            var data = {"targetEmail":targetEmail};
+            $.ajax({
+                type: "POST",
+                url: "/postFriend",
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    if(data){
+                        alert("친구요청완료");
+                        searchRefresh(ele);
+                    }
+                },
+                error: function (e) {
+                    alert('fail');
+                }
+            });
+        }
+
+        function searchRefresh(ele){
+            if($(ele).data('search')){
+                if($(ele).data('search') == 'post'){
+                    $(ele).html('<a >'+'요청중'+'</a>');
+                }else if($(ele).data('search') == 'receive'){
+                    $(ele).html('<a >'+'친구임'+'</a>');
+                }
+            }
+            return;
+        }
+
+
+        $(document).ready(function(){
+            getFriendList();
+            // getReceiveList();
         });
 
     </script>

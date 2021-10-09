@@ -19,8 +19,6 @@ $(document).ready(function () {
     console.log(temp)
     $(temp).show();
 
-    searchFriend(k);
-
     if (k === "") {
       $(".search-friend-list-scroll > .friend-list > li").hide();
     }

@@ -66,8 +66,8 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .friend-list li:hover{ background: #fff;}
 .sidebar .friend-list li:hover .friend_profile_name{ color: #212022;}
 .sidebar .friend-list li:hover #add-friend{ color: #212022;}
-.sidebar .friend-list li:hover #accept-friend{ color: #212022;}
-.sidebar .friend-list li:hover #delete-friend{ color: #212022;}
+.sidebar .friend-list li:hover .accept-friend{ color: #212022;}
+.sidebar .friend-list li:hover .delete-friend{ color: #212022;}
 
 
 
@@ -154,12 +154,12 @@ label #friend_alert_btn:hover{ color:#19B3D3 }
 label #friend_alert_btn2{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:25px; top: 2px; font-size: 25px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_alert_btn2:hover{ color:#19B3D3 }
 
-#accept-friend{
+.accept-friend{
   font-size: 15px;
   margin-top: 21px;
   color: white;
 }
-#delete-friend{
+.delete-friend{
   font-size: 15px;
   margin-top: 21px;
   color: white;
