@@ -40,15 +40,36 @@ public class FriendController {
         return friendService.getFreindList(authMemberDTO.getUsername());
     }
 
+    @GetMapping("/getReceiveList")
+    public List<FriendDTO> getReceiveList(@AuthenticationPrincipal AuthMemberDTO authMemberDTO) {
+        return friendService.getReceiveList(authMemberDTO.getUsername());
+    }
+
 
     @PostMapping("/acceptFriend")
     public boolean acceptFriend(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String targetEmail) {
         return friendService.acceptFreind(authMemberDTO.getUsername(), targetEmail);
     }
 
+    @PostMapping("/refuseFriend")
+    public boolean refuseFriend(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String targetEmail) {
+        return friendService.refuseFreind(authMemberDTO.getUsername(), targetEmail);
+    }
+
+    @PostMapping("/deleteFriend")
+    public boolean deleteFriend(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String targetEmail) {
+        return friendService.deleteFreind(authMemberDTO.getUsername(), targetEmail);
+    }
+
     @PostMapping("/postFriend")
     public boolean postFriend(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String targetEmail) {
         return friendService.postFreind(authMemberDTO.getUsername(), targetEmail);
     }
+
+    @GetMapping("/searchFriend")
+    public List<FriendDTO> searchFriend(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String str) {
+        return friendService.getSearch(authMemberDTO.getUsername(), str);
+    }
+
 
 }

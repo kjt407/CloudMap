@@ -78,7 +78,40 @@ public class FriendServiceImp implements FriendService {
 
     @Override
     public List<FriendDTO> getSearch(String username, String str) {
-        return null;
+
+        List<FriendDTO> result = new ArrayList<>();
+
+        Optional<Member> memberOp = memberRepository.findById(username);
+        List<Member> targetList = memberRepository.findByNameOrEmail(str);
+
+        if(memberOp.isPresent() && !targetList.isEmpty()){
+            Member member = memberOp.get();
+
+            result =
+            targetList.stream().map(target -> {
+
+                String state = null;
+                if(friendRepository.existsByMemberAndFriend(member, target)){
+                    state = "friend";
+                } else if (friendPostRepository.existsBySenderAndReceiver(target,member)){
+                    state = "received";
+                } else if (friendPostRepository.existsBySenderAndReceiver(member, target)){
+                    state = "sent";
+                } else {
+                    state = "no";
+                }
+                FriendDTO friendDTO = FriendDTO.builder()
+                        .email(target.getEmail())
+                        .name(target.getName())
+                        .profileImg(target.getProfileImg())
+                        .state(state)
+                        .build();
+
+                return friendDTO;
+            }).collect(Collectors.toList());
+        }
+
+        return result;
     }
 
     @Override
@@ -118,7 +151,8 @@ public class FriendServiceImp implements FriendService {
         Optional<Member> targetOp = memberRepository.findById(targetEmail);
 
         if(memberOp.isPresent() && targetOp.isPresent()) {
-            if (friendPostRepository.existsBySenderAndReceiver(targetOp.get(), memberOp.get())){
+            Optional<FriendPost> fp = friendPostRepository.findBySenderAndReceiver(targetOp.get(), memberOp.get());
+            if (fp.isPresent()){
                 Friend friend = Friend.builder()
                         .member(memberOp.get())
                         .friend(targetOp.get())
@@ -130,7 +164,7 @@ public class FriendServiceImp implements FriendService {
                 friendRepository.save(friend);
                 friendRepository.save(friendr);
 
-                friendPostRepository.deleteBySenderAndReceiver(targetOp.get(), memberOp.get());
+                friendPostRepository.delete(fp.get());
 
                 return true;
             }
@@ -141,11 +175,40 @@ public class FriendServiceImp implements FriendService {
 
     @Override
     public boolean refuseFreind(String username, String targetEmail) {
+
+        Optional<Member> memberOp = memberRepository.findById(username);
+        Optional<Member> targetOp = memberRepository.findById(targetEmail);
+
+        if(memberOp.isPresent() && targetOp.isPresent()) {
+            Optional<FriendPost> fp = friendPostRepository.findBySenderAndReceiver(targetOp.get(), memberOp.get());
+            if (fp.isPresent()){
+                friendPostRepository.delete(fp.get());
+                return true;
+            }
+        }
+
         return false;
     }
 
     @Override
     public boolean deleteFreind(String username, String targetEmail) {
+        Optional<Member> memberOp = memberRepository.findById(username);
+        Optional<Member> targetOp = memberRepository.findById(targetEmail);
+
+        if(memberOp.isPresent() && targetOp.isPresent()) {
+            if(friendRepository.existsByMemberAndFriend(memberOp.get(), targetOp.get())){
+                Optional<Friend> friend = friendRepository.findByMemberAndFriend(memberOp.get(), targetOp.get());
+                Optional<Friend> friendr = friendRepository.findByMemberAndFriend(targetOp.get(), memberOp.get());
+
+                if(friend.isPresent() && friendr.isPresent()){
+                    friendRepository.delete(friend.get());
+                    friendRepository.delete(friendr.get());
+
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FriendRepository extends JpaRepository<Friend, Long> {
 
@@ -14,5 +15,7 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
     List<Friend> findByMember(Member member);
 
     Boolean existsByMemberAndFriend(Member member, Member friend);
+
+    Optional<Friend> findByMemberAndFriend(Member member, Member friend);
 
 }

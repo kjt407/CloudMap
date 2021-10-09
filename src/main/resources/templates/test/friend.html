@@ -36,7 +36,28 @@
 				<input name="targetEmail" value=""/>
 				<input type="submit" value="전송"/>
 			</form>
+			<br>
+			<form name="form1" method="post" th:action="@{/refuseFriend}">
+				<h2>친구거절</h2>
+				<input name="targetEmail" value=""/>
+				<input type="submit" value="전송"/>
+			</form>
+			<br>
+			<form name="form1" method="post" th:action="@{/deleteFriend}">
+				<h2>친구삭제</h2>
+				<input name="targetEmail" value=""/>
+				<input type="submit" value="전송"/>
+			</form>
+			<br>
+			<form name="form1" method="get" th:action="@{/searchFriend}">
+				<h2>친구검색</h2>
+				<input name="str" value=""/>
+				<input type="submit" value="전송"/>
+			</form>
+			<br>
 			<a th:href="@{/getFriendList}">친구목록</a>
+			<br>
+			<a th:href="@{/getReceiveList}">받은요청</a>
 			<div>
 				<ul id="freinds-list">
 

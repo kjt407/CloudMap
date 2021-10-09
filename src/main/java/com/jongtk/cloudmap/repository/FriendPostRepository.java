@@ -16,8 +16,7 @@ public interface FriendPostRepository extends JpaRepository<FriendPost, Long> {
 
     boolean existsBySenderAndReceiver(Member sender, Member receiver);
 
-    @Query("delete from FriendPost fp where fp.sender = :sender and fp.receiver = :receiver")
-    void deleteBySenderAndReceiver(Member sender, Member receiver);
+    Optional<FriendPost> findBySenderAndReceiver(Member sender, Member receiver);
 
 //    @Query("select fp from FriendPost fp where fp.sender = :sender and fp.receiver = :receiver")
 //    Optional<FriendPost> findBySenderAndReceiver(Member sender, Member receiver);

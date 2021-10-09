@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 public class FriendDTO {
 
-    private long id;
     private String email;
     private String name;
     private String profileImg;
