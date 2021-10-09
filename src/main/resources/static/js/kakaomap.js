@@ -1,10 +1,31 @@
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(37.404088, 126.930657), // 지도의 중심좌표
-        level: 4 // 지도의 확대 레벨
-    };
+var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+var  mapOption = {
+    center: new kakao.maps.LatLng(37.404088, 126.930657), // 지도의 중심좌표
+    level: 4 // 지도의 확대 레벨
+};
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+if (navigator.geolocation) {
+
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+        var locPosition = new kakao.maps.LatLng(lat, lon)
+           map.setCenter(locPosition);
+
+
+
+
+    });
+
+} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+    var locPosition = new kakao.maps.LatLng(124.848488, 33.474968)
+    map.setCenter(locPosition);
+}
+
+
+
 
 var writeImageSrc = "https://img.icons8.com/material/96/000000/marker--v1.png"
 var writeImageSize = new kakao.maps.Size(45, 45);
@@ -126,7 +147,7 @@ $.get("./getMyList", function(data) {
 
         var titleInfo;
         if(data[i].title.length>6){
-            titleInfo = data[i].title.substring(0, 15)+"...";
+            titleInfo = data[i].title.substring(0, 13)+"...";
         }else{
             titleInfo = data[i].title;
         }
