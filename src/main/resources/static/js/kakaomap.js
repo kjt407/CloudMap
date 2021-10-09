@@ -126,7 +126,7 @@ $.get("./getMyList", function(data) {
 
         var titleInfo;
         if(data[i].title.length>6){
-            titleInfo = data[i].title.substring(0, 15)+"...";
+            titleInfo = data[i].title.substring(0, 13)+"...";
         }else{
             titleInfo = data[i].title;
         }

@@ -23,6 +23,8 @@
     <input type="hidden" id="username-check" th:value="${#authentication.principal.email}">
     <input type="checkbox" id="sidebar-check">
     <input type="checkbox" id="search-check">
+    <input type="checkbox" id="friend-search-check">
+    <input type="checkbox" id="friend-alert-check">
     <!--헤더 시작-->
     <header class="header-class" id="mainheader">
         <label for="search-check">
@@ -85,71 +87,92 @@
 
     <!--모바일 메뉴 끝-->
     <!--사이드바 시작-->
-    <div class="explanation">
-        <div class="ex1"><img src="https://img.icons8.com/material/96/000000/marker--v1.png" alt=""><span>클릭한 곳의 마커</span>
-        </div>
-        <div class="ex2"><img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
-                              alt=""><span>여행일지 목록</span></div>
-        <div class="ex3"><img src="../images/marker.png" alt=""><span>검색 목록</span></div>
-    </div>
-    <div class="search">
-        <div id="menu_wrap" class="bg_white">
-            <div class="option">
-                <div>
-                    <form onsubmit="searchPlaces(); return false;">
-                        키워드 : <input type="text" id="keyword" size="15">
-                        <button type="submit">검색하기</button>
-                    </form>
-                </div>
-            </div>
-            <hr>
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
-        </div>
-    </div>
-
-
     <div class="sidebar">
         <div class="profile_info">
-            <th:block th:if="${!#authentication.getPrincipal().fromSocial}">
-                <img th:if="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{/images/cat.png}" class="profile_image"></img>
-                <img th:unless="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}" class="profile_image"></img>
-            </th:block>
-            <th:block th:unless="${!#authentication.getPrincipal().fromSocial}">
-                <img th:if="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}"  class="profile_image"></img>
-                <th:block th:unless="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:each="entry : ${#authentication.principal.attr}" >
-                    <img th:if="${entry.key == 'picture'}" th:src="${entry.value}" class="profile_image"></img>
-                </th:block>
-            </th:block>
-            <h4 class="my-name">[[${#authentication.principal.name}]]</h4>
-            <!--            <h3>[[${#authentication.principal.email}]]</h3>-->
+            <img src="../images/1.jpg" class="profile_image">
+            <h4 class="my-name">최준형</h4>
+            <!--<h3>상태메시지 입니다.</h3>-->
         </div>
+        <!-- <div>
+            <p>내용</p>
+            <p>내용</p>
+            <p>내용</p>
+            <p>내용</p>
+          </div> -->
         <div class="box">
+
             <ul class="friend-list-title">
                 <li><label>친구목록</label></li>
             </ul>
-            <ul class="friend-list">
-                <li><img th:src="@{/images/shiba.png}" class="friend_profile_image"><label class="friend_profile_name">김종태</label><img th:src="@{/images/map.png}" class="friend_profile_home"></li>
-                <li><img th:src="@{/images/cat.png}" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img th:src="@{/images/map.png}" class="friend_profile_home"></li>
-                <li><img th:src="@{/images/ham.png}" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img th:src="@{/images/map.png}" class="friend_profile_home"></li>
-                <li><img th:src="@{/images/1.jpg}" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img th:src="@{/images/map.png}" class="friend_profile_home"></li>
-                <li><img th:src="@{/images/1.jpg}" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img th:src="@{/images/map.png}" class="friend_profile_home"></li>
-                <li><img th:src="@{/images/1.jpg}" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img th:src="@{/images/map.png}" class="friend_profile_home"></li>
+            <label for="friend-alert-check">
+                <i class="fas fa-bell" id="friend_alert_btn"></i>
+            </label>
+            <label for="friend-search-check">
+                <i class="fas fa-search" id="friend_search_btn"></i>
+            </label>
+            <div class="friend-list-scroll">
+                <ul class="friend-list">
+                    <li><img src="../images/shiba.png" class="friend_profile_image"><label
+                            class="friend_profile_name">김종태</label><img src="../images/map.png" class="friend_profile_home"></li>
+                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><img src="../images/map.png" class="friend_profile_home"></li>
+                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><img src="../images/map.png" class="friend_profile_home"></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><img src="../images/map.png" class="friend_profile_home"></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><img src="../images/map.png" class="friend_profile_home"></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><img src="../images/map.png" class="friend_profile_home"></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="box-friend-search">
+
+            <ul class="friend-list-title">
+
+                <li class="friend-search-bar-li"><input class="friend-search-bar" id="friend-search-bar" type="text" placeholder="친구검색"></li>
+                <label for="friend-search-check">
+                    <i class="fas fa-sign-out-alt" id="friend_search_btn2"></i>
+                </label>
             </ul>
+            <div class="search-friend-list-scroll">
+                <ul class="friend-list">
+                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">안준호</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">조석봉</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                    <li><img src="../images/1.jpg" class="friend_profile_image"><label class="friend_profile_name">범구형</label><i id="add-friend" class="fas fa-user-plus"></i></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="box-friend-alert">
+
+            <ul class="friend-list-title">
+
+                <li class="friend-alert-bar-li"><label for="">요청 받은 목록</label></li>
+                <label for="friend-alert-check">
+                    <i class="fas fa-sign-out-alt" id="friend_alert_btn2"></i>
+                </label>
+            </ul>
+            <div class="alert-friend-list-scroll">
+                <ul class="friend-list">
+                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
+                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
+                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
+
+                </ul>
+            </div>
+
         </div>
         <div class="logout">
-            <th:block th:if="${#authentication.isAuthenticated()}">
-                <th:block th:if="${#authentication.principal.attr != null}">
-                    <a th:if="${#authentication.principal.attr.clientName == 'kakao'}" th:href="@{https://kauth.kakao.com/oauth/logout(client_id=0c90a244b5317711f920544975d0409c,logout_redirect_uri=${url})}" th:with="url=${#strings.replace(#httpServletRequest.getRequestURL(),#httpServletRequest.getRequestURI(),#httpServletRequest.getContextPath()+'/logout')}">LOGOUT</a>
-                    <a th:unless="${#authentication.principal.attr.clientName == 'kakao'}" th:href="@{/logout}">LOGOUT</a>
-                </th:block>
-                <a th:unless="${#authentication.principal.attr != null}" th:href="@{/logout}">LOGOUT</a>
-            </th:block>
+            <a href="#">LOGOUT</a>
         </div>
     </div>
     <!--사이드바 끝-->
     <!-- 컨텐츠-->
-    <div class="content">
+    <div class="content" id="maps">
         <th:block th:replace="${content}"></th:block>
     </div>
 
