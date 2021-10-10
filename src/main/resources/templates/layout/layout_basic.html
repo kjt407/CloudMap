@@ -277,7 +277,7 @@
                     $('#main-friend-list').html(friendLi)
                 },
                 error: function (e) {
-                    alert('fail');
+                    console.log('fail');
                 }
             });
         }
@@ -295,7 +295,7 @@
                     $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
                 },
                 error: function (e) {
-                    alert('fail');
+                    console.log('fail');
                 }
             });
         }
@@ -325,7 +325,7 @@
                     }
                 },
                 error: function (e) {
-                    alert('fail');
+                    console.log('fail');
                 }
             });
         }
@@ -355,7 +355,7 @@
                     $(".search-friend-list-scroll > ul.friend-list").html(html);
                 },
                 error: function (e) {
-                    alert('fail');
+                    console.log('fail');
                 }
             });
         }
@@ -374,7 +374,7 @@
                     }
                 },
                 error: function (e) {
-                    alert('fail');
+                    console.log('fail');
                 }
             });
         }
@@ -382,9 +382,9 @@
         function searchRefresh(ele){
             if($(ele).data('search')){
                 if($(ele).data('search') == 'post'){
-                    $(ele).html('<a >'+'요청중'+'</a>');
+                    $(ele).replaceWith('<a >'+'요청중'+'</a>');
                 }else if($(ele).data('search') == 'receive'){
-                    $(ele).html('<a >'+'친구임'+'</a>');
+                    $(ele).replaceWith('<a >'+'친구임'+'</a>');
                 }
             }
             return;

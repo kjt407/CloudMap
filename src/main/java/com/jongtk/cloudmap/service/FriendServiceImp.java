@@ -82,7 +82,7 @@ public class FriendServiceImp implements FriendService {
         List<FriendDTO> result = new ArrayList<>();
 
         Optional<Member> memberOp = memberRepository.findById(username);
-        List<Member> targetList = memberRepository.findByNameOrEmail(str);
+        List<Member> targetList = memberRepository.findByNameOrEmail(str,username);
 
         if(memberOp.isPresent() && !targetList.isEmpty()){
             Member member = memberOp.get();
