@@ -1,6 +1,7 @@
 package com.jongtk.cloudmap.service;
 
 import com.jongtk.cloudmap.dto.ImageDTO;
+import com.jongtk.cloudmap.dto.LikeMapLogDTO;
 import com.jongtk.cloudmap.dto.MapLogDTO;
 import com.jongtk.cloudmap.dto.MapLogListDTO;
 import com.jongtk.cloudmap.entity.MapLog;
@@ -26,6 +27,8 @@ public interface MapLogService {
     MapLogDTO getMyLog(long lno, String email);
 
     MapLogDTO getLog(long lno);
+
+    List<LikeMapLogDTO> getMyLikes(String username);
 
     default Map<String,Object> dtoToEntity(MapLogDTO mapLogDTO, Member writer){
         Map<String,Object> entityMap = new HashMap<>();
