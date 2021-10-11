@@ -16,5 +16,6 @@ public interface FriendService {
     boolean refuseFreind(String username, String targetEmail);
     boolean deleteFreind(String username, String targetEmail);
     boolean isFreind(String username, String targetEmail);
+    boolean isFreind(String username, long lno);
 
 }

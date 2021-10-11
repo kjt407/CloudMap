@@ -25,6 +25,8 @@ public interface MapLogService {
 
     MapLogDTO getMyLog(long lno, String email);
 
+    MapLogDTO getLog(long lno);
+
     default Map<String,Object> dtoToEntity(MapLogDTO mapLogDTO, Member writer){
         Map<String,Object> entityMap = new HashMap<>();
 

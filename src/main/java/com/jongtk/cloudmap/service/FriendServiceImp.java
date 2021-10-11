@@ -3,9 +3,11 @@ package com.jongtk.cloudmap.service;
 import com.jongtk.cloudmap.dto.FriendDTO;
 import com.jongtk.cloudmap.entity.Friend;
 import com.jongtk.cloudmap.entity.FriendPost;
+import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.entity.Member;
 import com.jongtk.cloudmap.repository.FriendPostRepository;
 import com.jongtk.cloudmap.repository.FriendRepository;
+import com.jongtk.cloudmap.repository.MapLogRepository;
 import com.jongtk.cloudmap.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,6 +26,7 @@ public class FriendServiceImp implements FriendService {
     private final MemberRepository memberRepository;
     private final FriendRepository friendRepository;
     private final FriendPostRepository friendPostRepository;
+    private final MapLogRepository mapLogRepository;
 
 
     @Override
@@ -214,6 +217,32 @@ public class FriendServiceImp implements FriendService {
 
     @Override
     public boolean isFreind(String username, String targetEmail) {
+        Optional<Member> memberOp = memberRepository.findById(username);
+        Optional<Member> targetOp = memberRepository.findById(targetEmail);
+
+        if(memberOp.isPresent() && targetOp.isPresent()) {
+
+            return friendRepository.existsByMemberAndFriend(memberOp.get(), targetOp.get());
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean isFreind(String username, long lno) {
+        Optional<MapLog> mapLog = mapLogRepository.findById(lno);
+
+        if(mapLog.isPresent()) {
+            String targetEmail = mapLog.get().getWriter().getEmail();
+
+            Optional<Member> memberOp = memberRepository.findById(username);
+            Optional<Member> targetOp = memberRepository.findById(targetEmail);
+
+            if(memberOp.isPresent() && targetOp.isPresent()) {
+                return friendRepository.existsByMemberAndFriend(memberOp.get(), targetOp.get());
+            }
+        }
+
         return false;
     }
 }

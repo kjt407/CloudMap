@@ -1,6 +1,7 @@
 package com.jongtk.cloudmap.controller;
 
 import com.jongtk.cloudmap.dto.*;
+import com.jongtk.cloudmap.service.FriendService;
 import com.jongtk.cloudmap.service.LikesService;
 import com.jongtk.cloudmap.service.MapLogService;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,7 @@ public class MapLogController {
 
     private final MapLogService mapLogService;
     private final LikesService likesService;
+    private final FriendService friendService;
 
     @Value("${com.jongtk.cloudmap.upload.path}")
     private String uploadPath;
@@ -114,6 +116,29 @@ public class MapLogController {
         MapLogDTO result = mapLogService.getMyLog(lno, authMemberDTO.getEmail());
 
         return result;
+    }
+
+    @GetMapping("/getFriendMapLogList")
+    public List<MapLogListDTO> getFriendMapLogList(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String friendEmail){
+
+        if(friendService.isFreind(authMemberDTO.getUsername(), friendEmail)){
+            List<MapLogListDTO> result = mapLogService.getMyList(friendEmail);
+            log.warn(result);
+            return result;
+        }
+
+        return null;
+    }
+
+    @GetMapping("/getFriendMapLog/{lno}")
+    public MapLogDTO getFriendList(@PathVariable("lno") long lno, @AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+        if(friendService.isFreind(authMemberDTO.getUsername(), lno)){
+            MapLogDTO result = mapLogService.getLog(lno);
+            log.warn(result);
+            return result;
+        }
+
+        return null;
     }
 
     @GetMapping("/display")

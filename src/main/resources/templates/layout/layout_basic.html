@@ -255,6 +255,7 @@
 <!--    친구기능 스크립트 부분   -->
     <script th:inline="javascript">
 
+        // onClick 호출 함수
         function btnOnClick(ele){
             console.log('넘겨받은 이메일값'+$(ele).data("email"));
             postFriend($(ele).data("email"), ele);
@@ -262,7 +263,26 @@
         function friendReceiveAction(ele){
             receiveFriendAction($(ele).data("option"),$(ele).data("email"),ele);
         }
+        function getFriendMapLogList(ele){
 
+            var data = {"friendEmail":$(ele).data("email")};
+
+            $.ajax({
+                type: "GET",
+                url: "/getFriendMapLogList",
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (e) {
+                    console.log('fail');
+                }
+            });
+        }
+
+
+        // 친구기능 ajax 함수
         function getFriendList(){
             $.ajax({
                 type: "GET",
@@ -272,7 +292,7 @@
                     console.log(data)
                     var friendLi = "";
                     data.forEach(friend => {
-                        friendLi += '<li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img src="../images/map.png" class="friend_profile_home"></li>'
+                        friendLi += '<li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-email="'+friend.email+'" src="../images/map.png" class="friend_profile_home"></li>'
                     })
                     $('#main-friend-list').html(friendLi)
                 },

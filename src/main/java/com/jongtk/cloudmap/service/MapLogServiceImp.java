@@ -79,5 +79,18 @@ public class MapLogServiceImp implements MapLogService{
         return null;
     }
 
+    @Override
+    public MapLogDTO getLog(long lno) {
+        MapLogDTO result;
+
+            Optional<MapLog> maplog = mapLogRepository.findById(lno);
+
+            if (maplog.isPresent()) {
+                result = entityToDTO(maplog.get());
+                return result;
+            }
+        return null;
+    }
+
 }
 
