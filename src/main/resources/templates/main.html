@@ -3,37 +3,55 @@
 <th:block th:replace="~{/layout/layout_basic:: setContent(~{this:: content})}">
     <th:block th:fragment="content">
         <div id="map"></div>
-        <div class="wrap" id="write">
-            <div class="info" id="info">
-                <div class="title">
+        <div id="write-alert">
+            <div class="write-section" id="write-section">
+                <div class="write-title">
                     CloudMap
                     <div class="close" onclick="closeWriteOverlay()" title="닫기"></div>
                 </div>
-                <div class="body">
+                <div class="write-body">
                     <div class="desc">
-                        <div class="ellipsis" id="jibun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
-                        <div class="ellipsis" id="lat" hidden></div>
-                        <div class="ellipsis" id="lng" hidden></div>
-                        <div class="write"><button class="write-btn" id="write">일지 작성하기</button></div>
+                        <div class="write-info" id="ji-bun">주소가 뜨지 않을 경우 한번 더 클릭 해주세요</div>
+                        <div class="write-info" id="lat" hidden></div>
+                        <div class="write-info" id="lng" hidden></div>
+                        <div class="write-btn-style"><button class="write-btn" id="write">일지 작성하기</button></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="wrap" id="read">
-            <div class="read">
-                <div class="title">
-
+        <div id="my-read">
+            <div class="read-section">
+                <div class="read-title">
                     <div>CloudMap</div>
-                    <div class="closes" onclick="closeReadInfoWindow()" title="닫기"></div>
+                    <div class="close" onclick="closeReadInfoWindow()" title="닫기"></div>
                 </div>
-                <div class="body">
+                <div class="read-body">
                     <div class="desc">
-                        <div class="title" id="titles"></div>
-                        <div class="title" id="lno" hidden></div>
+                        <div class="read-info" id="my-title"></div>
+                        <div class="read-info" id="my-lno" hidden></div>
 
-                        <div class="read">
+                        <div class="read-btn-style">
                             <div class="heart" onclick="closeReadInfoWindow()" title="닫기"></div>
-                            <button class="read-btn" id="detail">일지확인</button>
+                            <button class="read-btn" id="my-detail">일지확인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="friend-read">
+            <div class="read-section">
+                <div class="read-title">
+                    <div>CloudMap</div>
+                    <div class="close" onclick="closeReadInfoWindow()" title="닫기"></div>
+                </div>
+                <div class="read-body">
+                    <div class="desc">
+                        <div class="read-info" id="friend-title"></div>
+                        <div class="read-info" id="friend-lno" hidden></div>
+
+                        <div class="read-btn-style">
+                            <div class="heart" onclick="closeReadInfoWindow()" title="닫기"></div>
+                            <button class="read-btn" id="friend-detail">일지확인</button>
                         </div>
                     </div>
                 </div>

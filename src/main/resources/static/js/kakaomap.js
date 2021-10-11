@@ -3,37 +3,27 @@ var  mapOption = {
     center: new kakao.maps.LatLng(37.404088, 126.930657), // 지도의 중심좌표
     level: 4 // 지도의 확대 레벨
 };
-
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+//위치정보 동의
 if (navigator.geolocation) {
-
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function(position) {
         var lat = position.coords.latitude, // 위도
             lon = position.coords.longitude; // 경도
         var locPosition = new kakao.maps.LatLng(lat, lon)
            map.setCenter(locPosition);
-
-
-
-
     });
-
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+} else {
     var locPosition = new kakao.maps.LatLng(124.848488, 33.474968)
     map.setCenter(locPosition);
 }
 
-
-
-
+//알림창 마커 이미지
 var writeImageSrc = "https://img.icons8.com/material/96/000000/marker--v1.png"
 var writeImageSize = new kakao.maps.Size(45, 45);
 var writearkerImage = new kakao.maps.MarkerImage(writeImageSrc, writeImageSize);
 // 지도를 클릭한 위치에 표출할 마커입니다
 var writeMarker = new kakao.maps.Marker({
-    // 지도 중심좌표에 마커를 생성합니다 
-    //position: map.getCenter(),
     image: writearkerImage
 });
 
@@ -46,73 +36,55 @@ var writeInfoWindow = new kakao.maps.InfoWindow({
     yAnchor: 1.42
 });
 
-writeInfoWindow.setContent(document.getElementById('write').innerHTML);
-// 지도 클릭 이벤트
+writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
+
 var start = true;
+// 지도 클릭 이벤트
+var myLogin = true;
+
 kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
+    if(myLogin) {
+        searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
+            if (status === kakao.maps.services.Status.OK) {
 
-    searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
+                closeReadInfoWindow();
+                var jibun = result[0].address.address_name
 
-            closeReadInfoWindow();
-            var jibun = result[0].address.address_name
-            console.log(jibun)
-            document.getElementById("jibun").innerHTML = jibun;
-            var latlng = mouseEvent.latLng;
-            document.getElementById("lat").innerHTML = latlng.getLat();
-            document.getElementById("lng").innerHTML = latlng.getLng();
+                document.getElementById("ji-bun").innerHTML = jibun;
+                var latlng = mouseEvent.latLng;
+                document.getElementById("lat").innerHTML = latlng.getLat();
+                document.getElementById("lng").innerHTML = latlng.getLng();
 
-            // 클릭한 위도, 경도 정보를 가져옵니다
-            console.log(writeMarker.getPosition())
-            if (!writeMarker) {
-                console.log("마커없음")
+                if (!writeMarker) {
+                    console.log("마커없음")
+                }
+
+                if (start) {
+                    writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
+                    start = false;
+                }
+                // 마커 위치를 클릭한 위치로 옮깁니다
+                writeMarker.setMap(map);
+                writeMarker.setPosition(latlng);
+
+                if (clickWriteInfoWindow) {
+                    clickWriteInfoWindow.close();
+                }
+                writeInfoWindow.setPosition(writeMarker.getPosition());
+                writeInfoWindow.open(map, writeMarker);
+
+                clickWriteInfoWindow = writeInfoWindow;
             }
-
-            if (start) {
-                writeInfoWindow.setContent(document.getElementById('write').innerHTML);
-                start = false;
-            }
-
-
-
-
-            // 마커 위치를 클릭한 위치로 옮깁니다
-            writeMarker.setMap(map);
-            writeMarker.setPosition(latlng);
-
-            var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-            message += '경도는 ' + latlng.getLng() + ' 입니다';
-            console.log(message);
-            // infowindow.open(map, marker);
-            if (clickWriteInfoWindow) {
-                console.log("없에기")
-                clickWriteInfoWindow.close();
-            }
-            console.log("생성")
-            writeInfoWindow.setPosition(writeMarker.getPosition());
-            writeInfoWindow.open(map, writeMarker);
-
-            clickWriteInfoWindow = writeInfoWindow;
-
-        }
-    });
-
+        });
+    }
 });
 
-// 마커에 클릭이벤트를 등록합니다
-kakao.maps.event.addListener(writeMarker, 'click', function () {
-    // 마커 위에 인포윈도우를 표시합니다
 
-});
 
+//작성 알림창 끄기
 function closeWriteOverlay() {
     writeInfoWindow.close();
     writeMarker.setMap(null);
-}
-
-function searchAddrFromCoords(coords, callback) {
-    // 좌표로 행정동 주소 정보를 요청합니다
-    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
 }
 
 function searchDetailAddrFromCoords(coords, callback) {
@@ -127,57 +99,90 @@ function searchDetailAddrFromCoords(coords, callback) {
 
 var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 var readMarkerArray = [];
+var markersArray = [];
+getMyMapLogList();
+function getFriendMapLogList(ele){
 
-$.get("./getMyList", function(data) {
+
+    writeInfoWindow.close();
+    writeMarker.setMap(null);
+    closeReadInfoWindow();
+    var data = {"friendEmail":$(ele).data("email")};
+    $.ajax({
+        type: "GET",
+        url: "/getFriendMapLogList",
+        data: data,
+        dataType: 'json',
+        success: function (data) {
+            myLogin = false
+            var name = "friend-read"
+            var title = "friend-title"
+            var lno = "friend-lno"
+            getMapLogList(data, name, title, lno);
+
+        },
+        error: function (e) {
+            console.log('fail');
+        }
+    });
+}
+function getMyMapLogList() {
+
+    writeInfoWindow.close();
+
+    writeMarker.setMap(null);
+    closeReadInfoWindow();
+    $.get("./getMyList", function (data) {
+        myLogin = true;
+        var name = "my-read"
+        var title = "my-title"
+        var lno = "my-lno"
+        getMapLogList(data, name, title, lno);
+
+    });
+}
+
+function getMapLogList(data, name, title, lno){
+    for(var i = 0; i<markersArray.length; i++){
+        markersArray[i].setMap(null);
+    }
+    markersArray = [];
     for (var i = 0; i < data.length; i++) {
-        // 마커 이미지의 이미지 크기 입니다
         var imageSize = new kakao.maps.Size(30, 43);
-
-        // 마커 이미지를 생성합니다
         var markerImage = new kakao.maps.MarkerImage(imageListSrc, imageSize);
 
-
         // 마커를 생성합니다
-        var markers = new kakao.maps.Marker({
-            map: map, // 마커를 표시할 지도
-            position: new kakao.maps.LatLng(data[i].lat, data[i].lng), // 마커를 표시할 위치
-            title: data[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            image: markerImage // 마커 이미지
+        var markers= new kakao.maps.Marker({
         });
+        markersArray.push(markers);
+        markersArray[i].setMap(map);
+        markersArray[i].setPosition(new kakao.maps.LatLng(data[i].lat, data[i].lng));
+        markersArray[i].setTitle(data[i].title);
+        markersArray[i].setImage(markerImage);
 
         var titleInfo;
-        if(data[i].title.length>6){
-            titleInfo = data[i].title.substring(0, 13)+"...";
-        }else{
+        if (data[i].title.length > 6) {
+            titleInfo = data[i].title.substring(0, 13) + "...";
+        } else {
             titleInfo = data[i].title;
         }
-        var lno = data[i].lno;
-
-        document.getElementById("titles").innerHTML = titleInfo;
-        document.getElementById("lno").innerHTML = lno;
+        var lnoInfo = data[i].lno;
+        document.getElementById(title).innerHTML = titleInfo;
+        document.getElementById(lno).innerHTML = lnoInfo;
 
         var readInfowindow = new kakao.maps.InfoWindow({
-            content: document.getElementById('read').innerHTML // 인포윈도우에 표시할 내용
+            content: document.getElementById(name).innerHTML // 인포윈도우에 표시할 내용
         });
         readMarkerArray.push(readInfowindow);
-
-        kakao.maps.event.addListener(markers, 'click', makeOverListener(map, markers, readInfowindow));
-        //  kakao.maps.event.addListener(markers, 'mouseout', makeOutListener(infowindow));
-
-
+        kakao.maps.event.addListener(markersArray[i], 'click', makeOverListener(map, markersArray[i], readInfowindow));
     }
-});
-
-
-
+}
 // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
 function makeOverListener(map, markers, readInfowindow) {
-
     return function () {
         closeWriteOverlay();
         closeReadInfoWindow();
         readInfowindow.open(map, markers);
-
     };
 }
 function closeReadInfoWindow() {
@@ -185,150 +190,111 @@ function closeReadInfoWindow() {
         readMarkerArray[idx].close();
     }
 }
-
-
 /* ************************************************************************ */
 
 /* ************************************************************************ */
-
 // 마커를 담을 배열입니다
 var markers = [];
-
-
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
-
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
 // 키워드로 장소를 검색합니다
 searchPlaces();
-
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-
     var keyword = document.getElementById('keyword').value;
-
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
         //alert('키워드를 입력해주세요!');
         return false;
     }
-
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch( keyword, placesSearchCB);
 }
-
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
         displayPlaces(data);
-
         // 페이지 번호를 표출합니다
         displayPagination(pagination);
-
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
         alert('검색 결과가 존재하지 않습니다.');
         return;
-
     } else if (status === kakao.maps.services.Status.ERROR) {
-
         alert('검색 결과 중 오류가 발생했습니다.');
         return;
-
     }
 }
 
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
-
     var listEl = document.getElementById('placesList'),
         menuEl = document.getElementById('menu_wrap'),
         fragment = document.createDocumentFragment(),
         bounds = new kakao.maps.LatLngBounds(),
         listStr = '';
-
     // 검색 결과 목록에 추가된 항목들을 제거합니다
     removeAllChildNods(listEl);
-
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-
     for ( var i=0; i<places.length; i++ ) {
-
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i),
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
-
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function(marker, title) {
             kakao.maps.event.addListener(marker, 'click', function() {
+                if(myLogin){
+                    searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
+                        if (status === kakao.maps.services.Status.OK) {
+                            writeMarker.setMap(null);
+                            closeReadInfoWindow();
+                            $("#write-section").attr("class", "search-write-section");
+                            var jibun = result[0].address.address_name
 
-                searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
-
-                    if (status === kakao.maps.services.Status.OK) {
-                        writeMarker.setMap(null);
-                        closeReadInfoWindow();
-                        $("#info").attr("class", "info2");
-                        var jibun = result[0].address.address_name
-                        console.log(jibun)
-                        document.getElementById("jibun").innerHTML = jibun;
-                        var latlng = marker.getPosition();
-                        document.getElementById("lat").innerHTML = latlng.getLat();
-                        document.getElementById("lng").innerHTML = latlng.getLng();
-
-                        // 클릭한 위도, 경도 정보를 가져옵니다
-                        console.log(writeMarker.getPosition())
-                        if (!writeMarker) {
-                            console.log("마커없음")
+                            document.getElementById("ji-bun").innerHTML = jibun;
+                            var latlng = marker.getPosition();
+                            document.getElementById("lat").innerHTML = latlng.getLat();
+                            document.getElementById("lng").innerHTML = latlng.getLng();
+                            // 클릭한 위도, 경도 정보를 가져옵니다
+                            if (!writeMarker) {
+                                console.log("마커없음")
+                            }
+                            if (start) {
+                                writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
+                                start = false;
+                            }
+                            if (clickWriteInfoWindow) {
+                                console.log("없에기")
+                                clickWriteInfoWindow.close();
+                            }
+                            writeInfoWindow.setPosition(latlng);
+                            writeInfoWindow.open(map, marker);
+                            clickWriteInfoWindow = writeInfoWindow;
                         }
+                    });
+                }
 
-                        if (start) {
-                            writeInfoWindow.setContent(document.getElementById('write').innerHTML);
-                            start = false;
-                        }
-
-
-
-
-                        if (clickWriteInfoWindow) {
-                            console.log("없에기")
-                            clickWriteInfoWindow.close();
-                        }
-                        writeInfoWindow.setPosition(latlng);
-                        writeInfoWindow.open(map, marker);
-
-                        clickWriteInfoWindow = writeInfoWindow;
-
-                    }
-                });
             });
-
             kakao.maps.event.addListener(marker, 'mouseout', function() {
                 infowindow.close();
             });
-
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
-
                 map.setCenter(marker.getPosition())
             };
-
             itemEl.onmouseout =  function () {
                 infowindow.close();
             };
         })(marker, places[i].place_name);
-
         fragment.appendChild(itemEl);
     }
 
@@ -342,12 +308,10 @@ function displayPlaces(places) {
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
-
     var el = document.createElement('li'),
         itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
             '<div class="info">' +
             '   <h5>' + places.place_name + '</h5>';
-
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
             '   <span class="jibun gray">' +  places.address_name  + '</span>';
@@ -381,7 +345,6 @@ function addMarker(position, idx, title) {
 
     marker.setMap(map); // 지도 위에 마커를 표출합니다
     markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
     return marker;
 }
 
