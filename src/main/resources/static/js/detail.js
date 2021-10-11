@@ -1,20 +1,5 @@
-
-
-
-
-
-$('body').on('click', '.btn-save', function (e) {
-  
-});
-
-jQuery(document).ready(function () {
-
-
-
-});
-
-$(document).on('click', '#detail', function () {
-    var lno = document.getElementById("lno").innerHTML;
+$(document).on('click', '#my-detail', function () {
+    var lno = document.getElementById("my-lno").innerHTML;
     console.log(lno)
     $.ajax({
         type: "GET",
@@ -23,43 +8,71 @@ $(document).on('click', '#detail', function () {
         contentType: false,
         dataType: 'json',
         success: function (data) {
-
-            console.log(data.imageDTOList)
-            if(data.imageDTOList.length === 0 ){
-                $(".images").css("display", "none");
-                $("#content").css("height", "660px");
-            }else{
-                console.log("없음")
-                $(".images").css("display", "block");
-                $("#content").css("height", "380px");
-            }
-            $('#width-scroll').empty()
-            $('#title').val(data.title);
-            $('#content').val(data.content);
-            //$('#image').attr("src","display?imgUrl="+imageURL);
-
-            data.imageDTOList.forEach(i => {
-               console.log(i)
-                var html = '<li><img id="image" src="display?imgUrl='+i.imageURL+'" > </li>'
-                $('#width-scroll').append(html)
-            })
-
-            $("#width-scroll").on('mousewheel', function (e) {
-                var wheelDelta = e.originalEvent.wheelDelta;
-                if (wheelDelta > 0) {
-                    $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
-                } else {
-                    $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
-                }
-            });
-
-
+            detailFile(data)
+            $(".friend-like").attr("class", "my-like");
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
             alert('fail');
         }
     });
+    getLike(lno)
+    $('.detail.modal').modal({
+        remote : contextpath+'server/detail.html'
+    });
+});
+
+$(document).on('click', '#friend-detail', function () {
+    var lno = document.getElementById("friend-lno").innerHTML;
+
+    $.ajax({
+        type: "GET",
+        url: "/getFriendMapLog/"+lno,
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        success: function (data) {
+            detailFile(data);
+            $(".my-like").attr("class", "friend-like");
+        },
+        error: function (e) {
+            $('#btnUpload').prop('disabled', false);
+            alert('fail');
+        }
+    });
+    getLike(lno)
+    $('.detail.modal').modal({
+        remote : contextpath+'server/detail.html'
+    });
+});
+
+function detailFile(data){
+    if(data.imageDTOList.length === 0 ){
+        $(".images").css("display", "none");
+        $("#content").css("height", "660px");
+    }else{
+        $(".images").css("display", "block");
+        $("#content").css("height", "380px");
+    }
+    $('#width-scroll').empty()
+    $('#title').val(data.title);
+    $('#content').val(data.content);
+    data.imageDTOList.forEach(i => {
+        console.log(i)
+        var html = '<li><img id="image" src="display?imgUrl='+i.imageURL+'" > </li>'
+        $('#width-scroll').append(html)
+    })
+    $("#width-scroll").on('mousewheel', function (e) {
+        var wheelDelta = e.originalEvent.wheelDelta;
+        if (wheelDelta > 0) {
+            $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+        } else {
+            $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
+        }
+    });
+}
+
+function getLike(lno){
     $.ajax({
         type: "GET",
         url: "/getLikes/?lno="+lno,
@@ -67,9 +80,6 @@ $(document).on('click', '#detail', function () {
         contentType: false,
         dataType: 'json',
         success: function (data) {
-           console.log(data.liked)
-            console.log(data)
-
             if(data.liked){
                 $("input:checkbox[id='like']").prop("checked", true);
             }else{
@@ -85,13 +95,4 @@ $(document).on('click', '#detail', function () {
             alert('fail');
         }
     });
-    $('.detail.modal').modal({
-        remote : contextpath+'server/detail.html'
-    });
-});
-$('body').on('click', '.btn-Like', function (e) {
-
-
-
-});
-
+}

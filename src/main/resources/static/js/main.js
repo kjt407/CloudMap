@@ -1,14 +1,7 @@
-/*사이드바 친구목록 창 크기 조절*/
-window.addEventListener("resize", function () {
-  var height = $('.sidebar').height() - 450;
-  console.log(height)
-  $('.box').css('height', height + 'px');
-}, true);
-
 $(document).ready(function () {
+  //친구 목록 검색 기능
   $(".search-friend-list-scroll > .friend-list > li").hide();
   $('.nav_btn').click(function () {
-    console.log("asdasdsadas")
     $('.slide-box').toggleClass('active');
   });
   $("#friend-search-bar").keyup(function () {
@@ -16,11 +9,8 @@ $(document).ready(function () {
     console.log("k : " + k)
     $(".search-friend-list-scroll > .friend-list > li").hide();
     var temp = $(".friend-list > li:contains('" + k + "')")
-    console.log(temp)
     $(temp).show();
-
     searchFriend(k);
-
     if (k === "") {
       $(".search-friend-list-scroll > .friend-list > li").hide();
     }
@@ -29,47 +19,149 @@ $(document).ready(function () {
 });
 
 
-$(document).on('click', '#write-btn', function () {
-  $('#dialog').dialog({
-    title: '일지 작성하기',
-    modal: true,
-    width: '1000',
-    height: '800',
-    resizeable: false,
-    open: function () {
-      document.getElementById("jibun-data").innerHTML = document.getElementById("jibun").innerHTML;
-      $('#summernote').summernote({
-        height: 500,                 // 에디터 높이
-        minHeight: null,             // 최소 높이
-        maxHeight: null,             // 최대 높이
-        focus: false,                  // 에디터 로딩후 포커스를 맞출지 여부
-        lang: "ko-KR",					// 한글 설정
-        placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
 
-      });
+// onClick 호출 함수
+function btnOnClick(ele){
+  console.log('넘겨받은 이메일값'+$(ele).data("email"));
+  postFriend($(ele).data("email"), ele);
+}
+function friendReceiveAction(ele){
+  receiveFriendAction($(ele).data("option"),$(ele).data("email"),ele);
+}
 
+// 친구기능 ajax 함수
+function getFriendList(){
+  $.ajax({
+    type: "GET",
+    url: "/getFriendList",
+    dataType: 'json',
+    success: function (data) {
+      console.log("data")
+      console.log(data)
+      var friendLi = "";
+      data.forEach(friend => {
+        friendLi += '<li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-email="'+friend.email+'" src="../images/map.png" class="friend_profile_home"></li>'
+      })
+      $('#main-friend-list').html(friendLi)
     },
-    buttons: {
-      "확인": function () {
-        $(this).dialog("close");
-      }, "취소": function () {
-        $(this).dialog("close");
-      }
-    },
-    background: '#fff',
-    show: {                // 애니메이션 효과 - 보여줄때
-      effect: "blind",
-      duration: 500
-    },
-    hide: {                // 애니메이션 효과 - 감출때
-      effect: "blind",
-      duration: 500
+    error: function (e) {
+      console.log('fail');
     }
   });
+}
+function getReceiveList(){
+  $.ajax({
+    type: "GET",
+    url: "/getReceiveList",
+    dataType: 'json',
+    success: function (data) {
+      console.log(data)
+      var friendLi = "";
+      data.forEach(friend => {
+        friendLi += '<li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i class="fas fa-user-plus accept-friend receive-btn" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i class="fas fa-user-minus delete-friend receive-btn" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
+      })
+      $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
+    },
+    error: function (e) {
+      console.log('fail');
+    }
+  });
+}
+function receiveFriendAction(option, targetEmail, ele){
+  var data = {"targetEmail":targetEmail};
+  var url = '';
+  if(option == 'accept'){
+    url = '/acceptFriend'
+  } else if(option == 'refuse'){
+    url = '/refuseFriend'
+  }
+
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: data,
+    dataType: 'json',
+    success: function (data) {
+      console.log(data)
+      if(data){
+        if($(ele).hasClass('receive-btn')){
+          $(ele).parent('li').remove();
+        }
+        getReceiveList();
+        getFriendList();
+        searchRefresh(ele);
+      }
+    },
+    error: function (e) {
+      console.log('fail');
+    }
+  });
+}
+function searchFriend(str){
+  var data = {"str":str};
+  $.ajax({
+    type: "GET",
+    url: "/searchFriend",
+    data: data,
+    dataType: 'json',
+    success: function (data) {
+      console.log(data)
+      var html = "";
+      data.forEach(friend => {
+        html += '<li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label>';
+        if(friend.state == 'no'){
+          html += '<a style="cursor: pointer" onclick="btnOnClick(this)" data-search="post" data-email="'+friend.email+'">'+'친구신청'+'</a>';
+        }else if(friend.state == 'friend'){
+          html += '<a >'+'친구임'+'</a>';
+        }else if(friend.state == 'sent'){
+          html += '<a >'+'요청중'+'</a>';
+        }else if(friend.state == 'received'){
+          html += '<a style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-email="'+friend.email+'">'+'요청수락'+'</a>';
+        }
+        html += '</li>'
+      })
+      $(".search-friend-list-scroll > ul.friend-list").html(html);
+    },
+    error: function (e) {
+      console.log('fail');
+    }
+  });
+}
+function postFriend(targetEmail,ele){
+  var data = {"targetEmail":targetEmail};
+  $.ajax({
+    type: "POST",
+    url: "/postFriend",
+    data: data,
+    dataType: 'json',
+    success: function (data) {
+      console.log(data)
+      if(data){
+        alert("친구요청완료");
+        searchRefresh(ele);
+      }
+    },
+    error: function (e) {
+      console.log('fail');
+    }
+  });
+}
+
+function searchRefresh(ele){
+  if($(ele).data('search')){
+    if($(ele).data('search') == 'post'){
+      $(ele).replaceWith('<a >'+'요청중'+'</a>');
+    }else if($(ele).data('search') == 'receive'){
+      $(ele).replaceWith('<a >'+'친구임'+'</a>');
+    }
+  }
+  return;
+}
 
 
-
-
+$(document).ready(function(){
+  getFriendList();
+  // getReceiveList();
 });
 
 

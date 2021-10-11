@@ -173,79 +173,40 @@ label #friend_alert_btn2:hover{ color:#19B3D3 }
 
 .mobile_nav{ display: none; }
 
-/*반응형 작업*/
-@media screen and (max-width: 780px){
-  .sidebar{ display: none; }
-  #sidebar_btn{ display: none; }
-  .mobile_nav{ display: block; }
-
-  /*상단바*/
-  .nav_bar{ z-index: 2; position: fixed; background-color: #222; width: 100%; margin-top: 0px; display: flex; padding: 10px 20px; }
-  .nav_bar .mobile_profile_image{ width: 50px; height: 50px; border-radius: 50%; }
-  .nav_bar .nav_btn{ z-index: 2; position: absolute; right: 30px; line-height: 50px; color: #fff; font-size: 35px; cursor: pointer; transition: 0.5s; transition-property: color; }
-  .nav_bar .nav_btn:hover{ color: #19B3D3; }
 
 
-  /*친구목록*/
-  .slide-box { top: -1000px; position: absolute; z-index: 1; background: #2f323A; height: 100vh; width: 100%; transition: 0.5s; }
-  .slide-box .friend { margin-top: 140px; height: calc(100% - 200px); overflow-y: scroll; }
-  .slide-box .friend::-webkit-scrollbar { display: none; }
-  .slide-box .friend .friend-list{ margin-left: -40px; margin-right: 0px;}
-  .slide-box .friend .friend-list li{ display: flex; text-align: center; }
-  .slide-box .friend .friend-list li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px;  margin-top: 12.5px; margin-left: 30px;}
-  .slide-box .friend .friend-list li .friend_profile_name{ color: #fff; font-size: 18px; margin-bottom: 0px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box;  }
-  .slide-box .friend .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px; margin-right: 30px;}
-  .slide-box .friend .friend-list li:hover{ color: #212022; background: #fff; }
-  .slide-box .friend .friend-list li:hover .friend_profile_name{ color: #212022;}
 
-  /*로그아웃*/
-  .slide-box .logout{ font-size: 30px; width: 100%; height: 70px; bottom: 0px; position: absolute; text-align: center; background-color: #212022; text-decoration: none; transition: 0.5s; }
-  .slide-box .logout a{ line-height: 70px; color: white; text-decoration: none; }
-  .slide-box .logout:hover{ color: white;  background: rgb(252, 94, 94); }
+.write-section .write-title {padding: 5px 0 0 10px;height: 30px;background: #222;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
+.write-section .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.write-section .close:hover {cursor: pointer;}
+.write-section .write-body { background: #2f323A; padding: 5px 10px; position: relative; color: white;}
+.write-section .desc {position: relative;height: 60px;}
+.write-section .write-info {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.write-section .write-btn-style {margin-top: 10px;}
+.write-section .write-btn-style .write-btn {width: 100%; background: #222; border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
+.write-section .write-btn-style .write-btn:hover {background: rgb(81, 78, 83); cursor: pointer;}
 
-  /*콘텐츠*/
-  .content{ margin-right: 0; margin-top: 70px; }
-
-  .active{ top: 0px; transition: 0.5s; }
-
-}
-
-.wrap .info { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;}
-.info .title {padding: 5px 0 0 10px;height: 30px;background: #222;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
-.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.info .close:hover {cursor: pointer;}
-.info .body { background: #2f323A; padding: 5px 10px; position: relative; color: white;}
-.info .desc {position: relative;height: 60px;}
-.info .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.info .desc .jibun {font-size: 11px;color: #888;margin-top: -2px; color: white;}
-.info .desc .write {margin-top: 10px;}
-.info .desc .write .write-btn {width: 100%; background: #222; border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
-.info .desc .write .write-btn:hover {background: rgb(81, 78, 83); cursor: pointer;}
-
-.wrap .info2 { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;}
-.info2 .title {padding: 5px 0 0 10px;height: 30px;background: rgb(0, 2, 145);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
-.info2 .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.info2 .close:hover {cursor: pointer;}
-.info2 .body { background: rgb(106, 151, 209); padding: 5px 10px; position: relative; color: white;}
-.info2 .desc {position: relative;height: 60px;}
-.info2 .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.info2 .desc .jibun {font-size: 11px;color: #888;margin-top: -2px; color: white;}
-.info2 .desc .write {margin-top: 10px;}
-.info2 .desc .write .write-btn {width: 100%; background: rgb(0, 2, 145); border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
-.info2 .desc .write .write-btn:hover {background: rgb(0, 2, 99); cursor: pointer;}
+.search-write-section .write-title {padding: 5px 0 0 10px;height: 30px;background: rgb(0, 2, 145);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
+.search-write-section .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.search-write-section .close:hover {cursor: pointer;}
+.search-write-section .write-body { background: rgb(106, 151, 209); padding: 5px 10px; position: relative; color: white;}
+.search-write-section .desc {position: relative;height: 60px;}
+.search-write-section .write-info {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.search-write-section .write-btn-style {margin-top: 10px;}
+.search-write-section .write-btn-style .write-btn {width: 100%; background: rgb(0, 2, 145); border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px;}
+.search-write-section .write-btn-style .write-btn:hover {background: rgb(0, 2, 99); cursor: pointer;}
 
 
-.wrap .read { background: #fff; width: 286px; border-radius: 5px;border-bottom: 2px solid #ccc;overflow: hidden;}
-.read .title {padding: 5px 0 0 10px;height: 30px;background: rgb(255, 194, 0);font-size: 18px;font-weight: bold; color: black; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
-.read .closes {position: absolute; top: 6px;right: 6px;  width: 17px;height: 17px; filter: opacity(1) drop-shadow(0 0 0 black); background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.read .closes:hover {cursor: pointer; filter: opacity(0.5) drop-shadow(0 0 0 red);}
-.read .body { background: rgb(255, 245, 210); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid rgb(255, 194, 0);}
-.read .body .title{ background: rgb(255, 245, 210);  }
-.read .desc {position: relative; height: 60px; width: 150px;}
-.read .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.read .desc .read {margin-top: 10px;}
-.read .desc .read .read-btn {width: 100%; background: rgb(255, 245, 210); border: none; height: 25px; text-align: center; color: black; display: inline-block; text-decoration: none; line-height: 20px; font-weight: bold;}
-.read .desc .read .read-btn:hover {background: rgb(255, 230, 140); cursor: pointer;}
+.read-section .read-title {padding: 5px 0 0 10px;height: 30px;background: rgb(255, 194, 0);font-size: 18px;font-weight: bold; color: black; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
+.read-section .close {position: absolute; top: 6px;right: 6px;  width: 17px;height: 17px; filter: opacity(1) drop-shadow(0 0 0 black); background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.read-section .close:hover {cursor: pointer; filter: opacity(0.5) drop-shadow(0 0 0 red);}
+.read-section .read-body { background: rgb(255, 245, 210); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid rgb(255, 194, 0);}
+.read-section .read-body .read-info{ background: rgb(255, 245, 210);  color: black}
+.read-section .desc {position: relative; height: 60px; width: 150px;}
+.read-section .desc .read-info {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.read-section .desc .read-btn-style {margin-top: 10px;}
+.read-section .desc .read-btn-style .read-btn {width: 100%; background: rgb(255, 245, 210); border: none; height: 25px; text-align: center; color: black; display: inline-block; text-decoration: none; line-height: 20px; font-weight: bold;}
+.read-section .desc .read-btn-style .read-btn:hover {background: rgb(255, 230, 140); cursor: pointer;}
 
 
 
