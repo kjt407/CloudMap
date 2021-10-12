@@ -1,5 +1,6 @@
 var desc = false;
 var lnoDesc = 0;
+
 $(document).on('click', '#my-detail', function () {
     var lno = document.getElementById("my-lno").innerHTML;
     console.log(lno)
@@ -13,6 +14,10 @@ $(document).on('click', '#my-detail', function () {
             detailFile(data)
 
             $(".check-like").attr("data-lno", lno)
+            $(".btn-modify").remove();
+            $(".btn-delete").remove();
+            $(".btsn").append("<button type='button' class='btn-modify'>수정하기</button>" +
+                "<button type='button' class='btn-delete'>삭제하기</button>")
             desc = false;
             lnoDesc = lno;
         },
@@ -42,6 +47,8 @@ $(document).on('click', '#friend-detail', function () {
             desc = true;
             lnoDesc = lno;
             $(".check-like").attr("data-lno", lno)
+            $(".btn-modify").remove();
+            $(".btn-delete").remove();
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
@@ -191,4 +198,6 @@ $(".like").change(function(){
     }
 
 });
+
+
 

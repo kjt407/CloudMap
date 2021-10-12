@@ -101,13 +101,32 @@ var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mar
 var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
+
+$(document).on("click", "#go-my-map", function () {
+    // $("#go-my-map").attr("disabled", true)
+    // $("#go-my-map").attr("class", "go-my-map-btn-off")
+    // $("#go-my-map").html("")
+    $(".from-friend").remove();
+    $(".from-friend-name").remove();
+    getMyMapLogList();
+
+
+});
+
 function getFriendMapLogList(ele){
+
+
 
 
     writeInfoWindow.close();
     writeMarker.setMap(null);
     closeReadInfoWindow();
+    console.log('ele')
+    console.log(ele)
+
     var data = {"friendEmail":$(ele).data("email")};
+    //$('.friend_profile_home').data('email-check', $(ele).data("email"));
+
     $.ajax({
         type: "GET",
         url: "/getFriendMapLogList",
@@ -115,10 +134,21 @@ function getFriendMapLogList(ele){
         dataType: 'json',
         success: function (data) {
             myLogin = false
+
             var name = "friend-read"
             var title = "friend-title"
             var lno = "friend-lno"
             getMapLogList(data, name, title, lno);
+
+
+            $(".from-friend").remove();
+            $(".from-friend-name").remove();
+            $(".from-friend-info").append(" <span class='from-friend'> from </span><span class='from-friend-name'>"+$(ele).data("name")+"</span>");
+            // $("#go-my-map").attr("disabled", false)
+            // $("#go-my-map").attr("class", "go-my-map-btn")
+            // $("#go-my-map").html("나의 지도로 가기")
+
+            $(".friend_profile_home").attr("src", "../images/1.jpg")
 
         },
         error: function (e) {

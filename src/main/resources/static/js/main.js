@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   //친구 목록 검색 기능
   $(".search-friend-list-scroll > .friend-list > li").hide();
@@ -40,14 +41,15 @@ function getFriendList(){
       console.log(data)
       var friendLi = "";
       data.forEach(friend => {
-
+        
         //프로필이미지 선언
         var profileImg = '/images/default_profile.png';
         if(friend.profileImg){
           profileImg = friend.profileImg;
         }
 
-        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-email="'+friend.email+'" src="../images/map.png" class="friend_profile_home"></li>'
+        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/map.png" class="friend_profile_home"></li>'
+
       })
       $('#main-friend-list').html(friendLi)
     },
