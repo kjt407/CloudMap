@@ -15,6 +15,9 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 
     Optional<Likes> findByMemberAndMapLog(Member member, MapLog mapLog);
 
+    @Query("select likes from Likes likes where likes.member = :member order by likes.idx desc ")
+    List<Likes> findByMember(Member member);
+
     @Query("select likes from Likes likes where likes.mapLog = :mapLog")
     List<Likes> getLikes (MapLog mapLog);
 

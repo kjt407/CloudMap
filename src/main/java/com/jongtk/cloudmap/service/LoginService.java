@@ -34,6 +34,7 @@ public class LoginService {
                 .name(dto.getName())
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .fromSocial(false)
+                .socialImg(false)
                 .build();
         member.addMemeberRole(MemberRole.USER);
 
