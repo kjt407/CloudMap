@@ -30,6 +30,8 @@ public class Member extends BaseEntity{
 
     private boolean fromSocial;
 
+    private boolean socialImg;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private Set<MemberRole> roleSet = new HashSet<>();

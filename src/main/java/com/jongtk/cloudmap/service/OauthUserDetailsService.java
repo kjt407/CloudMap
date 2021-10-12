@@ -51,17 +51,20 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
         String email = null;
         Member member = null;
         String name = null;
+        String profileImg = null;
         Map<String, Object> attr = new HashMap<>();
 
         if(clientName.equals("Google")){
             email = oAuth2User.getAttribute("email");
             attr.put("picture",oAuth2User.getAttribute("picture"));
+            profileImg = oAuth2User.getAttribute("picture");
         }else if(clientName.equals("kakao")){
             Map<String, Object> kakaoAccount = (Map<String, Object>) oAuth2User.getAttribute("kakao_account");
             Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
             attr.put("picture",profile.get("profile_image_url"));
             email = (String) kakaoAccount.get("email");
             name = (String) profile.get("nickname");
+            profileImg = (String) profile.get("profile_image_url");
         }
         attr.put("clientName",clientName);
 
@@ -71,9 +74,9 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
         }
 
         if(name == null){
-            member = saveSocialMember(email);
+            member = saveSocialMember(email,profileImg);
         }else {
-            member = saveSocialMember(email,name);
+            member = saveSocialMember(email,name,profileImg);
         }
 
 
@@ -93,7 +96,7 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
     }
 
 
-    private Member saveSocialMember(String email){
+    private Member saveSocialMember(String email, String profileImg){
         Optional<Member> result = memberRepository.findByEmail(email,true);
 
         if(result.isPresent()){
@@ -105,6 +108,8 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
                 .email(email)
                 .password(passwordEncoder.encode("1111"))
                 .fromSocial(true)
+                .socialImg(true)
+                .profileImg(profileImg)
                 .build();
         member.addMemeberRole(MemberRole.USER);
 
@@ -113,11 +118,16 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
         return member;
     }
 
-    private Member saveSocialMember(String email,String name){
+    private Member saveSocialMember(String email, String name, String profileImg){
         Optional<Member> result = memberRepository.findByEmail(email,true);
 
         if(result.isPresent()){
-            return result.get();
+            Member member = result.get();
+            if (member.isSocialImg() && member.getProfileImg() != profileImg){
+                member.setProfileImg(profileImg);
+                memberRepository.save(member);
+            }
+            return member;
             // 이미 가입된경우 return
         }
 
@@ -126,6 +136,8 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
                 .name(name)
                 .password(passwordEncoder.encode("completed"))
                 .fromSocial(true)
+                .socialImg(true)
+                .profileImg(profileImg)
                 .build();
         member.addMemeberRole(MemberRole.USER);
 
