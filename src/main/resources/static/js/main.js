@@ -41,7 +41,15 @@ function getFriendList(){
       console.log(data)
       var friendLi = "";
       data.forEach(friend => {
-        friendLi += '<li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/map.png" class="friend_profile_home"></li>'
+        
+        //프로필이미지 선언
+        var profileImg = '/images/default_profile.png';
+        if(friend.profileImg){
+          profileImg = friend.profileImg;
+        }
+
+        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/map.png" class="friend_profile_home"></li>'
+
       })
       $('#main-friend-list').html(friendLi)
     },
@@ -59,7 +67,13 @@ function getReceiveList(){
       console.log(data)
       var friendLi = "";
       data.forEach(friend => {
-        friendLi += '<li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i class="fas fa-user-plus accept-friend receive-btn" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i class="fas fa-user-minus delete-friend receive-btn" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
+        //프로필이미지 선언
+        var profileImg = '/images/default_profile.png';
+        if(friend.profileImg){
+          profileImg = friend.profileImg;
+        }
+
+        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i class="fas fa-user-plus accept-friend receive-btn" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i class="fas fa-user-minus delete-friend receive-btn" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
       })
       $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
     },
@@ -109,7 +123,14 @@ function searchFriend(str){
       console.log(data)
       var html = "";
       data.forEach(friend => {
-        html += '<li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label>';
+
+        //프로필이미지 선언
+        var profileImg = '/images/default_profile.png';
+        if(friend.profileImg){
+          profileImg = friend.profileImg;
+        }
+
+        html += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label>';
         if(friend.state == 'no'){
           html += '<a style="cursor: pointer" onclick="btnOnClick(this)" data-search="post" data-email="'+friend.email+'">'+'친구신청'+'</a>';
         }else if(friend.state == 'friend'){

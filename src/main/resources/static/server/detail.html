@@ -11,14 +11,14 @@
 	<button type="button" id="detail-close" class="btn-close" data-dismiss="modal"><img src="../images/close.png"></button>
 		<div class="detail">
 			<div class="title">
-				<input class="input-title" name="title" id="title" placeholder="제목">
+				<input class="input-title" name="title" id="title" placeholder="제목" readonly>
 			</div>
 			<div class="images">
 				<ul id="width-scroll">
 				</ul>
 			</div>
 			<div class="content">
-				<textarea id="content" name="content" placeholder="내용을 입력 해주세요."></textarea>
+				<textarea id="content" name="content" placeholder="내용을 입력 해주세요." readonly></textarea>
 			</div>
 			<div class="footer">
 				
@@ -28,8 +28,7 @@
 
 				</div>
 				<div class="btsn">
-					<button type="button" class="btn-modify">수정하기</button>
-					<button type="button" class="btn-modify">삭제하기</button>
+
 				</div>
 				
 			</div>
@@ -37,4 +36,13 @@
 </body>
 
 <script src="../js/detail.js"></script>
+<script>
+	$(document).on('click', '.btn-modify', function () {
+		console.log("수정")
+	});
+
+	$(document).on('click', '.btn-delete', function () {
+		console.log("삭제")
+	});
+</script>
 </html>

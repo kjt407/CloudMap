@@ -88,6 +88,24 @@ body { overflow: hidden; }
     color: white;
 }
 
+.detail .footer  .btn-delete{
+
+    height: 35px;
+    width: 100px;
+    background: rgb(255, 224, 219);
+    color: black;
+    font-size: 16px;
+    border: 3px solid tomato;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: 0.4s;
+}
+.detail .btn-delete:hover{
+    background: tomato;
+    color: white;
+}
+
 .btn-close{
     position: fixed;
     right: 0px;
