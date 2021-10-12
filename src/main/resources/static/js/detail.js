@@ -1,3 +1,5 @@
+var desc = false;
+var lnoDesc = 0;
 $(document).on('click', '#my-detail', function () {
     var lno = document.getElementById("my-lno").innerHTML;
     console.log(lno)
@@ -9,7 +11,10 @@ $(document).on('click', '#my-detail', function () {
         dataType: 'json',
         success: function (data) {
             detailFile(data)
-            $(".friend-like").attr("class", "my-like");
+
+            $(".check-like").attr("data-lno", lno)
+            desc = false;
+            lnoDesc = lno;
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
@@ -20,6 +25,7 @@ $(document).on('click', '#my-detail', function () {
     $('.detail.modal').modal({
         remote : contextpath+'server/detail.html'
     });
+
 });
 
 $(document).on('click', '#friend-detail', function () {
@@ -33,7 +39,9 @@ $(document).on('click', '#friend-detail', function () {
         dataType: 'json',
         success: function (data) {
             detailFile(data);
-            $(".my-like").attr("class", "friend-like");
+            desc = true;
+            lnoDesc = lno;
+            $(".check-like").attr("data-lno", lno)
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
@@ -96,3 +104,91 @@ function getLike(lno){
         }
     });
 }
+
+$(".like").change(function(){
+    //var lno = $(".check-like").data("lno")
+    console.log("lnoDesc")
+    console.log(lnoDesc)
+
+    console.log("desc")
+    console.log(desc)
+
+    if($("#like").is(":checked")){
+
+        var data = new FormData();
+        data.append("lno", lnoDesc);
+        $.ajax({
+            type: "POST",
+            url: "/addLikes",
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function (data) {
+                $("input:checkbox[id='like']").prop("checked", true);
+                $.ajax({
+                    type: "GET",
+                    url: "/getLikes/?lno="+lnoDesc,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.liked){
+                            $("input:checkbox[id='like']").prop("checked", true);
+                        }else{
+                            $("input:checkbox[id='like']").prop("checked", false);
+                        }
+                        $("label[for='like']").html("&nbsp; x"+data.likesCount);
+                    },
+                    error: function (e) {
+                        $('#btnUpload').prop('disabled', false);
+                        alert('fail');
+                    }
+                });
+            },
+            error: function (e) {
+                $('#btnUpload').prop('disabled', false);
+                alert('fail');
+            }
+        });
+    }else{
+        var data = new FormData();
+        data.append("lno", lnoDesc);
+        $.ajax({
+            type: "DELETE",
+            url: "/deleteLikes",
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function (data) {
+                $("input:checkbox[id='like']").prop("checked", false);
+                $.ajax({
+                    type: "GET",
+                    url: "/getLikes/?lno="+lnoDesc,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.liked){
+                            $("input:checkbox[id='like']").prop("checked", true);
+                        }else{
+                            $("input:checkbox[id='like']").prop("checked", false);
+                        }
+                        $("label[for='like']").html("&nbsp; x"+data.likesCount);
+                    },
+                    error: function (e) {
+                        $('#btnUpload').prop('disabled', false);
+                        alert('fail');
+                    }
+                });
+            },
+            error: function (e) {
+                $('#btnUpload').prop('disabled', false);
+                alert('fail');
+            }
+        });
+    }
+
+});
+
