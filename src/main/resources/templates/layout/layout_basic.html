@@ -71,16 +71,22 @@
     </div>
     <div class="sidebar">
         <div class="profile_info">
-            <th:block th:if="${!#authentication.getPrincipal().fromSocial}">
-                <img th:if="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{/images/cat.png}" class="profile_image"></img>
-                <img th:unless="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}" class="profile_image"></img>
+            <th:block th:if="${!#authentication.getPrincipal().socialImg && #strings.isEmpty(#authentication.getPrincipal().profileImg)}">
+                <img th:src="@{/images/default_profile.png}" class="profile_image"></img>
             </th:block>
-            <th:block th:unless="${!#authentication.getPrincipal().fromSocial}">
-                <img th:if="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}"  class="profile_image"></img>
-                <th:block th:unless="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:each="entry : ${#authentication.principal.attr}" >
-                    <img th:if="${entry.key == 'picture'}" th:src="${entry.value}" class="profile_image"></img>
-                </th:block>
+            <th:block th:unless="${!#authentication.getPrincipal().socialImg && #strings.isEmpty(#authentication.getPrincipal().profileImg)}">
+                    <img th:src="${#authentication.getPrincipal().profileImg}" class="profile_image"></img>
             </th:block>
+<!--            <th:block th:if="${!#authentication.getPrincipal().fromSocial}">-->
+<!--                <img th:if="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{/images/cat.png}" class="profile_image"></img>-->
+<!--                <img th:unless="${#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}" class="profile_image"></img>-->
+<!--            </th:block>-->
+<!--            <th:block th:unless="${!#authentication.getPrincipal().fromSocial}">-->
+<!--                <img th:if="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:src="@{ ${imgPath} }" th:with="imgPath=${#authentication.getPrincipal().profileImg}"  class="profile_image"></img>-->
+<!--                <th:block th:unless="${!#strings.isEmpty(#authentication.getPrincipal().profileImg)}" th:each="entry : ${#authentication.principal.attr}" >-->
+<!--                    <img th:if="${entry.key == 'picture'}" th:src="${entry.value}" class="profile_image"></img>-->
+<!--                </th:block>-->
+<!--            </th:block>-->
             <h4 class="my-name">[[${#authentication.principal.name}]]</h4>
             <!--            <h3>[[${#authentication.principal.email}]]</h3>-->
         </div>
@@ -126,11 +132,10 @@
                 </label>
             </ul>
             <div class="alert-friend-list-scroll">
-                <ul class="friend-list">
-                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
-                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
-                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
-
+<!--                <ul class="friend-list">-->
+<!--                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
+<!--                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
+<!--                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
                 </ul>
             </div>
 
