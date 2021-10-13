@@ -65,6 +65,14 @@ jQuery(document).ready(function () {
         var lat = document.getElementById("lat").innerHTML;
         var lng = document.getElementById("lng").innerHTML;
 
+        if(title===null||title===""||title===undefined||title==="undefined"){
+            alert("제목을 입력해주세요")
+            return;
+        }
+        if(content===null||content===""||content===undefined||content==="undefined"){
+            alert("내용을 입력해주세요")
+            return;
+        }
         console.log(lat)
         console.log(lng)
         
