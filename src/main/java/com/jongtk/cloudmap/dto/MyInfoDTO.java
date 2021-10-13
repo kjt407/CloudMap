@@ -16,5 +16,7 @@ public class MyInfoDTO {
 
     String email;
     String name;
+    String profileImg;
+    String socialProfileImg;
 
 }
