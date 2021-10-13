@@ -47,7 +47,7 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
     if(myLogin) {
         searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
-
+                $("#write-section").attr("class", "write-section");
                 closeReadInfoWindow();
                 var jibun = result[0].address.address_name
 
@@ -309,8 +309,8 @@ function displayPlaces(places) {
 
                             document.getElementById("ji-bun").innerHTML = jibun;
                             var latlng = marker.getPosition();
-                            document.getElementById("lat").innerHTML = latlng.getLat();
-                            document.getElementById("lng").innerHTML = latlng.getLng();
+                            rightClickLat = latlng.getLat();
+                            rightClickLng = latlng.getLng();
                             // 클릭한 위도, 경도 정보를 가져옵니다
                             if (!writeMarker) {
                                 console.log("마커없음")
@@ -457,7 +457,7 @@ $(document).ready(function(){
             $("#search_btn").attr("class", "fas fa-reply");
         }else{
             //체크 풀음 여기서 검색 초기화 이벤트 해주면 됨
-
+            $("#write-section").attr("class", "write-section");
             $("#info").attr("class", "info");
             $("#search_btn").attr("class", "fas fa-search");
             console.log("체크해제")
