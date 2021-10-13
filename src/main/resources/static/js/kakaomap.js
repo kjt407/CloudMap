@@ -108,7 +108,8 @@ function searchDetailAddrFromCoords(coords, callback) {
 /* 일지 확인하기 */
 /* ************************************************************************ */
 
-var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+//var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+var imageListSrc = "../images/my-marker.png";
 var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
@@ -121,10 +122,12 @@ function getBackMyMapLogList(){
     $(".friend_profile_home").attr("src", "../images/map.png")
     $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
     $(".friend-list-li").css( "background","#212022")
+
     getMyMapLogList();
 }
 function getFriendMapLogList(ele){
 
+    imageListSrc = "../images/friend-marker.png"
     writeInfoWindow.close();
     writeMarker.setMap(null);
     closeReadInfoWindow();
@@ -174,7 +177,7 @@ function getFriendMapLogList(ele){
     });
 }
 function getMyMapLogList() {
-
+    imageListSrc = "../images/my-marker.png";
     writeInfoWindow.close();
 
     writeMarker.setMap(null);
