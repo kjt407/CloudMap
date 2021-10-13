@@ -211,7 +211,7 @@ function getMapLogList(data, name, title, lno){
         markersArray[i].setImage(markerImage);
 
         var titleInfo;
-        if (data[i].title.length > 6) {
+        if (data[i].title.length > 13) {
             titleInfo = data[i].title.substring(0, 13) + "...";
         } else {
             titleInfo = data[i].title;
