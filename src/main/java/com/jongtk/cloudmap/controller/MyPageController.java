@@ -42,6 +42,13 @@ public class MyPageController {
 
     }
 
+    @GetMapping("/getMyInfo")
+    public List<LikeMapLogDTO> getMyInfo(@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+
+        return mapLogService.getMyLikes(authMemberDTO.getUsername());
+
+    }
+
 
 
 }
