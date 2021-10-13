@@ -1,3 +1,5 @@
+var rightClickLat=0;
+var rightClickLng=0;
 var mapContainer = document.getElementById('map'); // 지도를 표시할 div
 var  mapOption = {
     center: new kakao.maps.LatLng(37.404088, 126.930657), // 지도의 중심좌표
@@ -36,12 +38,11 @@ var writeInfoWindow = new kakao.maps.InfoWindow({
     yAnchor: 1.42
 });
 
-writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
 
 var start = true;
 // 지도 클릭 이벤트
 var myLogin = true;
-
+writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
 kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
     if(myLogin) {
         searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
@@ -51,29 +52,39 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
                 var jibun = result[0].address.address_name
 
                 document.getElementById("ji-bun").innerHTML = jibun;
+                $("#ji-bun").html(jibun)
                 var latlng = mouseEvent.latLng;
-                document.getElementById("lat").innerHTML = latlng.getLat();
-                document.getElementById("lng").innerHTML = latlng.getLng();
-
+               // document.getElementById("lat").innerHTML = latlng.getLat();
+               // document.getElementById("lng").innerHTML = latlng.getLng();
+                rightClickLat=latlng.getLat();
+                rightClickLng=latlng.getLng();
                 if (!writeMarker) {
                     console.log("마커없음")
                 }
 
+
                 if (start) {
                     writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
+
                     start = false;
                 }
+
                 // 마커 위치를 클릭한 위치로 옮깁니다
                 writeMarker.setMap(map);
                 writeMarker.setPosition(latlng);
 
                 if (clickWriteInfoWindow) {
+
                     clickWriteInfoWindow.close();
+
                 }
+
                 writeInfoWindow.setPosition(writeMarker.getPosition());
+
                 writeInfoWindow.open(map, writeMarker);
 
                 clickWriteInfoWindow = writeInfoWindow;
+
             }
         });
     }

@@ -106,7 +106,7 @@ body { overflow: hidden; }
     color: white;
 }
 
-.btn-close{
+.detail .btn-close{
     position: fixed;
     right: 0px;
     margin: 20px;
@@ -114,16 +114,16 @@ body { overflow: hidden; }
     border: none;
     height: 10px;
 }
-.btn-close img{
+.detail .btn-close img{
     width: 15px;
 }
 /**/
-.images{
+.detail .images{
     height: 250px;
     margin: 10px 0px 20px 0px;
     display: block;
 }
-.images ul {
+.detail .images ul {
   width: 100%;
   white-space: nowrap;
   overflow-x: auto;
@@ -131,27 +131,27 @@ body { overflow: hidden; }
   margin: 0px 0px;
   padding: 0px;
 }
-.images ul::-webkit-scrollbar {
+.detail .images ul::-webkit-scrollbar {
     display: none;
     /* Chrome, Safari, Opera */
 }
-.images ul li {
+.detail .images ul li {
     list-style: none;
    display: inline-block;
 }
-.images ul li img{
+.detail .images ul li img{
     width: 250px;
     height: 250px;
     margin-right: 10px;
 }
-.bg-success {
+.detail .bg-success {
     padding: 7px;
 }
 
-input[type=checkbox] {
+.detail input[type=checkbox] {
     display:none;
 }
-input[type=checkbox] + label {
+.detail input[type=checkbox] + label {
 
     display: inline-block;
 
@@ -164,17 +164,18 @@ input[type=checkbox] + label {
     background: url('../images/like-off.png') left/40px no-repeat;
 
 
-}input[type=checkbox]:checked + label {
+}
+.detail input[type=checkbox]:checked + label {
      background-image: url('../images/like-on.png');
  }
-input[type=checkbox]:disabled + label {
+.detail input[type=checkbox]:disabled + label {
     background-image: url('../images/like-off.png');
 }
-#like-count{
+.detail #like-count{
     font-size: 25px;
 }
 
-.overLikeLayer{
+.detail .overLikeLayer{
     position: fixed;
     color: white;
     background: white;
@@ -187,7 +188,7 @@ input[type=checkbox]:disabled + label {
     border-radius: 20px;
     display: none;
 }
-.overLikeLayer:before{
+.detail .overLikeLayer:before{
     border-top: 20px solid transparent;
     border-left: 40px solid gray;
     border-right: 20px solid transparent;
@@ -199,7 +200,7 @@ input[type=checkbox]:disabled + label {
     left: 280px;
 
 }
-.overLikeLayer .like-list-title{
+.detail .overLikeLayer .like-list-title{
     margin: 25px 0px 10px 0px;
     width: 100%;
     background: white;
@@ -209,15 +210,15 @@ input[type=checkbox]:disabled + label {
     color: black;
     font-weight: bold;
 }
-.overLikeLayer .like-list-body{
+.detail .overLikeLayer .like-list-body{
     margin: 10px 0px;
     width: 100%;
     background: white;
     height: 200px;
     overflow:scroll;   -ms-overflow-style: none;
 }
-.overLikeLayer .like-list-body::-webkit-scrollbar { display: none; }
-.overLikeLayer .like-list-body .like-member-ul{
+.detail .overLikeLayer .like-list-body::-webkit-scrollbar { display: none; }
+.detail .overLikeLayer .like-list-body .like-member-ul{
 
     background: white;
 
@@ -225,7 +226,7 @@ input[type=checkbox]:disabled + label {
 
 }
 
-.overLikeLayer .like-list-body .like-member-ul .like-member-li{
+.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li{
     padding: 10px 0px;
     height: 50px;
     list-style: none;
@@ -235,7 +236,7 @@ input[type=checkbox]:disabled + label {
 
 }
 
-.overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_image{
+.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_image{
     width: 28px;
     border-radius: 100%;
     left: 100px;
@@ -243,7 +244,7 @@ input[type=checkbox]:disabled + label {
 
 
 }
-.overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_name{
+.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_name{
     margin-right: 45px;
 color: black;
 }

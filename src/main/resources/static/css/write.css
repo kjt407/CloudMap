@@ -42,12 +42,12 @@ body { overflow: hidden; }
     outline: none;
 }
 
-.footer{
+.write .footer{
     width: auto;
     margin: 15px 40px 0px 40px;
 }
 
-.footer .btn-save{
+.write .footer .btn-save{
     margin: auto;
     display: block;
     height: 50px;
@@ -62,12 +62,12 @@ body { overflow: hidden; }
     cursor:pointer; 
     transition: 0.4s;
 }
-.footer .btn-save:hover{
+.write .footer .btn-save:hover{
     background: tomato;
     color: white;
 }
 
-.btn-close{
+.write .btn-close{
     position: fixed;
     right: 0px;
     margin: 20px;
@@ -75,14 +75,14 @@ body { overflow: hidden; }
     border: none;
     height: 10px;
 }
-.btn-close img{
+.write .btn-close img{
     width: 15px;
 }
 /**/
-.container-fluid {
+.write .container-fluid {
     padding: 0px 40px;
 }
-.container-fluid ul {
+.write .container-fluid ul {
     width: 100%;
     height: 200px;
     white-space: nowrap;
@@ -92,20 +92,20 @@ body { overflow: hidden; }
     -ms-overflow-style: none;
     display: none;
 }
-.container-fluid ul::-webkit-scrollbar {
+.write .container-fluid ul::-webkit-scrollbar {
     display: none;
     /* Chrome, Safari, Opera */
 }
-.form-group {
+.write .form-group {
     margin-bottom: 5px;
 }
-ul.cvf_uploaded_files {
+.write ul.cvf_uploaded_files {
     list-style-type: none;
     margin: 0;
     padding: 0;
     background: rgb(255, 255, 255);
 }
-ul.cvf_uploaded_files li {
+.write ul.cvf_uploaded_files li {
     margin: 20px 20px 0 0;
     width: 150px;
     height: 150px;
@@ -113,17 +113,17 @@ ul.cvf_uploaded_files li {
     position: relative;
     display: inline-block;
 }
-ul.cvf_uploaded_files li img.img-thumb {
+.write ul.cvf_uploaded_files li img.img-thumb {
     width: 150px;
     height: 150px;
 }
-ul.cvf_uploaded_files .delete-btn {
+.write ul.cvf_uploaded_files .delete-btn {
     width: 24px;
     border: 0;
     position: absolute;
     top: -12px;
     right: -14px;
 }
-.bg-success {
+.write .bg-success {
     padding: 7px;
 }
