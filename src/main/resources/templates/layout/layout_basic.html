@@ -247,7 +247,18 @@
 
             $(".my-name").css("background", "white")
             $(".my-name").css("color", "black")
+
+
             $(".my-name").attr("disabled", false)
+            $("#modify-name").attr("class", "fas fa-times")
+
+        });
+        $(document).on("click", ".fa-times", function () {
+            $(".my-name").css("background", "#212022")
+            $(".my-name").css("color", "white")
+            $(".my-name").attr("disabled", true)
+            $("#modify-name").attr("class", "fas fa-pen")
+
         });
 
         //---------------------------------//
