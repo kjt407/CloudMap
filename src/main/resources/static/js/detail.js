@@ -47,9 +47,9 @@ $(document).on('click', '#friend-detail', function () {
             detailFile(data);
             desc = true;
             lnoDesc = lno;
-            $(".check-like").attr("data-lno", lno)
-            $(".btn-modify").remove();
-            $(".btn-delete").remove();
+            $(".detail .check-like").attr("data-lno", lno)
+            $(".detail .btn-modify").remove();
+            $(".detail .btn-delete").remove();
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
@@ -64,21 +64,21 @@ $(document).on('click', '#friend-detail', function () {
 
 function detailFile(data){
     if(data.imageDTOList.length === 0 ){
-        $(".images").css("display", "none");
-        $("#content").css("height", "660px");
+        $(".detail .images").css("display", "none");
+        $(".detail #content").css("height", "660px");
     }else{
-        $(".images").css("display", "block");
-        $("#content").css("height", "380px");
+        $(".detail .images").css("display", "block");
+        $(".detail #content").css("height", "380px");
     }
-    $('#width-scroll').empty()
-    $('#title').val(data.title);
-    $('#content').val(data.content);
+    $('.detail #width-scroll').empty()
+    $('.detail #title').val(data.title);
+    $('.detail #content').val(data.content);
     data.imageDTOList.forEach(i => {
         console.log(i)
         var html = '<li><img id="image" src="display?imgUrl='+i.imageURL+'" > </li>'
-        $('#width-scroll').append(html)
+        $('.detail #width-scroll').append(html)
     })
-    $("#width-scroll").on('mousewheel', function (e) {
+    $(".detail #width-scroll").on('mousewheel', function (e) {
         var wheelDelta = e.originalEvent.wheelDelta;
         if (wheelDelta > 0) {
             $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());

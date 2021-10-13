@@ -25,11 +25,11 @@ jQuery(document).ready(function () {
             }
         }
         if (storedFiles.length === 0) {
-            $("#width-scroll").css("display", "none");
-            $("#content").css("height", "580px");
+            $(".write #width-scroll").css("display", "none");
+            $(".write #content").css("height", "580px");
         } else {
-            $("#width-scroll").css("display", "inline-block");
-            $("#content").css("height", "374px");
+            $(".write #width-scroll").css("display", "inline-block");
+            $(".write #content").css("height", "374px");
         }
     });
 
@@ -45,25 +45,26 @@ jQuery(document).ready(function () {
             }
         }
         if (storedFiles.length === 0) {
-            $("#width-scroll").css("display", "none");
-            $("#content").css("height", "580px");
+            $(".write #width-scroll").css("display", "none");
+            $(".write #content").css("height", "580px");
         } else {
-            $("#width-scroll").css("display", "inline-block");
-            $("#content").css("height", "374px");
+            $(".write #width-scroll").css("display", "inline-block");
+            $(".write #content").css("height", "374px");
         }
         console.log(storedFiles)
     });
     $('body').on('click', '.btn-save', function (e) {
         console.log("클릭?")
-        var form = $('#write')[0];  	    
-        // Create an FormData object          
+        var form = $('#write')[0];
+        // Create an FormData object
         var data = new FormData();
 
         var title = $("input[name='title']").val();
         var content = $("#content").val();
         var writer = $("#username-check").val();
-        var lat = document.getElementById("lat").innerHTML;
-        var lng = document.getElementById("lng").innerHTML;
+        var lat = rightClickLat;
+        var lng = rightClickLng;
+
 
         if(title===null||title===""||title===undefined||title==="undefined"){
             alert("제목을 입력해주세요")
@@ -73,16 +74,11 @@ jQuery(document).ready(function () {
             alert("내용을 입력해주세요")
             return;
         }
-        console.log(lat)
-        console.log(lng)
-        
-        var inputFile = $("input[type='file']");
-        var files = inputFile[0].files;
 
-        for(var i = 0; i < files.length; i++){
-        	console.log(files[i]);
-        	data.append("files",files[i]);
-        }
+         for(var i = 0; i <storedFiles.length; i++){
+         	console.log(storedFiles[i]);
+         	data.append("files",storedFiles[i]);
+         }
 
         data.append("title", title);
         data.append("content", content);
@@ -90,6 +86,7 @@ jQuery(document).ready(function () {
         data.append("lat", lat);
         data.append("lng", lng);
 
+        console.log('data')
         console.log(data)
         $.ajax({
         	type: "POST",
@@ -101,17 +98,29 @@ jQuery(document).ready(function () {
         	success: function (data) {
         		$('#btnUpload').prop('disabled', false);
         		alert('success')
+                $('.write.modal').modal("hide");
+
+                $(".write .cvf_uploaded_files .all-image").remove('');
+                $(".write #width-scroll").css("display", "none");
+                $(".write #content").css("height", "580px");
+                $(".write-section").find('form')[0].reset()
+                start = true;
+                getMyMapLogList();
         	},
         	error: function (e) {
         		$('#btnUpload').prop('disabled', false);
         		alert('fail');
             }
+
         });
 
     });
 
 });
-$("#width-scroll").on('mousewheel', function (e) {
+
+
+
+$(".write #width-scroll").on('mousewheel', function (e) {
     var wheelDelta = e.originalEvent.wheelDelta;
     if (wheelDelta > 0) {
         $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
