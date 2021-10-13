@@ -102,21 +102,17 @@ var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
 
-$(document).on("click", "#go-my-map", function () {
-    // $("#go-my-map").attr("disabled", true)
-    // $("#go-my-map").attr("class", "go-my-map-btn-off")
-    // $("#go-my-map").html("")
+
+function getBackMyMapLogList(){
     $(".from-friend").remove();
     $(".from-friend-name").remove();
+    $(".my_profile_home").attr("class", "friend_profile_home")
+    $(".friend_profile_home").attr("src", "../images/map.png")
+    $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
+    $(".friend-list-li").css( "background","#212022")
     getMyMapLogList();
-
-
-});
-
+}
 function getFriendMapLogList(ele){
-
-
-
 
     writeInfoWindow.close();
     writeMarker.setMap(null);
@@ -148,8 +144,18 @@ function getFriendMapLogList(ele){
             // $("#go-my-map").attr("class", "go-my-map-btn")
             // $("#go-my-map").html("나의 지도로 가기")
 
-            $(".friend_profile_home").attr("src", "../images/1.jpg")
+            $(".my_profile_home").attr("class", "friend_profile_home")
+            $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
+            $(".friend_profile_home").attr("src", "../images/map.png")
+            $(".friend-list-li").css( "background","#212022")
 
+           // $(".friend_profile_home").attr("class", "friend_profile_home")
+
+
+             $(ele).attr("src", "../images/exit.png")
+             $(ele).attr("class", "my_profile_home")
+            $(ele).attr("onclick", "getBackMyMapLogList()")
+            $(ele).parent().css( "background","rgb(252, 94, 94)")
         },
         error: function (e) {
             console.log('fail');

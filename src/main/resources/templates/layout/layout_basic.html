@@ -25,6 +25,7 @@
     <input type="checkbox" id="search-check">
     <input type="checkbox" id="friend-search-check">
     <input type="checkbox" id="friend-alert-check">
+    <input type="checkbox" id="my-page-check">
     <!--헤더 시작-->
     <header class="header-class" id="mainheader">
         <label for="search-check">
@@ -33,14 +34,15 @@
         <label for="sidebar-check">
             <i class="fas fa-bars" id="sidebar_btn"></i>
         </label>
+        <label for="my-page-check">
+            <i class="fas fa-user" id="my-page-btn"></i>
+        </label>
         <div class="left_area">
 
         </div>
         <div class="center_area">
             <h3 class="h3-class">CLOUD <span class="title-map">MAP</span><span class="from-friend-info"></span> </h3>
-            <div class="go-my-map">
-                <button class="go-my-map-btn-off" id="go-my-map" ></button>
-            </div>
+
 
         </div>
         <div class="right_area">
@@ -138,6 +140,7 @@
             </div>
 
         </div>
+
         <div class="logout">
             <th:block th:if="${#authentication.isAuthenticated()}">
                 <th:block th:if="${#authentication.principal.attr != null}">
@@ -149,6 +152,7 @@
         </div>
     </div>
     <!--사이드바 끝-->
+
     <!-- 컨텐츠-->
     <div class="content" id="maps">
         <th:block th:replace="${content}"></th:block>

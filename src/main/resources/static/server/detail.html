@@ -30,13 +30,27 @@
 				<div class="btsn">
 
 				</div>
-				
+				<div id="divLikeLayer" class="overLikeLayer">
+					<div class="like-list">
+<!--						<strong>내용 :</strong> <span id="conttent">내용</span>-->
+						<div class="like-list-title">좋아요 누른 목록</div>
+						<div class="like-list-body">
+							<ul class="like-member-ul">
+
+
+							</ul>
+
+						</div>
+					</div>
+				</div>
 			</div>
+
 		</div>
 </body>
 
 <script src="../js/detail.js"></script>
 <script>
+
 	$(document).on('click', '.btn-modify', function () {
 		console.log("수정")
 	});
@@ -44,5 +58,53 @@
 	$(document).on('click', '.btn-delete', function () {
 		console.log("삭제")
 	});
+
+	$(function(){
+		$('.like').mouseover(function(e) { // mouse hover 좌표
+
+
+			getLike(lnoDesc)
+			$('.like-member-ul').html(likeListHtml);
+
+			$('#divLikeLayer').show();
+
+
+
+
+		});
+		$('.like').mouseout(function() {
+			$('#divLikeLayer').hide();
+		});
+	});
+	var likeLiskHeight = 0;
+	$(".like").on('mousewheel',function(e){
+		var wheel = e.originalEvent.wheelDelta;
+		if(likeLiskHeight>$('.like-member-ul').height()-200){
+			likeLiskHeight = $('.like-member-ul').height()-200;
+		}
+		if(likeLiskHeight<0){
+			likeLiskHeight=0;
+		}
+
+//스크롤값을 가져온다.
+		if(wheel>0){
+//스크롤 올릴때
+			likeLiskHeight -=30;
+			console.log("내림")
+			console.log(likeLiskHeight)
+			$('.like-list-body').scrollTop(likeLiskHeight)
+
+
+		} else {
+//스크롤 내릴때
+
+
+			likeLiskHeight +=30;
+			console.log("올림")
+			console.log(likeLiskHeight)
+			$('.like-list-body').scrollTop(likeLiskHeight)
+		}
+	});
+
 </script>
 </html>
