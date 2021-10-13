@@ -148,7 +148,7 @@ function getFriendMapLogList(ele){
             // $("#go-my-map").attr("class", "go-my-map-btn")
             // $("#go-my-map").html("나의 지도로 가기")
 
-            $(".friend_profile_home").attr("src", "../images/1.jpg")
+            $(ele).attr("src", "../images/1.jpg")
 
         },
         error: function (e) {
