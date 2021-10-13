@@ -1,6 +1,7 @@
 var desc = false;
 var lnoDesc = 0;
-
+var likeCount = 0;
+var likeListHtml = "";
 $(document).on('click', '#my-detail', function () {
     var lno = document.getElementById("my-lno").innerHTML;
     console.log(lno)
@@ -100,9 +101,17 @@ function getLike(lno){
             }else{
                 $("input:checkbox[id='like']").prop("checked", false);
             }
-            console.log(data)
-            console.log(data.likesCount)
+
+            likeCount = data.likesCount;
             $("label[for='like']").html("&nbsp; x"+data.likesCount);
+
+
+            likeListHtml = "";
+            data.likesList.forEach(likeMember=>{
+                likeListHtml += '<li class="like-member-li"><img src="'+likeMember.profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
+            })
+
+
 
         },
         error: function (e) {
@@ -114,11 +123,7 @@ function getLike(lno){
 
 $(".like").change(function(){
     //var lno = $(".check-like").data("lno")
-    console.log("lnoDesc")
-    console.log(lnoDesc)
 
-    console.log("desc")
-    console.log(desc)
 
     if($("#like").is(":checked")){
 

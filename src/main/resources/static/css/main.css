@@ -8,11 +8,6 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .center_area .h3-class{ color: #fff;  text-transform: uppercase; font-size: 30px; font-weight: 900; text-align: center; position: fixed; width: 100%; top:0px; margin-right: 10px;}
 .center_area .title-map{ color: #1DC4E7; }
 
-.center_area .go-my-map{text-align: right; position: absolute; height: 100px; width: 100%; top: 0; padding-right: 150px;}
-.center_area .go-my-map .go-my-map-btn{z-index:2;width: 200px; font-weight: bold; font-size: 18px; height: 70px; color: white; background: rgb(23, 24, 29); border: none; transition: 0.5s; transition-property: background; }
-.center_area .go-my-map .go-my-map-btn:hover{background: rgb(252, 94, 94);}
-
-.center_area .go-my-map .go-my-map-btn-off{z-index:2;width: 200px; font-weight: bold; font-size: 18px; height: 70px; color: white; background: rgb(23, 24, 29); border: none; transition: 0.5s; transition-property: background; }
 
 
 /*사이드바*/
@@ -38,9 +33,10 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .box .friend-list li { display: flex; text-align: center; padding: 0px 20px;}
 .sidebar .box .friend-list li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px;  margin-top: 12.5px;}
 .sidebar .box .friend-list li .friend_profile_name{ color: #fff; font-size: 18px; margin-bottom: 0px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box;  }
-.sidebar .box .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px;}
-.sidebar .friend-list li:hover{ background: #fff;}
-.sidebar .friend-list li:hover .friend_profile_name{ color: #212022;}
+.sidebar .box .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px; cursor: pointer;}
+.sidebar .box .friend-list li .my_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px; cursor: pointer; }
+
+.sidebar .friend-list li:hover .friend_profile_name{ color: #1DC4E7;}
 
 .sidebar .box-friend-search { z-index: 1; height:calc(100vh - 435px);  width: 100%; transition: 0.5s; transition-property: right; right: -300px; position: absolute; top: 303px; background: #212022; }
 .sidebar .box-friend-search .search-friend-list-scroll { overflow:scroll;   -ms-overflow-style: none; height:calc(100vh - 470px); }
@@ -52,8 +48,7 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .box-friend-search .friend-list li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px;  margin-top: 12.5px;}
 .sidebar .box-friend-search .friend-list li .friend_profile_name{ color: #fff; font-size: 18px; margin-bottom: 0px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box;  }
 .sidebar .box-friend-search .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px;}
-.sidebar .friend-list li:hover{ background: #fff;}
-.sidebar .friend-list li:hover .friend_profile_name{ color: #212022;}
+
 .sidebar .friend-list li:hover #add-friend{ color: #212022;}
 
 
@@ -70,8 +65,7 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .friend-list li i{
   margin-left : 20px;
 }
-.sidebar .friend-list li:hover{ background: #fff;}
-.sidebar .friend-list li:hover .friend_profile_name{ color: #212022;}
+
 .sidebar .friend-list li:hover #add-friend{ color: #212022;}
 .sidebar .friend-list li:hover .accept-friend{ color: #212022;}
 .sidebar .friend-list li:hover .delete-friend{ color: #212022;}
@@ -290,3 +284,6 @@ label #friend_alert_btn2:hover{ color:#19B3D3 }
   color: #1DC4E7;
   font-weight: bold;
 }
+
+label #my-page-btn{ z-index: 1; color: #fff; position: fixed; cursor: pointer; right: 100px; font-size: 35px; margin-top: -13px; transition: 0.5s; transition-property: color; }
+label #my-page-btn:hover{ color:#19B3D3 }

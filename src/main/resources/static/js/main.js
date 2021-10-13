@@ -48,7 +48,7 @@ function getFriendList(){
           profileImg = friend.profileImg;
         }
 
-        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/map.png" class="friend_profile_home"></li>'
+        friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/map.png" id="sprofile_home" class="friend_profile_home"></li>'
 
       })
       $('#main-friend-list').html(friendLi)
@@ -184,6 +184,16 @@ function searchRefresh(ele){
 $(document).ready(function(){
   getFriendList();
   // getReceiveList();
+
+  $("#sidebar-check").change(function(){
+    if($("#sidebar-check").is(":checked")){
+      $("#my-page-btn").css("display", "none")
+    }else{
+      $("#my-page-btn").css("display", "")
+    }
+  });
 });
+
+
 
 
