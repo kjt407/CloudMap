@@ -17,8 +17,13 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 /* 사이드바 프로필 시작 */
 .profile_info{ display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .sidebar .profile_info .profile_image{ width: 150px; height: 150px; border-radius: 100px; margin-top: 30px; margin-bottom: 10px; }
-.sidebar .profile_info .my-name{ color: #ccc; margin-top: 10px; margin-bottom: 50px; font-size: 20px }
-.sidebar .profile_info h3{ color: #ccc; margin-top: -10px; margin-bottom: 20px; font-size: 15px }
+.sidebar .profile-my-name{height: 82px}
+.sidebar .profile_info .my-name{text-align:center; width: 80px; color: white;  border-radius: 10px; margin-top: 10px;  font-size: 20px; font-weight: bold; background: #212022; border-style: none}
+.sidebar .profile_info #modify-name{color: white; cursor: pointer; font-size: 16px;  position: absolute; right: 80px; top: 240px;}
+.sidebar .profile_info .my-name:focus {outline:none;}
+
+.sidebar .profile_info #modify-profile-image{color: white; cursor: pointer; font-size: 30px;  position: absolute; right: 70px; top: 181px;}
+
 
 /* 사이드바 친구목록 */
 .sidebar .box { height:calc(100vh - 450px); -ms-overflow-style: none; }
@@ -287,3 +292,20 @@ label #friend_alert_btn2:hover{ color:#19B3D3 }
 
 label #my-page-btn{ z-index: 1; color: #fff; position: fixed; cursor: pointer; right: 100px; font-size: 35px; margin-top: -13px; transition: 0.5s; transition-property: color; }
 label #my-page-btn:hover{ color:#19B3D3 }
+
+
+.sidebar .my-page-section { z-index: 1; height:calc(100vh - 435px);  width: 100%; transition: 0.5s; transition-property: right; right: -300px; position: absolute; top: 303px; background: #212022; }
+.sidebar .my-page-section .search-friend-list-scroll { overflow:scroll;   -ms-overflow-style: none; height:calc(100vh - 470px); }
+.search-friend-list-scroll::-webkit-scrollbar { display: none; }
+.sidebar .my-page-section .like-list-title { margin-left: -40px; margin-right: 0px; list-style: none; text-align: center; height: 30px;}
+.sidebar .my-page-section .like-list-title .like-list-title-label { font-size: 20px; color: white; font-weight: bold; height: 50px;}
+.sidebar .my-page-section .liked-list { margin-left: -40px; margin-right: 0px; list-style: none; }
+.sidebar .my-page-section .like-list li { display: flex; text-align: center; padding: 0px 20px;}
+.sidebar .my-page-section .like li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px;  margin-top: 12.5px;}
+.sidebar .my-page-section .like li .friend_profile_name{ color: #fff; font-size: 18px; margin-bottom: 0px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box;  }
+.sidebar .my-page-section .like-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px;}
+
+.sidebar .like-list li:hover #add-friend{ color: #212022;}
+
+
+#my-page-check:checked ~ .sidebar .my-page-section{ right: 0px;}

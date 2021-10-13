@@ -26,6 +26,7 @@
     <input type="checkbox" id="friend-search-check">
     <input type="checkbox" id="friend-alert-check">
     <input type="checkbox" id="my-page-check">
+
     <!--헤더 시작-->
     <header class="header-class" id="mainheader">
         <label for="search-check">
@@ -86,7 +87,13 @@
                     <img th:if="${entry.key == 'picture'}" th:src="${entry.value}" class="profile_image"></img>
                 </th:block>
             </th:block>
-            <h4 class="my-name">[[${#authentication.principal.name}]]</h4>
+
+            <input type="file" name="img" id="edit-profile-img" class="hide" placeholder="이미지 업로드" accept="image/png, image/jpeg, image/jpg">
+            <label for="edit-profile-img"> <i class="fas fa-cog" id="modify-profile-image"></i></label>
+            <div class="profile-my-name">
+                <input class="my-name" th:value=${#authentication.principal.name} disabled><i class="fas fa-pen" id="modify-name"></i>
+            </div>
+
             <!--            <h3>[[${#authentication.principal.email}]]</h3>-->
         </div>
 
@@ -136,6 +143,18 @@
                     <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
                     <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>
 
+                </ul>
+            </div>
+
+        </div>
+        <div class="my-page-section">
+
+            <ul class="like-list-title">
+                <label class="like-list-title-label">내가 누른 좋아요</label>
+
+            </ul>
+            <div class="search-like-list-scroll">
+                <ul class="like-list">
                 </ul>
             </div>
 
@@ -194,6 +213,62 @@
             $("#content").css("height", "580px");
             $(document).find('form')[0].reset()
         });
+
+        $("#my-page-check").change(function(){
+            //var lno = $(".check-like").data("lno")
+
+
+            if($("#my-page-check").is(":checked")){
+                console.log("체크")
+                $("#modify-name").css("display", "");
+                $("#modify-profile-image").css("display", "");
+                getMyLikeList();
+            }else{
+                console.log("해제")
+                $("#modify-name").css("display", "none");
+                $("#modify-profile-image").css("display", "none");
+            }
+
+        });
+
+        $(document).on("click", "#modify-name", function () {
+            console.log("설정")
+
+            $(".my-name").css("background", "white")
+            $(".my-name").css("color", "black")
+            $(".my-name").attr("disabled", false)
+        });
+
+        //---------------------------------//
+
+
+        //프로필 이미지 변경
+        $("#edit-profile-img").change(function(e){
+
+            console.log($('input[type=file]')[0]);
+            console.log($('input[type=file]')[0].files[0]);
+            console.log($('input[type=file]')[0].files[0].name); //파일이름
+            console.log($("#edit-profile-img")[0].files[0].type); // 파일 타임
+            console.log($("#edit-profile-img")[0].files[0].size); // 파일 크기
+
+        });
+
+        //이름 수정후 엔터 눌렀을 때
+        $(".my-name").keydown(function(key) {
+            if (key.keyCode == 13) {
+
+                $(".my-name").css("background", "#212022")
+                $(".my-name").css("color", "white")
+                $(".my-name").attr("disabled", true)
+            }
+        });
+
+        //내가 누른 좋아요 목록 가져오기
+        function getMyLikeList(){
+            console.log("좋아요목록 가져오기")
+        }
+
+
 
     </script>
 </th:block>

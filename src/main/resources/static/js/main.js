@@ -17,6 +17,9 @@ $(document).ready(function () {
     }
   })
 
+  $("#modify-name").css("display", "none")
+  $("#modify-profile-image").css("display", "none")
+
 });
 
 

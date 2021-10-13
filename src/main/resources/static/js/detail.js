@@ -163,8 +163,9 @@ $(".like").change(function(){
                                 profileImg = likeMember.profileImg;
                             }
                             likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
-                            $('.like-member-ul').html(likeListHtml);
+
                         })
+                        $('.like-member-ul').html(likeListHtml);
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);
@@ -210,8 +211,9 @@ $(".like").change(function(){
                                 profileImg = likeMember.profileImg;
                             }
                             likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
-                            $('.like-member-ul').html(likeListHtml);
+
                         })
+                        $('.like-member-ul').html(likeListHtml);
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);
