@@ -105,11 +105,15 @@ function getLike(lno){
             likeCount = data.likesCount;
             $("label[for='like']").html("&nbsp; x"+data.likesCount);
 
-
             likeListHtml = "";
             data.likesList.forEach(likeMember=>{
-                likeListHtml += '<li class="like-member-li"><img src="'+likeMember.profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
+                var profileImg = '/images/default_profile.png';
+                if(likeMember.profileImg){
+                    profileImg = likeMember.profileImg;
+                }
+                likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
             })
+
 
 
 
@@ -151,6 +155,16 @@ $(".like").change(function(){
                             $("input:checkbox[id='like']").prop("checked", false);
                         }
                         $("label[for='like']").html("&nbsp; x"+data.likesCount);
+
+                        likeListHtml = "";
+                        data.likesList.forEach(likeMember=>{
+                            var profileImg = '/images/default_profile.png';
+                            if(likeMember.profileImg){
+                                profileImg = likeMember.profileImg;
+                            }
+                            likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
+                            $('.like-member-ul').html(likeListHtml);
+                        })
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);
@@ -188,6 +202,16 @@ $(".like").change(function(){
                             $("input:checkbox[id='like']").prop("checked", false);
                         }
                         $("label[for='like']").html("&nbsp; x"+data.likesCount);
+
+                        likeListHtml = "";
+                        data.likesList.forEach(likeMember=>{
+                            var profileImg = '/images/default_profile.png';
+                            if(likeMember.profileImg){
+                                profileImg = likeMember.profileImg;
+                            }
+                            likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
+                            $('.like-member-ul').html(likeListHtml);
+                        })
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);
