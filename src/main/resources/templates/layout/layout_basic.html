@@ -177,14 +177,14 @@
         <th:block th:replace="${content}"></th:block>
     </div>
 
-    <div class="write modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="write modal fade" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
                 <!-- remote ajax call이 되는영역 -->
             </div>
         </div>
     </div>
-    <div class="detail modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="detail modal fade" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
                 <!-- remote ajax call이 되는영역 -->
@@ -209,7 +209,8 @@
         });
 
         $("body").on("click", ".btn-close", function(){
-            console.log("close")
+
+            $('.detail.modal').modal("hide");
 
         })
 
