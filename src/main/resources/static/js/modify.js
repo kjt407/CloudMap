@@ -1,7 +1,8 @@
 var storedFiles = [];
+var data = new FormData();
 jQuery(document).ready(function () {
 
-    $('.modify').on('change', '.user_picked_files', function () {
+    $('body').on('change', '.user_picked_files', function () {
         var files = this.files;
         var i = 0;
         console.log(files)
@@ -37,7 +38,7 @@ jQuery(document).ready(function () {
     });
 
     // 하나씩 제거하기
-    $('.modify').on('click', 'a.cvf_delete_image', function (e) {
+    $('body').on('click', 'a.cvf_delete_image', function (e) {
         $(this).parent().remove('');
         var file = $(this).parent().attr('file');
         console.log("삭제")
@@ -60,18 +61,21 @@ jQuery(document).ready(function () {
 
 
 
-    $('.modify').on('click', '.btn-saves', function (e) {
+    $('body').on('click', '.btn-modify', function (e) {
         console.log("클릭?")
         var form = $('#write')[0];
         // Create an FormData object
-        var data = new FormData();
 
-        var title = $("input[name='title']").val();
-        var content = $("#content").val();
-        var writer = $("#username-check").val();
+
+        var title = $(".modify input[name='title']").val();
+        var content = $(".modify #content").val();
+        var writer = $(".modify #username-check").val();
         var lat = rightClickLat;
         var lng = rightClickLng;
 
+        console.log(title)
+        console.log(content)
+        console.log(writer)
 
         if(title===null||title===""||title===undefined||title==="undefined"){
             alert("제목을 입력해주세요")
@@ -84,42 +88,46 @@ jQuery(document).ready(function () {
 
         for(var i = 0; i <storedFiles.length; i++){
             console.log(storedFiles[i]);
+            console.log(storedFiles.length);
+            console.log('storedFiles.length');
             data.append("files",storedFiles[i]);
         }
 
         data.append("title", title);
         data.append("content", content);
         data.append("writer", writer);
-        data.append("lat", lat);
-        data.append("lng", lng);
+        console.log(lno)
 
         console.log('data')
         console.log(data)
-        $.ajax({
-            type: "POST",
-            url: "/register",
-            data: data,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function (data) {
-                $('#btnUpload').prop('disabled', false);
-                alert('success')
-                $('.write.modal').modal("hide");
-
-                $(".write .cvf_uploaded_files .all-image").remove('');
-                $(".write #width-scroll").css("display", "none");
-                $(".write #content").css("height", "580px");
-                $(".write-section").find('form')[0].reset()
-                start = true;
-                getMyMapLogList();
-            },
-            error: function (e) {
-                $('#btnUpload').prop('disabled', false);
-                alert('fail');
-            }
-
-        });
+        for(var pair of data.entries()){
+            console.log(pair[0]+","+ pair[1])
+        }
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/register",
+        //     data: data,
+        //     processData: false,
+        //     contentType: false,
+        //     dataType: 'json',
+        //     success: function (data) {
+        //         $('#btnUpload').prop('disabled', false);
+        //         alert('success')
+        //         $('.write.modal').modal("hide");
+        //
+        //         $(".write .cvf_uploaded_files .all-image").remove('');
+        //         $(".write #width-scroll").css("display", "none");
+        //         $(".write #content").css("height", "580px");
+        //         $(".write-section").find('form')[0].reset()
+        //         start = true;
+        //         getMyMapLogList();
+        //     },
+        //     error: function (e) {
+        //         $('#btnUpload').prop('disabled', false);
+        //         alert('fail');
+        //     }
+        //
+        // });
 
     });
 
