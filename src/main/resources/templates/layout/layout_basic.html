@@ -190,6 +190,13 @@
             </div>
         </div>
     </div>
+    <div class="modify modal fade" data-backdrop="static" data-keyboard="true">
+        <div class="modal-dialog modal-fullsize">
+            <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
+                <!-- remote ajax call이 되는영역 -->
+            </div>
+        </div>
+    </div>
 
     </body>
     <script th:src="@{/js/kakaomap.js}"></script>
@@ -211,6 +218,7 @@
 
             $('.detail.modal').modal("hide");
 
+
         })
 
         $(document).on("click", "#write-close", function () {
@@ -229,6 +237,8 @@
                 console.log("체크")
                 $("#modify-name").css("display", "");
                 $("#modify-profile-image").css("display", "");
+
+                $("#my-page-btn").attr("class", "fas fa-times");
                 getMyLikeList();
             }else{
                 console.log("해제")
@@ -237,6 +247,7 @@
                 $(".my-name").css("background", "#212022")
                 $(".my-name").css("color", "white")
                 $(".my-name").attr("disabled", true)
+                $("#my-page-btn").attr("class", "fas fa-user")
                 $("#modify-name").attr("class", "fas fa-pen")
             }
 

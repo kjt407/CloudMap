@@ -52,7 +52,11 @@
 <script>
 
 	$(document).on('click', '.btn-modify', function () {
-		console.log("수정")
+
+
+		$('.modify.modal').modal({
+			remote : contextpath+'server/modify.html'
+		});
 	});
 
 	$(document).on('click', '.btn-delete', function () {
