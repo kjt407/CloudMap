@@ -13,6 +13,7 @@ public interface MyPageService {
     String setLocalImg(String username, String imgUrl);
     String setSocialImg(String username, String imgUrl);
     String editName(String username, String str);
+    String resign(String username, String password);
 
 
 }

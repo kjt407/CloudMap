@@ -21,7 +21,7 @@ public class Likes extends BaseEntity{
     @ManyToOne(fetch = FetchType.EAGER)
     private MapLog mapLog;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Member member;
 
 }

@@ -19,10 +19,10 @@ public class Friend extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long fid;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Member member;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Member friend;
 
 }

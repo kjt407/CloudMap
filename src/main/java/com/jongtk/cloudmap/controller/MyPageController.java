@@ -149,6 +149,14 @@ public class MyPageController {
     }
 
 
+    @GetMapping("/resign")
+    public boolean resign(@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+
+        myPageService.resign(authMemberDTO.getUsername(), "www");
+        return true;
+    }
+
+
 
 
 

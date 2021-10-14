@@ -54,6 +54,11 @@
 				<input name="str" value=""/>
 				<input type="submit" value="전송"/>
 			</form>
+			<form name="form1" method="get" th:action="@{/resign}">
+				<h2>회원탈퇴</h2>
+				<input name="password" value=""/>
+				<input type="submit" value="전송"/>
+			</form>
 			<br>
 			<a th:href="@{/getFriendList}">친구목록</a>
 			<br>

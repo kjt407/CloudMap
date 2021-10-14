@@ -17,10 +17,10 @@ public class FriendPost extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long pid;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Member sender;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Member receiver;
 
 }

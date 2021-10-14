@@ -95,4 +95,10 @@ public class MyPageServiceImp implements MyPageService {
         }
         return result;
     }
+
+    @Override
+    public String resign(String username, String password) {
+        memberRepository.deleteById(username);
+        return null;
+    }
 }
