@@ -135,7 +135,7 @@ label #search_btn:hover{ color:#5dd319 }
   margin: 3px 16px;
 }
 .explanation .ex3 img{
-  width: 37px;
+  width: 35px;
   margin: 3px 16px;
 }
 .explanation .ex4 img{
@@ -210,18 +210,22 @@ label #friend_alert_btn2:hover{ color:#19B3D3 }
 .search-write-section .write-btn-style .write-btn:hover {background: rgb(0, 2, 99); cursor: pointer;}
 
 
-.my .read-title {padding: 5px 0 0 10px;height: 30px;background: rgb(255, 194, 0);font-size: 18px;font-weight: bold; color: black; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
-.friend .read-title {padding: 5px 0 0 10px;height: 30px;background: rgb(150, 200, 0);font-size: 18px;font-weight: bold; color: black; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
+.my .read-title {padding: 5px 0 0 10px;height: 30px;background: #FF4B00;font-size: 18px;font-weight: bold; color: white; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
+.friend .read-title {padding: 5px 0 0 10px;height: 30px;background: #713C93;font-size: 18px;font-weight: bold; color: white; margin-top: -1px;width: calc(100% + 3px); margin-left: -2px;}
 .read-section .close {position: absolute; top: 6px;right: 6px;  width: 17px;height: 17px; filter: opacity(1) drop-shadow(0 0 0 black); background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
 .read-section .close:hover {cursor: pointer; filter: opacity(0.5) drop-shadow(0 0 0 red);}
-.my .read-body { background: rgb(255, 245, 210); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid rgb(255, 194, 0);}
-.friend .read-body { background: rgb(255, 245, 210); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid rgb(150, 200, 0);}
-.read-section .read-body .read-info{ background: rgb(255, 245, 210);  color: black}
+.my .read-body { background: rgb(255, 244, 240); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid #FF4B00;}
+.friend .read-body { background: rgb(241, 234, 247); padding: 5px 10px; position: relative; color: white; width: calc(100% + 3px); margin-left: -2px; border: 5px solid #713C93;}
+
+.my .read-body .read-info{ background: rgb(255, 244, 240);  color: black}
+.friend .read-body .read-info{ background: rgb(241, 234, 247);  color: black}
 .read-section .desc {position: relative; height: 60px; width: 150px;}
 .read-section .desc .read-info {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .read-section .desc .read-btn-style {margin-top: 10px;}
-.read-section .desc .read-btn-style .read-btn {width: 100%; background: rgb(255, 245, 210); border: none; height: 25px; text-align: center; color: black; display: inline-block; text-decoration: none; line-height: 20px; font-weight: bold;}
-.read-section .desc .read-btn-style .read-btn:hover {background: rgb(255, 230, 140); cursor: pointer;}
+.my .desc .read-btn-style .read-btn {width: 100%; background: rgb(200, 60, 0); border: none; height: 25px; text-align: center; color: white; display: inline-block; text-decoration: none; line-height: 20px; font-weight: bold;}
+.my .desc .read-btn-style .read-btn:hover {background: #FF4B00; cursor: pointer; color: white}
+.friend .desc .read-btn-style .read-btn {width: 100%; background: rgb(194, 162, 217); border: none; height: 25px; text-align: center; color: black; display: inline-block; text-decoration: none; line-height: 20px; font-weight: bold;}
+.friend .desc .read-btn-style .read-btn:hover {background: #713C93; cursor: pointer; color: white}
 
 
 
