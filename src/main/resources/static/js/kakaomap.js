@@ -127,6 +127,8 @@ function getBackMyMapLogList(){
 }
 function getFriendMapLogList(ele){
 
+    console.log('ele')
+    console.log(ele)
     imageListSrc = "../images/friend-marker.png"
     writeInfoWindow.close();
     writeMarker.setMap(null);

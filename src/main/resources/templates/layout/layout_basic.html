@@ -219,6 +219,8 @@
 
         $(document).ready(function (){
             getMyInfo();
+
+
         });
 
         function refreshProfile(data){
@@ -330,6 +332,7 @@
                 $(".my-name").attr("disabled", true)
                 $("#my-page-btn").attr("class", "fas fa-user")
                 $("#modify-name").attr("class", "fas fa-pen")
+                getBackMyMapLogList();
             }
 
         });
@@ -402,18 +405,66 @@
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
-                    $('#liked-ul').children('li').remove();
+                    $('.like-list').children('li').remove();
                     data.forEach(likedList=>{
-                        $('#liked-ul').append(
-                            '<li>'+likedList.title+' 작성자: '+likedList.writerName+'</li>'
+                        $('.like-list').append(
+                            '<li data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-name="'+likedList.writerName+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'+likedList.title+' 작성자: '+likedList.writerName+'</li>'
                         )
                     });
+
                 },
                 error: function (e) {
                     console.log('fail');
                 }
             });
         }
+
+        function goMyLikeMap(ele){
+
+            imageListSrc = "../images/friend-marker.png"
+            writeInfoWindow.close();
+            writeMarker.setMap(null);
+            closeReadInfoWindow();
+            var data = {"friendEmail":$(ele).data("email")};
+            //$('.friend_profile_home').data('email-check', $(ele).data("email"));
+            console.log($(ele).data("name"))
+            if( $(ele).data("name")==="내일지"){
+                //내일지일때
+                getMyMapLogList();
+                map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")))
+                map.setLevel(1)
+            }else{
+                //아닐때
+                $.ajax({
+                    type: "GET",
+                    url: "/getFriendMapLogList",
+                    data: data,
+                    dataType: 'json',
+                    success: function (data) {
+                        myLogin = false
+
+                        var name = "friend-read"
+                        var title = "friend-title"
+                        var lno = "friend-lno"
+                        getMapLogList(data, name, title, lno);
+                        map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")))
+                        map.setLevel(1)
+
+
+                    },
+                    error: function (e) {
+                        console.log('fail');
+                    }
+                });
+            }
+
+
+
+
+
+
+        }
+
 
 
 
