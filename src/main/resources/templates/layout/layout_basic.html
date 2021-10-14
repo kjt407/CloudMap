@@ -423,7 +423,7 @@
                     $('.like-list').children('li').remove();
                     data.forEach(likedList=>{
                         $('.like-list').append(
-                            '<li data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-name="'+likedList.writerName+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'+likedList.title+' 작성자: '+likedList.writerName+'</li>'
+                            '<li data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-me="'+likedList.me+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'+likedList.title+' 작성자: '+likedList.writerName+'</li>'
                         )
                     });
 
@@ -442,8 +442,8 @@
             closeReadInfoWindow();
             var data = {"friendEmail":$(ele).data("email")};
             //$('.friend_profile_home').data('email-check', $(ele).data("email"));
-            console.log($(ele).data("name"))
-            if( $(ele).data("name")==="내일지"){
+
+            if( $(ele).data("me")){
                 //내일지일때
                 getMyMapLogList();
                 map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")))
