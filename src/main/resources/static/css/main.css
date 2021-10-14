@@ -127,15 +127,19 @@ label #search_btn:hover{ color:#5dd319 }
 
 .explanation .ex1 img{
   width: 45px;
-  margin: 6px 12px 3px 12px;
+  margin: 6px 11px 3px 12px;
 }
 
 .explanation .ex2 img{
-  width: 28px;
-  margin: 3px 20px;
+  width: 35px;
+  margin: 3px 16px;
 }
 .explanation .ex3 img{
-  width: 28px;
+  width: 37px;
+  margin: 3px 16px;
+}
+.explanation .ex4 img{
+  width: 27px;
   margin: 3px 20px;
 }
 .explanation span{
