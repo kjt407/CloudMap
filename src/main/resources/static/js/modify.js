@@ -1,12 +1,14 @@
+var storedFiles = [];
 jQuery(document).ready(function () {
-    var storedFiles = [];
-    $('.write').on('change', '.user_picked_files', function () {
+
+    $('.modify').on('change', '.user_picked_files', function () {
         var files = this.files;
         var i = 0;
-
+        console.log(files)
         for (i = 0; i < files.length; i++) {
             var readImg = new FileReader();
             var file = files[i];
+
             if (file.type.match('image.*')) {
                 storedFiles.push(file);
                 readImg.onload = (function (file) {
@@ -20,6 +22,7 @@ jQuery(document).ready(function () {
                     };
                 })(file);
                 readImg.readAsDataURL(file);
+                console.log(readImg)
             } else {
                 alert('the file ' + file.name + ' is not an image<br/>');
             }
@@ -34,9 +37,10 @@ jQuery(document).ready(function () {
     });
 
     // 하나씩 제거하기
-    $('.write').on('click', 'a.cvf_delete_image', function (e) {
+    $('.modify').on('click', 'a.cvf_delete_image', function (e) {
         $(this).parent().remove('');
         var file = $(this).parent().attr('file');
+        console.log("삭제")
         console.log(file)
         for (var i = 0; i < storedFiles.length; i++) {
             if (storedFiles[i].name == file) {
@@ -53,7 +57,10 @@ jQuery(document).ready(function () {
         }
         console.log(storedFiles)
     });
-    $('.write').on('click', '.btn-save', function (e) {
+
+
+
+    $('.modify').on('click', '.btn-saves', function (e) {
         console.log("클릭?")
         var form = $('#write')[0];
         // Create an FormData object
@@ -75,10 +82,10 @@ jQuery(document).ready(function () {
             return;
         }
 
-         for(var i = 0; i <storedFiles.length; i++){
-         	console.log(storedFiles[i]);
-         	data.append("files",storedFiles[i]);
-         }
+        for(var i = 0; i <storedFiles.length; i++){
+            console.log(storedFiles[i]);
+            data.append("files",storedFiles[i]);
+        }
 
         data.append("title", title);
         data.append("content", content);
@@ -89,15 +96,15 @@ jQuery(document).ready(function () {
         console.log('data')
         console.log(data)
         $.ajax({
-        	type: "POST",
-        	url: "/register",
-        	data: data,
-        	processData: false,
-        	contentType: false,
-        	dataType: 'json',
-        	success: function (data) {
-        		$('#btnUpload').prop('disabled', false);
-        		alert('success')
+            type: "POST",
+            url: "/register",
+            data: data,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function (data) {
+                $('#btnUpload').prop('disabled', false);
+                alert('success')
                 $('.write.modal').modal("hide");
 
                 $(".write .cvf_uploaded_files .all-image").remove('');
@@ -106,10 +113,10 @@ jQuery(document).ready(function () {
                 $(".write-section").find('form')[0].reset()
                 start = true;
                 getMyMapLogList();
-        	},
-        	error: function (e) {
-        		$('#btnUpload').prop('disabled', false);
-        		alert('fail');
+            },
+            error: function (e) {
+                $('#btnUpload').prop('disabled', false);
+                alert('fail');
             }
 
         });
