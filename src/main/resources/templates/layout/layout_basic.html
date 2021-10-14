@@ -27,6 +27,12 @@
     <input type="checkbox" id="friend-alert-check">
     <input type="checkbox" id="my-page-check">
 
+    <div id="profile-edit-popup" style="position: fixed; display:flex; justify-content: center; align-items: center; z-index: 11; top: 0; left: 0; width: 100%; height: 100%; background: black;">
+        <div class="popup-content" style="width: 500px; height: 200px; background: white">
+
+        </div>
+    </div>
+
     <!--헤더 시작-->
     <header class="header-class" id="mainheader">
         <label for="search-check">
@@ -76,6 +82,7 @@
     </div>
     <div class="sidebar">
         <div class="profile_info">
+
             <th:block th:if="${!#authentication.getPrincipal().socialImg && #strings.isEmpty(#authentication.getPrincipal().profileImg)}">
                 <img th:src="@{/images/default_profile.png}" class="profile_image"></img>
             </th:block>
