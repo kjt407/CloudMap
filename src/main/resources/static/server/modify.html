@@ -31,7 +31,7 @@
 			</div>
 			<div class="footer">
 				<button type="button" class="btn-cancle">취소</button>
-				<button type="button" class="btn-save">저장</button>
+				<button type="button" class="btn-modify">저장</button>
 			</div>
 		</div>
 	</form>
@@ -50,14 +50,14 @@
 		processData: false,
 		contentType: false,
 		dataType: 'json',
-		success: function (data) {
+		success: function (datas) {
 			console.log("asdasd")
-			detailFile(data)
+			detailFile(datas)
 
-			$('.modify #title').val(data.title);
-			$('.modify #content').val(data.content);
-			console.log(data.imageDTOList)
-			if(data.imageDTOList.length){
+			$('.modify #title').val(datas.title);
+			$('.modify #content').val(datas.content);
+			console.log(datas.imageDTOList)
+			if(datas.imageDTOList.length){
 				console.log("이미지있음")
 				$(".modify #width-scroll").css("display", "inline-block");
 				$(".modify #content").css("height", "374px");
@@ -69,9 +69,12 @@
 			}
 
 			$('.modify .cvf_uploaded_files').empty()
-			data.imageDTOList.forEach(i => {
+			datas.imageDTOList.forEach(i => {
 				console.log(i)
+
 				storedFiles.push(i)
+
+
 				var html = "<li class='all-image' file = '"+i.imgName+"'>" +
 						"<img class = 'img-thumb' src='display?imgUrl="+i.imageURL+"' />" +
 						"<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +

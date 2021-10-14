@@ -1,6 +1,7 @@
+
 jQuery(document).ready(function () {
     var storedFiles = [];
-    $('.write').on('change', '.user_picked_files', function () {
+    $('body').on('change', '.user_picked_files', function () {
         var files = this.files;
         var i = 0;
 
@@ -34,7 +35,7 @@ jQuery(document).ready(function () {
     });
 
     // 하나씩 제거하기
-    $('.write').on('click', 'a.cvf_delete_image', function (e) {
+    $('body').on('click', 'a.cvf_delete_image', function (e) {
         $(this).parent().remove('');
         var file = $(this).parent().attr('file');
         console.log(file)
@@ -53,7 +54,7 @@ jQuery(document).ready(function () {
         }
         console.log(storedFiles)
     });
-    $('.write').on('click', '.btn-save', function (e) {
+    $('body').on('click', '.btn-save', function (e) {
         console.log("클릭?")
         var form = $('#write')[0];
         // Create an FormData object
@@ -97,7 +98,7 @@ jQuery(document).ready(function () {
         	dataType: 'json',
         	success: function (data) {
         		$('#btnUpload').prop('disabled', false);
-        		alert('success')
+
                 $('.write.modal').modal("hide");
 
                 $(".write .cvf_uploaded_files .all-image").remove('');
