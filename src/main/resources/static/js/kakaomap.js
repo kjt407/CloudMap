@@ -198,7 +198,7 @@ function getMapLogList(data, name, title, lno){
     }
     markersArray = [];
     for (var i = 0; i < data.length; i++) {
-        var imageSize = new kakao.maps.Size(30, 43);
+        var imageSize = new kakao.maps.Size(37, 37);
         var markerImage = new kakao.maps.MarkerImage(imageListSrc, imageSize);
 
         // 마커를 생성합니다
