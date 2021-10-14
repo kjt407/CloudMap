@@ -112,20 +112,18 @@ public class MapLogServiceImp implements MapLogService{
             result =
             likes.stream().map(like -> {
                 MapLog mapLog = like.getMapLog();
-                String writerName;
+                boolean isMe = false;
                 if(mapLog.getWriter().getEmail() == username){
-                    writerName = "내일지";
-                }else {
-                    writerName = mapLog.getWriter().getEmail();
+                    isMe = true;
                 }
-
                 LikeMapLogDTO likeMapLogDTO = LikeMapLogDTO.builder()
                         .lno(mapLog.getLno())
                         .title(mapLog.getTitle())
                         .lat(mapLog.getLat())
                         .lng(mapLog.getLng())
+                        .isMe(isMe)
                         .writerEmail(mapLog.getWriter().getEmail())
-                        .writerName(writerName)
+                        .writerName(mapLog.getWriter().getName())
                         .writerProfileImg(mapLog.getWriter().getProfileImg())
                         .likedDate(like.getRegDate())
                         .writeDate(mapLog.getRegDate())

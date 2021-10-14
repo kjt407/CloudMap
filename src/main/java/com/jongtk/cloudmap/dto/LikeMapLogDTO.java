@@ -20,6 +20,8 @@ public class LikeMapLogDTO {
 
     private double lng;
 
+    private boolean isMe;
+
     private String writerEmail;
     private String writerName;
     private String writerProfileImg;

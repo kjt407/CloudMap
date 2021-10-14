@@ -120,6 +120,17 @@ public class MyPageController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @PutMapping("/editMyName")
+    public ResponseEntity<String> editMyName(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, String name){
+
+        if(name == null || name.isBlank()){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        String result = myPageService.editName(authMemberDTO.getUsername(), name);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
     @GetMapping("/displayProfile")
     public ResponseEntity<byte[]> displayProfile(String imgUrl){
         ResponseEntity<byte[]> result = null;

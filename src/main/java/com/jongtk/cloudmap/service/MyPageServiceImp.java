@@ -80,4 +80,19 @@ public class MyPageServiceImp implements MyPageService {
 
         return result;
     }
+
+    @Override
+    public String editName(String username, String str) {
+        String result = null;
+
+        Optional<Member> memberOp = memberRepository.findById(username);
+
+        if(memberOp.isPresent()){
+            Member member = memberOp.get();
+            member.setName(str);
+            memberRepository.save(member);
+            result = member.getName();
+        }
+        return result;
+    }
 }
