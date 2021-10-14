@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -90,18 +91,39 @@ public class MyPageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        String result = myPageService.setLocalImg(authMemberDTO.getUsername(), saveName);
+        String resultUrl = URLEncoder.encode(folderPath+"/"+uuid+"_"+convertFileName);
+        String result = myPageService.setLocalImg(authMemberDTO.getUsername(), "displayProfile?imgUrl="+resultUrl);
         if(result == null || result.trim().equals("")){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>("displayProfile?imgUrl="+result, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PutMapping("/setSocialProfile")
+    public ResponseEntity<String> setSocialProfile(@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+        log.warn("소셜 프로필 변경 컨트롤러 실행");
+
+        if (!authMemberDTO.isFromSocial() && authMemberDTO.isSocialImg()) {
+            log.warn("이미 사용중이거나 소셜 회원이아님");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        String result = myPageService.setSocialImg(authMemberDTO.getUsername(), (String) authMemberDTO.getAttributes().get("picture"));
+        
+        if(result == null){
+            log.warn("잘못된 사용자 요청임");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        log.warn("소셜 프로필 변경 정상 작동");
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/displayProfile")
     public ResponseEntity<byte[]> displayProfile(String imgUrl){
         ResponseEntity<byte[]> result = null;
+
         try {
             String srcFileName = URLDecoder.decode(imgUrl, "UTF-8");
             File file = new File(uploadPath + File.separator + srcFileName);

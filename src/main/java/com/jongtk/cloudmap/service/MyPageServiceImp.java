@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,11 +49,35 @@ public class MyPageServiceImp implements MyPageService {
 
     @Override
     public String setLocalImg(String username, String imgUrl) {
-        return null;
+        String result = null;
+        Optional<Member> memberOp = memberRepository.findById(username);
+
+        if(memberOp.isPresent()){
+            Member member = memberOp.get();
+            member.setSocialImg(false);
+            member.setProfileImg(imgUrl);
+            memberRepository.save(member);
+            result = member.getProfileImg();
+        }
+
+        return result;
     }
 
     @Override
     public String setSocialImg(String username, String imgUrl) {
-        return null;
+        String result = null;
+        Optional<Member> memberOp = memberRepository.findById(username);
+
+        if(memberOp.isPresent()){
+            Member member = memberOp.get();
+            if(member.isFromSocial() && !member.isSocialImg()) {
+                member.setSocialImg(true);
+                member.setProfileImg(imgUrl);
+                memberRepository.save(member);
+                result = member.getProfileImg();
+            }
+        }
+
+        return result;
     }
 }
