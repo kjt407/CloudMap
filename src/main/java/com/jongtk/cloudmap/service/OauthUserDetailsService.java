@@ -90,6 +90,7 @@ public class OauthUserDetailsService extends DefaultOAuth2UserService {
             attr
         );
         authMember.setProfileImg(member.getProfileImg());
+        authMember.setSocialImg(member.isSocialImg());
         authMember.setName(member.getName());
 
         return authMember;

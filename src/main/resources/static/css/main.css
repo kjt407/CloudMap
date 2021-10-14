@@ -325,3 +325,19 @@ label #my-page-btn:hover{ color:#19B3D3 }
 
 
 #my-page-check:checked ~ .sidebar .my-page-section{ right: 0px;}
+
+
+/*프로필 팝업 CSS*/
+div#profile-edit-popup { position: fixed; display:none; flex-direction: column; justify-content: center; align-items: center; z-index: 11; top: 0; left: 0; width: 100%; height: 100%; background: rgba(000,000,000,0.5); font-size: 19px;}
+div#profile-edit-popup > .popup-content { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 700px; height: auto; background: whitesmoke; padding: 30px; border-radius: 5px;}
+div#profile-edit-popup > .popup-content .profile-frame { display: flex; flex-direction: column; justify-content: center; align-items: center;}
+div#profile-edit-popup > .popup-content .profile_image { border: 1px solid gray;}
+div#profile-edit-popup > .popup-content .profile-label { margin-top: 15px;}
+div#profile-edit-popup > .popup-content p.info-row { display: flex; justify-content: center;align-items: center; width: 100%; margin: 40px 0px; font-weight: bold;}
+div#profile-edit-popup > .popup-content p.info-row:before,
+div#profile-edit-popup > .popup-content p.info-row:after { content: ""; display: block; background: black; width: 30%; height: 2px; margin: 0 20px;}
+/*버튼들 공통 옵션*/
+div#profile-edit-popup > .popup-content > div#popup-container .btn-edit-profile,
+div#profile-edit-popup > .popup-content .btn-close-popup { transition: 0.2s all; cursor: pointer;}
+div#profile-edit-popup > .popup-content > div#popup-container .btn-edit-profile:hover { transform: scale(1.1);}
+div#profile-edit-popup > .popup-content .btn-close-popup { position: absolute; top: 20px; right: 20px; width: 20px; height: 20px;}

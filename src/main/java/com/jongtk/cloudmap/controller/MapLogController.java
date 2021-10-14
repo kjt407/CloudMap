@@ -142,7 +142,7 @@ public class MapLogController {
     }
 
     @GetMapping("/display")
-    public ResponseEntity<byte[]> getMyLog(String imgUrl){
+    public ResponseEntity<byte[]> display(String imgUrl){
         ResponseEntity<byte[]> result = null;
         try {
             String srcFileName = URLDecoder.decode(imgUrl, "UTF-8");

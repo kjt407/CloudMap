@@ -165,7 +165,6 @@ function getFriendMapLogList(ele){
 
            // $(".friend_profile_home").attr("class", "friend_profile_home")
 
-
              $(ele).attr("src", "../images/exit.png")
              $(ele).attr("class", "my_profile_home")
             $(ele).attr("onclick", "getBackMyMapLogList()")
