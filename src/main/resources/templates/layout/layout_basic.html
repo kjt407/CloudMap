@@ -26,6 +26,7 @@
     <input type="checkbox" id="friend-search-check">
     <input type="checkbox" id="friend-alert-check">
     <input type="checkbox" id="my-page-check">
+    <input type="checkbox" id="friend-setting-check">
 
 <!--     프로필 이미지 변경 팝업-->
     <div id="profile-edit-popup">
@@ -120,8 +121,12 @@
             <label for="friend-search-check">
                 <i class="fas fa-search" id="friend_search_btn"></i>
             </label>
+            <label for="friend-setting-check">
+                <i class="fas fa-cog" id="friend_setting_btn"></i>
+            </label>
             <div class="friend-list-scroll">
                 <ul class="friend-list" id="main-friend-list">
+
                 </ul>
             </div>
         </div>
@@ -150,7 +155,7 @@
                 </label>
             </ul>
             <div class="alert-friend-list-scroll">
-<!--                <ul class="friend-list">-->
+                <ul class="friend-list">
 <!--                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
 <!--                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
 <!--                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
@@ -480,16 +485,69 @@
                     }
                 });
             }
+        }
 
+        $("#friend-setting-check").change(function(){
+            if($("#friend-setting-check").is(":checked")){
+                console.log("체크")
+                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("src", "../images/minus.png" )
+                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("class", "delete_friend" )
+                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("onclick", "deleteFriend(this)" )
 
+            }else{
+                console.log("해제")
+                $(".friend-list-scroll .friend-list-li").remove();
+                getFriendList();
+            }
+        });
 
+        //친구삭제 기능
+        function deleteFriend(ele){
+            console.log("삭제")
+            console.log($(ele).data("name"))
+            console.log($(ele).data("email"))
+            const data = {'targetEmail':$(ele).data("email")};
+            $.ajax({
+                type: "DELETE",
+                url: "/deleteFriend",
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/getFriendList",
+                        dataType: 'json',
+                        success: function (data) {
+                            console.log("data")
+                            console.log(data)
+                            var friendLi = "";
+                            data.forEach(friend => {
 
+                                //프로필이미지 선언
+                                var profileImg = '/images/default_profile.png';
+                                if(friend.profileImg){
+                                    profileImg = friend.profileImg;
+                                }
+
+                                friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="deleteFriend(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/minus.png" id="sprofile_home" class="delete_friend"></li>'
+
+                            })
+
+                            $('#main-friend-list').html(friendLi)
+                        },
+                        error: function (e) {
+                            console.log('fail');
+                        }
+                    });
+
+                },
+                error: function (e) {
+                    console.log('fail');
+                }
+            });
 
 
         }
-
-
-
 
     </script>
 </th:block>

@@ -17,7 +17,7 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 /* 사이드바 프로필 시작 */
 .profile_info{ display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .sidebar .profile_info .profile_image{ width: 150px; height: 150px; border-radius: 100px; margin-top: 30px; margin-bottom: 10px; }
-.sidebar .profile-my-name{height: 77px}
+.sidebar .profile-my-name{height: 82px}
 .sidebar .profile_info .my-name{text-align:center; width: 80px; color: white;  border-radius: 10px; margin-top: 10px;  font-size: 20px; font-weight: bold; background: #212022; border-style: none}
 .sidebar .profile_info #modify-name{color: white; cursor: pointer; font-size: 16px;  position: absolute; right: 80px; top: 242px;}
 .sidebar .profile_info #modify-name:hover{color:rgb(252, 94, 94);}
@@ -43,6 +43,7 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .box .friend-list li .friend_profile_name{ color: #fff; font-size: 18px; margin-bottom: 0px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box;  }
 .sidebar .box .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px; cursor: pointer;}
 .sidebar .box .friend-list li .my_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px; cursor: pointer; }
+.sidebar .box .friend-list li .delete_friend{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px;}
 
 .sidebar .friend-list li:hover .friend_profile_name{ color: #1DC4E7;}
 
@@ -360,9 +361,11 @@ label {  -ms-user-select: none;
 .sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like{
   height: 75px;
   display: flex;
+
 }
 .sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like:hover{
   background: #1DC4E7;
+
 }
 .sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like .my-like-left{
   text-align: center;
@@ -370,11 +373,22 @@ label {  -ms-user-select: none;
   height: 60px;
   width: 50px;
 
+
 }
 .sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like .my-like-right{
  line-height: 75px; font-size: 15px;
+
 }
 
 .sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like div img{
-  width: 40px; border-radius: 100%;
+  width: 40px; border-radius: 100%; height: 40px;
+
 }
+
+.sidebar .my-page-section .search-like-list-scroll .my-like-list *{
+ cursor: pointer;
+
+}
+
+label #friend_setting_btn{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:88px; top: 310px; font-size: 15px; margin: 0px; transition: 0.5s; transition-property: color; }
+label #friend_setting_btn:hover{ color:#19B3D3 }
