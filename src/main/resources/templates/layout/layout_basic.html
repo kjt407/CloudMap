@@ -165,7 +165,7 @@
 
             </ul>
             <div class="search-like-list-scroll">
-                <ul class="like-list">
+                <ul class="my-like-list">
                 </ul>
             </div>
 
@@ -420,10 +420,18 @@
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
-                    $('.like-list').children('li').remove();
+                    $('.my-like-list').children('li').remove();
+
                     data.forEach(likedList=>{
-                        $('.like-list').append(
-                            '<li data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-me="'+likedList.me+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'+likedList.title+' 작성자: '+likedList.writerName+'</li>'
+                        var editTitle="";
+                        if (likedList.title.length > 10) {
+                            editTitle = likedList.title.substring(0, 10) + "...";
+                        } else {
+                            editTitle = likedList.title;
+                        }
+                        $('.my-like-list').append(
+                            '<li data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-me="'+likedList.me+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'
+                            + '<div class="my-like-left"><img src="'+likedList.writerProfileImg+'" class="my-like-writer-image"><label class="my-like-writer-name">'+likedList.writerName+'</label></div><div class="my-like-right"><label class="my-like-writer-title">'+editTitle+'</label></li></div>'
                         )
                     });
 
