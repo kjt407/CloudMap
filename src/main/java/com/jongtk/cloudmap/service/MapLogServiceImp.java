@@ -114,7 +114,7 @@ public class MapLogServiceImp implements MapLogService{
                 MapLog mapLog = like.getMapLog();
                 String writerName;
                 if(mapLog.getWriter().getEmail() == username){
-                    writerName = "본인";
+                    writerName = "내일지";
                 }else {
                     writerName = mapLog.getWriter().getEmail();
                 }
