@@ -12,6 +12,7 @@ public interface MyPageService {
     MyInfoDTO getMyInfo(String username);
     String setLocalImg(String username, String imgUrl);
     String setSocialImg(String username, String imgUrl);
+    String editName(String username, String str);
 
 
 }

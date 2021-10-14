@@ -387,9 +387,24 @@
         $(".my-name").keydown(function(key) {
             if (key.keyCode == 13) {
 
-                $(".my-name").css("background", "#212022")
-                $(".my-name").css("color", "white")
-                $(".my-name").attr("disabled", true)
+                const data = {'name':$('input.my-name').val()};
+
+                $.ajax({
+                    type: "PUT",
+                    url: "/editMyName",
+                    dataType: 'text',
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                        $('input.my-name').val(data);
+                        $(".my-name").css("background", "#212022");
+                        $(".my-name").css("color", "white");
+                        $(".my-name").attr("disabled", true);
+                    },
+                    error: function (e) {
+                        console.log('fail');
+                    }
+                });
             }
         });
 
