@@ -47,7 +47,7 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
     if(myLogin) {
         searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
-
+                $("#write-section").attr("class", "write-section");
                 closeReadInfoWindow();
                 var jibun = result[0].address.address_name
 
@@ -108,7 +108,8 @@ function searchDetailAddrFromCoords(coords, callback) {
 /* 일지 확인하기 */
 /* ************************************************************************ */
 
-var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+//var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+var imageListSrc = "../images/my-marker.png";
 var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
@@ -121,10 +122,12 @@ function getBackMyMapLogList(){
     $(".friend_profile_home").attr("src", "../images/map.png")
     $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
     $(".friend-list-li").css( "background","#212022")
+
     getMyMapLogList();
 }
 function getFriendMapLogList(ele){
 
+    imageListSrc = "../images/friend-marker.png"
     writeInfoWindow.close();
     writeMarker.setMap(null);
     closeReadInfoWindow();
@@ -173,7 +176,7 @@ function getFriendMapLogList(ele){
     });
 }
 function getMyMapLogList() {
-
+    imageListSrc = "../images/my-marker.png";
     writeInfoWindow.close();
 
     writeMarker.setMap(null);
@@ -207,7 +210,7 @@ function getMapLogList(data, name, title, lno){
         markersArray[i].setImage(markerImage);
 
         var titleInfo;
-        if (data[i].title.length > 6) {
+        if (data[i].title.length > 13) {
             titleInfo = data[i].title.substring(0, 13) + "...";
         } else {
             titleInfo = data[i].title;
@@ -308,8 +311,8 @@ function displayPlaces(places) {
 
                             document.getElementById("ji-bun").innerHTML = jibun;
                             var latlng = marker.getPosition();
-                            document.getElementById("lat").innerHTML = latlng.getLat();
-                            document.getElementById("lng").innerHTML = latlng.getLng();
+                            rightClickLat = latlng.getLat();
+                            rightClickLng = latlng.getLng();
                             // 클릭한 위도, 경도 정보를 가져옵니다
                             if (!writeMarker) {
                                 console.log("마커없음")
@@ -456,7 +459,7 @@ $(document).ready(function(){
             $("#search_btn").attr("class", "fas fa-reply");
         }else{
             //체크 풀음 여기서 검색 초기화 이벤트 해주면 됨
-
+            $("#write-section").attr("class", "write-section");
             $("#info").attr("class", "info");
             $("#search_btn").attr("class", "fas fa-search");
             console.log("체크해제")
