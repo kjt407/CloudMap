@@ -459,7 +459,7 @@
             if( $(ele).data("me")){
                 //내일지일때
                 getMyMapLogList();
-                map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")))
+                map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")+0.00035))
                 map.setLevel(1)
             }else{
                 //아닐때
@@ -475,7 +475,7 @@
                         var title = "friend-title"
                         var lno = "friend-lno"
                         getMapLogList(data, name, title, lno);
-                        map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")))
+                        map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")+0.00035))
                         map.setLevel(1)
 
 
