@@ -51,14 +51,15 @@
 <script src="../js/detail.js"></script>
 <script>
 
+	//수정하기 버튼 눌렀을때
 	$(document).on('click', '.btn-modify', function () {
-
-
 		$('.modify.modal').modal({
 			remote : contextpath+'server/modify.html'
 		});
 	});
 
+
+	//삭제버튼 눌렀을때
 	$(document).on('click', '.btn-delete', function () {
 		console.log("삭제")
 	});
