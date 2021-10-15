@@ -176,6 +176,7 @@ body { overflow: hidden; }
 }
 
 .detail .overLikeLayer{
+    padding: 15px;
     position: fixed;
     color: white;
     background: white;
@@ -201,20 +202,20 @@ body { overflow: hidden; }
 
 }
 .detail .overLikeLayer .like-list-title{
-    margin: 25px 0px 10px 0px;
+    /*margin: 10px 0px 10px 0px;*/
     width: 100%;
     background: white;
-    height: 50px;
-    font-size: 25px;
-    line-height: 50px;
+    height: 30px;
+    font-size: 19px;
+    line-height: 30px;
     color: black;
     font-weight: bold;
 }
 .detail .overLikeLayer .like-list-body{
-    margin: 10px 0px;
+    margin: 7px 0px;
     width: 100%;
     background: white;
-    height: 200px;
+    height: 100%;
     overflow:scroll;   -ms-overflow-style: none;
 }
 .detail .overLikeLayer .like-list-body::-webkit-scrollbar { display: none; }

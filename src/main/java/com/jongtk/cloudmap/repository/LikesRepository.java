@@ -21,4 +21,6 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
     @Query("select likes from Likes likes where likes.mapLog = :mapLog")
     List<Likes> getLikes (MapLog mapLog);
 
+    @Query("delete from Likes likes where likes.member = :member")
+    void deleteByEmail(Member member);
 }
