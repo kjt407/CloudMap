@@ -173,6 +173,9 @@
                 <ul class="my-like-list">
                 </ul>
             </div>
+            <div class="member-leave-section">
+                <a class="member-leave">CloudMap 탈퇴하기</a>
+            </div>
 
         </div>
 
@@ -548,8 +551,20 @@
                 }
             });
 
-
         }
+        $("#friend-search-check").change(function(){
+            if($("#friend-search-check").is(":checked")){
+                $("#friend-search-bar").val("");
+                $(".search-friend-list-scroll .friend-list").children().remove()
+            }else{
+
+            }
+
+        });
+
+        $(".member-leave-section").on("click", ".member-leave", function(){
+            console.log("member-leave")
+        })
 
     </script>
 </th:block>

@@ -372,7 +372,7 @@ label {  -ms-user-select: none;
 
 /*ul*/
 .sidebar .my-page-section .search-like-list-scroll .my-like-list{
-  margin-left: -40px; margin-right: 0px; list-style: none; color: white; height: 450px; overflow:scroll;  -ms-overflow-style: none;
+  margin-left: -40px; margin-right: 0px; list-style: none; color: white; height: calc(100vh - 500px); overflow:scroll;  -ms-overflow-style: none;
 }
 .sidebar .my-page-section .search-like-list-scroll .my-like-list::-webkit-scrollbar{
   display: none;
@@ -412,3 +412,8 @@ label {  -ms-user-select: none;
 
 label #friend_setting_btn{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:88px; top: 310px; font-size: 15px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_setting_btn:hover{ color:#19B3D3 }
+
+
+.member-leave-section{height: 20px; text-align: right; padding-left: 150px}
+.member-leave-section .member-leave{height: 20px; line-height: 20px; text-align: center; width: 130px; color: rgb(70,70,70); text-decoration: none; cursor: pointer;  -webkit-user-select: none; -ms-user-select: none;}
+.member-leave-section .member-leave:hover{color: rgb(120,120,120)}
