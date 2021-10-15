@@ -172,9 +172,9 @@ function postFriend(targetEmail,ele){
 function searchRefresh(ele){
   if($(ele).data('search')){
     if($(ele).data('search') == 'post'){
-      $(ele).replaceWith('<a class="loading"><img class="loading" src="../images/loading.png"/></a>');
-    }else if($(ele).data('search') == 'receive'){
       $(ele).replaceWith('<a class="loading"><img class="loading-img" src="../images/loading.png"/></a>');
+    }else if($(ele).data('search') == 'receive'){
+      $(ele).replaceWith('<a class="isFriend"><img class="isFriend-img" src="../images/friend.png"/></a>');
     }
   }
   return;
