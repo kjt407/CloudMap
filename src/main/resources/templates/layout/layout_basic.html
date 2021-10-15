@@ -548,8 +548,16 @@
                 }
             });
 
-
         }
+        $("#friend-search-check").change(function(){
+            if($("#friend-search-check").is(":checked")){
+                $("#friend-search-bar").val("");
+                $(".search-friend-list-scroll .friend-list").children().remove()
+            }else{
+
+            }
+
+        });
 
     </script>
 </th:block>
