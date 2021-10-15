@@ -7,7 +7,7 @@ $(document).on('click', '#my-detail', function () {
     console.log(lno)
     $.ajax({
         type: "GET",
-        url: "/getMyLog/"+lno,
+        url: contextpath+"getMyLog/"+lno,
         processData: false,
         contentType: false,
         dataType: 'json',
@@ -39,7 +39,7 @@ $(document).on('click', '#friend-detail', function () {
 
     $.ajax({
         type: "GET",
-        url: "/getFriendMapLog/"+lno,
+        url: contextpath+"getFriendMapLog/"+lno,
         processData: false,
         contentType: false,
         dataType: 'json',
@@ -75,7 +75,7 @@ function detailFile(data){
     $('.detail #content').val(data.content);
     data.imageDTOList.forEach(i => {
         console.log(i)
-        var html = '<li><img id="image" src="display?imgUrl='+i.imageURL+'" > </li>'
+        var html = '<li><img id="image" src="'+contextpath+'display?imgUrl='+i.imageURL+'" > </li>'
         $('.detail #width-scroll').append(html)
     })
     $(".detail #width-scroll").on('mousewheel', function (e) {
@@ -91,7 +91,7 @@ function detailFile(data){
 function getLike(lno){
     $.ajax({
         type: "GET",
-        url: "/getLikes/?lno="+lno,
+        url: contextpath+"getLikes/?lno="+lno,
         processData: false,
         contentType: false,
         dataType: 'json',
@@ -107,9 +107,13 @@ function getLike(lno){
 
             likeListHtml = "";
             data.likesList.forEach(likeMember=>{
-                var profileImg = '/images/default_profile.png';
+                var profileImg = contextpath+'images/default_profile.png';
                 if(likeMember.profileImg){
-                    profileImg = likeMember.profileImg;
+                    if(likeMember.profileImg.indexOf('displayProfile') != -1){
+                        profileImg = contextpath+likeMember.profileImg;
+                    }else {
+                        profileImg = likeMember.profileImg;
+                    }
                 }
                 likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
             })
@@ -135,7 +139,7 @@ $(".like").change(function(){
         data.append("lno", lnoDesc);
         $.ajax({
             type: "POST",
-            url: "/addLikes",
+            url: contextpath+"addLikes",
             data: data,
             processData: false,
             contentType: false,
@@ -144,7 +148,7 @@ $(".like").change(function(){
                 $("input:checkbox[id='like']").prop("checked", true);
                 $.ajax({
                     type: "GET",
-                    url: "/getLikes/?lno="+lnoDesc,
+                    url: contextpath+"getLikes/?lno="+lnoDesc,
                     processData: false,
                     contentType: false,
                     dataType: 'json',
@@ -158,9 +162,13 @@ $(".like").change(function(){
 
                         likeListHtml = "";
                         data.likesList.forEach(likeMember=>{
-                            var profileImg = '/images/default_profile.png';
+                            var profileImg = contextpath+'images/default_profile.png';
                             if(likeMember.profileImg){
-                                profileImg = likeMember.profileImg;
+                                if(likeMember.profileImg.indexOf('displayProfile') != -1){
+                                    profileImg = contextpath+likeMember.profileImg;
+                                }else {
+                                    profileImg = likeMember.profileImg;
+                                }
                             }
                             likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
 
@@ -183,7 +191,7 @@ $(".like").change(function(){
         data.append("lno", lnoDesc);
         $.ajax({
             type: "DELETE",
-            url: "/deleteLikes",
+            url: contextpath+"deleteLikes",
             data: data,
             processData: false,
             contentType: false,
@@ -192,7 +200,7 @@ $(".like").change(function(){
                 $("input:checkbox[id='like']").prop("checked", false);
                 $.ajax({
                     type: "GET",
-                    url: "/getLikes/?lno="+lnoDesc,
+                    url: contextpath+"getLikes/?lno="+lnoDesc,
                     processData: false,
                     contentType: false,
                     dataType: 'json',
@@ -206,9 +214,13 @@ $(".like").change(function(){
 
                         likeListHtml = "";
                         data.likesList.forEach(likeMember=>{
-                            var profileImg = '/images/default_profile.png';
+                            var profileImg = contextpath+'images/default_profile.png';
                             if(likeMember.profileImg){
-                                profileImg = likeMember.profileImg;
+                                if(likeMember.profileImg.indexOf('displayProfile') != -1){
+                                    profileImg = contextpath+likeMember.profileImg;
+                                }else {
+                                    profileImg = likeMember.profileImg;
+                                }
                             }
                             likeListHtml += '<li class="like-member-li"><img src="'+profileImg+'" class="profile_image"><label class="profile_name">'+likeMember.name+'</label></li>'
 

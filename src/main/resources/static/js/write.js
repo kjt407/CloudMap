@@ -91,7 +91,7 @@ jQuery(document).ready(function () {
         console.log(data)
         $.ajax({
         	type: "POST",
-        	url: "/register",
+        	url: contextpath+"register",
         	data: data,
         	processData: false,
         	contentType: false,

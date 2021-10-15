@@ -20,6 +20,9 @@
         <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
     </head>
     <body>
+    <script th:inline="javascript">
+        const contextpath= /*[[@{/}]]*/"/";
+    </script>
     <input type="hidden" id="username-check" th:value="${#authentication.principal.email}">
     <input type="checkbox" id="sidebar-check">
     <input type="checkbox" id="search-check">
@@ -223,7 +226,7 @@
     <script th:src="@{/js/detail.js}"></script>
 
     <script th:inline="javascript">
-        const contextpath= /*[[@{/}]]*/"/";
+        // const contextpath= /*[[@{/}]]*/"/";
 
         $(document).ready(function (){
             getMyInfo();
@@ -268,7 +271,7 @@
         function setSocialImg(){
             $.ajax({
                 type: "PUT",
-                url: "/setSocialProfile",
+                url: contextpath+"setSocialProfile",
                 dataType: 'text',
                 success: function (data) {
                     console.log(data)
@@ -284,7 +287,7 @@
         function getMyInfo(){
             $.ajax({
                 type: "GET",
-                url: "/getMyInfo",
+                url: contextpath+"getMyInfo",
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
@@ -381,7 +384,7 @@
             data.append('file',$('input[type=file]')[0].files[0]);
             $.ajax({
                 type: "PUT",
-                url: "/setLocalProfile",
+                url: contextpath+"setLocalProfile",
                 data: data,
                 processData: false,
                 contentType: false,
@@ -404,7 +407,7 @@
 
                 $.ajax({
                     type: "PUT",
-                    url: "/editMyName",
+                    url: contextpath+"editMyName",
                     dataType: 'text',
                     data: data,
                     success: function (data) {
@@ -426,7 +429,7 @@
             console.log("좋아요목록 가져오기");
             $.ajax({
                 type: "GET",
-                url: "/getMyLikes",
+                url: contextpath+"getMyLikes",
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
@@ -470,7 +473,7 @@
                 //아닐때
                 $.ajax({
                     type: "GET",
-                    url: "/getFriendMapLogList",
+                    url: contextpath+"getFriendMapLogList",
                     data: data,
                     dataType: 'json',
                     success: function (data) {
@@ -514,13 +517,13 @@
             const data = {'targetEmail':$(ele).data("email")};
             $.ajax({
                 type: "DELETE",
-                url: "/deleteFriend",
+                url: contextpath+"deleteFriend",
                 data: data,
                 dataType: 'json',
                 success: function (data) {
                     $.ajax({
                         type: "GET",
-                        url: "/getFriendList",
+                        url: contextpath+"getFriendList",
                         dataType: 'json',
                         success: function (data) {
                             console.log("data")

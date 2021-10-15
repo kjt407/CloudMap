@@ -141,7 +141,7 @@ function getFriendMapLogList(ele){
 
     $.ajax({
         type: "GET",
-        url: "/getFriendMapLogList",
+        url: contextpath+"getFriendMapLogList",
         data: data,
         dataType: 'json',
         success: function (data) {
