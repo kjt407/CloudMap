@@ -1,4 +1,4 @@
-
+var k
 $(document).ready(function () {
   //친구 목록 검색 기능
   $(".search-friend-list-scroll > .friend-list > li").hide();
@@ -6,15 +6,8 @@ $(document).ready(function () {
     $('.slide-box').toggleClass('active');
   });
   $("#friend-search-bar").keyup(function () {
-    var k = $(this).val();
-    console.log("k : " + k)
-    $(".search-friend-list-scroll > .friend-list > li").hide();
-    var temp = $(".friend-list > li:contains('" + k + "')")
-    $(temp).show();
+     k = $(this).val();
     searchFriend(k);
-    if (k === "") {
-      $(".search-friend-list-scroll > .friend-list > li").hide();
-    }
   })
 
   $("#modify-name").css("display", "none")
@@ -76,7 +69,7 @@ function getReceiveList(){
           profileImg = friend.profileImg;
         }
 
-        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i class="fas fa-user-plus accept-friend receive-btn" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i class="fas fa-user-minus delete-friend receive-btn" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
+        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img src="../images/received-friend.png" class="accept-friend-img" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></img><img src="../images/refuse-friend.png" class="refuse-friend-img" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></img></li>'
       })
       $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
     },
@@ -125,6 +118,7 @@ function searchFriend(str){
     success: function (data) {
       console.log(data)
       var html = "";
+
       data.forEach(friend => {
 
         //프로필이미지 선언
@@ -133,19 +127,22 @@ function searchFriend(str){
           profileImg = friend.profileImg;
         }
 
-        html += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label>';
+        html += '<li><img src="'+profileImg+'" class="friend_profile_image"><div class="friend_profile_section"><label class="friend_profile_name">'+friend.name+'</label><label class="friend_profile_email">'+friend.email+'</label></div>';
         if(friend.state == 'no'){
-          html += '<a style="cursor: pointer" onclick="btnOnClick(this)" data-search="post" data-email="'+friend.email+'">'+'친구신청'+'</a>';
+          html += '<a class="add-friend" style="cursor: pointer" onclick="btnOnClick(this)" data-search="post" data-email="'+friend.email+'"><img class="add-friend-img" src="../images/add-friend.png"></a>';
         }else if(friend.state == 'friend'){
-          html += '<a >'+'친구임'+'</a>';
+          html += '<a class="isFriend"><img class="isFriend-img" src="../images/friend.png"/></a>';
         }else if(friend.state == 'sent'){
-          html += '<a >'+'요청중'+'</a>';
+          html += '<a class="loading"><img class="loading-img" src="../images/loading.png"/></a>';
         }else if(friend.state == 'received'){
-          html += '<a style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-email="'+friend.email+'">'+'요청수락'+'</a>';
+          html += '<a class="received-friend" style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-email="'+friend.email+'"><img class="received-friend-img" src="../images/received-friend.png"></a>';
         }
         html += '</li>'
       })
       $(".search-friend-list-scroll > ul.friend-list").html(html);
+      if(k===""){
+        $(".search-friend-list-scroll > .friend-list > li").hide();
+      }
     },
     error: function (e) {
       console.log('fail');
@@ -175,9 +172,9 @@ function postFriend(targetEmail,ele){
 function searchRefresh(ele){
   if($(ele).data('search')){
     if($(ele).data('search') == 'post'){
-      $(ele).replaceWith('<a >'+'요청중'+'</a>');
+      $(ele).replaceWith('<a class="loading"><img class="loading" src="../images/loading.png"/></a>');
     }else if($(ele).data('search') == 'receive'){
-      $(ele).replaceWith('<a >'+'친구임'+'</a>');
+      $(ele).replaceWith('<a class="loading"><img class="loading-img" src="../images/loading.png"/></a>');
     }
   }
   return;
