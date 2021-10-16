@@ -1,129 +1,22 @@
 body { overflow: hidden; }
-
-.write .title{
-    width: auto;
-    margin: 40px 40px 0px 40px;
-}
-
-.write .title .input-title{
-    width: 100%;
-    height: 80px;
-    font-size: 40px;
-    border-top-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 1;
-    border-bottom-color: rgb(218, 218, 218);
-}
-
-.write .title .input-title:focus{
-  outline: none;
-}
-.write .content{
-   height: auto;
-    width: auto;
-    margin: -10px 40px 0px 40px;
-}
-.write .content textarea{
-    resize: none;
-    height: 580px;
-    width: 100%;
-    padding: 20px;
-    border-top-width: 1;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 1;
-    border-top-color: rgb(218, 218, 218);
-    border-bottom-color: rgb(218, 218, 218);
-    font-size: 20px;
-}
-
-.write .content textarea:focus{
-    outline: none;
-}
-
-.write .footer{
-    width: auto;
-    margin: 15px 40px 0px 40px;
-}
-
-.write .footer .btn-save{
-    margin: auto;
-    display: block;
-    height: 50px;
-    width: 100px;
-    background: rgb(255, 238, 238);
-
-    color: black;
-    font-size: 16px;
-    border: 3px solid tomato;
-    font-weight: bold;
-    border-radius: 15px;
-    cursor:pointer;
-    transition: 0.4s;
-}
-.write .footer .btn-save:hover{
-    background: tomato;
-    color: white;
-}
-
-.write .btn-close{
-    position: fixed;
-    right: 0px;
-    margin: 20px;
-    background: white;
-    border: none;
-    height: 10px;
-}
-.write .btn-close img{
-    width: 15px;
-}
-/**/
-.write .container-fluid {
-    padding: 0px 40px;
-}
-.write .container-fluid ul {
-    width: 100%;
-    height: 200px;
-    white-space: nowrap;
-    overflow-x: auto;
-    line-height: 150px;
-    padding: 20px;
-    -ms-overflow-style: none;
-    display: none;
-}
-.write .container-fluid ul::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, Opera */
-}
-.write .form-group {
-    margin-bottom: 5px;
-}
-.write ul.cvf_uploaded_files {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background: rgb(255, 255, 255);
-}
-.write ul.cvf_uploaded_files li {
-    margin: 20px 20px 0 0;
-    width: 150px;
-    height: 150px;
-    line-height: 150px;
-    position: relative;
-    display: inline-block;
-}
-.write ul.cvf_uploaded_files li img.img-thumb {
-    width: 150px;
-    height: 150px;
-}
-.write ul.cvf_uploaded_files .delete-btn {
-    width: 24px;
-    border: 0;
-    position: absolute;
-    top: -12px;
-    right: -14px;
-}
-.write .bg-success {
-    padding: 7px;
-}
+.write .title{ width: auto; margin: 40px 40px 0px 40px; }
+.write .title .input-title{ width: 100%; height: 80px; font-size: 40px; border-top-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-width: 1; border-bottom-color: rgb(218, 218, 218); }
+.write .title .input-title:focus{ outline: none; }
+.write .content{ height: auto; width: auto; margin: -10px 40px 0px 40px; }
+.write .content textarea{ resize: none; height: 580px; width: 100%; padding: 20px; border-top-width: 1; border-left-width: 0; border-right-width: 0; border-bottom-width: 1; border-top-color: rgb(218, 218, 218); border-bottom-color: rgb(218, 218, 218); font-size: 20px; }
+.write .content textarea:focus{ outline: none; }
+.write .footer{ width: auto; margin: 15px 40px 0px 40px; }
+.write .footer .btn-save{ margin: auto; display: block; height: 50px; width: 100px; background: rgb(255, 238, 238); color: black; font-size: 16px; border: 3px solid tomato; font-weight: bold; border-radius: 15px; cursor:pointer; transition: 0.4s; }
+.write .footer .btn-save:hover{ background: tomato; color: white; }
+.write .btn-close{ position: fixed; right: 0px; margin: 20px; background: white; border: none; height: 10px; }
+.write .btn-close img{ width: 15px; }
+/*이미지 부분*/
+.write .container-fluid { padding: 0px 40px; }
+.write .container-fluid ul { width: 100%; height: 200px; white-space: nowrap; overflow-x: auto; line-height: 150px; padding: 20px; -ms-overflow-style: none; display: none; }
+.write .container-fluid ul::-webkit-scrollbar { display: none;  /* Chrome, Safari, Opera */ }
+.write .form-group { margin-bottom: 5px; }
+.write ul.cvf_uploaded_files { list-style-type: none; margin: 0; padding: 0; background: rgb(255, 255, 255); }
+.write ul.cvf_uploaded_files li { margin: 20px 20px 0 0; width: 150px; height: 150px; line-height: 150px; position: relative; display: inline-block; }
+.write ul.cvf_uploaded_files li img.img-thumb { width: 150px; height: 150px; }
+.write ul.cvf_uploaded_files .delete-btn { width: 24px; border: 0; position: absolute; top: -12px; right: -14px; }
+.write .bg-success { padding: 7px; }

@@ -9,12 +9,9 @@ $(document).ready(function () {
      k = $(this).val();
     searchFriend(k);
   })
-
   $("#modify-name").css("display", "none")
   $("#modify-profile-image").css("display", "none")
-
 });
-
 
 
 // onClick 호출 함수
@@ -37,7 +34,6 @@ function getFriendList(){
       console.log(data)
       var friendLi = "";
       data.forEach(friend => {
-        
         //프로필이미지 선언
         var profileImg = contextpath+'images/default_profile.png';
         if(friend.profileImg){
@@ -47,9 +43,7 @@ function getFriendList(){
             profileImg = friend.profileImg;
           }
         }
-
         friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="'+contextpath+'images/map.png" id="sprofile_home" class="friend_profile_home"></li>'
-
       })
       $('#main-friend-list').html(friendLi)
     },
@@ -76,8 +70,6 @@ function getReceiveList(){
             profileImg = friend.profileImg;
           }
         }
-
-
         friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i src="'+contextpath+'images/received-friend.png" class="accept-friend-img fas fa-user-plus" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i src="'+contextpath+'images/refuse-friend.png" class="refuse-friend-img fas fa-user-minus" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
 
       })

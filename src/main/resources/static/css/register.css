@@ -1,43 +1,32 @@
 @charset "utf-8";
-
 *{ margin: 0px; padding: 0px; text-decoration: none; font-family:sans-serif; }
-  
 body { min-height: 100vh; background: #212022; }
-
 .registerForm { position:absolute; width:450px; height:600px; padding: 30px, 20px; background-color:#FFFFFF; text-align:center; top:50%; left:50%; transform: translate(-50%,-50%); border-radius: 15px; }
 .registerForm h2{ text-align: center; margin: 30px; }
-
 .register-id{ border-bottom: 2px solid #adadad; margin: 20px 30px; padding: 10px 10px; }
 .register-name{ border-bottom: 2px solid #adadad; margin: 20px 30px; padding: 10px 10px; }
 .register-phone{ border-bottom: 2px solid #adadad; margin: 20px 30px; padding: 10px 10px; }
-
 .register-email1{ border-bottom: 2px solid #adadad; margin: 0px 0px 0px 30px; padding: 10px 0px 10px 10px; width: 28%; float: left;}
 .register-email2{ border-bottom: 2px solid #adadad; margin: 0px 0px 0px 0px; padding: 10px 0px; width: 4%; float: left;}
 .register-email3{ border-bottom: 2px solid #adadad; margin: 0px 0px; padding: 10px 0px; width: 20%; float: left;}
 .register-email4{ border-bottom: 2px solid #adadad; font-size: 17px; margin-right: 18px; padding: 10px 0px; width: 30%; }
 .inputRegister { width: 100%; border:none; outline:none; color: #636e72; font-size:16px; height:25px; background: none; }
-
 .register-pw{  border-bottom: 2px solid #adadad; margin: 20px 30px; padding: 10px; }
 .register-pw-confirm{border-bottom: 2px solid #adadad; margin: 20px 30px; padding: 10px; }
 label.pwMessageDanger1{position: absolute; top: 208px; left: 32px; text-align: left; display: none; color: #d92742; font-weight: bold; font-size: 10px;}
 label.pwMessageSuccess1{position: absolute; top: 208px; left: 32px; text-align: left; display: none; color: #17632a; font-weight: bold; font-size: 10px;}
 label.pwMessageDanger2{position: absolute; top: 275px; left: 32px; text-align: left; display: none; color: #d92742; font-weight: bold; font-size: 10px;}
 label.pwMessageSuccess2{position: absolute; top: 275px; left: 32px; text-align: left; display: none; color: #17632a; font-weight: bold; font-size: 10px;}
-
 .pw-success{margin: 30px; padding: 10px; background-color: #d4eddb; border-radius: 5px; color: #155725; font-weight: bold; border-style: solid; border-color: #155725; border-width: 0.05px;}
 .pw-danger{margin: 30px; padding: 10px; background-color: #f8d7da; border-radius: 5px; color: #872b30; font-weight: bold; border-style: solid; border-color: #872b30; border-width: 0.05px;}
 .register-success-btn { position:relative; left:39%; transform: translateX(-50%); margin: 50px; width:85%; height:40px; background: rgb(92, 32, 92); color:white; font-weight: bold; border:none; cursor:pointer; transition: 0.4s; display:inline; }
 .register-success-btn:hover {  background: rgb(49, 5, 49); }
 .register-success-btn:disabled,
 .register-success-btn:disabled:hover { background-color: gray; color: white;}
-
 .up-arrow-parent{ position: relative; top: calc(50%);  left: calc(50%);}
 .up-arrow {position:absolute; left: -190px; top: -266px;}
-
-
 a.arrow {display: block; padding: 13px 0px;  border-radius: 100%;  transition: 0.4s; width: 30px; background: url(../images/BackArrow.png) #fff center no-repeat; background-size: contain;}
 a.arrow:hover{  filter: brightness(80%); }
-
 select { border:none; }
 
 
