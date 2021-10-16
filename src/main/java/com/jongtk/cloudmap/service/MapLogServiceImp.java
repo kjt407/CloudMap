@@ -95,6 +95,7 @@ public class MapLogServiceImp implements MapLogService{
     }
 
     @Override
+    @Transactional
     public boolean delete(long lno, String username) {
 
         Optional<Member> memberOp = memberRepository.findById(username);
