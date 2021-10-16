@@ -84,6 +84,21 @@ public class MapLogController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+    @PutMapping("/editMapLog")
+    public boolean editMapLog(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, MapLogDTO mapLogDTO, MultipartFile[] files, String[] uuids){
+
+        log.warn("---------------- 수정 컨트롤러 실행됨");
+        log.warn("삭제된 파일들 잘 들어왔나요?");
+        log.warn(uuids);
+        return false;
+    }
+
+    @DeleteMapping("/deleteMapLog")
+    public boolean deleteMapLog(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, long lno){
+        return mapLogService.delete(lno, authMemberDTO.getUsername());
+    }
+
+
     private String makeFolder() {
 
         String str = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));

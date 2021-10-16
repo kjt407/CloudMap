@@ -54,6 +54,31 @@ public class MapLogServiceImp implements MapLogService{
     }
 
     @Override
+    public Long edit(MapLogDTO mapLogDTO, String username) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(long lno, String username) {
+
+        Optional<Member> memberOp = memberRepository.findById(username);
+        Optional<MapLog> mapLogOp = mapLogRepository.findById(lno);
+
+        if(memberOp.isPresent() && mapLogOp.isPresent()){
+            Member member = memberOp.get();
+            MapLog mapLog = mapLogOp.get();
+
+            if(mapLog.getWriter() == member){
+                likesRepository.deleteByMapLog(mapLog);
+                mapLogRepository.delete(mapLog);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     @Transactional
     public List<MapLogListDTO> getMyList(String username) {
         List<MapLogListDTO> result = new ArrayList<>();
