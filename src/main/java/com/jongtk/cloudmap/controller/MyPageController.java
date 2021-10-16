@@ -17,7 +17,9 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.file.Files;
@@ -150,10 +152,21 @@ public class MyPageController {
 
 
     @GetMapping("/resign")
-    public boolean resign(@AuthenticationPrincipal AuthMemberDTO authMemberDTO){
+    public boolean resign(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, HttpServletResponse response, String password) throws IOException {
 
-        myPageService.resign(authMemberDTO.getUsername(), "www");
-        return true;
+        String passwordCheck = password;
+
+        if(authMemberDTO.isFromSocial()){
+            passwordCheck = "completed";
+        }
+
+        if(myPageService.resign(authMemberDTO.getUsername(), passwordCheck)){
+            log.warn("패스워드 검증 성공함");
+            response.sendRedirect("/logout");
+            return true;
+        }
+
+        return false;
     }
 
 
