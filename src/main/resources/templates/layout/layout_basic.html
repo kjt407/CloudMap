@@ -464,7 +464,7 @@
                         $(".my-name").attr("disabled", true);
                     },
                     error: function (e) {
-                        console.log('fail');
+
                     }
                 });
             }
@@ -472,13 +472,13 @@
 
         //내가 누른 좋아요 목록 가져오기
         function getMyLikeList(){
-            console.log("좋아요목록 가져오기");
+
             $.ajax({
                 type: "GET",
                 url: contextpath+"getMyLikes",
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data)
+
                     $('.my-like-list').children('li').remove();
 
                     data.forEach(likedList=>{
@@ -496,7 +496,7 @@
 
                 },
                 error: function (e) {
-                    console.log('fail');
+
                 }
             });
         }
@@ -535,7 +535,7 @@
 
                     },
                     error: function (e) {
-                        console.log('fail');
+
                     }
                 });
             }
@@ -543,13 +543,13 @@
 
         $("#friend-setting-check").change(function(){
             if($("#friend-setting-check").is(":checked")){
-                console.log("체크")
+
                 $(".friend-list-scroll .friend-list-li #sprofile_home").attr("src", contextpath+"images/minus.png" )
                 $(".friend-list-scroll .friend-list-li #sprofile_home").attr("class", "delete_friend" )
                 $(".friend-list-scroll .friend-list-li #sprofile_home").attr("onclick", "deleteFriend(this)" )
 
             }else{
-                console.log("해제")
+
                 $(".friend-list-scroll .friend-list-li").remove();
                 getFriendList();
             }
@@ -557,9 +557,7 @@
 
         //친구삭제 기능
         function deleteFriend(ele){
-            console.log("삭제")
-            console.log($(ele).data("name"))
-            console.log($(ele).data("email"))
+
             const data = {'targetEmail':$(ele).data("email")};
             $.ajax({
                 type: "DELETE",
@@ -572,8 +570,7 @@
                         url: contextpath+"getFriendList",
                         dataType: 'json',
                         success: function (data) {
-                            console.log("data")
-                            console.log(data)
+
                             var friendLi = "";
                             data.forEach(friend => {
 
@@ -590,13 +587,13 @@
                             $('#main-friend-list').html(friendLi)
                         },
                         error: function (e) {
-                            console.log('fail');
+
                         }
                     });
 
                 },
                 error: function (e) {
-                    console.log('fail');
+
                 }
             });
 
@@ -657,7 +654,7 @@
                 data: data,
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
+
                     if(data){
                         $(".confirm-first").hide()
                         $(".confirm-second").hide()
@@ -682,8 +679,8 @@
                 },
                 error: function (e) {
                     alert('패스워드 또는 확인문자를 정확히 입력해주세요');
-                    console.log('fail');
-                    console.log(e);
+
+
                 }
             });
         })

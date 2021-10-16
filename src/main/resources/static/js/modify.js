@@ -109,6 +109,7 @@ $('body').on('click', '.modify-btn', function (e) {
             deleteStoredFiles = [];
             areadyStoredFiles = [];
             console.log(lno)
+            getMyMapLogList();
             alert('성공이랑께');
         },
         error: function (e) {

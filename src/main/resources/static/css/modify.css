@@ -45,11 +45,12 @@ body { overflow: hidden; }
 .modify .footer{
     width: auto;
     margin: 15px 40px 0px 40px;
+    text-align: center;
 }
 
 .modify .footer .modify-btn{
     margin: auto;
-    display: block;
+
     height: 50px;
     width: 100px;
     background: rgb(255, 238, 238);
@@ -68,7 +69,7 @@ body { overflow: hidden; }
 }
 .modify .footer .btn-cancle{
     margin: auto;
-    display: block;
+
     height: 50px;
     width: 100px;
     background: rgb(255, 238, 238);
