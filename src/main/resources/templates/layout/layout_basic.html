@@ -18,6 +18,9 @@
         <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css}">
         <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+
+
+
     </head>
     <body>
     <script th:inline="javascript">
@@ -192,6 +195,35 @@
             </th:block>
         </div>
     </div>
+    <div id="popup01">
+        <div class="popup-close"><i class="fas fa-times"></i></div>
+        <div class="popup-header">
+            <h3 class="h3-class">CLOUD <span class="title-map">MAP </span>탈퇴하기</h3>
+        </div>
+        <div class="popup-body">
+            <div class="confirm-first">
+                <div>
+                    <h3 class="question">CloudMap을 탈퇴하시겠습니까?</h3>
+                    <button class="btn-yes">네 할래요.</button>
+                    <button class="btn-no">아니요 안할래요.</button>
+                </div>
+            </div>
+            <div class="confirm-second">
+                <div>
+                    <h3 class="question">비밀번호를 입력해주십시오.</h3>
+                    <input class="confirm-password" type="password" id="confirm-pw" placeholder="사용중인 비밀번호">
+
+                </div>
+            </div>
+            <div class="confirm-third">
+                <h3 class="question">"탈퇴하겠습니다." 를 입력해주십시오.</h3>
+                <input class="confirm-text" type="text" id="confirm-text" placeholder="">
+                <button class="leave-cloudmap">탈퇴하기</button>
+            </div>
+        </div>
+
+    </div>
+
     <!--사이드바 끝-->
 
     <!-- 컨텐츠-->
@@ -562,11 +594,48 @@
             }else{
 
             }
-
         });
 
         $(".member-leave-section").on("click", ".member-leave", function(){
-            console.log("member-leave")
+            $("#popup01").show();   //팝업 오픈
+            $("body").append('<div class="backon"></div>'); //뒷배경 생성
+            setting();
+
+            $(".confirm-first").on("click", ".btn-yes", function(){
+                $(".confirm-first").hide()
+                $(".confirm-second").show()
+                $("#popup01").css("height","365px")
+                setTimeout(function() {
+                    $(".confirm-third").show()
+                }, 700);
+            })
+            $(".confirm-first").on("click", ".btn-no", function(){
+                $("#popup01").hide();
+                $(".backon").hide();
+                setting();
+            })
+            $(".popup-close").on("click", "i", function(){
+                $("#popup01").hide();
+                $(".backon").hide();
+                setting();
+            })
+        })
+        function setting(){
+            $(".confirm-first").show()
+            $(".confirm-second").hide()
+            $(".confirm-third").hide()
+            $("#confirm-text").val("")
+            $("#confirm-pw").val("")
+            $("#popup01").css("height","250px")
+        }
+
+        //회원탈퇴 기능
+        $(".confirm-third").on("click", ".leave-cloudmap", function(){
+            const pw = $("#confirm-pw").val()
+            const text = $("#confirm-text").val()
+            console.log("pw : " +pw)
+            console.log("text : " +text)
+
         })
 
     </script>

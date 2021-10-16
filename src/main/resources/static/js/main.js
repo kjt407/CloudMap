@@ -77,7 +77,9 @@ function getReceiveList(){
           }
         }
 
+
         friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img src="'+contextpath+'images/received-friend.png" class="accept-friend-img" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></img><img src="'+contextpath+'images/refuse-friend.png" class="refuse-friend-img" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></img></li>'
+
       })
       $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
     },

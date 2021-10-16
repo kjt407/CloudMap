@@ -88,8 +88,10 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .box-friend-alert .friend-list li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px;  margin-top: 12.5px;}
 .sidebar .box-friend-alert .friend-list li .friend_profile_name{ color: #fff; font-size: 18px; padding-left: 50px; margin-bottom: 0px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box;  }
 .sidebar .box-friend-alert .friend-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px;}
-.sidebar .box-friend-alert .friend-list li .accept-friend-img{ flex-direction: column; width: 30px; height: 30px; border-radius: 100px;   margin-top: 16px; cursor: pointer}
-.sidebar .box-friend-alert .friend-list li .refuse-friend-img{ flex-direction: column; width: 30px; height: 30px; border-radius: 100px;   margin-top: 16px; cursor: pointer}
+.sidebar .box-friend-alert .friend-list li .accept-friend-img{ flex-direction: column; width: 30px; height: 30px; border-radius: 100px;   margin-top: 16px; cursor: pointer; font-size: 25px; color: white}
+.sidebar .box-friend-alert .friend-list li .accept-friend-img:hover{color: #1DC4E7 }
+.sidebar .box-friend-alert .friend-list li .refuse-friend-img{ flex-direction: column; width: 30px; height: 30px; border-radius: 100px;   margin-top: 16px; cursor: pointer; font-size: 25px; color: white}
+.sidebar .box-friend-alert .friend-list li .refuse-friend-img:hover{  color: red}
 
 .sidebar .friend-list li i{
   margin-left : 20px;
@@ -392,28 +394,46 @@ label {  -ms-user-select: none;
   margin: 10px 20px;
   height: 60px;
   width: 50px;
-
-
 }
 .sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like .my-like-right{
  line-height: 75px; font-size: 15px;
-
 }
-
 .sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like div img{
   width: 40px; border-radius: 100%; height: 40px;
-
 }
 
 .sidebar .my-page-section .search-like-list-scroll .my-like-list *{
  cursor: pointer;
-
 }
-
 label #friend_setting_btn{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:88px; top: 310px; font-size: 15px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_setting_btn:hover{ color:#19B3D3 }
-
 
 .member-leave-section{height: 20px; text-align: right; padding-left: 150px}
 .member-leave-section .member-leave{height: 20px; line-height: 20px; text-align: center; width: 130px; color: rgb(70,70,70); text-decoration: none; cursor: pointer;  -webkit-user-select: none; -ms-user-select: none;}
 .member-leave-section .member-leave:hover{color: rgb(120,120,120)}
+
+/*회원 탈퇴 팝업*/
+#popup01{ display: none; border-radius: 10px; }
+#popup01{ width: 500px; height: 250px; position: absolute; top: 60%; left: 50%; margin: -250px 0 0 -250px; background-color: #212022; z-index: 11; -webkit-transition-property: height; -moz-transition-property:  height; -o-transition-property: height; transition-property: height; -webkit-transition-duration:  1s; -moz-transition-duration:  1s; -o-transition-duration: 1s; transition-duration:  1s; }
+.backon{ content: ""; width: 100%; height: 100%; background: rgba(0,0,0,0.8); position: fixed; top: 0; left: 0; z-index: 10; }
+.popup-close{ position:absolute;top: 10px;right: 10px;cursor:pointer;z-index: 20 }
+.popup-close i{ font-size: 30px; color: rgb(200,200,200);}
+.popup-close i:hover{ color: white; }
+.openPopup{cursor:pointer;}
+.popup-header{ box-sizing: unset; z-index: 10; position:absolute;  background: rgb(23, 24, 29); padding: 0px !important; width: calc(100% - 0%); top: 0; height: 50px; text-align: center;}
+.popup-header .h3-class{ color: #fff; margin-top: 15px; text-transform: uppercase; font-size: 22px; font-weight: 900;  }
+.popup-header span{ color: #1DC4E7; }
+.popup-body{box-sizing: unset; z-index: 10; position:absolute;   padding: 0px !important; width: calc(100% - 0%); top: 50px; height: 100%; text-align: center;}
+.popup-body .confirm-first .question{color: white; font-size: 25px; line-height: 70px;}
+.popup-body .confirm-first .btn-yes{width: 200px;height: 50px;font-size: 15px;background: rgb(23, 24, 29);color: white;border-style: none;border-radius: 10px; }
+.popup-body .confirm-first .btn-yes:hover{background: #19B3D3}
+.popup-body .confirm-first .btn-no{width: 200px;height: 50px;font-size: 15px;background: rgb(23, 24, 29);color: white;border-style: none;border-radius: 10px; }
+.popup-body .confirm-first .btn-no:hover{background: #19B3D3}
+.popup-body .confirm-second .question{color: white; font-size: 25px; line-height: 70px;}
+.popup-body .confirm-second .confirm-password{width: 250px; padding-left: 10px;}
+.popup-body .confirm-second .confirm-password:focus{outline: none;}
+.popup-body .confirm-third .question{color: white; font-size: 25px; line-height: 50px;}
+.popup-body .confirm-third  .confirm-text{width: 250px; padding-left: 10px;}
+.popup-body .confirm-third  .confirm-text:focus{outline: none;}
+.popup-body .confirm-third  .leave-cloudmap{background: rgb(23, 24, 29);color: white;border-style:none; position: absolute; bottom: 70px; left: 125px; width: 250px; height: 40px; font-size: 20px; border-radius: 10px;}
+.popup-body .confirm-third  .leave-cloudmap:hover{background: #19B3D3;}
