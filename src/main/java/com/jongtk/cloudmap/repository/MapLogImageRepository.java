@@ -13,4 +13,8 @@ public interface MapLogImageRepository extends JpaRepository<MapLogImage, Long> 
     @Modifying
     @Query("delete from MapLogImage images where images.mapLog in (select mapLog from MapLog mapLog where mapLog.writer = :member)")
     void deleteAllByMember(Member member);
+
+    @Modifying
+    @Query("delete from MapLogImage images where images.uuid = :uuid")
+    void deleteByUuid(String uuid);
 }

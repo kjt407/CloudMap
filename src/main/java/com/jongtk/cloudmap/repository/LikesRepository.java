@@ -30,4 +30,8 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
     @Query("delete from Likes likes where likes.member = :member or likes.mapLog in (select mapLog from MapLog mapLog where mapLog.writer = :member)")
     void deleteAllByMember(Member member);
 
+    @Modifying
+    @Query("delete from Likes likes where likes.mapLog = :mapLog")
+    void deleteByMapLog(MapLog mapLog);
+
 }

@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 public interface MapLogService {
 
     Long register(MapLogDTO mapLogDTO);
+    boolean edit(MapLogDTO mapLogDTO, String username, String[] uuids);
+    boolean delete(long lno, String username);
 
     List<MapLogListDTO> getMyList(String username);
 

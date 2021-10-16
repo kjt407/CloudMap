@@ -40,4 +40,9 @@ public class MapLog extends BaseEntity{
     @OneToMany(mappedBy = "mapLog", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MapLogImage> images = new ArrayList<>();
 
+    public void editMapLog(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
 }
