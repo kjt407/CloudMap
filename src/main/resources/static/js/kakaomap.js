@@ -28,16 +28,12 @@ var writearkerImage = new kakao.maps.MarkerImage(writeImageSrc, writeImageSize);
 var writeMarker = new kakao.maps.Marker({
     image: writearkerImage
 });
-
 var clickWriteInfoWindow = null;
-
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
-
 var writeInfoWindow = new kakao.maps.InfoWindow({
     yAnchor: 1.42
 });
-
 
 var start = true;
 // 지도 클릭 이벤트
@@ -50,47 +46,31 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
                 $("#write-section").attr("class", "write-section");
                 closeReadInfoWindow();
                 var jibun = result[0].address.address_name
-
                 document.getElementById("ji-bun").innerHTML = jibun;
                 $("#ji-bun").html(jibun)
                 var latlng = mouseEvent.latLng;
-               // document.getElementById("lat").innerHTML = latlng.getLat();
-               // document.getElementById("lng").innerHTML = latlng.getLng();
                 rightClickLat=latlng.getLat();
                 rightClickLng=latlng.getLng();
                 if (!writeMarker) {
                     console.log("마커없음")
                 }
-
-
                 if (start) {
                     writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
-
                     start = false;
                 }
-
                 // 마커 위치를 클릭한 위치로 옮깁니다
                 writeMarker.setMap(map);
                 writeMarker.setPosition(latlng);
-
                 if (clickWriteInfoWindow) {
-
                     clickWriteInfoWindow.close();
-
                 }
-
                 writeInfoWindow.setPosition(writeMarker.getPosition());
-
                 writeInfoWindow.open(map, writeMarker);
-
                 clickWriteInfoWindow = writeInfoWindow;
-
             }
         });
     }
 });
-
-
 
 //작성 알림창 끄기
 function closeWriteOverlay() {
@@ -103,17 +83,13 @@ function searchDetailAddrFromCoords(coords, callback) {
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 }
 
-
-
 /* 일지 확인하기 */
 /* ************************************************************************ */
-
 //var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 var imageListSrc = contextpath+"images/my-marker.png";
 var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
-
 
 function getBackMyMapLogList(){
     $(".from-friend").remove();
@@ -122,23 +98,15 @@ function getBackMyMapLogList(){
     $(".friend_profile_home").attr("src", contextpath+"images/map.png")
     $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
     $(".friend-list-li").css( "background","#212022")
-
     getMyMapLogList();
 }
 function getFriendMapLogList(ele){
-
-    console.log('ele')
-    console.log(ele)
     imageListSrc = contextpath+"images/friend-marker.png"
     writeInfoWindow.close();
     writeMarker.setMap(null);
     closeReadInfoWindow();
-    console.log('ele')
-    console.log(ele)
-
     var data = {"friendEmail":$(ele).data("email")};
     //$('.friend_profile_home').data('email-check', $(ele).data("email"));
-
     $.ajax({
         type: "GET",
         url: contextpath+"getFriendMapLogList",
@@ -146,29 +114,19 @@ function getFriendMapLogList(ele){
         dataType: 'json',
         success: function (data) {
             myLogin = false
-
             var name = "friend-read"
             var title = "friend-title"
             var lno = "friend-lno"
             getMapLogList(data, name, title, lno);
-
-
             $(".from-friend").remove();
             $(".from-friend-name").remove();
             $(".from-friend-info").append(" <span class='from-friend'> from </span><span class='from-friend-name'>"+$(ele).data("name")+"</span>");
-            // $("#go-my-map").attr("disabled", false)
-            // $("#go-my-map").attr("class", "go-my-map-btn")
-            // $("#go-my-map").html("나의 지도로 가기")
-
             $(".my_profile_home").attr("class", "friend_profile_home")
             $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
             $(".friend_profile_home").attr("src", contextpath+"images/map.png")
             $(".friend-list-li").css( "background","#212022")
-
-           // $(".friend_profile_home").attr("class", "friend_profile_home")
-
-             $(ele).attr("src", contextpath+"images/exit.png")
-             $(ele).attr("class", "my_profile_home")
+            $(ele).attr("src", contextpath+"images/exit.png")
+            $(ele).attr("class", "my_profile_home")
             $(ele).attr("onclick", "getBackMyMapLogList()")
             $(ele).parent().css( "background","rgb(252, 94, 94)")
         },
@@ -180,7 +138,6 @@ function getFriendMapLogList(ele){
 function getMyMapLogList() {
     imageListSrc = contextpath+"images/my-marker.png";
     writeInfoWindow.close();
-
     writeMarker.setMap(null);
     closeReadInfoWindow();
     $.get("./getMyList", function (data) {
@@ -189,7 +146,6 @@ function getMyMapLogList() {
         var title = "my-title"
         var lno = "my-lno"
         getMapLogList(data, name, title, lno);
-
     });
 }
 

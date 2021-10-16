@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-
 	<link rel="stylesheet" href="css/write.css">
 </head>
 <body>
@@ -37,17 +35,5 @@
 		</form>
 	</div>
 </body>
-
 <script src="js/write.js"></script>
-<script>
-	$("body").on('click',".btn-close",function(){
-		console.log("닫기")
-
-		$(".write .cvf_uploaded_files .all-image").remove('');
-		$(".write #width-scroll").css("display", "none");
-		$(".write #content").css("height", "580px");
-		$(".write-section").find('form')[0].reset()
-		$('.write.modal').modal("hide");
-	});
-</script>
 </html>

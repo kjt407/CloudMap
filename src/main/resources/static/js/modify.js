@@ -1,7 +1,6 @@
 var storedFilesModify = [];
 var areadyStoredFiles = [];
 var deleteStoredFiles = [];
-
 $('body').on('change', '.user_picked_files_modify', function () {
     var files = this.files;
     var i = 0;
@@ -83,19 +82,8 @@ $('body').on('click', '.modify-btn', function (e) {
     }
     data.append("title", title);
     data.append("content", content);
-    //폼데이터 출력해보기
-    console.log("---------------------")
-    for (var key of data.keys()) {
-        console.log(key);
-    }
-    console.log("---------------------")
-    for (var value of data.values()) {
-        console.log(value);
-    }
-    console.log("---------------------")
-    for(var pair of data.entries()){
-        console.log(pair[0]+","+ pair[1])
-    }
+
+
     $.ajax({
         type: "PUT",
         url: "/editMapLog",
@@ -108,9 +96,8 @@ $('body').on('click', '.modify-btn', function (e) {
             storedFilesModify = [];
             deleteStoredFiles = [];
             areadyStoredFiles = [];
-            console.log(lno)
             getMyMapLogList();
-            alert('성공이랑께');
+            alert('성공');
         },
         error: function (e) {
 
@@ -118,8 +105,6 @@ $('body').on('click', '.modify-btn', function (e) {
         }
     });
 });
-
-
 $(".modify #width-scroll").on('mousewheel', function (e) {
     var wheelDelta = e.originalEvent.wheelDelta;
     if (wheelDelta > 0) {
@@ -128,7 +113,6 @@ $(".modify #width-scroll").on('mousewheel', function (e) {
         $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
     }
 });
-
 $("body").on("click", ".btn-cancle", function(){
     $('.modify.modal').modal("hide");
     $('.detail.modal').modal("hide");

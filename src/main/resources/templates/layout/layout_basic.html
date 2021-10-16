@@ -8,19 +8,13 @@
         <title>CLOUD MAP</title>
         <link rel="stylesheet" th:href="@{//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
         <link rel="stylesheet" th:href="@{/css/main.css}">
-
         <script th:src='@{//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js}'></script>
         <script type="text/javascript" th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services,clusterer}"></script>
         <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
-
         <script th:src="@{//code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>
-        <script th:src="@{/js/main.js}"></script>
         <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css}">
         <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
-
-
-
     </head>
     <body>
     <script th:inline="javascript">
@@ -33,7 +27,6 @@
     <input type="checkbox" id="friend-alert-check">
     <input type="checkbox" id="my-page-check">
     <input type="checkbox" id="friend-setting-check">
-
 <!--     프로필 이미지 변경 팝업-->
     <div id="profile-edit-popup">
         <div class="popup-content">
@@ -56,7 +49,6 @@
             </div>
         </div>
     </div>
-
     <!--헤더 시작-->
     <header class="header-class" id="mainheader">
         <label for="search-check">
@@ -69,15 +61,11 @@
             <i class="fas fa-user" id="my-page-btn"></i>
         </label>
         <div class="left_area">
-
         </div>
         <div class="center_area">
             <h3 class="h3-class">CLOUD <span class="title-map">MAP</span><span class="from-friend-info"></span> </h3>
-
-
         </div>
         <div class="right_area">
-
         </div>
     </header>
     <!--헤더 끝-->
@@ -89,6 +77,7 @@
         <div class="ex3"><img th:src="@{/images/friend-marker.png}" alt=""><span>친구 일지 목록</span></div>
         <div class="ex4"><img th:src="@{/images/marker.png}" alt=""><span>검색 목록</span></div>
     </div>
+    <!--지도 검색-->
     <div class="search">
         <div id="menu_wrap" class="bg_white">
             <div class="option">
@@ -106,18 +95,14 @@
     </div>
     <div class="sidebar">
         <div class="profile_info">
-
             <img th:src="@{/images/default_profile.png}" class="profile_image"></img>
             <i class="fas fa-cog" id="modify-profile-image" onclick="profileEditToggle('open')"></i>
             <div class="profile-my-name">
                 <input class="my-name" th:value=${#authentication.principal.name} disabled><i class="fas fa-pen" id="modify-name"></i>
             </div>
-
-            <!--            <h3>[[${#authentication.principal.email}]]</h3>-->
         </div>
-
+        <!--친구목록-->
         <div class="box">
-
             <ul class="friend-list-title">
                 <li><label>친구목록</label></li>
             </ul>
@@ -132,14 +117,12 @@
             </label>
             <div class="friend-list-scroll">
                 <ul class="friend-list" id="main-friend-list">
-
                 </ul>
             </div>
         </div>
+        <!--친구검색-->
         <div class="box-friend-search">
-
             <ul class="friend-list-title">
-
                 <li class="friend-search-bar-li"><input class="friend-search-bar" id="friend-search-bar" type="text" placeholder="친구검색"></li>
                 <label for="friend-search-check">
                     <i class="fas fa-sign-out-alt" id="friend_search_btn2"></i>
@@ -149,12 +132,10 @@
                 <ul class="friend-list">
                 </ul>
             </div>
-
         </div>
+        <!--친구알림-->
         <div class="box-friend-alert">
-
             <ul class="friend-list-title">
-
                 <li class="friend-alert-bar-li"><label for="">요청 받은 목록</label></li>
                 <label for="friend-alert-check">
                     <i class="fas fa-sign-out-alt" id="friend_alert_btn2"></i>
@@ -162,18 +143,13 @@
             </ul>
             <div class="alert-friend-list-scroll">
                 <ul class="friend-list">
-<!--                    <li><img src="../images/shiba.png" class="friend_profile_image"><label class="friend_profile_name">김종태</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
-<!--                    <li><img src="../images/cat.png" class="friend_profile_image"><label class="friend_profile_name">원대호</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
-<!--                    <li><img src="../images/ham.png" class="friend_profile_image"><label class="friend_profile_name">한호열</label><i id="accept-friend" class="fas fa-user-plus"></i><i id="delete-friend" class="fas fa-user-minus"></i></li>-->
                 </ul>
             </div>
-
         </div>
+        <!--마이페이지-->
         <div class="my-page-section">
-
             <ul id="liked-ul" class="like-list-title">
                 <label class="like-list-title-label">내가 누른 좋아요</label>
-
             </ul>
             <div class="search-like-list-scroll">
                 <ul class="my-like-list">
@@ -182,9 +158,8 @@
             <div class="member-leave-section">
                 <a class="member-leave">CloudMap 탈퇴하기</a>
             </div>
-
         </div>
-
+        <!--로그아웃-->
         <div class="logout">
             <th:block th:if="${#authentication.isAuthenticated()}">
                 <th:block th:if="${#authentication.principal.attr != null}">
@@ -195,7 +170,8 @@
             </th:block>
         </div>
     </div>
-    <div id="popup01">
+    <!--회원탈퇴-->
+    <div id="leave-popup-section">
         <div class="popup-close"><i class="fas fa-times"></i></div>
         <div class="popup-header">
             <h3 class="h3-class">CLOUD <span class="title-map">MAP </span>탈퇴하기</h3>
@@ -222,7 +198,6 @@
                             <input class="confirm-password" type="password" id="confirm-pw" placeholder="사용중인 비밀번호">
                         </th:block>
                     </th:block>
-
                 </div>
             </div>
             <div class="confirm-third">
@@ -232,19 +207,15 @@
             </div>
             <div class="confirm-fourth">
                 <h3 class="question">3초 후 로그인 페이지로 이동 합니다.</h3>
-
             </div>
         </div>
-
     </div>
-
     <!--사이드바 끝-->
-
     <!-- 컨텐츠-->
     <div class="content" id="maps">
         <th:block th:replace="${content}"></th:block>
     </div>
-
+    <!--일지작성하기-->
     <div class="write modal fade" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
@@ -252,6 +223,7 @@
             </div>
         </div>
     </div>
+    <!--일지상세페이지-->
     <div class="detail modal fade" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
@@ -259,6 +231,7 @@
             </div>
         </div>
     </div>
+    <!--일지수정하기-->
     <div class="modify modal fade" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
@@ -266,427 +239,9 @@
             </div>
         </div>
     </div>
-
     </body>
     <script th:src="@{/js/kakaomap.js}"></script>
     <script th:src="@{/js/detail.js}"></script>
-
-    <script th:inline="javascript">
-        // const contextpath= /*[[@{/}]]*/"/";
-
-        $(document).ready(function (){
-            getMyInfo();
-
-
-        });
-
-        function refreshProfile(data){
-            // 소셜프로필 옵션이 존재한다면 요소 제거
-            $('#edit-social-profile').remove();
-
-            if(!data.profileImg){
-                $('.profile_image').attr('src',contextpath+'images/default_profile.png');
-            }else {
-                $('.profile_image').attr('src',data.profileImg);
-            }
-            $('.my-name').val(data.name);
-            if(data.fromSocial){
-                var socialHTML =
-                    '                <div id="edit-social-profile" style="position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center;">\n' +
-                    '                    <img src="'+data.socialProfileImg+'" id="social_img" class="btn-edit-profile" style=" height: 150px; width: 150px; border-radius: 50%; box-sizing: border-box;" ></img>\n' +
-                    '                    <p id="social-profile-label" class=" profile-label">소셜이미지</p>\n' +
-                    '                </div>';
-
-                $('#popup-container').append(socialHTML);
-                if(!data.socialImg){
-                    $('#social_img').attr('onclick','setSocialImg()');
-                } else {
-                    $('#edit-social-profile').append("<span style='position: absolute; top: 3px; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: rgba(0,0,0,0.4); color: white; height: 150px; width: 150px; border-radius: 50%; box-sizing: border-box;'>적용됨</span>");
-                }
-            }
-        }
-
-        function profileEditToggle(option){
-            if(option == 'open') {
-                $('#profile-edit-popup').css('display', 'flex');
-            }else if(option == 'close') {
-                $('#profile-edit-popup').css('display', 'none');
-            }
-        }
-
-        function setSocialImg(){
-            $.ajax({
-                type: "PUT",
-                url: contextpath+"setSocialProfile",
-                dataType: 'text',
-                success: function (data) {
-                    console.log(data)
-                    getMyInfo();
-                },
-                error: function (e) {
-                    console.log('fail');
-                    console.log(e);
-                }
-            });
-        }
-
-        function getMyInfo(){
-            $.ajax({
-                type: "GET",
-                url: contextpath+"getMyInfo",
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data)
-                    refreshProfile(data);
-                },
-                error: function (e) {
-                    console.log('fail');
-                    console.log(e);
-                }
-            });
-        }
-
-        $(document).on('click', '#write', function () {
-
-
-            $('.write.modal').modal({
-                remote : contextpath+'server/write.html'
-            });
-        });
-
-        $("body").on("click", ".btn-close", function(){
-
-            $('.detail.modal').modal("hide");
-
-
-        })
-
-        $(document).on("click", "#write-close", function () {
-            $(".write .cvf_uploaded_files .all-image").remove('');
-            $(".write #width-scroll").css("display", "none");
-            $(".write #content").css("height", "580px");
-            $(document).find('form')[0].reset()
-
-        });
-
-        $("#my-page-check").change(function(){
-            //var lno = $(".check-like").data("lno")
-
-
-            if($("#my-page-check").is(":checked")){
-                console.log("체크")
-                $("#modify-name").css("display", "");
-                $("#modify-profile-image").css("display", "");
-
-                $("#my-page-btn").attr("class", "fas fa-times");
-                getMyMapLogList();
-                getMyLikeList();
-
-            }else{
-                console.log("해제")
-                $("#modify-name").css("display", "none");
-                $("#modify-profile-image").css("display", "none");
-                $(".my-name").css("background", "#212022")
-                $(".my-name").css("color", "white")
-                $(".my-name").attr("disabled", true)
-                $("#my-page-btn").attr("class", "fas fa-user")
-                $("#modify-name").attr("class", "fas fa-pen")
-                getBackMyMapLogList();
-            }
-
-        });
-
-        $(document).on("click", "#modify-name", function () {
-            console.log("설정")
-
-            $(".my-name").css("background", "white")
-            $(".my-name").css("color", "black")
-
-
-            $(".my-name").attr("disabled", false)
-            $("#modify-name").attr("class", "fas fa-times")
-
-        });
-        $(document).on("click", ".fa-times", function () {
-            $(".my-name").css("background", "#212022")
-            $(".my-name").css("color", "white")
-            $(".my-name").attr("disabled", true)
-            $("#modify-name").attr("class", "fas fa-pen")
-
-        });
-
-        //---------------------------------//
-
-
-        //프로필 이미지 변경
-        $("#upload-profile-img").change(function(e){
-
-            console.log($('input[type=file]')[0]);
-            console.log($('input[type=file]')[0].files[0]);
-            console.log($('input[type=file]')[0].files[0].name); //파일이름
-            console.log($("#upload-profile-img")[0].files[0].type); // 파일 타임
-            console.log($("#upload-profile-img")[0].files[0].size); // 파일 크기
-            var data = new FormData();
-            data.append('file',$('input[type=file]')[0].files[0]);
-            $.ajax({
-                type: "PUT",
-                url: contextpath+"setLocalProfile",
-                data: data,
-                processData: false,
-                contentType: false,
-                dataType: 'text',
-                success: function (data) {
-                    console.log(data)
-                    getMyInfo();
-                },
-                error: function (e) {
-                    console.log('fail');
-                }
-            });
-        });
-
-        //이름 수정후 엔터 눌렀을 때
-        $(".my-name").keydown(function(key) {
-            if (key.keyCode == 13) {
-
-                const data = {'name':$('input.my-name').val()};
-
-                $.ajax({
-                    type: "PUT",
-                    url: contextpath+"editMyName",
-                    dataType: 'text',
-                    data: data,
-                    success: function (data) {
-                        console.log(data);
-                        $('input.my-name').val(data);
-                        $(".my-name").css("background", "#212022");
-                        $(".my-name").css("color", "white");
-                        $(".my-name").attr("disabled", true);
-                    },
-                    error: function (e) {
-
-                    }
-                });
-            }
-        });
-
-        //내가 누른 좋아요 목록 가져오기
-        function getMyLikeList(){
-
-            $.ajax({
-                type: "GET",
-                url: contextpath+"getMyLikes",
-                dataType: 'json',
-                success: function (data) {
-
-                    $('.my-like-list').children('li').remove();
-
-                    data.forEach(likedList=>{
-                        var editTitle="";
-                        if (likedList.title.length > 10) {
-                            editTitle = likedList.title.substring(0, 10) + "...";
-                        } else {
-                            editTitle = likedList.title;
-                        }
-                        $('.my-like-list').append(
-                            '<li data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-me="'+likedList.me+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'
-                            + '<div class="my-like-left"><img src="'+likedList.writerProfileImg+'" class="my-like-writer-image"><label class="my-like-writer-name">'+likedList.writerName+'</label></div><div class="my-like-right"><label class="my-like-writer-title">'+editTitle+'</label></li></div>'
-                        )
-                    });
-
-                },
-                error: function (e) {
-
-                }
-            });
-        }
-
-        function goMyLikeMap(ele){
-
-            imageListSrc = contextpath+"images/friend-marker.png"
-            writeInfoWindow.close();
-            writeMarker.setMap(null);
-            closeReadInfoWindow();
-            var data = {"friendEmail":$(ele).data("email")};
-            //$('.friend_profile_home').data('email-check', $(ele).data("email"));
-
-            if( $(ele).data("me")){
-                //내일지일때
-                getMyMapLogList();
-                map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")+0.00035))
-                map.setLevel(1)
-            }else{
-                //아닐때
-                $.ajax({
-                    type: "GET",
-                    url: contextpath+"getFriendMapLogList",
-                    data: data,
-                    dataType: 'json',
-                    success: function (data) {
-                        myLogin = false
-
-                        var name = "friend-read"
-                        var title = "friend-title"
-                        var lno = "friend-lno"
-                        getMapLogList(data, name, title, lno);
-                        map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")+0.00035))
-                        map.setLevel(1)
-
-
-                    },
-                    error: function (e) {
-
-                    }
-                });
-            }
-        }
-
-        $("#friend-setting-check").change(function(){
-            if($("#friend-setting-check").is(":checked")){
-
-                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("src", contextpath+"images/minus.png" )
-                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("class", "delete_friend" )
-                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("onclick", "deleteFriend(this)" )
-
-            }else{
-
-                $(".friend-list-scroll .friend-list-li").remove();
-                getFriendList();
-            }
-        });
-
-        //친구삭제 기능
-        function deleteFriend(ele){
-
-            const data = {'targetEmail':$(ele).data("email")};
-            $.ajax({
-                type: "DELETE",
-                url: contextpath+"deleteFriend",
-                data: data,
-                dataType: 'json',
-                success: function (data) {
-                    $.ajax({
-                        type: "GET",
-                        url: contextpath+"getFriendList",
-                        dataType: 'json',
-                        success: function (data) {
-
-                            var friendLi = "";
-                            data.forEach(friend => {
-
-                                //프로필이미지 선언
-                                var profileImg = '/images/default_profile.png';
-                                if(friend.profileImg){
-                                    profileImg = friend.profileImg;
-                                }
-
-                                friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="deleteFriend(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="'+contextpath+'images/minus.png" id="sprofile_home" class="delete_friend"></li>'
-
-                            })
-
-                            $('#main-friend-list').html(friendLi)
-                        },
-                        error: function (e) {
-
-                        }
-                    });
-
-                },
-                error: function (e) {
-
-                }
-            });
-
-        }
-        $("#friend-search-check").change(function(){
-            if($("#friend-search-check").is(":checked")){
-                $("#friend-search-bar").val("");
-                $(".search-friend-list-scroll .friend-list").children().remove()
-            }else{
-
-            }
-        });
-
-        $(".member-leave-section").on("click", ".member-leave", function(){
-            $("#popup01").show();   //팝업 오픈
-            $("body").append('<div class="backon"></div>'); //뒷배경 생성
-            setting();
-
-            $(".confirm-first").on("click", ".btn-yes", function(){
-                $(".confirm-first").hide()
-                $(".confirm-second").show()
-                $("#popup01").css("height","365px")
-                setTimeout(function() {
-                    $(".confirm-third").show()
-                }, 700);
-            })
-            $(".confirm-first").on("click", ".btn-no", function(){
-                $("#popup01").hide();
-                $(".backon").hide();
-                setting();
-            })
-            $(".popup-close").on("click", "i", function(){
-                $("#popup01").hide();
-                $(".backon").hide();
-                setting();
-            })
-        })
-        function setting(){
-            $(".confirm-first").show()
-            $(".confirm-second").hide()
-            $(".confirm-third").hide()
-            $(".confirm-fourth").hide()
-            $("#confirm-text").val("")
-            $("#confirm-pw").val("")
-            $("#popup01").css("height","250px")
-        }
-
-        //회원탈퇴 기능
-        $(".confirm-third").on("click", ".leave-cloudmap", function(){
-            const pw = $("#confirm-pw").val();
-            const text = $("#confirm-text").val();
-            const data = {'password':pw , 'checkStr':text}
-            // console.log("pw : " +pw);
-            // console.log("text : " +text);
-            $.ajax({
-                type: "DELETE",
-                url: contextpath+"resign",
-                data: data,
-                dataType: 'json',
-                success: function (data) {
-
-                    if(data){
-                        $(".confirm-first").hide()
-                        $(".confirm-second").hide()
-                        $(".confirm-third").hide()
-                        $(".confirm-fourth").show()
-                        $("#popup01").css("height","250px")
-                        var count = 2;
-                        //카운트다운함수
-                        var countdown = setInterval(function(){
-                            //해당 태그에 아래 내용을 출력
-                            $(".confirm-fourth .question").html(count + "초 후 로그인 페이지로 이동 합니다.");
-                            //0초면 초기화 후 이동되는 사이트
-                            if (count == 0) {
-                                clearInterval(countdown);
-                                window.location.href = contextpath+"sign/login";
-                            }
-                            count--;//카운트 감소
-                        }, 1000);
-                    } else {
-                        alert('패스워드 또는 확인문자를 정확히 입력해주세요');
-                    }
-                },
-                error: function (e) {
-                    alert('패스워드 또는 확인문자를 정확히 입력해주세요');
-
-
-                }
-            });
-        })
-
-
-
-    </script>
+    <script th:src="@{/js/main.js}"></script>
 </th:block>
 </html>

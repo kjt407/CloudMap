@@ -1,10 +1,8 @@
-
 jQuery(document).ready(function () {
     var storedFiles = [];
     $('body').on('change', '.user_picked_files', function () {
         var files = this.files;
         var i = 0;
-
         for (i = 0; i < files.length; i++) {
             var readImg = new FileReader();
             var file = files[i];
@@ -33,8 +31,7 @@ jQuery(document).ready(function () {
             $(".write #content").css("height", "374px");
         }
     });
-
-    // 하나씩 제거하기
+    // 이미지 하나씩 제거하기
     $('body').on('click', 'a.cvf_delete_image', function (e) {
         $(this).parent().remove('');
         var file = $(this).parent().attr('file');
@@ -52,21 +49,17 @@ jQuery(document).ready(function () {
             $(".write #width-scroll").css("display", "inline-block");
             $(".write #content").css("height", "374px");
         }
-        console.log(storedFiles)
     });
+    //저장하기
     $('body').on('click', '.btn-save', function (e) {
-        console.log("클릭?")
         var form = $('#write')[0];
         // Create an FormData object
         var data = new FormData();
-
         var title = $("input[name='title']").val();
         var content = $("#content").val();
         var writer = $("#username-check").val();
         var lat = rightClickLat;
         var lng = rightClickLng;
-
-
         if(title===null||title===""||title===undefined||title==="undefined"){
             alert("제목을 입력해주세요")
             return;
@@ -75,20 +68,15 @@ jQuery(document).ready(function () {
             alert("내용을 입력해주세요")
             return;
         }
-
          for(var i = 0; i <storedFiles.length; i++){
          	console.log(storedFiles[i]);
          	data.append("files",storedFiles[i]);
          }
-
         data.append("title", title);
         data.append("content", content);
         data.append("writer", writer);
         data.append("lat", lat);
         data.append("lng", lng);
-
-        console.log('data')
-        console.log(data)
         $.ajax({
         	type: "POST",
         	url: contextpath+"register",
@@ -98,9 +86,7 @@ jQuery(document).ready(function () {
         	dataType: 'json',
         	success: function (data) {
         		$('#btnUpload').prop('disabled', false);
-
                 $('.write.modal').modal("hide");
-
                 $(".write .cvf_uploaded_files .all-image").remove('');
                 $(".write #width-scroll").css("display", "none");
                 $(".write #content").css("height", "580px");
@@ -112,15 +98,10 @@ jQuery(document).ready(function () {
         		$('#btnUpload').prop('disabled', false);
         		alert('fail');
             }
-
         });
-
     });
-
 });
-
-
-
+//이미지 좌우 스크롤
 $(".write #width-scroll").on('mousewheel', function (e) {
     var wheelDelta = e.originalEvent.wheelDelta;
     if (wheelDelta > 0) {
@@ -128,4 +109,12 @@ $(".write #width-scroll").on('mousewheel', function (e) {
     } else {
         $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
     }
+});
+//닫기
+$("body").on('click',".btn-close",function(){
+    $(".write .cvf_uploaded_files .all-image").remove('');
+    $(".write #width-scroll").css("display", "none");
+    $(".write #content").css("height", "580px");
+    $(".write-section").find('form')[0].reset()
+    $('.write.modal').modal("hide");
 });
