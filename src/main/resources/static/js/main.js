@@ -90,9 +90,9 @@ function receiveFriendAction(option, targetEmail, ele){
   var data = {"targetEmail":targetEmail};
   var url = '';
   if(option == 'accept'){
-    url = contextpath+'/acceptFriend'
+    url = contextpath+'acceptFriend'
   } else if(option == 'refuse'){
-    url = contextpath+'/refuseFriend'
+    url = contextpath+'refuseFriend'
   }
 
   $.ajax({

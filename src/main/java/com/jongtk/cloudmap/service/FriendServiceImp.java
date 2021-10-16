@@ -5,13 +5,11 @@ import com.jongtk.cloudmap.entity.Friend;
 import com.jongtk.cloudmap.entity.FriendPost;
 import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.entity.Member;
-import com.jongtk.cloudmap.repository.FriendPostRepository;
-import com.jongtk.cloudmap.repository.FriendRepository;
-import com.jongtk.cloudmap.repository.MapLogRepository;
-import com.jongtk.cloudmap.repository.MemberRepository;
+import com.jongtk.cloudmap.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +25,7 @@ public class FriendServiceImp implements FriendService {
     private final FriendRepository friendRepository;
     private final FriendPostRepository friendPostRepository;
     private final MapLogRepository mapLogRepository;
+    private final LikesRepository likesRepository;
 
 
     @Override
@@ -194,6 +193,7 @@ public class FriendServiceImp implements FriendService {
     }
 
     @Override
+    @Transactional
     public boolean deleteFreind(String username, String targetEmail) {
         Optional<Member> memberOp = memberRepository.findById(username);
         Optional<Member> targetOp = memberRepository.findById(targetEmail);
@@ -204,6 +204,7 @@ public class FriendServiceImp implements FriendService {
                 Optional<Friend> friendr = friendRepository.findByMemberAndFriend(targetOp.get(), memberOp.get());
 
                 if(friend.isPresent() && friendr.isPresent()){
+                    likesRepository.deleteByMemberAndFriend(memberOp.get(), targetOp.get());
                     friendRepository.delete(friend.get());
                     friendRepository.delete(friendr.get());
 
