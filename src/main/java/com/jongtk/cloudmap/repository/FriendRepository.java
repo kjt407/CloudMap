@@ -4,6 +4,7 @@ import com.jongtk.cloudmap.entity.Friend;
 import com.jongtk.cloudmap.entity.Member;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -17,5 +18,9 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
     Boolean existsByMemberAndFriend(Member member, Member friend);
 
     Optional<Friend> findByMemberAndFriend(Member member, Member friend);
+
+    @Modifying
+    @Query("delete from Friend friend where friend.member = :member or friend.friend = :member")
+    void deleteAllByMember(Member member);
 
 }

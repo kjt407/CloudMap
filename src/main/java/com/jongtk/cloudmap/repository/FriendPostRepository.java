@@ -4,6 +4,7 @@ import com.jongtk.cloudmap.entity.Friend;
 import com.jongtk.cloudmap.entity.FriendPost;
 import com.jongtk.cloudmap.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public interface FriendPostRepository extends JpaRepository<FriendPost, Long> {
 
     Optional<FriendPost> findBySenderAndReceiver(Member sender, Member receiver);
 
-//    @Query("select fp from FriendPost fp where fp.sender = :sender and fp.receiver = :receiver")
-//    Optional<FriendPost> findBySenderAndReceiver(Member sender, Member receiver);
+    @Modifying
+    @Query("delete from FriendPost fp where fp.sender = :member or fp.receiver = :member")
+    void deleteAllByMember(Member member);
 }

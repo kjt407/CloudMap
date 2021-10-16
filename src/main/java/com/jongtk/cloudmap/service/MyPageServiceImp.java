@@ -6,13 +6,13 @@ import com.jongtk.cloudmap.entity.Friend;
 import com.jongtk.cloudmap.entity.FriendPost;
 import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.entity.Member;
-import com.jongtk.cloudmap.repository.FriendPostRepository;
-import com.jongtk.cloudmap.repository.FriendRepository;
-import com.jongtk.cloudmap.repository.MapLogRepository;
-import com.jongtk.cloudmap.repository.MemberRepository;
+import com.jongtk.cloudmap.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
@@ -26,6 +26,14 @@ import java.util.stream.Collectors;
 public class MyPageServiceImp implements MyPageService {
 
     private final MemberRepository memberRepository;
+    private final LikesRepository likesRepository;
+    private final FriendRepository friendRepository;
+    private final FriendPostRepository friendPostRepository;
+    private final MapLogRepository mapLogRepository;
+    private final MapLogImageRepository mapLogImageRepository;
+
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 
     @Override
     public MyInfoDTO getMyInfo(String username) {
@@ -97,8 +105,29 @@ public class MyPageServiceImp implements MyPageService {
     }
 
     @Override
-    public String resign(String username, String password) {
-        memberRepository.deleteById(username);
-        return null;
+    @Transactional
+    public boolean resign(String username, String password) {
+
+        Optional<Member> memberOp = memberRepository.findById(username);
+
+        if(memberOp.isPresent()){
+
+            Member member = memberOp.get();
+            log.warn("전달받은 패스워드: "+password);
+            log.warn("전달받은 패스워드(인코딩) : "+passwordEncoder.encode(password));
+            log.warn("현재 패스워드 : "+member.getPassword());
+
+            if( passwordEncoder.matches( password, member.getPassword() ) ){
+
+                likesRepository.deleteAllByMember(member);
+                mapLogImageRepository.deleteAllByMember(member);
+                mapLogRepository.deleteAllByMember(member);
+                friendPostRepository.deleteAllByMember(member);
+                friendRepository.deleteAllByMember(member);
+                memberRepository.deleteById(username);
+                return true;
+            }
+        }
+        return false;
     }
 }
