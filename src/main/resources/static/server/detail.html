@@ -53,20 +53,70 @@
 
 	//수정하기 버튼 눌렀을때
 	$(document).on('click', '.btn-modify', function () {
+		var lno = document.getElementById("my-lno").innerHTML;
 		$('.detail.modal').modal("hide");
 
 
 		$('.modify.modal').modal({
 			remote : contextpath+'server/modify.html'
 		});
-
+		$.ajax({
+			type: "GET",
+			url: "/getMyLog/" + lno,
+			processData: false,
+			contentType: false,
+			dataType: 'json',
+			success: function (datas) {
+				console.log("현재 이미지를 불러옴")
+				console.log("---------datas---------")
+				console.log(datas)
+				$('.modify #title').val(datas.title);
+				$('.modify #content').val(datas.content);
+				if (datas.imageDTOList.length) {
+					$(".modify #width-scroll").css("display", "inline-block");
+					$(".modify #content").css("height", "374px");
+				} else {
+					$(".modify #width-scroll").css("display", "none");
+					$(".modify #content").css("height", "580px");
+				}
+				$('.modify .cvf_uploaded_files').empty()
+				datas.imageDTOList.forEach(i => {
+					areadyStoredFiles.push(i)
+					var html = "<li class='all-image' file = '" + i.imgName + "'>" +
+							"<img class = 'img-thumb' src='display?imgUrl=" + i.imageURL + "' />" +
+							"<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
+							"</li>"
+					$('.modify .cvf_uploaded_files').append(html)
+				})
+			},
+			error: function (e) {
+				$('#btnUpload').prop('disabled', false);
+				alert('fail');
+			}
+		});
 
 	});
 
 
 	//삭제버튼 눌렀을때
 	$(document).on('click', '.btn-delete', function () {
+		var lno = document.getElementById("my-lno").innerHTML;
+		var data = {"lno" : lno}
 		console.log("삭제")
+		$.ajax({
+			type: "DELETE",
+			url: "/deleteMapLog",
+			data : data,
+			dataType: 'json',
+			success: function (datas) {
+				$('.detail.modal').modal("hide");
+				alert('fail');
+			},
+			error: function (e) {
+
+				alert('fail');
+			}
+		});
 	});
 
 	$(function(){

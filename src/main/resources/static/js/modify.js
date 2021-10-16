@@ -4,44 +4,7 @@ var areadyStoredFiles = [];
 var deleteStoredFiles = [];
 
 
-$.ajax({
-    type: "GET",
-    url: "/getMyLog/" + lno,
-    processData: false,
-    contentType: false,
-    dataType: 'json',
-    success: function (datas) {
-        console.log("현재 이미지를 불러옴")
-        console.log("---------datas---------")
-        console.log(datas)
-        $('.modify #title').val(datas.title);
-        $('.modify #content').val(datas.content);
-        if (datas.imageDTOList.length) {
-            $(".modify #width-scroll").css("display", "inline-block");
-            $(".modify #content").css("height", "374px");
-        } else {
-            $(".modify #width-scroll").css("display", "none");
-            $(".modify #content").css("height", "580px");
-        }
-        $('.modify .cvf_uploaded_files').empty()
-        datas.imageDTOList.forEach(i => {
-            areadyStoredFiles.push(i)
-            var html = "<li class='all-image' file = '" + i.imgName + "'>" +
-                "<img class = 'img-thumb' src='display?imgUrl=" + i.imageURL + "' />" +
-                "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
-                "</li>"
-            $('.modify .cvf_uploaded_files').append(html)
-        })
-    },
-    error: function (e) {
-        $('#btnUpload').prop('disabled', false);
-        alert('fail');
-    }
-});
-
 $('body').on('change', '.user_picked_files_modify', function () {
-
-
     var files = this.files;
     var i = 0;
     for (i = 0; i < files.length; i++) {
