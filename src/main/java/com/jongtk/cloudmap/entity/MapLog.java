@@ -23,6 +23,7 @@ public class MapLog extends BaseEntity{
 
     private String title;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String content;
 
     private double lat;
