@@ -11,7 +11,7 @@
 <body>
 <div class="modify-section">
 	<form id="modify" action="" method="get" >
-		<div class="write">
+		<div class="modify">
 			<div class="title">
 				<input class="input-title" name="title" id="title" placeholder="제목">
 			</div>
@@ -31,7 +31,7 @@
 			</div>
 			<div class="footer">
 				<button type="button" class="btn-cancle">취소</button>
-				<button type="button" class="btn-modify">저장</button>
+				<button type="button" class="modify-btn">저장</button>
 			</div>
 		</div>
 	</form>
@@ -40,67 +40,7 @@
 
 <script src="js/modify.js"></script>
 <script>
-	console.log("수정")
-	$('.detail.modal').modal("hide");
-	var lno = document.getElementById("my-lno").innerHTML;
-	console.log(lno)
-	$.ajax({
-		type: "GET",
-		url: "/getMyLog/"+lno,
-		processData: false,
-		contentType: false,
-		dataType: 'json',
-		success: function (datas) {
-			console.log("asdasd")
-			detailFile(datas)
 
-			$('.modify #title').val(datas.title);
-			$('.modify #content').val(datas.content);
-			console.log(datas.imageDTOList)
-			if(datas.imageDTOList.length){
-				console.log("이미지있음")
-				$(".modify #width-scroll").css("display", "inline-block");
-				$(".modify #content").css("height", "374px");
-			}else{
-				console.log("이미지없음")
-
-				$(".modify #width-scroll").css("display", "none");
-				$(".modify #content").css("height", "580px");
-			}
-
-			$('.modify .cvf_uploaded_files').empty()
-			datas.imageDTOList.forEach(i => {
-				console.log(i)
-
-				storedFiles.push(i)
-
-
-				var html = "<li class='all-image' file = '"+i.imgName+"'>" +
-						"<img class = 'img-thumb' src='display?imgUrl="+i.imageURL+"' />" +
-						"<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
-						"</li>"
-
-				$('.modify .cvf_uploaded_files').append(html)
-			})
-
-
-			console.log('storedFiles')
-			console.log(storedFiles)
-
-
-		},
-		error: function (e) {
-			$('#btnUpload').prop('disabled', false);
-			alert('fail');
-		}
-	});
-
-	$("body").on("click", ".btn-cancle", function(){
-
-		$('.modify.modal').modal("hide");
-
-
-	})
 
 </script>
 </html>

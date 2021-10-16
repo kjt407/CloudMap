@@ -47,7 +47,7 @@ body { overflow: hidden; }
     margin: 15px 40px 0px 40px;
 }
 
-.modify .footer .btn-modify{
+.modify .footer .modify-btn{
     margin: auto;
     display: block;
     height: 50px;
@@ -62,7 +62,7 @@ body { overflow: hidden; }
     cursor:pointer; 
     transition: 0.4s;
 }
-.modify .footer .btn-modify:hover{
+.modify .footer .modify-btn:hover{
     background: tomato;
     color: white;
 }
