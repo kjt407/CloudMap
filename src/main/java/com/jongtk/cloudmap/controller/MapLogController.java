@@ -85,12 +85,46 @@ public class MapLogController {
     }
 
     @PutMapping("/editMapLog")
-    public boolean editMapLog(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, MapLogDTO mapLogDTO, MultipartFile[] files, String[] uuids){
+    public ResponseEntity<Boolean> editMapLog(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, MapLogDTO mapLogDTO, MultipartFile[] files, String[] uuids){
 
-        log.warn("---------------- 수정 컨트롤러 실행됨");
-        log.warn("삭제된 파일들 잘 들어왔나요?");
-        log.warn(uuids);
-        return false;
+        List<ImageDTO> imageDTOList = new ArrayList<>();
+
+        if(files != null && !files[0].isEmpty()) {
+            for (MultipartFile file : files) {
+                if (!file.getContentType().startsWith("image")) {
+                    log.warn("업로드된 파일이 이미지 형식이 아님");
+                    return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+                }
+                String originFileName = file.getOriginalFilename();
+                String convertFileName = originFileName.substring(originFileName.lastIndexOf("//") + 1);
+                log.warn("원본이름: " + originFileName);
+                log.warn("편집이름: " + convertFileName);
+
+                String folderPath = makeFolder();
+
+                String uuid = UUID.randomUUID().toString();
+
+                String saveName = uploadPath + File.separator + folderPath + File.separator + uuid + "_" + convertFileName;
+
+                Path savePath = Paths.get(saveName);
+
+                try {
+                    file.transferTo(savePath);
+                    imageDTOList.add(new ImageDTO(uuid, convertFileName, folderPath));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        mapLogDTO.setImageDTOList(imageDTOList);
+        boolean result = mapLogService.edit(mapLogDTO, authMemberDTO.getUsername(),uuids);
+
+        if(result) {
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/deleteMapLog")

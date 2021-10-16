@@ -252,22 +252,22 @@
 				for(var pair of data.entries()){
 					console.log(pair[0]+","+ pair[1])
 				}
-				// $.ajax({
-				//     type: "POST",
-				//     url: "/editMapLog",
-				//     data: data,
-				//     processData: false,
-				//     contentType: false,
-				//     dataType: 'json',
-				//     success: function (data) {
-				// 		alert('success');
-				//     },
-				//     error: function (e) {
-				//
-				//         alert('fail');
-				//     }
-				//
-				// });
+				$.ajax({
+				    type: "PUT",
+				    url: "/editMapLog",
+				    data: data,
+				    processData: false,
+				    contentType: false,
+				    dataType: 'json',
+				    success: function (data) {
+						alert('success');
+				    },
+				    error: function (e) {
+
+				        alert('fail');
+				    }
+
+				});
 
 			});
 

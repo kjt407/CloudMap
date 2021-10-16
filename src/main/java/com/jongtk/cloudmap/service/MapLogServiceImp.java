@@ -54,8 +54,42 @@ public class MapLogServiceImp implements MapLogService{
     }
 
     @Override
-    public Long edit(MapLogDTO mapLogDTO, String username) {
-        return null;
+    @Transactional
+    public boolean edit(MapLogDTO mapLogDTO, String username, String[] uuids) {
+        Optional<Member> memberOp = memberRepository.findById(username);
+        Optional<MapLog> mapLogOp = mapLogRepository.findById(mapLogDTO.getLno());
+
+        if(memberOp.isPresent() && mapLogOp.isPresent()) {
+            Member member = memberOp.get();
+            MapLog mapLog = mapLogOp.get();
+
+            if(mapLog.getWriter() == member){
+                //수정시 삭제된 이미지 DB제거
+                log.warn("--------------- uuids 로 이미지 삭제 시작");
+                for (String uuid:uuids){
+                    mapLogImageRepository.deleteByUuid(uuid);
+                }
+                log.warn("--------------- uuids 로 이미지 삭제 완료");
+
+                //새로 추가된 이미지 DB저장
+                mapLogDTO.getImageDTOList().stream().forEach(
+                    image -> {
+                        MapLogImage mapLogImage = MapLogImage.builder()
+                                .uuid(image.getUuid())
+                                .path(image.getPath())
+                                .imgName(image.getImgName())
+                                .mapLog(mapLog)
+                                .build();
+                        mapLogImageRepository.save(mapLogImage);
+                    }
+                );
+
+                mapLog.editMapLog(mapLogDTO.getTitle(),mapLogDTO.getContent());
+                mapLogRepository.save(mapLog);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
