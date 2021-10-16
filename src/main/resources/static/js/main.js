@@ -69,7 +69,7 @@ function getReceiveList(){
           profileImg = friend.profileImg;
         }
 
-        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img src="../images/received-friend.png" class="accept-friend-img" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></img><img src="../images/refuse-friend.png" class="refuse-friend-img" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></img></li>'
+        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i src="../images/received-friend.png" class="fas fa-user-plus accept-friend-img" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i src="../images/refuse-friend.png" class="fas fa-user-minus refuse-friend-img" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
       })
       $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
     },
