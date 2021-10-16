@@ -1,8 +1,6 @@
-var lno = document.getElementById("my-lno").innerHTML;
 var storedFilesModify = [];
 var areadyStoredFiles = [];
 var deleteStoredFiles = [];
-
 
 $('body').on('change', '.user_picked_files_modify', function () {
     var files = this.files;
@@ -61,14 +59,11 @@ $('body').on('click', 'a.cvf_delete_image', function (e) {
     }
 });
 $('body').on('click', '.modify-btn', function (e) {
+    var lno = document.getElementById("my-lno").innerHTML;
     var data = new FormData();
-    var form = $('#modify')[0];
-    // Create an FormData object
+
     var title = $(".modify input[name='title']").val();
     var content = $(".modify #content").val();
-    // var modify = $(".modify #username-check").val();
-    // var lat = rightClickLat;
-    // var lng = rightClickLng;
 
     if(title===null||title===""||title===undefined||title==="undefined"){
         alert("제목을 입력해주세요")
@@ -113,16 +108,14 @@ $('body').on('click', '.modify-btn', function (e) {
             storedFilesModify = [];
             deleteStoredFiles = [];
             areadyStoredFiles = [];
-
+            console.log(lno)
             alert('성공이랑께');
         },
         error: function (e) {
 
             alert('fail');
         }
-
     });
-
 });
 
 
