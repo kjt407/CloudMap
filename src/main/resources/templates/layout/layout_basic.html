@@ -230,6 +230,10 @@
                 <input class="confirm-text" type="text" id="confirm-text" placeholder="">
                 <button class="leave-cloudmap">탈퇴하기</button>
             </div>
+            <div class="confirm-fourth">
+                <h3 class="question">3초 후 로그인 페이지로 이동 합니다.</h3>
+
+            </div>
         </div>
 
     </div>
@@ -634,6 +638,7 @@
             $(".confirm-first").show()
             $(".confirm-second").hide()
             $(".confirm-third").hide()
+            $(".confirm-fourth").hide()
             $("#confirm-text").val("")
             $("#confirm-pw").val("")
             $("#popup01").css("height","250px")
@@ -654,7 +659,23 @@
                 success: function (data) {
                     console.log(data);
                     if(data){
-                        window.location.href = 'http://www.naver.com/';
+                        $(".confirm-first").hide()
+                        $(".confirm-second").hide()
+                        $(".confirm-third").hide()
+                        $(".confirm-fourth").show()
+                        $("#popup01").css("height","250px")
+                        var count = 2;
+                        //카운트다운함수
+                        var countdown = setInterval(function(){
+                            //해당 태그에 아래 내용을 출력
+                            $(".confirm-fourth .question").html(count + "초 후 로그인 페이지로 이동 합니다.");
+                            //0초면 초기화 후 이동되는 사이트
+                            if (count == 0) {
+                                clearInterval(countdown);
+                                window.location.href = contextpath+"sign/login";
+                            }
+                            count--;//카운트 감소
+                        }, 1000);
                     } else {
                         alert('패스워드 또는 확인문자를 정확히 입력해주세요');
                     }
@@ -666,6 +687,8 @@
                 }
             });
         })
+
+
 
     </script>
 </th:block>
