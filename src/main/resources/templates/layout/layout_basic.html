@@ -631,11 +631,30 @@
 
         //회원탈퇴 기능
         $(".confirm-third").on("click", ".leave-cloudmap", function(){
-            const pw = $("#confirm-pw").val()
-            const text = $("#confirm-text").val()
-            console.log("pw : " +pw)
-            console.log("text : " +text)
-
+            const pw = $("#confirm-pw").val();
+            const text = $("#confirm-text").val();
+            const data = {'password':pw , 'checkStr':text}
+            // console.log("pw : " +pw);
+            // console.log("text : " +text);
+            $.ajax({
+                type: "DELETE",
+                url: contextpath+"resign",
+                data: data,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    if(data){
+                        window.location.href = 'http://www.naver.com/';
+                    } else {
+                        alert('패스워드 또는 확인문자를 정확히 입력해주세요');
+                    }
+                },
+                error: function (e) {
+                    alert('패스워드 또는 확인문자를 정확히 입력해주세요');
+                    console.log('fail');
+                    console.log(e);
+                }
+            });
         })
 
     </script>
