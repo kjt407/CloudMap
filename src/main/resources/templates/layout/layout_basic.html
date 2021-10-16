@@ -212,7 +212,7 @@
                 <div>
                     <th:block th:if="${#authentication.isAuthenticated()}">
                         <th:block th:if="${#authentication.principal.attr != null}">
-                            <th:block th:if="${#authentication.principal.attr.clientName == 'kakao' || #authentication.principal.attr.clientName == 'google'}" >
+                            <th:block th:if="${#authentication.principal.attr.clientName == 'kakao' || #authentication.principal.attr.clientName == 'Google'}" >
                                 <h3 class="question">비밀번호를 입력해주십시오.</h3>
                                 <input class="confirm-password" type="password" id="confirm-pw" placeholder="소셜계정을 사용중 입니다." disabled>
                             </th:block>
