@@ -16,4 +16,5 @@ public interface MapLogRepository extends JpaRepository<MapLog, Long> {
 
     @Query("select ml from MapLog ml where ml.lno = :lno and ml.writer = :username")
     Optional<MapLog> getMyLog(long lno, Member username);
+
 }

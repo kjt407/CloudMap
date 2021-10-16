@@ -30,7 +30,7 @@ function friendReceiveAction(ele){
 function getFriendList(){
   $.ajax({
     type: "GET",
-    url: "/getFriendList",
+    url: contextpath+"getFriendList",
     dataType: 'json',
     success: function (data) {
       console.log("data")
@@ -39,12 +39,16 @@ function getFriendList(){
       data.forEach(friend => {
         
         //프로필이미지 선언
-        var profileImg = '/images/default_profile.png';
+        var profileImg = contextpath+'images/default_profile.png';
         if(friend.profileImg){
-          profileImg = friend.profileImg;
+          if(friend.profileImg.indexOf('displayProfile') != -1){
+            profileImg = contextpath+friend.profileImg;
+          }else {
+            profileImg = friend.profileImg;
+          }
         }
 
-        friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/map.png" id="sprofile_home" class="friend_profile_home"></li>'
+        friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="getFriendMapLogList(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="'+contextpath+'images/map.png" id="sprofile_home" class="friend_profile_home"></li>'
 
       })
       $('#main-friend-list').html(friendLi)
@@ -57,19 +61,25 @@ function getFriendList(){
 function getReceiveList(){
   $.ajax({
     type: "GET",
-    url: "/getReceiveList",
+    url: contextpath+"getReceiveList",
     dataType: 'json',
     success: function (data) {
       console.log(data)
       var friendLi = "";
       data.forEach(friend => {
         //프로필이미지 선언
-        var profileImg = '/images/default_profile.png';
+        var profileImg = contextpath+'images/default_profile.png';
         if(friend.profileImg){
-          profileImg = friend.profileImg;
+          if(friend.profileImg.indexOf('displayProfile') != -1){
+            profileImg = contextpath+friend.profileImg;
+          }else {
+            profileImg = friend.profileImg;
+          }
         }
 
-        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i src="../images/received-friend.png" class="fas fa-user-plus accept-friend-img" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i src="../images/refuse-friend.png" class="fas fa-user-minus refuse-friend-img" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
+
+        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img src="'+contextpath+'images/received-friend.png" class="accept-friend-img" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></img><img src="'+contextpath+'images/refuse-friend.png" class="refuse-friend-img" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></img></li>'
+
       })
       $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
     },
@@ -82,9 +92,9 @@ function receiveFriendAction(option, targetEmail, ele){
   var data = {"targetEmail":targetEmail};
   var url = '';
   if(option == 'accept'){
-    url = '/acceptFriend'
+    url = contextpath+'acceptFriend'
   } else if(option == 'refuse'){
-    url = '/refuseFriend'
+    url = contextpath+'refuseFriend'
   }
 
   $.ajax({
@@ -112,7 +122,7 @@ function searchFriend(str){
   var data = {"str":str};
   $.ajax({
     type: "GET",
-    url: "/searchFriend",
+    url: contextpath+"searchFriend",
     data: data,
     dataType: 'json',
     success: function (data) {
@@ -122,20 +132,24 @@ function searchFriend(str){
       data.forEach(friend => {
 
         //프로필이미지 선언
-        var profileImg = '/images/default_profile.png';
+        var profileImg = contextpath+'images/default_profile.png';
         if(friend.profileImg){
-          profileImg = friend.profileImg;
+          if(friend.profileImg.indexOf('displayProfile') != -1){
+            profileImg = contextpath+friend.profileImg;
+          }else {
+            profileImg = friend.profileImg;
+          }
         }
 
         html += '<li><img src="'+profileImg+'" class="friend_profile_image"><div class="friend_profile_section"><label class="friend_profile_name">'+friend.name+'</label><label class="friend_profile_email">'+friend.email+'</label></div>';
         if(friend.state == 'no'){
-          html += '<a class="add-friend" style="cursor: pointer" onclick="btnOnClick(this)" data-search="post" data-email="'+friend.email+'"><img class="add-friend-img" src="../images/add-friend.png"></a>';
+          html += '<a class="add-friend" style="cursor: pointer" onclick="btnOnClick(this)" data-search="post" data-email="'+friend.email+'"><img class="add-friend-img" src="'+contextpath+'images/add-friend.png"></a>';
         }else if(friend.state == 'friend'){
-          html += '<a class="isFriend"><img class="isFriend-img" src="../images/friend.png"/></a>';
+          html += '<a class="isFriend"><img class="isFriend-img" src="'+contextpath+'images/friend.png"/></a>';
         }else if(friend.state == 'sent'){
-          html += '<a class="loading"><img class="loading-img" src="../images/loading.png"/></a>';
+          html += '<a class="loading"><img class="loading-img" src="'+contextpath+'images/loading.png"/></a>';
         }else if(friend.state == 'received'){
-          html += '<a class="received-friend" style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-email="'+friend.email+'"><img class="received-friend-img" src="../images/received-friend.png"></a>';
+          html += '<a class="received-friend" style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-email="'+friend.email+'"><img class="received-friend-img" src="'+contextpath+'images/received-friend.png"></a>';
         }
         html += '</li>'
       })
@@ -153,7 +167,7 @@ function postFriend(targetEmail,ele){
   var data = {"targetEmail":targetEmail};
   $.ajax({
     type: "POST",
-    url: "/postFriend",
+    url: contextpath+"postFriend",
     data: data,
     dataType: 'json',
     success: function (data) {
@@ -172,9 +186,9 @@ function postFriend(targetEmail,ele){
 function searchRefresh(ele){
   if($(ele).data('search')){
     if($(ele).data('search') == 'post'){
-      $(ele).replaceWith('<a class="loading"><img class="loading-img" src="../images/loading.png"/></a>');
+      $(ele).replaceWith('<a class="loading"><img class="loading-img" src="'+contextpath+'images/loading.png"/></a>');
     }else if($(ele).data('search') == 'receive'){
-      $(ele).replaceWith('<a class="isFriend"><img class="isFriend-img" src="../images/friend.png"/></a>');
+      $(ele).replaceWith('<a class="isFriend"><img class="isFriend-img" src="'+contextpath+'images/friend.png"/></a>');
     }
   }
   return;

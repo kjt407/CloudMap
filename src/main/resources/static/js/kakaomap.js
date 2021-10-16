@@ -109,7 +109,7 @@ function searchDetailAddrFromCoords(coords, callback) {
 /* ************************************************************************ */
 
 //var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-var imageListSrc = "../images/my-marker.png";
+var imageListSrc = contextpath+"images/my-marker.png";
 var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
@@ -119,7 +119,7 @@ function getBackMyMapLogList(){
     $(".from-friend").remove();
     $(".from-friend-name").remove();
     $(".my_profile_home").attr("class", "friend_profile_home")
-    $(".friend_profile_home").attr("src", "../images/map.png")
+    $(".friend_profile_home").attr("src", contextpath+"images/map.png")
     $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
     $(".friend-list-li").css( "background","#212022")
 
@@ -129,7 +129,7 @@ function getFriendMapLogList(ele){
 
     console.log('ele')
     console.log(ele)
-    imageListSrc = "../images/friend-marker.png"
+    imageListSrc = contextpath+"images/friend-marker.png"
     writeInfoWindow.close();
     writeMarker.setMap(null);
     closeReadInfoWindow();
@@ -141,7 +141,7 @@ function getFriendMapLogList(ele){
 
     $.ajax({
         type: "GET",
-        url: "/getFriendMapLogList",
+        url: contextpath+"getFriendMapLogList",
         data: data,
         dataType: 'json',
         success: function (data) {
@@ -162,12 +162,12 @@ function getFriendMapLogList(ele){
 
             $(".my_profile_home").attr("class", "friend_profile_home")
             $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
-            $(".friend_profile_home").attr("src", "../images/map.png")
+            $(".friend_profile_home").attr("src", contextpath+"images/map.png")
             $(".friend-list-li").css( "background","#212022")
 
            // $(".friend_profile_home").attr("class", "friend_profile_home")
 
-             $(ele).attr("src", "../images/exit.png")
+             $(ele).attr("src", contextpath+"images/exit.png")
              $(ele).attr("class", "my_profile_home")
             $(ele).attr("onclick", "getBackMyMapLogList()")
             $(ele).parent().css( "background","rgb(252, 94, 94)")
@@ -178,7 +178,7 @@ function getFriendMapLogList(ele){
     });
 }
 function getMyMapLogList() {
-    imageListSrc = "../images/my-marker.png";
+    imageListSrc = contextpath+"images/my-marker.png";
     writeInfoWindow.close();
 
     writeMarker.setMap(null);

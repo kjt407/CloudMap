@@ -4,6 +4,7 @@ import com.jongtk.cloudmap.entity.Likes;
 import com.jongtk.cloudmap.entity.MapLog;
 import com.jongtk.cloudmap.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
     @Query("select likes from Likes likes where likes.mapLog = :mapLog")
     List<Likes> getLikes (MapLog mapLog);
 
+    @Modifying
+    @Query("delete from Likes likes where (likes.member = :member and likes.mapLog in (select mapLog from MapLog mapLog where mapLog.writer = :friend)) or (likes.member = :friend and likes.mapLog in (select mapLog from MapLog mapLog where mapLog.writer = :member))")
+    void deleteByMemberAndFriend(Member member, Member friend);
 }

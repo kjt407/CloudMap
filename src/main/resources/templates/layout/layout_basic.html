@@ -23,6 +23,9 @@
 
     </head>
     <body>
+    <script th:inline="javascript">
+        const contextpath= /*[[@{/}]]*/"/";
+    </script>
     <input type="hidden" id="username-check" th:value="${#authentication.principal.email}">
     <input type="checkbox" id="sidebar-check">
     <input type="checkbox" id="search-check">
@@ -82,9 +85,9 @@
     <!--사이드바 시작-->
     <div class="explanation">
         <div class="ex1"><img src="https://img.icons8.com/material/96/000000/marker--v1.png" alt=""><span>클릭한 곳의 마커</span></div>
-        <div class="ex2"><img src="../images/my-marker.png" alt=""><span>나의 일지 목록</span></div>
-        <div class="ex3"><img src="../images/friend-marker.png" alt=""><span>친구 일지 목록</span></div>
-        <div class="ex4"><img src="../images/marker.png" alt=""><span>검색 목록</span></div>
+        <div class="ex2"><img th:src="@{/images/my-marker.png}" alt=""><span>나의 일지 목록</span></div>
+        <div class="ex3"><img th:src="@{/images/friend-marker.png}" alt=""><span>친구 일지 목록</span></div>
+        <div class="ex4"><img th:src="@{/images/marker.png}" alt=""><span>검색 목록</span></div>
     </div>
     <div class="search">
         <div id="menu_wrap" class="bg_white">
@@ -255,7 +258,7 @@
     <script th:src="@{/js/detail.js}"></script>
 
     <script th:inline="javascript">
-        const contextpath= /*[[@{/}]]*/"/";
+        // const contextpath= /*[[@{/}]]*/"/";
 
         $(document).ready(function (){
             getMyInfo();
@@ -268,7 +271,7 @@
             $('#edit-social-profile').remove();
 
             if(!data.profileImg){
-                $('.profile_image').attr('src','/images/default_profile.png');
+                $('.profile_image').attr('src',contextpath+'images/default_profile.png');
             }else {
                 $('.profile_image').attr('src',data.profileImg);
             }
@@ -300,7 +303,7 @@
         function setSocialImg(){
             $.ajax({
                 type: "PUT",
-                url: "/setSocialProfile",
+                url: contextpath+"setSocialProfile",
                 dataType: 'text',
                 success: function (data) {
                     console.log(data)
@@ -316,7 +319,7 @@
         function getMyInfo(){
             $.ajax({
                 type: "GET",
-                url: "/getMyInfo",
+                url: contextpath+"getMyInfo",
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
@@ -413,7 +416,7 @@
             data.append('file',$('input[type=file]')[0].files[0]);
             $.ajax({
                 type: "PUT",
-                url: "/setLocalProfile",
+                url: contextpath+"setLocalProfile",
                 data: data,
                 processData: false,
                 contentType: false,
@@ -436,7 +439,7 @@
 
                 $.ajax({
                     type: "PUT",
-                    url: "/editMyName",
+                    url: contextpath+"editMyName",
                     dataType: 'text',
                     data: data,
                     success: function (data) {
@@ -458,7 +461,7 @@
             console.log("좋아요목록 가져오기");
             $.ajax({
                 type: "GET",
-                url: "/getMyLikes",
+                url: contextpath+"getMyLikes",
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
@@ -486,7 +489,7 @@
 
         function goMyLikeMap(ele){
 
-            imageListSrc = "../images/friend-marker.png"
+            imageListSrc = contextpath+"images/friend-marker.png"
             writeInfoWindow.close();
             writeMarker.setMap(null);
             closeReadInfoWindow();
@@ -502,7 +505,7 @@
                 //아닐때
                 $.ajax({
                     type: "GET",
-                    url: "/getFriendMapLogList",
+                    url: contextpath+"getFriendMapLogList",
                     data: data,
                     dataType: 'json',
                     success: function (data) {
@@ -527,7 +530,7 @@
         $("#friend-setting-check").change(function(){
             if($("#friend-setting-check").is(":checked")){
                 console.log("체크")
-                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("src", "../images/minus.png" )
+                $(".friend-list-scroll .friend-list-li #sprofile_home").attr("src", contextpath+"images/minus.png" )
                 $(".friend-list-scroll .friend-list-li #sprofile_home").attr("class", "delete_friend" )
                 $(".friend-list-scroll .friend-list-li #sprofile_home").attr("onclick", "deleteFriend(this)" )
 
@@ -546,13 +549,13 @@
             const data = {'targetEmail':$(ele).data("email")};
             $.ajax({
                 type: "DELETE",
-                url: "/deleteFriend",
+                url: contextpath+"deleteFriend",
                 data: data,
                 dataType: 'json',
                 success: function (data) {
                     $.ajax({
                         type: "GET",
-                        url: "/getFriendList",
+                        url: contextpath+"getFriendList",
                         dataType: 'json',
                         success: function (data) {
                             console.log("data")
@@ -566,7 +569,7 @@
                                     profileImg = friend.profileImg;
                                 }
 
-                                friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="deleteFriend(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="../images/minus.png" id="sprofile_home" class="delete_friend"></li>'
+                                friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="deleteFriend(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="'+contextpath+'images/minus.png" id="sprofile_home" class="delete_friend"></li>'
 
                             })
 
