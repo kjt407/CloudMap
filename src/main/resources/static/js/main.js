@@ -173,7 +173,6 @@ function postFriend(targetEmail,ele){
     success: function (data) {
       console.log(data)
       if(data){
-        alert("친구요청완료");
         searchRefresh(ele);
       }
     },

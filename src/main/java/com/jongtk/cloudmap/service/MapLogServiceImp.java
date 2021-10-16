@@ -66,10 +66,12 @@ public class MapLogServiceImp implements MapLogService{
             if(mapLog.getWriter() == member){
                 //수정시 삭제된 이미지 DB제거
                 log.warn("--------------- uuids 로 이미지 삭제 시작");
-                for (String uuid:uuids){
-                    mapLogImageRepository.deleteByUuid(uuid);
+                if(uuids != null && uuids.length > 0){
+                    for (String uuid:uuids){
+                        mapLogImageRepository.deleteByUuid(uuid);
+                    }
+                    log.warn("--------------- uuids 로 이미지 삭제 완료");
                 }
-                log.warn("--------------- uuids 로 이미지 삭제 완료");
 
                 //새로 추가된 이미지 DB저장
                 mapLogDTO.getImageDTOList().stream().forEach(
