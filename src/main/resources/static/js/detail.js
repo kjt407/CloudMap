@@ -4,7 +4,6 @@ var likeCount = 0;
 var likeListHtml = "";
 
 $('#modify_modal_section').css("z-index", "-10");
-$('#write_modal_section').css("z-index", "-10");
 $('#detail_modal_section').css("z-index", "-10");
 $('.detail.modal').modal({
     remote: contextpath + 'server/detail.html'
@@ -22,7 +21,6 @@ setTimeout(function() {
 $('.modal-backdrop.in').css("opacity", "0")
 function madalSetting(){
     $('#modify_modal_section').css("z-index", "");
-    $('#write_modal_section').css("z-index", "");
     $('#detail_modal_section').css("z-index", "");
 }
 
