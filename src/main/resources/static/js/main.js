@@ -471,7 +471,7 @@ $("#friend-search-check").change(function(){
 //회원탈퇴 기능 시작--------------------------------------------------------------------------------------------
 $(".member-leave-section").on("click", ".member-leave", function(){
   $("#leave-popup-section").show();   //팝업 오픈
-  $(".leave-popup-section").append('<div class="backon"></div>'); //뒷배경 생성
+  $("#leave-popup-section").append('<div class="backon"></div>'); //뒷배경 생성
   setting();
   $(".confirm-first").on("click", ".btn-yes", function(){
     $(".confirm-first").hide()
