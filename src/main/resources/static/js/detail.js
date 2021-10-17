@@ -2,8 +2,12 @@ var desc = false;
 var lnoDesc = 0;
 var likeCount = 0;
 var likeListHtml = "";
-var openDetailModal = false;
-var openModifyModal = false;
+$('.detail.modal').modal({
+    remote: contextpath + 'server/detail.html'
+});
+$('.modify.modal').modal({
+    remote : contextpath+'server/modify.html'
+});
 $(document).on('click', '#my-detail', function () {
     var lno = document.getElementById("my-lno").innerHTML;
     $.ajax({
@@ -31,20 +35,14 @@ $(document).on('click', '#my-detail', function () {
             desc = false;
             lnoDesc = lno;
             getLike(lno)
-            openDetailModal = true;
+            $('.detail.modal').modal('show')
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
             alert('fail');
         }
-
     });
-    if(openDetailModal){
-        $('.detail.modal').modal({
-            remote: contextpath + 'server/detail.html'
-        });
-        openDetailModal = false;
-    }
+
 });
 
 $(document).on('click', '#friend-detail', function () {
@@ -62,15 +60,7 @@ $(document).on('click', '#friend-detail', function () {
             $(".detail .check-like").attr("data-lno", lno)
             $(".detail .btn-modify").remove();
             $(".detail .btn-delete").remove();
-            openDetailModal = true;
-            var year  = data.writeDate.substr(0,4);
-            var month = data.writeDate.substr(5,2);
-            var day = data.writeDate.substr(8,2);
-            var hour = data.writeDate.substr(11,2)
-            var min = data.writeDate.substr(14,2)
-            var sec = data.writeDate.substr(14,2)
-            var timeStamp = year+"년 "+month+"월 "+day+"일";
-            $("#write-date").html("작성일 : "+timeStamp);
+            $('.detail.modal').modal('show')
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
@@ -78,12 +68,6 @@ $(document).on('click', '#friend-detail', function () {
         }
     });
     getLike(lno)
-    if(openDetailModal){
-        $('.detail.modal').modal({
-            remote: contextpath + 'server/detail.html'
-        });
-        openDetailModal = false;
-    }
 
 });
 
@@ -264,7 +248,7 @@ $(document).on('click', '.btn-modify', function () {
     var lno = document.getElementById("my-lno").innerHTML;
 
     $('.detail.modal').modal("hide");
-
+    $('.modify.modal').modal("show");
     $.ajax({
         type: "GET",
         url: contextpath+"getMyLog/" + lno,
@@ -290,19 +274,12 @@ $(document).on('click', '.btn-modify', function () {
                     "</li>"
                 $('.modify .cvf_uploaded_files').append(html)
             })
-            openModifyModal =true;
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
             alert('fail');
         }
     });
-    if(openModifyModal){
-        $('.modify.modal').modal({
-            remote : contextpath+'server/modify.html'
-        });
-        openModifyModal = false;
-    }
 });
 
 //삭제버튼 눌렀을때
