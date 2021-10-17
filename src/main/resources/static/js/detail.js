@@ -241,7 +241,7 @@ $(document).on('click', '.btn-modify', function () {
     });
     $.ajax({
         type: "GET",
-        url: "/getMyLog/" + lno,
+        url: contextpath+"getMyLog/" + lno,
         processData: false,
         contentType: false,
         dataType: 'json',
@@ -278,7 +278,7 @@ $(".detail .footer").on('click', '.btn-delete', function () {
     var data = {"lno" : lno}
     $.ajax({
         type: "DELETE",
-        url: "/deleteMapLog",
+        url: contextpath+"deleteMapLog",
         data : data,
         dataType: 'json',
         success: function () {
