@@ -9,11 +9,16 @@ $('#detail_modal_section').css("z-index", "-10");
 $('.detail.modal').modal({
     remote: contextpath + 'server/detail.html'
 });
-$('.detail.modal').modal("hide");
+
+
 $('.modify.modal').modal({
     remote : contextpath+'server/modify.html'
 });
-$('.modify.modal').modal("hide");
+setTimeout(function() {
+    $('.detail.modal').modal("hide");
+    $('.modify.modal').modal("hide");
+}, 1000);
+
 $('.modal-backdrop.in').css("opacity", "0")
 function madalSetting(){
     $('#modify_modal_section').css("z-index", "");
