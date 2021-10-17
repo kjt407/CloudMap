@@ -1,253 +1,43 @@
 body { overflow: hidden; }
-
-.detail .title{
-    width: auto;
-    margin: 40px 0px 0px 0px;
-}
-
-.detail .title .input-title{
-    width: 100%;
-    height: 80px;
-    font-size: 40px;
-    border-top-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 1;
-    border-bottom-color: rgb(218, 218, 218);
-}
-
-.detail .title .input-title:focus{
-  outline: none;
-}
-.detail .content{
-   height: auto;
-    width: auto;
-    margin: -10px 0px 0px 0px;
-}
-.detail .content textarea{
-    resize: none;
-    height: 380px;
-    width: 100%;
-    padding: 20px;
-    border-top-width: 1;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 1;
-    border-top-color: rgb(218, 218, 218);
-    border-bottom-color: rgb(218, 218, 218);
-    font-size: 20px;
-}
-
-.detail .content textarea:focus{
-    outline: none;
-}
-
-.detail{
-    width: auto;
-    margin: 15px 40px 0px 40px;
-    
-}
-.detail .footer{
-    width: 90%;
-    margin: 5px 40px;
-   
-    
-}
-.detail .footer .like{
-    position: absolute;
-    right: calc(50% - 30px);
-    bottom: 13px;
-    
-  
-}
-.detail .footer .like img{
-   width: 50px;
-   cursor:pointer; 
-  
-}
-.detail .footer .btsn{
-  position: absolute;
-  right: 80px;
-  bottom: 15px;
-}
-.detail .footer  .btn-modify{
-   
-    height: 35px;
-    width: 100px;
-    background: rgb(255, 224, 219);
-    color: black;
-    font-size: 16px;
-    border: 3px solid tomato;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor:pointer; 
-    transition: 0.4s;
-}
-.detail .btn-modify:hover{
-    background: tomato;
-    color: white;
-}
-
-.detail .footer  .btn-delete{
-
-    height: 35px;
-    width: 100px;
-    background: rgb(255, 224, 219);
-    color: black;
-    font-size: 16px;
-    border: 3px solid tomato;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor:pointer;
-    transition: 0.4s;
-}
-.detail .btn-delete:hover{
-    background: tomato;
-    color: white;
-}
-
-.detail .btn-close{
-    position: fixed;
-    right: 0px;
-    margin: 20px;
-    background: white;
-    border: none;
-    height: 10px;
-}
-.detail .btn-close img{
-    width: 15px;
-}
-/**/
-.detail .images{
-    height: 250px;
-    margin: 10px 0px 20px 0px;
-    display: block;
-}
-.detail .images ul {
-  width: 100%;
-  white-space: nowrap;
-  overflow-x: auto;
-  -ms-overflow-style: none;
-  margin: 0px 0px;
-  padding: 0px;
-}
-.detail .images ul::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, Opera */
-}
-.detail .images ul li {
-    list-style: none;
-   display: inline-block;
-}
-.detail .images ul li img{
-    width: 250px;
-    height: 250px;
-    margin-right: 10px;
-}
-.detail .bg-success {
-    padding: 7px;
-}
-
-.detail input[type=checkbox] {
-    display:none;
-}
-.detail input[type=checkbox] + label {
-
-    display: inline-block;
-
-    cursor: pointer;
-
-    line-height: 40px;
-
-    padding-left: 40px;
-
-    background: url('../images/like-off.png') left/40px no-repeat;
-
-
-}
-.detail input[type=checkbox]:checked + label {
-     background-image: url('../images/like-on.png');
- }
-.detail input[type=checkbox]:disabled + label {
-    background-image: url('../images/like-off.png');
-}
-.detail #like-count{
-    font-size: 25px;
-}
-
-.detail .overLikeLayer{
-    padding: 15px;
-    position: fixed;
-    color: white;
-    background: white;
-    text-align: center;
-    width: 35%;
-    top: 480px;
-    height: 350px;
-    left: 20px;
-    box-shadow: 3px 3px 3px 3px gray;
-    border-radius: 20px;
-    display: none;
-}
-.detail .overLikeLayer:before{
-    border-top: 20px solid transparent;
-    border-left: 40px solid gray;
-    border-right: 20px solid transparent;
-    border-bottom: 5px solid transparent;
-    content: "";
-    position: absolute;
-
-    top: 300px;
-    left: 280px;
-
-}
-.detail .overLikeLayer .like-list-title{
-    /*margin: 10px 0px 10px 0px;*/
-    width: 100%;
-    background: white;
-    height: 30px;
-    font-size: 19px;
-    line-height: 30px;
-    color: black;
-    font-weight: bold;
-}
-.detail .overLikeLayer .like-list-body{
-    margin: 7px 0px;
-    width: 100%;
-    background: white;
-    height: 100%;
-    overflow:scroll;   -ms-overflow-style: none;
-}
+.detail .title{ width: auto; margin: 40px 0px 0px 0px; }
+.detail .title .input-title{width: 100%; height: 80px; font-size: 40px; border-top-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-width: 1; border-bottom-color: rgb(218, 218, 218); }
+.detail .title .input-title:focus{ outline: none;}
+.detail .content{ height: auto; width: auto; margin: -10px 0px 0px 0px;}
+.detail .content textarea{ resize: none; height: 380px; width: 100%; padding: 20px; border-top-width: 1; border-left-width: 0; border-right-width: 0; border-bottom-width: 1; border-top-color: rgb(218, 218, 218); border-bottom-color: rgb(218, 218, 218); font-size: 20px;}
+.detail .content textarea:focus{ outline: none; }
+.detail{ width: auto; margin: 15px 40px 0px 40px;}
+.detail .footer{ width: 90%; margin: 5px 40px; }
+.detail .footer .like{ position: absolute; right: calc(50% - 30px); bottom: 13px; }
+.detail .footer .like img{ width: 50px; cursor:pointer; }
+.detail .footer .btsn{ position: absolute; right: 80px; bottom: 15px; }
+.detail .footer  .btn-modify{ height: 35px; width: 100px; background: rgb(255, 224, 219); color: black; font-size: 16px; border: 3px solid tomato; font-weight: bold; border-radius: 10px; cursor:pointer; transition: 0.4s; }
+.detail .btn-modify:hover{ background: tomato; color: white; }
+.detail .footer  .btn-delete{ height: 35px; width: 100px; background: rgb(255, 224, 219); color: black; font-size: 16px; border: 3px solid tomato; font-weight: bold; border-radius: 10px; cursor:pointer; transition: 0.4s; }
+.detail .btn-delete:hover{ background: tomato;color: white;}
+.detail .btn-close{position: fixed; right: 0px; margin: 20px; background: white; border: none; height: 10px; }
+.detail .btn-close img{width: 15px; }
+/*상세 이미지*/
+.detail .images{height: 250px;margin: 10px 0px 20px 0px;display: block; }
+.detail .images ul {width: 100%;white-space: nowrap;overflow-x: auto;-ms-overflow-style: none;margin: 0px 0px;padding: 0px; }
+.detail .images ul::-webkit-scrollbar {display: none;}
+.detail .images ul li {list-style: none;display: inline-block; }
+.detail .images ul li img{width: 250px;height: 250px;margin-right: 10px;}
+.detail .bg-success {padding: 7px;}
+/*좋아요*/
+.detail input[type=checkbox] {display:none;}
+.detail input[type=checkbox] + label {display: inline-block; cursor: pointer; line-height: 40px; padding-left: 40px; background: url('../images/like-off.png') left/40px no-repeat; }
+.detail input[type=checkbox]:checked + label { background-image: url('../images/like-on.png'); }
+.detail input[type=checkbox]:disabled + label { background-image: url('../images/like-off.png'); }
+.detail #like-count{ font-size: 25px;}
+/*좋아요 누른 목록*/
+.detail .overLikeLayer{padding: 15px; position: fixed; color: white; background: white; text-align: center; width: 35%; top: 480px; height: 350px; left: 20px; box-shadow: 3px 3px 3px 3px gray; border-radius: 20px; display: none; }
+.detail .overLikeLayer:before{ border-top: 20px solid transparent; border-left: 40px solid gray; border-right: 20px solid transparent; border-bottom: 5px solid transparent; content: ""; position: absolute; top: 300px; left: 280px; }
+.detail .overLikeLayer .like-list-title{  /*margin: 10px 0px 10px 0px;*/ width: 100%; background: white; height: 30px; font-size: 19px; line-height: 30px; color: black; font-weight: bold; }
+.detail .overLikeLayer .like-list-body{ margin: 7px 0px; width: 100%; background: white; height: 100%; overflow:scroll;   -ms-overflow-style: none; }
 .detail .overLikeLayer .like-list-body::-webkit-scrollbar { display: none; }
-.detail .overLikeLayer .like-list-body .like-member-ul{
-
-    background: white;
-
-
-
-}
-
-.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li{
-    padding: 10px 0px;
-    height: 50px;
-    list-style: none;
-    font-size: 20px;
-   /*border: solid black;*/
-
-
-}
-
-.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_image{
-    width: 28px;
-    border-radius: 100%;
-    left: 100px;
-    margin-right: 30px;
-
-
-}
-.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_name{
-    margin-right: 45px;
-color: black;
-}
+.detail .overLikeLayer .like-list-body .like-member-ul{ background: white; }
+.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li{ padding: 10px 0px; height: 50px; list-style: none; font-size: 20px;  /*border: solid black;*/ }
+.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_image{ width: 28px; border-radius: 100%; left: 100px; margin-right: 30px;}
+.detail .overLikeLayer .like-list-body .like-member-ul .like-member-li .profile_name{ margin-right: 45px; color: black; }
 
 

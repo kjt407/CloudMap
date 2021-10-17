@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/detail.css">
+	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
 	<button type="button" id="detail-close" class="btn-close"><img src="images/close.png"></button>
@@ -21,135 +22,23 @@
 				<textarea id="content" name="content" placeholder="내용을 입력 해주세요." readonly></textarea>
 			</div>
 			<div class="footer">
-				
 				<div class="like">
 					<input type="checkbox" id="like" name="like" class="check-like">
 					<label for="like" id="like-count"></label>
-
 				</div>
 				<div class="btsn">
-
 				</div>
 				<div id="divLikeLayer" class="overLikeLayer">
 					<div class="like-list">
-<!--						<strong>내용 :</strong> <span id="conttent">내용</span>-->
 						<div class="like-list-title">좋아요 누른 목록</div>
 						<div class="like-list-body">
 							<ul class="like-member-ul">
-
-
 							</ul>
-
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 </body>
-
 <script src="js/detail.js"></script>
-<script>
-
-	//수정하기 버튼 눌렀을때
-	$(document).on('click', '.btn-modify', function () {
-		var lno = document.getElementById("my-lno").innerHTML;
-
-		$('.detail.modal').modal("hide");
-		$('.modify.modal').modal({
-			remote : contextpath+'server/modify.html'
-		});
-		$.ajax({
-			type: "GET",
-			url: "/getMyLog/" + lno,
-			processData: false,
-			contentType: false,
-			dataType: 'json',
-			success: function (datas) {
-				$('.modify #title').val(datas.title);
-				$('.modify #content').val(datas.content);
-				if (datas.imageDTOList.length) {
-					$(".modify #width-scroll").css("display", "inline-block");
-					$(".modify #content").css("height", "374px");
-				} else {
-					$(".modify #width-scroll").css("display", "none");
-					$(".modify #content").css("height", "580px");
-				}
-				$('.modify .cvf_uploaded_files').empty()
-				datas.imageDTOList.forEach(i => {
-					areadyStoredFiles.push(i)
-					var html = "<li class='all-image' file = '" + i.imgName + "'>" +
-							"<img class = 'img-thumb' src='display?imgUrl=" + i.imageURL + "' />" +
-							"<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
-							"</li>"
-					$('.modify .cvf_uploaded_files').append(html)
-				})
-			},
-			error: function (e) {
-				$('#btnUpload').prop('disabled', false);
-				alert('fail');
-			}
-		});
-	});
-
-	//삭제버튼 눌렀을때
-	$(document).on('click', '.btn-delete', function () {
-		var lno = document.getElementById("my-lno").innerHTML;
-		var data = {"lno" : lno}
-		$.ajax({
-			type: "DELETE",
-			url: "/deleteMapLog",
-			data : data,
-			dataType: 'json',
-			success: function (datas) {
-				$('.detail.modal').modal("hide");
-				getMyMapLogList();
-				alert('success');
-			},
-			error: function (e) {
-
-				alert('fail');
-			}
-		});
-	});
-
-	$(function(){
-		$('.like').mouseover(function(e) { // mouse hover 좌표
-
-
-			getLike(lnoDesc)
-
-
-			$('#divLikeLayer').show();
-			$('.like-member-ul').html(likeListHtml);
-
-
-
-		});
-		$('.like').mouseout(function() {
-			$('#divLikeLayer').hide();
-		});
-	});
-	var likeLiskHeight = 0;
-	$(".like").on('mousewheel',function(e){
-		var wheel = e.originalEvent.wheelDelta;
-		if(likeLiskHeight>$('.like-member-ul').height()-200){
-			likeLiskHeight = $('.like-member-ul').height()-200;
-		}
-		if(likeLiskHeight<0){
-			likeLiskHeight=0;
-		}
-
-//스크롤값을 가져온다.
-		if(wheel>0){
-//스크롤 올릴때
-			likeLiskHeight -=30;
-			$('.like-list-body').scrollTop(likeLiskHeight)
-		} else {
-//스크롤 내릴때
-			likeLiskHeight +=30;
-			$('.like-list-body').scrollTop(likeLiskHeight)
-		}
-	});
-</script>
 </html>

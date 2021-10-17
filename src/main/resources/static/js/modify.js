@@ -1,7 +1,6 @@
 var storedFilesModify = [];
 var areadyStoredFiles = [];
 var deleteStoredFiles = [];
-
 $('body').on('change', '.user_picked_files_modify', function () {
     var files = this.files;
     var i = 0;
@@ -66,11 +65,13 @@ $('body').on('click', '.modify-btn', function (e) {
     var content = $(".modify #content").val();
 
     if(title===null||title===""||title===undefined||title==="undefined"){
-        alert("제목을 입력해주세요")
+        toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+        toastr.warning('제목을 입력해주세요.');
         return;
     }
     if(content===null||content===""||content===undefined||content==="undefined"){
-        alert("내용을 입력해주세요")
+        toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+        toastr.warning('내용을 입력해주세요.');
         return;
     }
     data.append("lno", lno);
@@ -83,19 +84,8 @@ $('body').on('click', '.modify-btn', function (e) {
     }
     data.append("title", title);
     data.append("content", content);
-    //폼데이터 출력해보기
-    console.log("---------------------")
-    for (var key of data.keys()) {
-        console.log(key);
-    }
-    console.log("---------------------")
-    for (var value of data.values()) {
-        console.log(value);
-    }
-    console.log("---------------------")
-    for(var pair of data.entries()){
-        console.log(pair[0]+","+ pair[1])
-    }
+
+
     $.ajax({
         type: "PUT",
         url: "/editMapLog",
@@ -108,18 +98,16 @@ $('body').on('click', '.modify-btn', function (e) {
             storedFilesModify = [];
             deleteStoredFiles = [];
             areadyStoredFiles = [];
-            console.log(lno)
             getMyMapLogList();
-            alert('성공이랑께');
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+            toastr.success('수정이 완료되었습니다.');
         },
         error: function (e) {
-
-            alert('fail');
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+            toastr.error('오류 : 관리자에게 문의 바랍니다.');
         }
     });
 });
-
-
 $(".modify #width-scroll").on('mousewheel', function (e) {
     var wheelDelta = e.originalEvent.wheelDelta;
     if (wheelDelta > 0) {
@@ -128,7 +116,6 @@ $(".modify #width-scroll").on('mousewheel', function (e) {
         $(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
     }
 });
-
 $("body").on("click", ".btn-cancle", function(){
     $('.modify.modal').modal("hide");
     $('.detail.modal').modal("hide");

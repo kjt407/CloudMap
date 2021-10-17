@@ -1,7 +1,6 @@
 var status;
 
 $(document).ready(function(){
-	
 	$("#snow").load("../html/snow.html")
 	fullset();
 	goRegister();
@@ -22,7 +21,6 @@ function fullset(){
 	for(var i=1;i<=pageindex;i++){
 		$("#fullpage > .quick > ul").append("<li></li>");
 	}
-
 }
 
 function goRegister(){
@@ -49,7 +47,6 @@ function goLoginUpArrow(){
 		return false;
 	});
 }
-
 $('#selectEmail').change(function(){
 	$("#selectEmail option:selected").each(function () {
 		if($(this).val()== '1'){
@@ -163,7 +160,6 @@ var autoHypenPhone = function(str){
 		tmp += str.substr(7);
 		return tmp;
 	}
-
 	return str;
 }
 var phoneNum = document.getElementById('phone');
@@ -171,7 +167,6 @@ phoneNum.onkeyup = function(){
 console.log(this.value);
 this.value = autoHypenPhone( this.value ) ;  
 }
-
 function success(email){
 	$("#id").val('');
 	$("#email").val('naver.com');
@@ -231,16 +226,13 @@ function register(param){
 		}
 	});
 }
-
 function registerBtnSwitch(action){
 	$(".register-success-btn").attr("disabled",action);
 }
-
 function getContextPath() {
 	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
 	var context = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 	if(context != '/cloudmap'){
-		console.log("컨텍스트가 /cloudmap 이 아님");
 		context = '';
 	}
 	return context;

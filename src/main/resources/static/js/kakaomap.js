@@ -28,16 +28,12 @@ var writearkerImage = new kakao.maps.MarkerImage(writeImageSrc, writeImageSize);
 var writeMarker = new kakao.maps.Marker({
     image: writearkerImage
 });
-
 var clickWriteInfoWindow = null;
-
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
-
 var writeInfoWindow = new kakao.maps.InfoWindow({
     yAnchor: 1.42
 });
-
 
 var start = true;
 // 지도 클릭 이벤트
@@ -50,47 +46,31 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
                 $("#write-section").attr("class", "write-section");
                 closeReadInfoWindow();
                 var jibun = result[0].address.address_name
-
                 document.getElementById("ji-bun").innerHTML = jibun;
                 $("#ji-bun").html(jibun)
                 var latlng = mouseEvent.latLng;
-               // document.getElementById("lat").innerHTML = latlng.getLat();
-               // document.getElementById("lng").innerHTML = latlng.getLng();
                 rightClickLat=latlng.getLat();
                 rightClickLng=latlng.getLng();
                 if (!writeMarker) {
                     console.log("마커없음")
                 }
-
-
                 if (start) {
                     writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
-
                     start = false;
                 }
-
                 // 마커 위치를 클릭한 위치로 옮깁니다
                 writeMarker.setMap(map);
                 writeMarker.setPosition(latlng);
-
                 if (clickWriteInfoWindow) {
-
                     clickWriteInfoWindow.close();
-
                 }
-
                 writeInfoWindow.setPosition(writeMarker.getPosition());
-
                 writeInfoWindow.open(map, writeMarker);
-
                 clickWriteInfoWindow = writeInfoWindow;
-
             }
         });
     }
 });
-
-
 
 //작성 알림창 끄기
 function closeWriteOverlay() {
@@ -103,18 +83,15 @@ function searchDetailAddrFromCoords(coords, callback) {
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 }
 
-
-
 /* 일지 확인하기 */
 /* ************************************************************************ */
-
 //var imageListSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 var imageListSrc = contextpath+"images/my-marker.png";
 var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
 
-
+//내 지도로 돌아가기
 function getBackMyMapLogList(){
     $(".from-friend").remove();
     $(".from-friend-name").remove();
@@ -122,23 +99,16 @@ function getBackMyMapLogList(){
     $(".friend_profile_home").attr("src", contextpath+"images/map.png")
     $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
     $(".friend-list-li").css( "background","#212022")
-
     getMyMapLogList();
 }
+//친구지도 가져오기
 function getFriendMapLogList(ele){
-
-    console.log('ele')
-    console.log(ele)
     imageListSrc = contextpath+"images/friend-marker.png"
     writeInfoWindow.close();
     writeMarker.setMap(null);
     closeReadInfoWindow();
-    console.log('ele')
-    console.log(ele)
-
     var data = {"friendEmail":$(ele).data("email")};
     //$('.friend_profile_home').data('email-check', $(ele).data("email"));
-
     $.ajax({
         type: "GET",
         url: contextpath+"getFriendMapLogList",
@@ -146,29 +116,19 @@ function getFriendMapLogList(ele){
         dataType: 'json',
         success: function (data) {
             myLogin = false
-
             var name = "friend-read"
             var title = "friend-title"
             var lno = "friend-lno"
             getMapLogList(data, name, title, lno);
-
-
             $(".from-friend").remove();
             $(".from-friend-name").remove();
             $(".from-friend-info").append(" <span class='from-friend'> from </span><span class='from-friend-name'>"+$(ele).data("name")+"</span>");
-            // $("#go-my-map").attr("disabled", false)
-            // $("#go-my-map").attr("class", "go-my-map-btn")
-            // $("#go-my-map").html("나의 지도로 가기")
-
             $(".my_profile_home").attr("class", "friend_profile_home")
             $(".friend_profile_home").attr("onclick", "getFriendMapLogList(this)")
             $(".friend_profile_home").attr("src", contextpath+"images/map.png")
             $(".friend-list-li").css( "background","#212022")
-
-           // $(".friend_profile_home").attr("class", "friend_profile_home")
-
-             $(ele).attr("src", contextpath+"images/exit.png")
-             $(ele).attr("class", "my_profile_home")
+            $(ele).attr("src", contextpath+"images/exit.png")
+            $(ele).attr("class", "my_profile_home")
             $(ele).attr("onclick", "getBackMyMapLogList()")
             $(ele).parent().css( "background","rgb(252, 94, 94)")
         },
@@ -177,10 +137,10 @@ function getFriendMapLogList(ele){
         }
     });
 }
+//나의 지도 가져오기
 function getMyMapLogList() {
     imageListSrc = contextpath+"images/my-marker.png";
     writeInfoWindow.close();
-
     writeMarker.setMap(null);
     closeReadInfoWindow();
     $.get("./getMyList", function (data) {
@@ -189,7 +149,6 @@ function getMyMapLogList() {
         var title = "my-title"
         var lno = "my-lno"
         getMapLogList(data, name, title, lno);
-
     });
 }
 
@@ -271,7 +230,8 @@ function placesSearchCB(data, status, pagination) {
         // 페이지 번호를 표출합니다
         displayPagination(pagination);
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        alert('검색 결과가 존재하지 않습니다.');
+        toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+        toastr.info('검색 결과가 존재하지 않습니다.');
         return;
     } else if (status === kakao.maps.services.Status.ERROR) {
         alert('검색 결과 중 오류가 발생했습니다.');
@@ -317,14 +277,14 @@ function displayPlaces(places) {
                             rightClickLng = latlng.getLng();
                             // 클릭한 위도, 경도 정보를 가져옵니다
                             if (!writeMarker) {
-                                console.log("마커없음")
+
                             }
                             if (start) {
                                 writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
                                 start = false;
                             }
                             if (clickWriteInfoWindow) {
-                                console.log("없에기")
+
                                 clickWriteInfoWindow.close();
                             }
                             writeInfoWindow.setPosition(latlng);
@@ -464,7 +424,7 @@ $(document).ready(function(){
             $("#write-section").attr("class", "write-section");
             $("#info").attr("class", "info");
             $("#search_btn").attr("class", "fas fa-search");
-            console.log("체크해제")
+
             $('#keyword').val('');
             var listEl = document.getElementById('placesList')
             // 검색 결과 목록에 추가된 항목들을 제거합니다
@@ -496,17 +456,17 @@ var clusterer = new kakao.maps.MarkerClusterer({
 
 // 데이터를 가져오기 위해 jQuery를 사용합니다
 // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-$.get("./getMyList", function(data) {
-    // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-    // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-    console.log(data)
-    console.log("DATA")
-    var markers = $(data).map(function(i, position) {
-        return new kakao.maps.Marker({
-            position : new kakao.maps.LatLng(position.lat, data.lng)
-        });
-    });
-
-    // 클러스터러에 마커들을 추가합니다
-    clusterer.addMarkers(markers);
-});
+// $.get("./getMyList", function(data) {
+//     // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+//     // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+//     console.log(data)
+//     console.log("DATA")
+//     var markers = $(data).map(function(i, position) {
+//         return new kakao.maps.Marker({
+//             position : new kakao.maps.LatLng(position.lat, data.lng)
+//         });
+//     });
+//
+//     // 클러스터러에 마커들을 추가합니다
+//     clusterer.addMarkers(markers);
+// });

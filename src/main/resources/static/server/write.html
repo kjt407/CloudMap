@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-
 	<link rel="stylesheet" href="css/write.css">
+	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
 	<button type="button" id="close" class="btn-close"><img src="images/close.png"></button>
@@ -37,17 +37,5 @@
 		</form>
 	</div>
 </body>
-
 <script src="js/write.js"></script>
-<script>
-	$("body").on('click',".btn-close",function(){
-		console.log("닫기")
-
-		$(".write .cvf_uploaded_files .all-image").remove('');
-		$(".write #width-scroll").css("display", "none");
-		$(".write #content").css("height", "580px");
-		$(".write-section").find('form')[0].reset()
-		$('.write.modal').modal("hide");
-	});
-</script>
 </html>

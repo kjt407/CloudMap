@@ -3,21 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 / 회원가입</title>
-
 <link rel="stylesheet" th:href="@{/css/sign.css}">
 <link rel="stylesheet" th:href="@{/css/login.css}">
 <link rel="stylesheet" th:href="@{/css/register.css}">
 <link rel="stylesheet" th:href="@{/css/snow.css}">
 <link rel="stylesheet" type="text/css" th:href="@{//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css}" />
-
-
 <script th:src="@{//code.jquery.com/jquery-1.12.4.js}"></script>
 <script type="text/javascript" th:src="@{//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js}"></script>
 <script type="text/javascript" th:src="@{//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
-
-
-
-
 </head>
 <body>
 <div id="snow"></div>
@@ -113,7 +106,6 @@
 	if(result){
 		toastr.warning('인증실패',result, {timeOut: 5000});
 	}
-
 </script>
 <script th:src="@{/js/sign.js}"></script>
 </body>
