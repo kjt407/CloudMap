@@ -88,7 +88,7 @@ $('body').on('click', '.modify-btn', function (e) {
 
     $.ajax({
         type: "PUT",
-        url: contextpath+"/editMapLog",
+        url: contextpath+"editMapLog",
         data: data,
         processData: false,
         contentType: false,
