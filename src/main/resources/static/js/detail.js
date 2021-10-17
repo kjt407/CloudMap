@@ -16,6 +16,16 @@ $(document).on('click', '#my-detail', function () {
             $(".check-like").attr("data-lno", lno)
             $(".btn-modify").remove();
             $(".btn-delete").remove();
+            var year  = data.writeDate.substr(0,4);
+            var month = data.writeDate.substr(5,2);
+            var day = data.writeDate.substr(8,2);
+            var hour = data.writeDate.substr(11,2)
+            var min = data.writeDate.substr(14,2)
+            var sec = data.writeDate.substr(14,2)
+            var timeStamp = year+"년 "+month+"월 "+day+"일";
+
+            $("#write-date").html("작성일 : "+timeStamp);
+
             $(".btsn").append("<button type='button' class='btn-modify'>수정하기</button>" +
                 "<button type='button' class='btn-delete'>삭제하기</button>")
             desc = false;
