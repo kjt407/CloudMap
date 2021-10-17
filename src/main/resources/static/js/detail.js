@@ -63,6 +63,14 @@ $(document).on('click', '#friend-detail', function () {
             $(".detail .btn-modify").remove();
             $(".detail .btn-delete").remove();
             openDetailModal = true;
+            var year  = data.writeDate.substr(0,4);
+            var month = data.writeDate.substr(5,2);
+            var day = data.writeDate.substr(8,2);
+            var hour = data.writeDate.substr(11,2)
+            var min = data.writeDate.substr(14,2)
+            var sec = data.writeDate.substr(14,2)
+            var timeStamp = year+"년 "+month+"월 "+day+"일";
+            $("#write-date").html("작성일 : "+timeStamp);
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
