@@ -159,6 +159,7 @@ $(".like").change(function(){
 
                         })
                         $('.like-member-ul').html(likeListHtml);
+                        getMyLikeList()
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);
@@ -211,6 +212,7 @@ $(".like").change(function(){
 
                         })
                         $('.like-member-ul').html(likeListHtml);
+                        getMyLikeList()
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);

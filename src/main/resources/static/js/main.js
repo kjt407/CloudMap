@@ -215,6 +215,7 @@ function refreshProfile(data){
       $('#edit-social-profile').append("<span style='position: absolute; top: 3px; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: rgba(0,0,0,0.4); color: white; height: 150px; width: 150px; border-radius: 50%; box-sizing: border-box;'>적용됨</span>");
     }
   }
+  getMyLikeList()
 }
 function profileEditToggle(option){
   if(option == 'open') {
@@ -265,7 +266,7 @@ $("#my-page-check").change(function(){
     $("#modify-name").css("display", "");
     $("#modify-profile-image").css("display", "");
     $("#my-page-btn").attr("class", "fas fa-times");
-    getMyMapLogList();
+    getBackMyMapLogList();
     getMyLikeList();
   }else{
     $("#modify-name").css("display", "none");
@@ -328,6 +329,7 @@ $(".my-name").keydown(function(key) {
         $(".my-name").css("background", "#212022");
         $(".my-name").css("color", "white");
         $(".my-name").attr("disabled", true);
+        getMyLikeList()
       },
       error: function (e) {
 
@@ -352,7 +354,7 @@ function getMyLikeList(){
           editTitle = likedList.title;
         }
         $('.my-like-list').append(
-            '<li data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-me="'+likedList.me+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'
+            '<li data-name="'+likedList.writerName+'"data-email="'+likedList.writerEmail+'" data-lng="'+likedList.lng+'" data-me="'+likedList.me+'"data-lat="'+likedList.lat+'" class="click_my_like" onclick="goMyLikeMap(this);">'
             + '<div class="my-like-left"><img src="'+likedList.writerProfileImg+'" class="my-like-writer-image"><label class="my-like-writer-name">'+likedList.writerName+'</label></div><div class="my-like-right"><label class="my-like-writer-title">'+editTitle+'</label></li></div>'
         )
       });
@@ -370,7 +372,7 @@ function goMyLikeMap(ele){
   var data = {"friendEmail":$(ele).data("email")};
   if( $(ele).data("me")){
     //내일지일때
-    getMyMapLogList();
+    getBackMyMapLogList();
     map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")+0.00035))
     map.setLevel(1)
   }else{
@@ -388,6 +390,9 @@ function goMyLikeMap(ele){
         getMapLogList(data, name, title, lno);
         map.setCenter(new kakao.maps.LatLng($(ele).data("lat"), $(ele).data("lng")+0.00035))
         map.setLevel(1)
+        $(".from-friend").remove();
+        $(".from-friend-name").remove();
+        $(".from-friend-info").append(" <span class='from-friend'> from </span><span class='from-friend-name'>"+$(ele).data("name")+"</span>");
       },
       error: function (e) {
 
@@ -401,6 +406,7 @@ $("#friend-setting-check").change(function(){
     $(".friend-list-scroll .friend-list-li #sprofile_home").attr("src", contextpath+"images/minus.png" )
     $(".friend-list-scroll .friend-list-li #sprofile_home").attr("class", "delete_friend" )
     $(".friend-list-scroll .friend-list-li #sprofile_home").attr("onclick", "deleteFriend(this)" )
+    getBackMyMapLogList();
   }else{
     $(".friend-list-scroll .friend-list-li").remove();
     getFriendList();

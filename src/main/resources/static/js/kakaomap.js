@@ -91,6 +91,7 @@ var readMarkerArray = [];
 var markersArray = [];
 getMyMapLogList();
 
+//내 지도로 돌아가기
 function getBackMyMapLogList(){
     $(".from-friend").remove();
     $(".from-friend-name").remove();
@@ -100,6 +101,7 @@ function getBackMyMapLogList(){
     $(".friend-list-li").css( "background","#212022")
     getMyMapLogList();
 }
+//친구지도 가져오기
 function getFriendMapLogList(ele){
     imageListSrc = contextpath+"images/friend-marker.png"
     writeInfoWindow.close();
@@ -135,6 +137,7 @@ function getFriendMapLogList(ele){
         }
     });
 }
+//나의 지도 가져오기
 function getMyMapLogList() {
     imageListSrc = contextpath+"images/my-marker.png";
     writeInfoWindow.close();
@@ -273,14 +276,14 @@ function displayPlaces(places) {
                             rightClickLng = latlng.getLng();
                             // 클릭한 위도, 경도 정보를 가져옵니다
                             if (!writeMarker) {
-                                console.log("마커없음")
+
                             }
                             if (start) {
                                 writeInfoWindow.setContent(document.getElementById('write-alert').innerHTML);
                                 start = false;
                             }
                             if (clickWriteInfoWindow) {
-                                console.log("없에기")
+
                                 clickWriteInfoWindow.close();
                             }
                             writeInfoWindow.setPosition(latlng);
@@ -420,7 +423,7 @@ $(document).ready(function(){
             $("#write-section").attr("class", "write-section");
             $("#info").attr("class", "info");
             $("#search_btn").attr("class", "fas fa-search");
-            console.log("체크해제")
+
             $('#keyword').val('');
             var listEl = document.getElementById('placesList')
             // 검색 결과 목록에 추가된 항목들을 제거합니다
@@ -452,17 +455,17 @@ var clusterer = new kakao.maps.MarkerClusterer({
 
 // 데이터를 가져오기 위해 jQuery를 사용합니다
 // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-$.get("./getMyList", function(data) {
-    // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-    // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-    console.log(data)
-    console.log("DATA")
-    var markers = $(data).map(function(i, position) {
-        return new kakao.maps.Marker({
-            position : new kakao.maps.LatLng(position.lat, data.lng)
-        });
-    });
-
-    // 클러스터러에 마커들을 추가합니다
-    clusterer.addMarkers(markers);
-});
+// $.get("./getMyList", function(data) {
+//     // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+//     // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+//     console.log(data)
+//     console.log("DATA")
+//     var markers = $(data).map(function(i, position) {
+//         return new kakao.maps.Marker({
+//             position : new kakao.maps.LatLng(position.lat, data.lng)
+//         });
+//     });
+//
+//     // 클러스터러에 마커들을 추가합니다
+//     clusterer.addMarkers(markers);
+// });
