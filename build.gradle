@@ -26,6 +26,8 @@ dependencies {
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
@@ -34,6 +36,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    implementation group: 'org.hibernate.validator', name: 'hibernate-validator'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
+
+
+
+
 
 
 }
