@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CLOUD MAP</title>
         <link rel="stylesheet" th:href="@{//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css}">
-        <link rel="stylesheet" th:href="@{/css/main.css}">
+
         <script th:src='@{//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js}'></script>
         <script type="text/javascript" th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=ef305f63a71a127db21e1424217901ef&libraries=services,clusterer}"></script>
         <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
@@ -17,6 +17,7 @@
         <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
         <link rel="stylesheet" type="text/css" th:href="@{//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css}" />
         <script type="text/javascript" th:src="@{//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
+        <link rel="stylesheet" th:href="@{/css/main.css}">
     </head>
     <body>
     <script th:inline="javascript">
@@ -219,7 +220,7 @@
         <th:block th:replace="${content}"></th:block>
     </div>
     <!--일지작성하기-->
-    <div class="write modal fade" data-backdrop="static" data-keyboard="true">
+    <div class="write modal fade" id="write_modal_section" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
                 <!-- remote ajax call이 되는영역 -->
@@ -227,7 +228,7 @@
         </div>
     </div>
     <!--일지상세페이지-->
-    <div class="detail modal fade" data-backdrop="static" data-keyboard="true">
+    <div class="detail modal fade" id="detail_modal_section" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
                 <!-- remote ajax call이 되는영역 -->
@@ -235,7 +236,7 @@
         </div>
     </div>
     <!--일지수정하기-->
-    <div class="modify modal fade" data-backdrop="static" data-keyboard="true">
+    <div class="modify modal fade" id="modify_modal_section" data-backdrop="static" data-keyboard="true">
         <div class="modal-dialog modal-fullsize">
             <div class="modal-content modal-fullsize" style="box-shadow:10px 10px 10px;">
                 <!-- remote ajax call이 되는영역 -->

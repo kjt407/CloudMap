@@ -2,13 +2,27 @@ var desc = false;
 var lnoDesc = 0;
 var likeCount = 0;
 var likeListHtml = "";
+
+$('#modify_modal_section').css("z-index", "-10");
+$('#write_modal_section').css("z-index", "-10");
+$('#detail_modal_section').css("z-index", "-10");
 $('.detail.modal').modal({
     remote: contextpath + 'server/detail.html'
 });
+$('.detail.modal').modal("hide");
 $('.modify.modal').modal({
     remote : contextpath+'server/modify.html'
 });
+$('.modify.modal').modal("hide");
+$('.modal-backdrop.in').css("opacity", "0")
+function madalSetting(){
+    $('#modify_modal_section').css("z-index", "");
+    $('#write_modal_section').css("z-index", "");
+    $('#detail_modal_section').css("z-index", "");
+}
+
 $(document).on('click', '#my-detail', function () {
+    madalSetting();
     var lno = document.getElementById("my-lno").innerHTML;
     $.ajax({
         type: "GET",
@@ -46,6 +60,7 @@ $(document).on('click', '#my-detail', function () {
 });
 
 $(document).on('click', '#friend-detail', function () {
+    madalSetting();
     var lno = document.getElementById("friend-lno").innerHTML;
     $.ajax({
         type: "GET",
@@ -245,6 +260,7 @@ $("body").on("click", ".btn-close", function(){
 })
 //수정하기 버튼 눌렀을때
 $(document).on('click', '.btn-modify', function () {
+    madalSetting();
     var lno = document.getElementById("my-lno").innerHTML;
 
     $('.detail.modal').modal("hide");

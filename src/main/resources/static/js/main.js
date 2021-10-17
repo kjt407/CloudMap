@@ -548,3 +548,7 @@ $("body").on("click", "#help-btn", function() {
 
   })
 });
+
+setTimeout(function() {
+  $(".loading-map").hide()
+}, 1000);
