@@ -444,7 +444,7 @@ function deleteFriend(ele){
             friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="deleteFriend(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="'+contextpath+'images/minus.png" id="sprofile_home" class="delete_friend"></li>'
           })
           $('#main-friend-list').html(friendLi)
-          toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+          toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500};
           toastr.info($(ele).data("name")+'님을 친구목록에서 삭제했습니다.');
         },
         error: function (e) {
