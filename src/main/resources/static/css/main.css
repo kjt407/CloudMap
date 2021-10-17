@@ -266,27 +266,45 @@ label #friend_setting_btn:hover{ color:#19B3D3 }
 /*회원 탈퇴 팝업*/
 #leave-popup-section{ display: none; border-radius: 10px; }
 #leave-popup-section{ width: 500px; height: 250px; position: absolute; top: 60%; left: 50%; margin: -250px 0 0 -250px; background-color: #212022; z-index: 11; -webkit-transition-property: height; -moz-transition-property:  height; -o-transition-property: height; transition-property: height; -webkit-transition-duration:  1s; -moz-transition-duration:  1s; -o-transition-duration: 1s; transition-duration:  1s; }
-.backon{ content: ""; width: 100%; height: 100%; background: rgba(0,0,0,0.8); position: fixed; top: 0; left: 0; z-index: 10; }
-.popup-close{ position:absolute;top: 10px;right: 10px;cursor:pointer;z-index: 20 }
-.popup-close i{ font-size: 30px; color: rgb(200,200,200);}
-.popup-close i:hover{ color: white; }
-.openPopup{cursor:pointer;}
-.popup-header{ box-sizing: unset; z-index: 10; position:absolute;  background: rgb(23, 24, 29); padding: 0px !important; width: calc(100% - 0%); top: 0; height: 50px; text-align: center;}
-.popup-header .h3-class{ color: #fff; margin-top: 15px; text-transform: uppercase; font-size: 22px; font-weight: 900;  }
-.popup-header span{ color: #1DC4E7; }
-.popup-body{box-sizing: unset; z-index: 10; position:absolute;   padding: 0px !important; width: calc(100% - 0%); top: 50px; height: 100%; text-align: center;}
-.popup-body .confirm-first .question{color: white; font-size: 25px; line-height: 70px;}
-.popup-body .confirm-first .btn-yes{width: 200px;height: 50px;font-size: 15px;background: rgb(23, 24, 29);color: white;border-style: none;border-radius: 10px; }
-.popup-body .confirm-first .btn-yes:hover{background: #19B3D3}
-.popup-body .confirm-first .btn-no{width: 200px;height: 50px;font-size: 15px;background: rgb(23, 24, 29);color: white;border-style: none;border-radius: 10px; }
-.popup-body .confirm-first .btn-no:hover{background: #19B3D3}
-.popup-body .confirm-second .question{color: white; font-size: 25px; line-height: 70px;}
-.popup-body .confirm-second .confirm-password{width: 250px; padding-left: 10px;}
-.popup-body .confirm-second .confirm-password:focus{outline: none;}
-.popup-body .confirm-third .question{color: white; font-size: 25px; line-height: 50px;}
-.popup-body .confirm-third  .confirm-text{width: 250px; padding-left: 10px;}
-.popup-body .confirm-third  .confirm-text:focus{outline: none;}
-.popup-body .confirm-third  .leave-cloudmap{background: rgb(23, 24, 29);color: white;border-style:none; position: absolute; bottom: 70px; left: 125px; width: 250px; height: 40px; font-size: 20px; border-radius: 10px;}
-.popup-body .confirm-third  .leave-cloudmap:hover{background: #19B3D3;}
-.popup-body .confirm-fourth .question{color: white; font-size: 25px; line-height: 140px;}
+.leave-popup-section .backon{ content: ""; width: 100%; height: 100%; background: rgba(0,0,0,0.8); position: fixed; top: 0; left: 0; z-index: 5; }
+.leave-popup-section .popup-close{ position:absolute;top: 10px;right: 10px;cursor:pointer;z-index: 20 }
+.leave-popup-section .popup-close i{ font-size: 30px; color: rgb(200,200,200);}
+.leave-popup-section .popup-close i:hover{ color: white; }
+.leave-popup-section .openPopup{cursor:pointer;}
+.leave-popup-section .popup-header{ box-sizing: unset; z-index: 10; position:absolute;  background: rgb(23, 24, 29); padding: 0px !important; width: calc(100% - 0%); top: 0; height: 50px; text-align: center;}
+.leave-popup-section .popup-header .h3-class{ color: #fff; margin-top: 15px; text-transform: uppercase; font-size: 22px; font-weight: 900;  }
+.leave-popup-section .popup-header span{ color: #1DC4E7; }
+.leave-popup-section .popup-body{box-sizing: unset; z-index: 10; position:absolute;   padding: 0px !important; width: calc(100% - 0%); top: 50px; height: 100%; text-align: center;}
+.leave-popup-section .popup-body .confirm-first .question{color: white; font-size: 25px; line-height: 70px;}
+.leave-popup-section .popup-body .confirm-first .btn-yes{width: 200px;height: 50px;font-size: 15px;background: rgb(23, 24, 29);color: white;border-style: none;border-radius: 10px; }
+.leave-popup-section .popup-body .confirm-first .btn-yes:hover{background: #19B3D3}
+.leave-popup-section .popup-body .confirm-first .btn-no{width: 200px;height: 50px;font-size: 15px;background: rgb(23, 24, 29);color: white;border-style: none;border-radius: 10px; }
+.leave-popup-section .popup-body .confirm-first .btn-no:hover{background: #19B3D3}
+.leave-popup-section .popup-body .confirm-second .question{color: white; font-size: 25px; line-height: 70px;}
+.leave-popup-section .popup-body .confirm-second .confirm-password{width: 250px; padding-left: 10px;}
+.leave-popup-section .popup-body .confirm-second .confirm-password:focus{outline: none;}
+.leave-popup-section .popup-body .confirm-third .question{color: white; font-size: 25px; line-height: 50px;}
+.leave-popup-section .popup-body .confirm-third  .confirm-text{width: 250px; padding-left: 10px;}
+.leave-popup-section .popup-body .confirm-third  .confirm-text:focus{outline: none;}
+.leave-popup-section .popup-body .confirm-third  .leave-cloudmap{background: rgb(23, 24, 29);color: white;border-style:none; position: absolute; bottom: 70px; left: 125px; width: 250px; height: 40px; font-size: 20px; border-radius: 10px;}
+.leave-popup-section .popup-body .confirm-third  .leave-cloudmap:hover{background: #19B3D3;}
+.leave-popup-section .popup-body .confirm-fourth .question{color: white; font-size: 25px; line-height: 140px;}
 .toast {opacity: 1 !important;}
+
+#help-btn{ z-index: 1; color: #fff; position: fixed; cursor: pointer; right: 165px; font-size: 35px; margin-top: -3px; transition: 0.5s; transition-property: color; }
+#help-btn:hover{ color:#19B3D3 }
+
+.cloudmap-help-outer {position: fixed; top: 0; left: 0; display: none; justify-content: center; align-items: center; background: rgba(0,0,0,0.8); width: 100%; height: 100%; z-index: 15;}
+.cloudmap-help-outer #cloudmap-help{ border-radius: 10px; }
+.cloudmap-help-outer #cloudmap-help{ width: 1000px; height: 800px;   }
+.cloudmap-help-outer .cloudmap-help .backon{ content: ""; width: 100%; height: 100%; background: rgba(0,0,0,0.8); position: fixed; top: 0; left: 0; z-index: 2; }
+.cloudmap-help-outer .cloudmap-help .popup-close{position: absolute; top: 10px;right: 10px;cursor:pointer;z-index: 20 }
+.cloudmap-help-outer .cloudmap-help .popup-close i{ font-size: 30px; color: rgb(200,200,200);}
+.cloudmap-help-outer .cloudmap-help .popup-close i:hover{ color: white; }
+.cloudmap-help-outer .cloudmap-help .openPopup{cursor:pointer;}
+.cloudmap-help-outer .cloudmap-help .popup-header{ position: relative; display: flex; justify-content: center; align-items: center; box-sizing: unset; z-index: 15; background: black; padding: 0px !important; width: calc(100% - 0%); top: 0; height: 50px; text-align: center;}
+.cloudmap-help-outer .cloudmap-help .popup-header .header-title{ position: relative; box-sizing: unset; z-index: 15; background: black; padding: 0px !important; width: calc(100% - 0%); top: 0; height: 50px; text-align: center;}
+.cloudmap-help-outer .cloudmap-help .popup-header .h3-class{ color: #fff; margin-top: 15px; text-transform: uppercase; font-size: 22px; font-weight: 900;  }
+.cloudmap-help-outer .cloudmap-help .popup-header span{ color: #1DC4E7; }
+.cloudmap-help-outer .cloudmap-help .popup-body{box-sizing: unset; z-index: 15; padding: 0px !important; width: 1000px; top: 50px; height: 750px; text-align: center; }
+.cloudmap-help-outer .cloudmap-help .popup-body img{width: 1000px; top: 50px; height: 750px; }

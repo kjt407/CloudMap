@@ -17,8 +17,10 @@ $(document).ready(function () {
   $("#sidebar-check").change(function(){
     if($("#sidebar-check").is(":checked")){
       $("#my-page-btn").css("display", "none")
+      $("#help-btn").css("right", "100px")
     }else{
       $("#my-page-btn").css("display", "")
+      $("#help-btn").css("right", "165px")
     }
   });
 });
@@ -468,7 +470,7 @@ $("#friend-search-check").change(function(){
 //회원탈퇴 기능 시작--------------------------------------------------------------------------------------------
 $(".member-leave-section").on("click", ".member-leave", function(){
   $("#leave-popup-section").show();   //팝업 오픈
-  $("body").append('<div class="backon"></div>'); //뒷배경 생성
+  $(".leave-popup-section").append('<div class="backon"></div>'); //뒷배경 생성
   setting();
   $(".confirm-first").on("click", ".btn-yes", function(){
     $(".confirm-first").hide()
@@ -536,3 +538,12 @@ $(".confirm-third").on("click", ".leave-cloudmap", function(){
   });
 })
 //회원탈퇴 기능 끝--------------------------------------------------------------------------------------------
+$("body").on("click", "#help-btn", function() {
+  $(".cloudmap-help-outer").css('display','flex');   //팝업 오픈
+  $(".popup-close").on("click", "i", function(){
+    $(".cloudmap-help-outer").css('display','none');   //팝업 오픈
+    // $("#cloudmap-help").hide();
+    // $(".backon").hide();
+
+  })
+});

@@ -62,6 +62,7 @@
         <label for="my-page-check">
             <i class="fas fa-user" id="my-page-btn"></i>
         </label>
+        <i class="fas fa-question-circle" id="help-btn"></i>
         <div class="left_area">
         </div>
         <div class="center_area">
@@ -173,7 +174,7 @@
         </div>
     </div>
     <!--회원탈퇴-->
-    <div id="leave-popup-section">
+    <div id="leave-popup-section" class="leave-popup-section">
         <div class="popup-close"><i class="fas fa-times"></i></div>
         <div class="popup-header">
             <h3 class="h3-class">CLOUD <span class="title-map">MAP </span>탈퇴하기</h3>
@@ -241,6 +242,21 @@
             </div>
         </div>
     </div>
+    <div class="cloudmap-help-outer">
+        <div id="cloudmap-help" class="cloudmap-help">
+
+            <div class="popup-header">
+                <div class="popup-close"> <i class="fas fa-times"></i></div>
+                <div class="header-title">
+                    <h3 class="h3-class">CLOUD <span class="title-map">MAP </span>사용 설명서</h3>
+                </div>
+            </div>
+            <div class="popup-body">
+                <img th:src="@{/images/CloudMapHelp.png}" alt="">
+            </div>
+        </div>
+    </div>
+
     </body>
     <script th:src="@{/js/kakaomap.js}"></script>
     <script th:src="@{/js/detail.js}"></script>

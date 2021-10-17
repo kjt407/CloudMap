@@ -11,6 +11,7 @@ $(document).on('click', '#my-detail', function () {
         contentType: false,
         dataType: 'json',
         success: function (data) {
+
             detailFile(data)
             $(".check-like").attr("data-lno", lno)
             $(".btn-modify").remove();
@@ -19,17 +20,18 @@ $(document).on('click', '#my-detail', function () {
                 "<button type='button' class='btn-delete'>삭제하기</button>")
             desc = false;
             lnoDesc = lno;
+            getLike(lno)
+
+
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
             alert('fail');
         }
     });
-    getLike(lno)
     $('.detail.modal').modal({
         remote : contextpath+'server/detail.html'
     });
-
 });
 
 $(document).on('click', '#friend-detail', function () {
