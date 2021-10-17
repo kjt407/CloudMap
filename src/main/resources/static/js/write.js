@@ -98,6 +98,7 @@ jQuery(document).ready(function () {
                 getMyMapLogList();
                 toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
                 toastr.success('작성이 완료되었습니다.');
+                storedFiles = [];
         	},
         	error: function (e) {
         		$('#btnUpload').prop('disabled', false);
