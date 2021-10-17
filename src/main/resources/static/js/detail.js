@@ -17,7 +17,7 @@ $('.modify.modal').modal({
 setTimeout(function() {
     $('.detail.modal').modal("hide");
     $('.modify.modal').modal("hide");
-}, 1000);
+}, 500);
 
 $('.modal-backdrop.in').css("opacity", "0")
 function madalSetting(){
