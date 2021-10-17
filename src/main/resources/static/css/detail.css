@@ -28,12 +28,11 @@ body { overflow: hidden; }
 .detail input[type=checkbox] + label {display: inline-block; cursor: pointer; line-height: 40px; padding-left: 40px; background: url('../images/like-off.png') left/40px no-repeat; }
 .detail input[type=checkbox]:checked + label { background-image: url('../images/like-on.png'); }
 .detail input[type=checkbox]:disabled + label { background-image: url('../images/like-off.png'); }
-.detail #like-count{ font-size: 25px;}
+.detail #like-count{ font-size: 20px;}
 /*좋아요 누른 목록*/
-.detail .overLikeLayer{padding: 15px; position: fixed; color: white; background: white; text-align: center; width: 35%; top: 480px; height: 350px; left: 20px; box-shadow: 3px 3px 3px 3px gray; border-radius: 20px; display: none; }
-.detail .overLikeLayer:before{ border-top: 20px solid transparent; border-left: 40px solid gray; border-right: 20px solid transparent; border-bottom: 5px solid transparent; content: ""; position: absolute; top: 300px; left: 280px; }
+.detail .overLikeLayer{padding: 15px; position: fixed; color: white; background: white; text-align: center; width: 35%; top: 525px; height: 250px; left: 235px; box-shadow: 3px 3px 3px 3px gray; border-radius: 20px; display: none; }
 .detail .overLikeLayer .like-list-title{  /*margin: 10px 0px 10px 0px;*/ width: 100%; background: white; height: 30px; font-size: 19px; line-height: 30px; color: black; font-weight: bold; }
-.detail .overLikeLayer .like-list-body{ margin: 7px 0px; width: 100%; background: white; height: 100%; overflow:scroll;   -ms-overflow-style: none; }
+.detail .overLikeLayer .like-list-body{ margin: 7px 0px; width: 100%; background: white; height: 180px; overflow:scroll;   -ms-overflow-style: none; }
 .detail .overLikeLayer .like-list-body::-webkit-scrollbar { display: none; }
 .detail .overLikeLayer .like-list-body .like-member-ul{ background: white; }
 .detail .overLikeLayer .like-list-body .like-member-ul .like-member-li{ padding: 10px 0px; height: 50px; list-style: none; font-size: 20px;  /*border: solid black;*/ }
