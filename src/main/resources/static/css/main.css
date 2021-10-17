@@ -1,14 +1,10 @@
-
 body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", sans-serif; overflow: hidden; }
-
 /*헤더부분*/
 .header-class{ box-sizing: unset; z-index: 10; position: fixed; background: rgb(23, 24, 29); padding: 20px !important; width: calc(100% - 0%); top: 0; height: 30px; }
 .left_area .h3-class{ color: #fff; margin: -15px 10px; text-transform: uppercase; font-size: 22px; font-weight: 900;  }
 .left_area span{ color: #1DC4E7; }
 .center_area .h3-class{ color: #fff;  text-transform: uppercase; font-size: 30px; font-weight: 900; text-align: center; position: fixed; width: 100%; top:0px; margin-right: 10px;}
 .center_area .title-map{ color: #1DC4E7; }
-
-
 
 /*사이드바*/
 .sidebar{ z-index: 1; top: 0; background: #212022; margin-top: 70px; padding-top: 30px; position: absolute; right: 0; width: 290px; height: calc(100vh ); transition: 0.5s; transition-property: right; -ms-overflow-style: none; }
@@ -22,19 +18,13 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .profile_info #modify-name{color: white; cursor: pointer; font-size: 16px;  position: absolute; right: 85px; top: 237px;}
 .sidebar .profile_info #modify-name:hover{color:rgb(252, 94, 94);}
 .sidebar .profile_info .my-name:focus {outline:none;}
-
 .sidebar .profile_info #modify-profile-image{color: white; cursor: pointer; font-size: 30px;  position: absolute; right: 70px; top: 181px;}
 .sidebar .profile_info #modify-profile-image:hover{color:rgb(252, 94, 94);}
 
-
-
 /* 사이드바 친구목록 */
 .sidebar .box { height:calc(100vh - 450px); -ms-overflow-style: none; }
-
-
 .sidebar .box .friend-list-scroll { overflow:scroll;   -ms-overflow-style: none; height:calc(100vh - 480px); }
 .friend-list-scroll::-webkit-scrollbar { display: none; }
-
 .sidebar .box .friend-list-title { margin-left: -40px; margin-right: 0px; list-style: none; text-align: center; height: 13px; line-height: 32px;}
 .sidebar .box .friend-list-title li label { font-size: 20px; color: white; font-weight: bold; }
 .sidebar .box .friend-list { margin-left: -40px; margin-right: 0px; list-style: none; }
@@ -45,9 +35,9 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .box .friend-list li .my_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px; cursor: pointer; }
 .sidebar .box .friend-list li .delete_friend{ cursor: pointer; flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px;}
 .sidebar .box .friend-list li .delete_friend:hover{filter: brightness(65%);}
-
 .sidebar .friend-list li:hover .friend_profile_name{ color: #1DC4E7;}
 
+/*사이드바 친구 검색 부분*/
 .sidebar .box-friend-search { z-index: 1; height:calc(100vh - 435px);  width: 100%; transition: 0.5s; transition-property: right; right: -300px; position: absolute; top: 303px; background: #212022; }
 .sidebar .box-friend-search .search-friend-list-scroll { overflow:scroll;   -ms-overflow-style: none; height:calc(100vh - 470px); }
 .search-friend-list-scroll::-webkit-scrollbar { display: none; }
@@ -65,19 +55,14 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .box-friend-search .friend-list li .loading{ width: 40px; height: 40px; text-align: center}
 .sidebar .box-friend-search .friend-list li .loading .loading-img{ width: 40px; height: 40px; animation: rotate_image 6s linear infinite;transform-origin: 50% 50%;}
 @keyframes rotate_image{ 100% { transform: rotate(360deg); } }
-
 .sidebar .box-friend-search .friend-list li .received-friend{ width: 40px; height: 40px; text-align: center}
 .sidebar .box-friend-search .friend-list li .received-friend .received-friend-img{ width: 40px; height: 40px;}
 .sidebar .box-friend-search .friend-list li .isFriend{ width: 40px; height: 40px; text-align: center}
 .sidebar .box-friend-search .friend-list li .isFriend .isFriend-img{ width: 40px; height: 40px;}
-
 .sidebar .box-friend-search .friend-list li .friend_profile_section{ width: 200px; height: 70px }
 
-
-
+/*사이드바 친구 알림 목록*/
 .sidebar .friend-list li:hover #add-friend{ color: #212022;}
-
-
 .sidebar .box-friend-alert { z-index: 1; height:calc(100vh - 435px);  width: 100%; transition: 0.5s; transition-property: right; right: -300px; position: absolute; top: 303px; background: #212022; }
 .sidebar .box-friend-alert .search-friend-list-scroll { overflow:scroll;   -ms-overflow-style: none; height:calc(100vh - 470px); }
 .search-friend-list-scroll::-webkit-scrollbar { display: none; }
@@ -92,38 +77,15 @@ body{ width: 100%; height: 100%; margin: 0; padding: 0; font-family: "Roboto", s
 .sidebar .box-friend-alert .friend-list li .accept-friend-img:hover{color: #1DC4E7 }
 .sidebar .box-friend-alert .friend-list li .refuse-friend-img{ flex-direction: column; width: 30px; height: 30px; border-radius: 100px;   margin-top: 16px; cursor: pointer; font-size: 25px; color: white}
 .sidebar .box-friend-alert .friend-list li .refuse-friend-img:hover{  color: red}
-
-.sidebar .friend-list li i{
-  margin-left : 20px;
-}
-
+.sidebar .friend-list li i{margin-left : 20px;}
 .sidebar .friend-list li:hover #add-friend{ color: #212022;}
 .sidebar .friend-list li:hover .accept-friend{ color: #212022;}
 .sidebar .friend-list li:hover .delete-friend{ color: #212022;}
 
-
-
-.sidebar .friend-search-bar{
-  width: 150px;
-  height: 30px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 2px;
-
-}
-.sidebar .friend-search-bar::-webkit-input-placeholder{
-  text-align: center;
-}
-
-#add-friend{
-  font-size: 25px;
-  margin-top: 16px;
-  color: white;
-}
-
+/*친구검색 바*/
+.sidebar .friend-search-bar{ width: 150px; height: 30px; border-radius: 10px; border: none; outline: none; text-align: center; font-weight: bold; letter-spacing: 2px; }
+.sidebar .friend-search-bar::-webkit-input-placeholder{ text-align: center;}
+#add-friend{ font-size: 25px; margin-top: 16px; color: white; }
 
 /* 사이드바 로그아웃 */
 .sidebar .logout{ font-size: 30px; width: 300px; text-align: center; bottom: 0; position: fixed; background-color: #212022; }
@@ -135,40 +97,14 @@ label #search_btn:hover{ color:#5dd319 }
 #search-check:checked ~ .search{ left: 0px }
 #search-check{ display: none; }
 
-.explanation{
-  z-index: 1;
-  position: fixed;
-  width: 210px;
-  height: 200px;
-  top: 80px;
-  right: 300px;
-  transition: 0.5s; transition-property: right;
-  background: rgba(255, 255, 255, 0.5);
+/*마커설명*/
+.explanation{ z-index: 1; position: fixed; width: 210px; height: 200px; top: 80px; right: 300px; transition: 0.5s; transition-property: right; background: rgba(255, 255, 255, 0.5);}
+.explanation .ex1 img{ width: 45px; margin: 6px 11px 3px 12px; }
+.explanation .ex2 img{ width: 35px; margin: 3px 16px; }
+.explanation .ex3 img{ width: 35px; margin: 3px 16px; }
+.explanation .ex4 img{ width: 27px; margin: 3px 20px; }
+.explanation span{ font-size: 16px; font-weight: bold; }
 
-}
-
-
-.explanation .ex1 img{
-  width: 45px;
-  margin: 6px 11px 3px 12px;
-}
-
-.explanation .ex2 img{
-  width: 35px;
-  margin: 3px 16px;
-}
-.explanation .ex3 img{
-  width: 35px;
-  margin: 3px 16px;
-}
-.explanation .ex4 img{
-  width: 27px;
-  margin: 3px 20px;
-}
-.explanation span{
-  font-size: 16px;
-  font-weight: bold;
-}
 /*사이드바 버튼 디자인 및 기능 */
 label #sidebar_btn{ z-index: 1; color: #fff; position: fixed; cursor: pointer; right: 30px; font-size: 40px; margin-top: -15px; transition: 0.5s; transition-property: color; }
 label #sidebar_btn:hover{ color:#19B3D3 }
@@ -179,38 +115,21 @@ label #sidebar_btn:hover{ color:#19B3D3 }
 label #friend_search_btn{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:25px; top: 305px; font-size: 25px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_search_btn:hover{ color:#19B3D3 }
 #friend-search-check:checked ~ .sidebar .box-friend-search{ right: 0px;}
-
 label #friend_search_btn2{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:25px; top: 2px; font-size: 25px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_search_btn2:hover{ color:#19B3D3 }
-
-
 label #friend_alert_btn{ z-index: 0; color: #fff; position: absolute; cursor: pointer; right:240px; top: 305px; font-size: 25px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_alert_btn:hover{ color:#19B3D3 }
 #friend-alert-check:checked ~ .sidebar .box-friend-alert{ right: 0px;}
 label #friend_alert_btn2{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:25px; top: 2px; font-size: 25px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_alert_btn2:hover{ color:#19B3D3 }
-
-.accept-friend{
-  font-size: 15px;
-  margin-top: 21px;
-  color: white;
-}
-.delete-friend{
-  font-size: 15px;
-  margin-top: 21px;
-  color: white;
-}
-
+.accept-friend{ font-size: 15px; margin-top: 21px; color: white; }
+.delete-friend{ font-size: 15px; margin-top: 21px; color: white; }
 
 /*콘텐츠*/
 .content{ position: relative; z-index: 0; width: (100%);  background: white; background-position: center; background-size: cover; height: 100vh;}
 #maps{top: -25px}
 .content #map{width: 100%; height: 100vh; top: 70px;}
-
 .mobile_nav{ display: none; }
-
-
-
 
 .write-section .write-title {padding: 5px 0 0 10px;height: 30px;background: #222;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: white;}
 .write-section .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
@@ -250,34 +169,8 @@ label #friend_alert_btn2:hover{ color:#19B3D3 }
 .friend .desc .read-btn-style .read-btn {width: 100%; background: rgb(194, 162, 217); border: none; height: 25px; text-align: center; color: black; display: inline-block; text-decoration: none; line-height: 20px; font-weight: bold;}
 .friend .desc .read-btn-style .read-btn:hover {background: #713C93; cursor: pointer; color: white}
 
-
-
-/* .modal{
-  position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
-}
-
-.modal_content{
-  width:400px; height:200px;
-  background:#fff; border-radius:10px;
-  position:relative; top:50%; left:50%;
-  margin-top:-100px; margin-left:-200px;
-  text-align:center;
-  box-sizing:border-box; padding:74px 0;
-  line-height:23px; cursor:pointer;
-} */
-.modal-dialog.modal-fullsize {
-  width: 800px;
-  height: 850px;
-  top: 50px;
-
-}
-.modal-content.modal-fullsize {
-  height: 850px;
-  min-height: 850px;
-  border-radius: 0;
-}
-
-
+.modal-dialog.modal-fullsize { width: 800px; height: 850px; top: 50px;}
+.modal-content.modal-fullsize { height: 850px; min-height: 850px; border-radius: 0; }
 
 .search{ z-index: 1; top: 0; position: fixed; left: -450px; width: 290px; height: calc(100vh ); transition: 0.5s; transition-property: left; -ms-overflow-style: none; }
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
@@ -318,20 +211,11 @@ label #friend_alert_btn2:hover{ color:#19B3D3 }
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#ffffff;}
 
-
-.from-friend{
-  font-size: 18px;
-  color: white;
-}
-.from-friend-name{
-  font-size: 26px;
-  color: #1DC4E7;
-  font-weight: bold;
-}
+.from-friend{ font-size: 18px; color: white; }
+.from-friend-name{ font-size: 26px; color: #1DC4E7; font-weight: bold; }
 
 label #my-page-btn{ z-index: 1; color: #fff; position: fixed; cursor: pointer; right: 100px; font-size: 35px; margin-top: -13px; transition: 0.5s; transition-property: color; }
 label #my-page-btn:hover{ color:#19B3D3 }
-
 
 .sidebar .my-page-section { z-index: 1; height:calc(100vh - 435px);  width: 100%; transition: 0.5s; transition-property: right; right: -300px; position: absolute; top: 303px; background: #212022; }
 .sidebar .my-page-section .search-friend-list-scroll { overflow:scroll;   -ms-overflow-style: none; height:calc(100vh - 470px); }
@@ -343,12 +227,8 @@ label #my-page-btn:hover{ color:#19B3D3 }
 .sidebar .my-page-section .like li .friend_profile_image{flex-direction: column; width: 35px; height: 35px; border-radius: 100px;  margin-top: 12.5px;}
 .sidebar .my-page-section .like li .friend_profile_name{ color: #fff; font-size: 18px; margin-bottom: 0px; display: block; width: 100%; line-height: 60px; text-decoration: none; box-sizing: border-box;  }
 .sidebar .my-page-section .like-list li .friend_profile_home{ flex-direction: column; width: 35px; height: 35px; border-radius: 100px;   margin-top: 12.5px;}
-
 .sidebar .like-list li:hover #add-friend{ color: #212022;}
-
-
 #my-page-check:checked ~ .sidebar .my-page-section{ right: 0px;}
-
 
 /*프로필 팝업 CSS*/
 div#profile-edit-popup { position: fixed; display:none; flex-direction: column; justify-content: center; align-items: center; z-index: 11; top: 0; left: 0; width: 100%; height: 100%; background: rgba(000,000,000,0.5); font-size: 19px;}
@@ -365,49 +245,20 @@ div#profile-edit-popup > .popup-content .btn-close-popup { transition: 0.2s all;
 div#profile-edit-popup > .popup-content > div#popup-container .btn-edit-profile:hover { transform: scale(1.1);}
 div#profile-edit-popup > .popup-content .btn-close-popup { position: absolute; top: 20px; right: 20px; width: 20px; height: 20px;}
 
-label {  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;}
-
+label {  -ms-user-select: none; -moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; user-select: none;}
 
 /*ul*/
-.sidebar .my-page-section .search-like-list-scroll .my-like-list{
-  margin-left: -40px; margin-right: 0px; list-style: none; color: white; height: calc(100vh - 500px); overflow:scroll;  -ms-overflow-style: none;
-}
-.sidebar .my-page-section .search-like-list-scroll .my-like-list::-webkit-scrollbar{
-  display: none;
-}
+.sidebar .my-page-section .search-like-list-scroll .my-like-list{margin-left: -40px; margin-right: 0px; list-style: none; color: white; height: calc(100vh - 500px); overflow:scroll;  -ms-overflow-style: none;}
+.sidebar .my-page-section .search-like-list-scroll .my-like-list::-webkit-scrollbar{display: none; }
 /*li*/
-.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like{
-  height: 75px;
-  display: flex;
-
-}
-.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like:hover{
-  background: #1DC4E7;
-
-}
-.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like .my-like-left{
-  text-align: center;
-  margin: 10px 20px;
-  height: 60px;
-  width: 50px;
-}
-.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like .my-like-right{
- line-height: 75px; font-size: 15px;
-}
-.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like div img{
-  width: 40px; border-radius: 100%; height: 40px;
-}
-
-.sidebar .my-page-section .search-like-list-scroll .my-like-list *{
- cursor: pointer;
-}
+.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like{ height: 75px; display: flex; }
+.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like:hover{ background: #1DC4E7;}
+.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like .my-like-left{ text-align: center; margin: 10px 20px; height: 60px; width: 50px; }
+.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like .my-like-right{ line-height: 75px; font-size: 15px; }
+.sidebar .my-page-section .search-like-list-scroll .my-like-list .click_my_like div img{ width: 40px; border-radius: 100%; height: 40px; }
+.sidebar .my-page-section .search-like-list-scroll .my-like-list *{ cursor: pointer; }
 label #friend_setting_btn{ z-index: 1; color: #fff; position: absolute; cursor: pointer; right:88px; top: 310px; font-size: 15px; margin: 0px; transition: 0.5s; transition-property: color; }
 label #friend_setting_btn:hover{ color:#19B3D3 }
-
 .member-leave-section{height: 20px; text-align: right; padding-left: 150px}
 .member-leave-section .member-leave{height: 20px; line-height: 20px; text-align: center; width: 130px; color: rgb(70,70,70); text-decoration: none; cursor: pointer;  -webkit-user-select: none; -ms-user-select: none;}
 .member-leave-section .member-leave:hover{color: rgb(120,120,120)}
