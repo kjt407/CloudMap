@@ -98,7 +98,7 @@ label #search_btn:hover{ color:#5dd319 }
 #search-check{ display: none; }
 
 /*마커설명*/
-.explanation{ z-index: 1; position: fixed; width: 210px; height: 200px; top: 80px; right: 300px; transition: 0.5s; transition-property: right; background: rgba(255, 255, 255, 0.5);}
+.explanation{ z-index: 1; position: fixed; width: 210px; height: 185px; top: 80px; right: 300px; transition: 0.5s; transition-property: right; background: rgba(255, 255, 255, 0.5);}
 .explanation .ex1 img{ width: 45px; margin: 6px 11px 3px 12px; }
 .explanation .ex2 img{ width: 35px; margin: 3px 16px; }
 .explanation .ex3 img{ width: 35px; margin: 3px 16px; }
