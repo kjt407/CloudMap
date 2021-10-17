@@ -338,6 +338,7 @@ $(".my-name").keydown(function(key) {
         $(".my-name").css("background", "#212022");
         $(".my-name").css("color", "white");
         $(".my-name").attr("disabled", true);
+        $("#modify-name").attr("class", "fas fa-pen")
         getMyLikeList()
       },
       error: function (e) {
