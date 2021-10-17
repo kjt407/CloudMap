@@ -234,7 +234,7 @@ function placesSearchCB(data, status, pagination) {
         toastr.info('검색 결과가 존재하지 않습니다.');
         return;
     } else if (status === kakao.maps.services.Status.ERROR) {
-        alert('검색 결과 중 오류가 발생했습니다.');
+
         return;
     }
 }

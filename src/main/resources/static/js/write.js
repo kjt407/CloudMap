@@ -20,7 +20,7 @@ jQuery(document).ready(function () {
                 })(file);
                 readImg.readAsDataURL(file);
             } else {
-                alert('the file ' + file.name + ' is not an image<br/>');
+
             }
         }
         if (storedFiles.length === 0) {

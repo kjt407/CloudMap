@@ -58,7 +58,7 @@ $(document).on('click', '#my-detail', function () {
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
-            alert('fail');
+
         }
     });
 
@@ -92,7 +92,6 @@ $(document).on('click', '#friend-detail', function () {
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
-            alert('fail');
         }
     });
     getLike(lno)
@@ -155,7 +154,7 @@ function getLike(lno){
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
-            alert('fail');
+
         }
     });
 }
@@ -203,13 +202,13 @@ $(".like").change(function(){
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);
-                        alert('fail');
+
                     }
                 });
             },
             error: function (e) {
                 $('#btnUpload').prop('disabled', false);
-                alert('fail');
+
             }
         });
     }else{
@@ -256,13 +255,13 @@ $(".like").change(function(){
                     },
                     error: function (e) {
                         $('#btnUpload').prop('disabled', false);
-                        alert('fail');
+
                     }
                 });
             },
             error: function (e) {
                 $('#btnUpload').prop('disabled', false);
-                alert('fail');
+
             }
         });
     }
@@ -306,7 +305,7 @@ $(document).on('click', '.btn-modify', function () {
         },
         error: function (e) {
             $('#btnUpload').prop('disabled', false);
-            alert('fail');
+
         }
     });
 });

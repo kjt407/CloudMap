@@ -530,11 +530,14 @@ $(".confirm-third").on("click", ".leave-cloudmap", function(){
           count--;//카운트 감소
         }, 1000);
       } else {
-        alert('패스워드 또는 확인문자를 정확히 입력해주세요');
+        toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+        toastr.warning('패스워드 또는 확인문자를 정확히 입력해주세요.');
+
       }
     },
     error: function (e) {
-      alert('패스워드 또는 확인문자를 정확히 입력해주세요');
+      toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+      toastr.warning('패스워드 또는 확인문자를 정확히 입력해주세요.');
     }
   });
 })
