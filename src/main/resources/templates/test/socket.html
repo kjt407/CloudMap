@@ -14,33 +14,72 @@
 <script th:src="@{//code.jquery.com/jquery-1.12.4.js}"></script>
 <script type="text/javascript" th:src="@{//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js}"></script>
 <script type="text/javascript" th:src="@{//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
+<script th:src="@{//cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js}"></script>
+<script>
+	// 전역변수 설정
+	var socket  = null;
+	$(document).ready(function(){
+		// 웹소켓 연결
+		sock = new SockJS("/myHandler");
+		socket = sock;
 
+		// 데이터를 전달 받았을때
+		sock.onmessage = onMessage; // toast 생성
+	});
 
-
-
+	// toast생성 및 추가
+	function onMessage(evt){
+		var data = evt.data;
+		console.log(data);
+		// toast
+		let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
+		toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
+		toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
+		toast += "<span aria-hidden='true'>&times;</span></button>";
+		toast += "</div> <div class='toast-body'>" + data + "</div></div>";
+		$("#msgStack").append(toast);   // msgStack div에 생성한 toast 추가
+		$(".toast").toast({"animation": true, "autohide": false});
+		$('.toast').toast('show');
+	};
+</script>
 </head>
 <body>
-<div id="snow"></div>
-<div id="fullpage">
-	<div class="fullsection full1" pageNum="1">
-		<div class="loading-background"></div>
-		<div class="login">
-			<form name="form" method="post" th:action="@{/addLikes}">
-				<input name="lno" value=""/>
-				<input type="submit" id="submit" value="전송"/>
-			</form>
-			<br>
-			<form name="form1" method="post" th:action="@{/deleteLikes}">
-				<input name="lno" value=""/>
-				<input type="submit" value="전송"/>
-			</form>
-		</div>
-	</div>
-</div>
-<script th:inline="javascript">
+	<div id="msgStack"></div>
 
-</script>
-<!--<script th:src="@{/js/sign.js}"></script>-->
+	<input type="text" id="email" value="kjt40700@gmail.com">
+	<br/>
+	<input type="text" id="content" value="테스트text">
+	<br/>
+	<input type="button" id="notifySendBtn" value="전송">
+	<script>
+		$('#notifySendBtn').click(function(e){
+			console.log("버튼클릭")
+			// let modal = $('.modal-content').has(e.target);
+			let type = '70';
+			let target = $('#email').val();
+			let content = $('#content').val();
+			let url = '/member/notify.do';
+			// 전송한 정보를 db에 저장
+			console.log("ajax 전송")
+			$.ajax({
+				type: 'post',
+				url: '/member/saveNotify.do',
+				dataType: 'text',
+				data: {
+					target: target,
+					content: content,
+					type: type,
+					url: url
+				},
+				success: function(){    // db전송 성공시 실시간 알림 전송
+					// 소켓에 전달되는 메시지
+					// 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+					socket.send("관리자,"+target+","+content+","+url);
+				}
+			});
+			// modal.find('.modal-body textarea').val('');	// textarea 초기화
+		});
+	</script>
 </body>
 
 </html>

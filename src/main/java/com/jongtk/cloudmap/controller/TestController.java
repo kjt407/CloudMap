@@ -103,6 +103,12 @@ public class TestController {
         return "/test/friend";
     }
 
+    @GetMapping("/socket")
+    public String socket(@AuthenticationPrincipal AuthMemberDTO authMemberDTO) {
+
+        return "/test/socket";
+    }
+
     private String makeFolder() {
 
         String str = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
