@@ -14,7 +14,7 @@ $('body').on('change', '.user_picked_files_modify', function () {
                     $('.cvf_uploaded_files').append(
                         "<li class='all-image' file = '" + file.name + "'>" +
                         "<img class = 'img-thumb' src = '" + e.target.result + "' />" +
-                        "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
+                        "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='images/close.png' /></a>" +
                         "</li>"
                     );
                 };
@@ -88,7 +88,7 @@ $('body').on('click', '.modify-btn', function (e) {
 
     $.ajax({
         type: "PUT",
-        url: "/editMapLog",
+        url: contextpath+"/editMapLog",
         data: data,
         processData: false,
         contentType: false,

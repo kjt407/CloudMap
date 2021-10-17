@@ -260,7 +260,7 @@ $(document).on('click', '.btn-modify', function () {
                 areadyStoredFiles.push(i)
                 var html = "<li class='all-image' file = '" + i.imgName + "'>" +
                     "<img class = 'img-thumb' src='display?imgUrl=" + i.imageURL + "' />" +
-                    "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='../images/close.png' /></a>" +
+                    "<a href = '#' class = 'cvf_delete_image' title = 'Cancel'><img class = 'delete-btn' src='images/close.png' /></a>" +
                     "</li>"
                 $('.modify .cvf_uploaded_files').append(html)
             })
