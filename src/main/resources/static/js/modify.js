@@ -65,11 +65,13 @@ $('body').on('click', '.modify-btn', function (e) {
     var content = $(".modify #content").val();
 
     if(title===null||title===""||title===undefined||title==="undefined"){
-        alert("제목을 입력해주세요")
+        toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+        toastr.warning('제목을 입력해주세요.');
         return;
     }
     if(content===null||content===""||content===undefined||content==="undefined"){
-        alert("내용을 입력해주세요")
+        toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+        toastr.warning('내용을 입력해주세요.');
         return;
     }
     data.append("lno", lno);
@@ -97,11 +99,12 @@ $('body').on('click', '.modify-btn', function (e) {
             deleteStoredFiles = [];
             areadyStoredFiles = [];
             getMyMapLogList();
-            alert('성공');
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+            toastr.success('수정이 완료되었습니다.');
         },
         error: function (e) {
-
-            alert('fail');
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+            toastr.error('오류 : 관리자에게 문의 바랍니다.');
         }
     });
 });

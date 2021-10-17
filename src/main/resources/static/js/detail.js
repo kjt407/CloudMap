@@ -284,12 +284,12 @@ $(".detail .footer").on('click', '.btn-delete', function () {
         success: function () {
             $('.detail.modal').modal("hide");
             getMyMapLogList();
-            console.log("success????")
-            alert('success');
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+            toastr.success('삭제가 완료되었습니다.');
         },
         error: function (e) {
-            console.log("fail????")
-            alert('fail');
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+            toastr.error('오류 : 관리자에게 문의 바랍니다.');
         }
     });
 });

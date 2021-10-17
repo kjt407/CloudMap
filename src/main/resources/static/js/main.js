@@ -58,7 +58,6 @@ function getReceiveList(){
     url: contextpath+"getReceiveList",
     dataType: 'json',
     success: function (data) {
-      console.log(data)
       var friendLi = "";
       data.forEach(friend => {
         //프로필이미지 선언
@@ -70,9 +69,10 @@ function getReceiveList(){
             profileImg = friend.profileImg;
           }
         }
-        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i src="'+contextpath+'images/received-friend.png" class="accept-friend-img fas fa-user-plus" onclick="friendReceiveAction(this)" data-option="accept" data-email="'+friend.email+'"></i><i src="'+contextpath+'images/refuse-friend.png" class="refuse-friend-img fas fa-user-minus" onclick="friendReceiveAction(this)" data-option="refuse" data-email="'+friend.email+'"></i></li>'
+        friendLi += '<li><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><i src="'+contextpath+'images/received-friend.png" class="accept-friend-img fas fa-user-plus" onclick="friendReceiveAction(this)" data-option="accept" data-name="'+friend.name+'" data-email="'+friend.email+'"></i><i src="'+contextpath+'images/refuse-friend.png" class="refuse-friend-img fas fa-user-minus" onclick="friendReceiveAction(this)" data-option="refuse" data-name="'+friend.name+'" data-email="'+friend.email+'"></i></li>'
       })
       $('.alert-friend-list-scroll > ul.friend-list').html(friendLi);
+
     },
     error: function (e) {
       console.log('fail');
@@ -82,10 +82,13 @@ function getReceiveList(){
 function receiveFriendAction(option, targetEmail, ele){
   var data = {"targetEmail":targetEmail};
   var url = '';
+  var alert = '';
   if(option == 'accept'){
     url = contextpath+'acceptFriend'
+    alert = $(ele).data("name")+'님이 친구로 등록되었습니다.'
   } else if(option == 'refuse'){
     url = contextpath+'refuseFriend'
+    alert = $(ele).data("name")+'님의 친구신청을 거절했습니다..'
   }
   $.ajax({
     type: "POST",
@@ -101,10 +104,14 @@ function receiveFriendAction(option, targetEmail, ele){
         getReceiveList();
         getFriendList();
         searchRefresh(ele);
+        toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+        toastr.info(alert);
+        
       }
     },
     error: function (e) {
-      console.log('fail');
+      toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+      toastr.error('오류 : 관리자에게 문의 바랍니다.');
     }
   });
 }
@@ -137,7 +144,7 @@ function searchFriend(str){
         }else if(friend.state == 'sent'){
           html += '<a class="loading"><img class="loading-img" src="'+contextpath+'images/loading.png"/></a>';
         }else if(friend.state == 'received'){
-          html += '<a class="received-friend" style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-email="'+friend.email+'"><img class="received-friend-img" src="'+contextpath+'images/received-friend.png"></a>';
+          html += '<a class="received-friend" style="cursor: pointer" onclick="friendReceiveAction(this)" data-search="receive" data-option="accept" data-name="'+friend.name+'" data-email="'+friend.email+'"><img class="received-friend-img" src="'+contextpath+'images/received-friend.png"></a>';
         }
         html += '</li>'
       })
@@ -437,6 +444,8 @@ function deleteFriend(ele){
             friendLi += '<li class="friend-list-li"><img src="'+profileImg+'" class="friend_profile_image"><label class="friend_profile_name">'+friend.name+'</label><img onclick="deleteFriend(this)" data-name="'+ friend.name+'" data-email="'+friend.email+'" src="'+contextpath+'images/minus.png" id="sprofile_home" class="delete_friend"></li>'
           })
           $('#main-friend-list').html(friendLi)
+          toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1500 };
+          toastr.info($(ele).data("name")+'님을 친구목록에서 삭제했습니다.');
         },
         error: function (e) {
         }

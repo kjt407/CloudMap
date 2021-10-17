@@ -61,11 +61,13 @@ jQuery(document).ready(function () {
         var lat = rightClickLat;
         var lng = rightClickLng;
         if(title===null||title===""||title===undefined||title==="undefined"){
-            alert("제목을 입력해주세요")
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+            toastr.warning('제목을 입력해주세요.');
             return;
         }
         if(content===null||content===""||content===undefined||content==="undefined"){
-            alert("내용을 입력해주세요")
+            toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+            toastr.warning('내용을 입력해주세요.');
             return;
         }
          for(var i = 0; i <storedFiles.length; i++){
@@ -77,6 +79,7 @@ jQuery(document).ready(function () {
         data.append("writer", writer);
         data.append("lat", lat);
         data.append("lng", lng);
+
         $.ajax({
         	type: "POST",
         	url: contextpath+"register",
@@ -93,10 +96,13 @@ jQuery(document).ready(function () {
                 $(".write-section").find('form')[0].reset()
                 start = true;
                 getMyMapLogList();
+                toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+                toastr.success('작성이 완료되었습니다.');
         	},
         	error: function (e) {
         		$('#btnUpload').prop('disabled', false);
-        		alert('fail');
+                toastr.options = {closeButton: true, progressBar: true, showMethod: 'slideDown', timeOut: 1000 };
+        		toastr.error('오류 : 관리자에게 문의 바랍니다.')
             }
         });
     });
@@ -118,3 +124,4 @@ $("body").on('click',".btn-close",function(){
     $(".write-section").find('form')[0].reset()
     $('.write.modal').modal("hide");
 });
+
